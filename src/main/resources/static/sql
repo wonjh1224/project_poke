@@ -11,3 +11,5 @@ grant all privileges on pokedb.* to
 
 -- 권한 설정 완료
 flush privileges;
+
+/ --
