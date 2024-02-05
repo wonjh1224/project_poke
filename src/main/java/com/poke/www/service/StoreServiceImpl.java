@@ -20,4 +20,10 @@ public class StoreServiceImpl implements StoreService {
 	public List<ProductVO> getProducts() {
 		return mapper.selectProducts();
 	}
+
+	@Override
+	public ProductVO getProduct(int productId) {
+		// TODO Auto-generated method stub
+		return mapper.selectProduct(productId);
+	}
 }

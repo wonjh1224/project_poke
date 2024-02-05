@@ -11,4 +11,6 @@ public interface StoreMapper {
 
 	List<ProductVO> selectProducts();
 
+	ProductVO selectProduct(int productId);
+
 }

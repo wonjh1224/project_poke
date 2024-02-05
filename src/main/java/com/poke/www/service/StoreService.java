@@ -8,4 +8,6 @@ public interface StoreService {
 
 	List<ProductVO> getProducts();
 
+	ProductVO getProduct(int productId);
+
 }

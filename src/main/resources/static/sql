@@ -14,7 +14,17 @@ flush privileges;
 
 / --
 
+-- 2024 - 02 - 05 --
 create table product(
 product_id int auto_increment  primary key,
 name varchar(20) not null,
 price int not null)
+
+create table member(
+member_id varchar(20) primary key,
+password varchar(20) not null,
+name varchar(20) not null,
+birth date not null,
+email varchar(50) not null,
+phone varchar(20) not null,
+point int default 0)
