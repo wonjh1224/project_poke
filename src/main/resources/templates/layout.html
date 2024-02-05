@@ -1,13 +1,35 @@
 <!DOCTYPE html>
-<html>
-<head>
-<meta charset="EUC-KR">
-<title>Insert title here</title>
-</head>
-<body>
+<html xmlns:th="http://www.thyemleaf.org/">
 
-	µ¥½ΊΕ©ΕΎ Ηª½Γ
+<th:block th:fragment="setFragment(content)">
+	<head>
+<meta charset="UTF-8">
+
+<title>poke project</title>
+
+	</head>
+	<body>
 	
-	ΕΧ½ΊΖ®
-</body>
+		<h1><a href="/"> pokemon ν—¤λ”</a></h1>
+		
+		<div>
+			<ul>
+				<li><a href="/board/list">κ²μ‹ν</a></li>
+			</ul>
+		</div>
+
+		<div class="container-fluid">
+			<th:block th:replace="${content}"></th:block>
+		</div>
+		
+		
+		<div class="mt-3 p-3 bg-success-subtle text-black rounded">
+			<h1 style="margin: 0 auto;">pokemon ν‘Έν„°</h1>
+		</div>
+
+	</body>
+
+
+</th:block>
+
 </html>

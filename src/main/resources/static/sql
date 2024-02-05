@@ -13,3 +13,15 @@ grant all privileges on pokedb.* to
 flush privileges;
 
 / --
+
+-- 2024 - 02 - 05 --
+create table board(
+bno bigint not null auto_increment,
+title varchar(200) not null,
+writer varchar(200) not null,
+content text not null,
+reg_at datetime default now(),
+read_count int default 0,
+comment_count int default 0,
+primary key(bno));
+

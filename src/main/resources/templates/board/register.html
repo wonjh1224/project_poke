@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<th:block th:replace="~{/layout :: setFragment(~{this::content})}">
+
+	<th:block th:fragment="content">
+		<hr>
+		<br>
+
+		<form action="/board/register" method="post" id="regForm">
+			<div>
+				제목 : <input type="text" name="title" id="title">
+			</div>
+		
+			<div>
+				작성자 : <input type="text" name="writer" id="writer">
+			</div>
+		
+			<div>
+				내용 : <textarea name="content" id="content"></textarea>
+			</div>
+			<br>
+	
+			<button type="button" id="regBtn">글쓰기</button>
+		</form>
+
+		<br>
+		<br>
+		<hr>
+
+	</th:block>
+
+</th:block>
+
+<script src="/js/board/register.js"></script>
+

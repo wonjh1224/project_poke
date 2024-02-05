@@ -1,13 +1,17 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
-	ㅎㅇ
-	데스크탑 푸시
-	<th:block th:text="${msg}">
+<th:block th:replace="~{/layout :: setFragment(~{this::content})}">
+
+	<th:block th:fragment="content">
+		<hr>
+		<br>
+		
+		메인화면임
+		
+		<br>
+		<br>
+		<hr>
+
 	</th:block>
-</body>
-</html>
+
+</th:block>
