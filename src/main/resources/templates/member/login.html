@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<th:block th:replace="~{/layout :: setFragment(~{this::content})}">
+	<th:block th:fragment="content">
+	<form action="/login" method="post">
+		ID:<input type="text" name="memberId"><br>
+		PWD:<input type="text" name="password"><br>
+	<button type="submit">로그인</button>
+		
+	</form>
+	
+	</th:block>
+</th:block>

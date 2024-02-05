@@ -8,6 +8,11 @@
 <body>
 	<a href="/">인덱스로</a>
 	<a href="/store">store로</a>
+	<a href="/register">회원가입폼</a>
+	<a th:if="${session.loginMember == null}" href="/login">로그인폼</a>
+	<form th:unless="${session.loginMember == null}" th:action="@{/logout}" method="post">	
+		<button type="submit">로그아웃</button>
+	</form>
 	<br>
 	[layout시작]
 	<hr>
