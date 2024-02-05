@@ -16,7 +16,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class BoardServiceImpl implements BoardService{
 
-	@Autowired
+
 	private final BoardMapper mapper;
 
 	@Override
@@ -35,6 +35,18 @@ public class BoardServiceImpl implements BoardService{
 	public BoardVO getDetail(long bno) {
 		
 		return mapper.selectOne(bno);
+		
+	}
+
+	@Override
+	public void delete(long bno) {
+		mapper.delete(bno);
+		
+	}
+
+	@Override
+	public void modify(BoardVO bvo) {
+		mapper.update(bvo);
 		
 	}
 	

@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.poke.www.domain.BoardVO;
 import com.poke.www.service.BoardService;
@@ -33,6 +34,7 @@ public class BoardController {
 		
 		if(bvo.getTitle() == null || bvo.getTitle() == "" || bvo.getWriter() == null || bvo.getWriter() == "" ||
 				bvo.getContent() == null || bvo.getContent() == "") {
+			log.info(">>> register bvo >>> {}", bvo);
 			return "redirect:/board/list";
 		}else {			
 			bsv.register(bvo);
@@ -56,8 +58,19 @@ public class BoardController {
 	
 		m.addAttribute("bvo", bvo);
 		
-		return "/board/detail";
-		
+		return "/board/detail";	
+	}
+	
+	@PostMapping("/delete")
+	public String delete(@RequestParam("bno") long bno) {
+		bsv.delete(bno);
+		return "redirect:/board/list";
+	}
+	
+	@PostMapping("/modify")
+	public String modify(BoardVO bvo) {
+		bsv.modify(bvo);
+		return "redirect:/board/list";
 	}
 	
 	

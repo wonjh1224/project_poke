@@ -12,4 +12,8 @@ public interface BoardService {
 
 	BoardVO getDetail(long bno);
 
+	void delete(long bno);
+
+	void modify(BoardVO bvo);
+
 }

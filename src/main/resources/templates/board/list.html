@@ -33,7 +33,7 @@ width:50%;
 				</thead>
 				<tbody>
 					<tr th:each="bvo:${list}">
-						<th scope="row">[[${bvo.bno}]]</th>
+						<th scope="row"><a th:href="|/board/detail/${bvo.bno}|">[[${bvo.bno}]]</a></th>
 						<td><a th:href="|/board/detail/${bvo.bno}|">[[${bvo.title}]]</a></td>
 						<td>[[${bvo.writer}]]</td>
 						<td>[[${bvo.regAt}]]</td>

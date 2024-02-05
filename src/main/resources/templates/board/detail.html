@@ -10,33 +10,37 @@
 		<h2>게시판</h2>
 		<br>
 
-		<div>
-			번호 : <input type="text" name="title" class="form-control" id="title"
-				placeholder="Title" th:value="${bvo.bno }" readonly="readonly">
-		</div>
-		<div>
-			제목 : <input type="text" name="title" class="form-control" id="title"
-				placeholder="Title" th:value="${bvo.title }" readonly="readonly">
-		</div>
+		<form action="/board/modify" method="post" id="modForm">
 
-		<div>
-			작성자 : <input type="text" name="writer" class="form-control"
-				id="writer" placeholder="Wirter" th:value="${bvo.writer }"
-				readonly="readonly">
-		</div>
-		<div>
-			등록일 : <input type="text" name="writer" class="form-control"
-				id="writer" placeholder="Wirter" th:value="${bvo.regAt }"
-				readonly="readonly">
-		</div>
-		<div>
-			내용 :
-			<textarea class="form-control" name="content" id="content"
-				readonly="readonly">[[${bvo.content}]]</textarea>
-		</div>
+
+			<div>
+				번호 : <input type="text" name="bno" class="form-control" id="bno" th:value="${bvo.bno }" readonly>
+			</div>
+			<div>
+				제목 : <input type="text" name="title" class="form-control" id="title" th:value="${bvo.title }" readonly>
+			</div>
+
+			<div>
+				작성자 : <input type="text" name="writer" class="form-control" id="writer" th:value="${bvo.writer }"
+					readonly>
+			</div>
+			<div>
+				등록일 : <input type="text" name="regAt" class="form-control" id="regAt" th:value="${bvo.regAt }" readonly>
+			</div>
+			<div>
+				내용 :
+				<textarea class="form-control" name="content" id="content" readonly>[[${bvo.content}]]</textarea>
+			</div>
+
+			<button type="button" id="modBtn">수정</button>
+
+			<button type="button" id="delBtn">삭제</button>
+
+		</form>
 		
-		<button type="button" id="modBtn">수정</button>
-		<button type="button" id="delBtn">삭제</button>
+		<form action="/board/delete" method="post" id="delForm">
+				<input type="hidden" th:value="${bvo.bno}" name="bno">
+		</form>
 
 		<br>
 		<br>
