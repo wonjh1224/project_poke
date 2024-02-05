@@ -37,7 +37,8 @@ public class StoreController {
 	
 	@GetMapping("/purchase/{productId}")
 	public String getProductPurchaseForm(Model m, @PathVariable("productId") int productId) {
-		
+		ProductVO pvo = ssv.getProduct(productId);
+		m.addAttribute("pvo",pvo);
 		return "/store/purchase";
 	}
 }
