@@ -7,7 +7,7 @@
 	<h2>상품 디테일 페이지임</h2>
 	<p>상품명 : [[${pvo.name}]]</p>
 	<p>가격 : [[${pvo.price}]]원</p>
-	<button th:onclick="|location.href='@{/store/purchase/{productId}(productId=${pvo.productId})}'|">상품구매</button>
+	<button th:onclick="|location.href='@{/store/{productId}/purchase(productId=${pvo.productId})}'|">상품구매</button>
 	<button onclick="location.href='/store'">리스트로</button>
 	</th:block>
 </th:block>
