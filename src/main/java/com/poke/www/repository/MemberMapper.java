@@ -9,6 +9,8 @@ public interface MemberMapper {
 
 	int insertMember(MemberVO mvo);
 
-	MemberVO getMemberById(String loginId);
+	MemberVO selectMemberById(String loginId);
+
+	int updatePointById(int price, String memberId);
 
 }

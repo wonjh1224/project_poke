@@ -9,8 +9,11 @@
 	values(#{memberId},#{password},#{name},#{birth},#{email},#{phone})
 </insert>
 
-<select id="getMemberById">
+<select id="selectMemberById">
 	select * from member where member_id=#{memberId}
 </select>
 
+<update id="updatePointById">
+	update member set point = point - #{param1} where member_id = #{param2}
+</update>
 </mapper>

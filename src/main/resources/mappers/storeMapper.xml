@@ -8,7 +8,7 @@
 	select * from product
 </select>
 
-<select id="selectProduct">
+<select id="selectProductById">
 	select * from product where product_id = #{productId}
 </select>
 

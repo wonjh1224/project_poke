@@ -5,9 +5,15 @@
 	<th:block th:fragment="content">
 	
 	<h2>상품 구매 페이지임</h2>
-	<p th:text="${pvo.price}">상품금액</p>
-	<p th:text="${session.loginMember.point}">잔액</p>
+	<p th:text="|상품 가격 :${pvo.price}|">상품금액</p>
+	<p th:text="|내 포인트 : ${session.loginMember.point}|">잔액</p>
 	<button>충전버튼</button>
-	<button>구매버튼</button>
+	<form action="/store/purchase" method="post" >
+		
+		<input type="hidden" name="price" th:value="${pvo.productId}">
+		<input type="hidden" name="memberId" th:value="${session.loginMember.memberId}">
+		<button type="submit">구매버튼</button>
+	
+	</form>
 	</th:block>
 </th:block>

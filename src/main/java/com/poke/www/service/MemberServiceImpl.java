@@ -21,11 +21,22 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override
 	public MemberVO login(String loginId, String password) {
-		MemberVO mvo = mapper.getMemberById(loginId);
+		MemberVO mvo = mapper.selectMemberById(loginId);
 		if(mvo != null && mvo.getPassword().equals(password)) {
 			return mvo;
 		}
 		return null;			
 		
+	}
+
+	@Override
+	public MemberVO getMember(String memberId) {
+		return mapper.selectMemberById(memberId);
+	}
+	
+	
+	@Override
+	public int subtractPriceFromMemberPoint(String memberId, int price) {
+		return mapper.updatePointById(price,memberId);
 	}
 }

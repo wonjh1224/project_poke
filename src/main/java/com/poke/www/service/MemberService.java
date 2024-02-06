@@ -8,4 +8,8 @@ public interface MemberService {
 
 	MemberVO login(String memberId, String password);
 
+	MemberVO getMember(String memberId);
+
+	int subtractPriceFromMemberPoint(String memberId, int price);
+
 }
