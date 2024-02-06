@@ -13,4 +13,6 @@ public interface StorageMapper {
 
 	List<ItemStorageVO> selectItemsByMemberId(String memberId);
 
+	int deleteItemByStorageId(int storageId);
+
 }

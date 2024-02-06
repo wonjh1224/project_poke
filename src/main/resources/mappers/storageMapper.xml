@@ -14,4 +14,8 @@
 		join product p on s.product_id = p.product_id
 		where member_id = #{memberId}
 	</select>
+	
+	<delete id="deleteItemByStorageId">
+		delete from item_storage where storage_id = #{storageId}
+	</delete>
 </mapper>

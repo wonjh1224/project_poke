@@ -6,7 +6,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.poke.www.domain.ItemStorageVO;
 import com.poke.www.domain.MemberVO;
@@ -34,9 +37,16 @@ public class StorageController {
 		}
 		List<ItemStorageVO> itemList =  storageService.getItemsByMemberId(memberId);
 		log.info("list ::::::::::: {}",itemList);
-		m.addAttribute("memberId");
+		m.addAttribute("mvo",mvo);
 		m.addAttribute("itemList",itemList);
 		return "/storage/item";
 	}
 	
+	@ResponseBody
+	@PostMapping("/asdf")
+	public String useItemInStorage(@RequestBody String body) {
+		int storageId = Integer.parseInt(body);
+		storageService.removeItemByStorageId(storageId);
+		return "OK";
+	}
 }

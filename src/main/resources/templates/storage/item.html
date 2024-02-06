@@ -6,10 +6,10 @@
 	<h2>'[[${memberId}]]'의 아이템 보관함</h2>
 	<div th:each="item : ${itemList}">
 		<p th:text="|상품명 : ${item.name}|"></p>
-		<button>사용</button>
+		<button th:data-storageid="${item.storageId}" class="useBtn">사용</button>
 		<hr>
 	</div>
-		
-	
+
 </th:block>
 </th:block>
+<script src="/js/storageItem.js"></script>

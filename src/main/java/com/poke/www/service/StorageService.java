@@ -10,4 +10,6 @@ public interface StorageService {
 
 	List<ItemStorageVO> getItemsByMemberId(String memberId);
 
+	int removeItemByStorageId(int storageId);
+
 }

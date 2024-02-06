@@ -26,4 +26,9 @@ public class StorageServiceImpl implements StorageService{
 	public List<ItemStorageVO> getItemsByMemberId(String memberId) {
 		return mapper.selectItemsByMemberId(memberId);
 	}
+
+	@Override
+	public int removeItemByStorageId(int storageId) {
+		return mapper.deleteItemByStorageId(storageId);
+	}
 }
