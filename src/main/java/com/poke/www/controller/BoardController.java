@@ -23,7 +23,7 @@ import lombok.extern.slf4j.Slf4j;
 public class BoardController {
 
 	
-	private final BoardService bsv;
+	private final BoardService boardService;
 	
 	@GetMapping("/register")
 	public void register() {}
@@ -37,7 +37,7 @@ public class BoardController {
 			log.info(">>> register bvo >>> {}", bvo);
 			return "redirect:/board/list";
 		}else {			
-			bsv.register(bvo);
+			boardService.register(bvo);
 			return "redirect:/board/list";
 		}
 		
@@ -46,7 +46,7 @@ public class BoardController {
 	@GetMapping("/list")
 	public void list(Model m) {
 		
-		List<BoardVO> list = bsv.getList();
+		List<BoardVO> list = boardService.getList();
 		m.addAttribute("list", list);
 		
 	}
@@ -54,7 +54,7 @@ public class BoardController {
 	@GetMapping("/detail/{bno}")
 	public String detail(@PathVariable("bno") long bno, Model m) {
 		
-		BoardVO bvo = bsv.getDetail(bno);
+		BoardVO bvo = boardService.getDetail(bno);
 	
 		m.addAttribute("bvo", bvo);
 		
@@ -63,13 +63,13 @@ public class BoardController {
 	
 	@PostMapping("/delete")
 	public String delete(@RequestParam("bno") long bno) {
-		bsv.delete(bno);
+		boardService.delete(bno);
 		return "redirect:/board/list";
 	}
 	
 	@PostMapping("/modify")
 	public String modify(BoardVO bvo) {
-		bsv.modify(bvo);
+		boardService.modify(bvo);
 		return "redirect:/board/list";
 	}
 	
