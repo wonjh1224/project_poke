@@ -27,8 +27,10 @@ public class StorageController {
 	public String getStorage(Model m,
 			@SessionAttribute(name = "loginMember", required = false) MemberVO loginMember,
 			@PathVariable("memberId") String memberId) {
+		
 		List<ItemStorageVO> itemList =  storageService.getItemsByMemberId(memberId);
-		m.addAttribute("","");
+		
+		m.addAttribute("itemList",itemList);
 		return "/storage/item";
 	}
 	
