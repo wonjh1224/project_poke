@@ -9,4 +9,7 @@
 		values (#{param1}, #{param2})
 	</insert>
 
+	<select id="selectItemsByMemberId">
+		select * from item_storage where member_id = #{memberId}
+	</select>
 </mapper>

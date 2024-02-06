@@ -11,7 +11,6 @@
 	<form action="/store/purchase" method="post" >
 		
 		<input type="hidden" name="productId" th:value="${pvo.productId}">
-		<input type="hidden" name="memberId" th:value="${session.loginMember.memberId}">
 		<button type="submit">구매버튼</button>
 	
 	</form>

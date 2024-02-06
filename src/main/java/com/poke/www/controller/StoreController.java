@@ -26,35 +26,36 @@ import lombok.extern.slf4j.Slf4j;
 @RequestMapping("/store")
 @RequiredArgsConstructor
 public class StoreController {
-	private final StoreService ssv;
-	private final MemberService msv;
+	private final StoreService storeService;
+	private final MemberService memberService;
 	private final StorageService storageService;
 	
 	@GetMapping
 	public String getStore(Model m) {
-		List<ProductVO> list = ssv.getProducts();
+		List<ProductVO> list = storeService.getProducts();
 		m.addAttribute("list",list);
 		return "/store/store";
 	}
 	
 	@GetMapping("/{productId}")
 	public String getProductDetail(Model m, @PathVariable("productId") int productId) {
-		ProductVO pvo = ssv.getProduct(productId);
+		ProductVO pvo = storeService.getProduct(productId);
 		m.addAttribute("pvo",pvo);
 		return "/store/detail";
 	}
 	
 	@GetMapping("/{productId}/purchase")
 	public String getProductPurchaseForm(Model m, @PathVariable("productId") int productId) {
-		ProductVO pvo = ssv.getProduct(productId);
+		ProductVO pvo = storeService.getProduct(productId);
 		m.addAttribute("pvo",pvo);
 		return "/store/purchase";
 	}
 	
 	@PostMapping("/purchase")
-	public String purchase(@RequestParam("productId") int productId, @RequestParam("memberId") String memberId, HttpServletRequest request) {
-		MemberVO mvo = msv.getMember(memberId);
-		ProductVO pvo = ssv.getProduct(productId);
+	public String purchase(@RequestParam("productId") int productId, HttpServletRequest request) {
+		HttpSession session = request.getSession(false);
+		MemberVO mvo = (MemberVO)session.getAttribute("loginMember");
+		ProductVO pvo = storeService.getProduct(productId);
 		
 		//잔액<금액이면 오류페이지로 (추후 추가예정)
 		if(mvo.getPoint()<pvo.getPrice()) {
@@ -62,15 +63,14 @@ public class StoreController {
 		}
 		
 		//결제처리 (내 돈 - 가격)
-		msv.subtractPriceFromMemberPoint(memberId,pvo.getPrice());
+		memberService.subtractPriceFromMemberPoint(mvo.getMemberId(),pvo.getPrice());
 		
 		//(보관함에 구매한 상품 추가)
-		storageService.addItem(memberId,productId);
+		storageService.addItem(mvo.getMemberId(),productId);
 		
 		
 		//세션정보 업데이트
-		mvo = msv.getMember(memberId);
-		HttpSession session = request.getSession(false);
+		mvo = memberService.getMember(mvo.getMemberId());
 		session.setAttribute("loginMember", mvo);
 		
 		

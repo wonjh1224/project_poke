@@ -16,7 +16,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @RequiredArgsConstructor
 public class MemberController {
-	private final MemberService msv;
+	private final MemberService memberService;
 	
 	@GetMapping("/register")
 	public String getRegisterForm() {
@@ -24,7 +24,7 @@ public class MemberController {
 	}
 	@PostMapping("/register")
 	public String memberRegister(MemberVO mvo) {
-		int isOk = msv.register(mvo);
+		int isOk = memberService.register(mvo);
 		return "redirect:/";
 	}
 	@GetMapping("/login")
@@ -33,7 +33,7 @@ public class MemberController {
 	}
 	@PostMapping("/login")
 	public String memberLogin(MemberVO mvo, HttpServletRequest request) {
-		MemberVO loginMember = msv.login(mvo.getMemberId(),mvo.getPassword());
+		MemberVO loginMember = memberService.login(mvo.getMemberId(),mvo.getPassword());
 		if(loginMember == null) {
 			return "/member/login";
 		}
