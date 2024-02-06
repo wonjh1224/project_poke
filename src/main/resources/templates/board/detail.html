@@ -14,22 +14,40 @@
 
 
 			<div>
-				번호 : <input type="text" name="bno" class="form-control" id="bno" th:value="${bvo.bno }" readonly>
+				번호 : <input type="text" name="bno" class="form-control" id="bno" th:value="${bdto.boardVO.bno}" readonly>
 			</div>
 			<div>
-				제목 : <input type="text" name="title" class="form-control" id="title" th:value="${bvo.title }" readonly>
+				제목 : <input type="text" name="title" class="form-control" id="title" th:value="${bdto.boardVO.title}" readonly>
 			</div>
 
 			<div>
-				작성자 : <input type="text" name="writer" class="form-control" id="writer" th:value="${bvo.writer }"
+				작성자 : <input type="text" name="writer" class="form-control" id="writer" th:value="${bdto.boardVO.writer}"
 					readonly>
 			</div>
 			<div>
-				등록일 : <input type="text" name="regAt" class="form-control" id="regAt" th:value="${bvo.regAt }" readonly>
+				등록일 : <input type="text" name="regAt" class="form-control" id="regAt" th:value="${bdto.boardVO.regAt}" readonly>
 			</div>
 			<div>
 				내용 :
-				<textarea class="form-control" name="content" id="content" readonly>[[${bvo.content}]]</textarea>
+				<textarea class="form-control" name="content" id="content" readonly>[[${bdto.boardVO.content}]]</textarea>
+			</div>
+			
+						<!-- 파일 표시 라인 -->
+			<div>
+				<ul>
+					<li th:each="fvo : ${bdto.flist}">
+					
+						<div>
+							<img th:src="@{|/upload/${fvo.saveDir}/${fvo.uuid}_${fvo.fileName}|}">
+						</div> 
+
+						<div>
+							<div class="fw-bold">[[${fvo.fileName}]]</div>
+						</div>
+						
+						<span>[[${fvo.fileSize}]]Bytes</span>
+					</li>
+				</ul>
 			</div>
 
 			<button type="button" id="modBtn">수정</button>
@@ -39,7 +57,7 @@
 		</form>
 		
 		<form action="/board/delete" method="post" id="delForm">
-				<input type="hidden" th:value="${bvo.bno}" name="bno">
+				<input type="hidden" th:value="${bdto.boardVO.bno}" name="bno">
 		</form>
 
 		<br>

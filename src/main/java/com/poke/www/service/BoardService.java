@@ -2,15 +2,16 @@ package com.poke.www.service;
 
 import java.util.List;
 
+import com.poke.www.domain.BoardDTO;
 import com.poke.www.domain.BoardVO;
 
 public interface BoardService {
 
 	List<BoardVO> getList();
 
-	void register(BoardVO bvo);
+	void register(BoardDTO boardDTO);
 
-	BoardVO getDetail(long bno);
+	BoardDTO getDetail(long bno);
 
 	void delete(long bno);
 

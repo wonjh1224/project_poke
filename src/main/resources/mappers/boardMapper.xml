@@ -25,4 +25,8 @@
 	update board set title = #{title}, content = #{content} where bno = #{bno}
 </update>
 
+<select id="maxBno">
+	select max(bno) from board
+</select>
+
 </mapper>

@@ -9,8 +9,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
+import com.poke.www.domain.BoardDTO;
 import com.poke.www.domain.BoardVO;
+import com.poke.www.domain.FileVO;
+import com.poke.www.handler.FileHandler;
 import com.poke.www.service.BoardService;
 
 import lombok.RequiredArgsConstructor;
@@ -25,19 +29,26 @@ public class BoardController {
 	
 	private final BoardService boardService;
 	
+	private final FileHandler fh;
+	
 	@GetMapping("/register")
 	public void register() {}
 	
 	@PostMapping("/register")
-	public String register(BoardVO bvo) {
+	public String register(BoardVO bvo, @RequestParam(name="files", required = false)MultipartFile[] files) {
 		log.info(">>> bvo >>> {}", bvo);
+		List<FileVO> flist = null;
+		
+		if(files[0].getSize() > 0) {
+			flist = fh.uploadFiles(files);
+		}
 		
 		if(bvo.getTitle() == null || bvo.getTitle() == "" || bvo.getWriter() == null || bvo.getWriter() == "" ||
 				bvo.getContent() == null || bvo.getContent() == "") {
 			log.info(">>> register bvo >>> {}", bvo);
 			return "redirect:/board/list";
 		}else {			
-			boardService.register(bvo);
+			boardService.register(new BoardDTO(bvo, flist));
 			return "redirect:/board/list";
 		}
 		
@@ -54,9 +65,9 @@ public class BoardController {
 	@GetMapping("/detail/{bno}")
 	public String detail(@PathVariable("bno") long bno, Model m) {
 		
-		BoardVO bvo = boardService.getDetail(bno);
+		BoardDTO bdto = boardService.getDetail(bno);
 	
-		m.addAttribute("bvo", bvo);
+		m.addAttribute("bdto", bdto);
 		
 		return "/board/detail";	
 	}

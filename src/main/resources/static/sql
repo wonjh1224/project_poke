@@ -1,4 +1,4 @@
--- 2024 - 02 - 04 --
+-- 2024-02-04 --
 create database pokedb;
 
 -- user 생성 구문
@@ -14,7 +14,7 @@ flush privileges;
 
 / --
 
--- 2024 - 02 - 05 --
+-- 2024-02-05 --
 create table board(
 bno bigint not null auto_increment,
 title varchar(200) not null,
@@ -25,3 +25,12 @@ read_count int default 0,
 comment_count int default 0,
 primary key(bno));
 
+-- 2024-02-06 --
+create table file(
+uuid varchar(256) not null,
+save_dir varchar(256) not null,
+file_name varchar(256) not null,
+file_size bigint,
+bno bigint,
+reg_at datetime default now(),
+primary key(uuid));
