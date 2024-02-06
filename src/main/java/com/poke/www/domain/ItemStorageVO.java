@@ -11,4 +11,7 @@ public class ItemStorageVO {
 	private String storageId;
 	private String memberId;
 	private int productId;
+	
+	//흠
+	private String name;
 }
