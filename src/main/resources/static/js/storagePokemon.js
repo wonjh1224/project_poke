@@ -10,7 +10,7 @@ function spreadPokemons(){
             for(let pokemon of result){
                 pokemonBox.innerHTML +=  `
                 <p>[${pokemon.pokemonId}] ${pokemon.name}</p>
-                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemon.pokemonId}.png">
+                <img src="${pokemon.image}">
                 <hr>
                 `
             }
