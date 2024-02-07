@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
+import com.poke.www.domain.BoardDTO;
 import com.poke.www.domain.BoardVO;
 
 @Mapper
@@ -13,10 +14,13 @@ public interface BoardMapper {
 
 	void insert(BoardVO bvo);
 
-	BoardVO selectOne(long bno);
-
 	void delete(long bno);
 
 	void update(BoardVO bvo);
+
+	long maxBno();
+
+	BoardVO selectOne(long bno);
+
 
 }

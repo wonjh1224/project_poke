@@ -17,4 +17,6 @@ public class FileVO {
 	private long bno;
 	private String regAt;
 	
+	
+	
 }
