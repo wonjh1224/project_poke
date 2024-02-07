@@ -3,6 +3,7 @@ package com.poke.www.service;
 import java.util.List;
 
 import com.poke.www.domain.ItemStorageVO;
+import com.poke.www.domain.PokemonStorageVO;
 import com.poke.www.domain.ProductVO;
 
 public interface StorageService {
@@ -18,5 +19,7 @@ public interface StorageService {
 	ProductVO getProductByStorageId(int storageId);
 
 	int addPokemon(String memberId,int pokemonId);
+
+	List<PokemonStorageVO> getPokemonsByMemberId(String memberId);
 
 }

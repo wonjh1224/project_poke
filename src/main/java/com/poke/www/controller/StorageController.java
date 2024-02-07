@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.poke.www.domain.ItemStorageVO;
 import com.poke.www.domain.MemberVO;
+import com.poke.www.domain.PokemonStorageVO;
 import com.poke.www.domain.ProductVO;
 import com.poke.www.service.MemberService;
 import com.poke.www.service.StorageService;
@@ -66,4 +67,22 @@ public class StorageController {
 		return list;
 	}
 	
+	@GetMapping("/{memberId}/pokemon")
+	public String getPokemonStorage(Model m, @PathVariable("memberId") String memberId) {
+		MemberVO mvo = memberService.getMember(memberId);
+		if(mvo==null) {
+			return "error";
+		}
+		m.addAttribute("mvo",mvo);
+		return "/storage/pokemon";
+	}
+	
+	@ResponseBody
+	@GetMapping("/pokemon-list/{memberId}")
+	public List<PokemonStorageVO> getPokemonList(@PathVariable("memberId") String memberId) {
+		List<PokemonStorageVO> list = storageService.getPokemonsByMemberId(memberId);
+		return list;
+	}
+	
+
 }

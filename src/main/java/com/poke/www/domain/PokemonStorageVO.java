@@ -12,4 +12,6 @@ public class PokemonStorageVO {
 	private int storageId;
 	private String memberId;
 	private int pokemonId;
+	
+	private String name;
 }

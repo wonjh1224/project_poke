@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.poke.www.domain.ItemStorageVO;
+import com.poke.www.domain.PokemonStorageVO;
 import com.poke.www.domain.ProductVO;
 import com.poke.www.repository.StorageMapper;
 
@@ -46,5 +47,10 @@ public class StorageServiceImpl implements StorageService{
 	@Override
 	public int addPokemon(String memberId,int pokemonId) {
 		return mapper.insertPokemon(memberId,pokemonId);
+	}
+
+	@Override
+	public List<PokemonStorageVO> getPokemonsByMemberId(String memberId) {
+		return mapper.selectPokemonsByMemberId(memberId);
 	}
 }

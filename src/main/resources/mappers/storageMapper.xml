@@ -33,4 +33,8 @@
 		insert into pokemon_storage (member_id, pokemon_id)
 		values (#{param1}, #{param2})
 	</insert>
+	
+	<select id="selectPokemonsByMemberId">
+		select * from pokemon_storage where member_id = #{memberId}
+	</select>
 </mapper>

@@ -11,7 +11,8 @@
 		<a href="/register">회원가입 |</a>
 		<a th:if="${session.loginMember == null}" href="/login">로그인 |</a>
 		<th:block th:unless="${session.loginMember == null}">
-			<a th:href="|@{/storage/{memberId}/item(memberId=${session.loginMember.memberId})}|">item storage로 |</a>
+			<a th:href="|@{/storage/{memberId}(memberId=${session.loginMember.memberId})}|">storage로 |</a>
+			<a th:href="|@{/storage/{memberId}/pokemon(memberId=${session.loginMember.memberId})}|">pokemon storage로 |</a>
 			<form th:action="@{/logout}" method="post">	
 				<button type="submit">로그아웃</button>
 			</form>
