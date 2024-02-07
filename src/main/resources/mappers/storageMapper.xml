@@ -35,6 +35,8 @@
 	</insert>
 	
 	<select id="selectPokemonsByMemberId">
-		select * from pokemon_storage where member_id = #{memberId}
+		select * from pokemon_storage s 
+		join pokemon p on s.pokemon_id = p.pokemon_id
+		where member_id = #{memberId}
 	</select>
 </mapper>
