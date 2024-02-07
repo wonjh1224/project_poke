@@ -30,9 +30,10 @@ document.getElementById("changeBtn").addEventListener('click', () => {
         }
     })
 
-	//기존 디테일 페이지에 있는 수정, 삭제 버튼 삭제
+	//기존 디테일 페이지에 있는 게시글 수정, 게시글 삭제 버튼 삭제
 	document.getElementById('changeBtn').remove();
 	document.getElementById('delBtn').remove();
+	
 	//수정(전송) 버튼 생성
 	let modBtn = document.createElement('button');
 	modBtn.setAttribute('type', 'button');
