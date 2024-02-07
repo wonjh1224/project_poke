@@ -1,3 +1,6 @@
+
+spreadPokemons()
+
 function spreadPokemons(){
     getPokemonListFromServer(memberId).then(result=>{
 		console.log(result)
@@ -27,3 +30,8 @@ async function getPokemonListFromServer(memberId){
         console.log(error)
     }
 }
+
+
+
+
+

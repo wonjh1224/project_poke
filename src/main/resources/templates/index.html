@@ -5,6 +5,47 @@
 	<th:block th:fragment="content">
 	
 	<h1>인덱스 내용</h1>
-	
+	<input type="text" id="pno"><button onclick="setPokemon()">포켓몬추가</button>
 	</th:block>
 </th:block>
+
+<script>
+async function getPokemonKoreanName(pokemonId){
+    try {
+        const url = "https://pokeapi.co/api/v2/pokemon-species/"+pokemonId
+        const resp = await fetch(url)
+        const result = await resp.json();
+        return result.names[2].name;
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+async function setPokemon(){
+	let pno = document.getElementById('pno').value
+	let pokemons = []
+    for(let i=1; i<=pno; i++){
+        let pokemon_id = i
+        let name = await getPokemonKoreanName(i)
+        let image = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${i}.png`
+        
+        let pokemon = {
+            pokemonId : pokemon_id,
+            name : name,
+            image : image    
+        }
+        pokemons.push(pokemon)
+    }
+    const url = "/pokemon-init"
+    const config = {
+        method : "put",
+        headers : {
+            "content-type" : "application/json; charset=utf-8",
+        },
+        body : JSON.stringify(pokemons)
+    }
+    const resp = await fetch(url,config)
+    const result = await resp.text()
+    alert(result+"개 포켓몬 추가완료")   
+}
+</script>

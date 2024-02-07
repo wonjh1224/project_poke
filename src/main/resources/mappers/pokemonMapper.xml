@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.poke.www.repository.PokemonMapper">
+
+<delete id="deleteAll">
+	delete from pokemon
+</delete>
+
+<insert id="insertPokemon">
+	insert into pokemon (pokemon_id, name, image)
+	values (#{pokemonId}, #{name}, #{image})
+</insert>
+</mapper>
