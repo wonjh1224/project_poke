@@ -61,6 +61,7 @@ public class BoardServiceImpl implements BoardService {
 
 	}
 
+	@Transactional
 	@Override
 	public void modify(BoardDTO boardDTO) {
 

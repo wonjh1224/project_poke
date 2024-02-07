@@ -34,8 +34,7 @@
 				<ul>
 					<li th:each="fvo : ${bdto.flist}">
 						<div>
-							<img th:src="@{|/upload/${fvo.saveDir}/${fvo.uuid}_${fvo.fileName}|}">
-
+							<img style="width: 300px; height: 300px;" th:src="@{|/upload/${fvo.saveDir}/${fvo.uuid}_${fvo.fileName}|}">
 						</div> 
 
 						<div>
