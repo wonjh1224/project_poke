@@ -25,3 +25,15 @@ read_count int default 0,
 comment_count int default 0,
 primary key(bno));
 
+
+-- 2024 - 02 - 06 -- 
+create table file(
+uuid varchar(256) not null,
+save_dir varchar(256) not null,
+file_name varchar(256) not null,
+file_size bigint,
+bno bigint,
+reg_at datetime default now(),
+primary key(uuid));
+
+
