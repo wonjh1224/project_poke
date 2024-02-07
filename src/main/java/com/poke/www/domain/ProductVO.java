@@ -15,4 +15,5 @@ public class ProductVO {
 	private String productId;
 	private String name;
 	private int price;
+	private String content;
 }
