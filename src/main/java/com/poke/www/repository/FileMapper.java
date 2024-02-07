@@ -15,4 +15,6 @@ public interface FileMapper {
 
 	List<FileVO> selectFile(long bno);
 
+	void deleteFileUUID(String uuid);
+
 }

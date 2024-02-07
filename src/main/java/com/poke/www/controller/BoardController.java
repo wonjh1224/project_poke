@@ -79,8 +79,23 @@ public class BoardController {
 	}
 	
 	@PostMapping("/modify")
-	public String modify(BoardVO bvo) {
-		boardService.modify(bvo);
+	public String modify(BoardVO bvo, @RequestParam(name="files", required = false)MultipartFile[] files
+			,@RequestParam("uuids")String uuids) {
+		
+		String [] uuidsArr = uuids.split(",");
+		for(String uuid : uuidsArr) {
+			log.info(uuid);
+			boardService.deleteFile(uuid);
+		}
+		
+		List<FileVO> flist = null;
+		
+		if(files[0].getSize() > 0) {
+			flist = fh.uploadFiles(files);
+		}
+		
+		boardService.modify(new BoardDTO(bvo, flist));
+		
 		return "redirect:/board/list";
 	}
 	

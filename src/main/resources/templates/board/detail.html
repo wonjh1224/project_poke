@@ -10,47 +10,54 @@
 		<h2>게시판</h2>
 		<br>
 
-		<form action="/board/modify" method="post" id="modForm">
+		<form action="/board/modify" method="post" id="modForm" enctype="multipart/form-data">
 
 
 			<div>
 				번호 : <input type="text" name="bno" class="form-control" id="bno" th:value="${bdto.boardVO.bno}" readonly>
-			</div>
+			</div><br>
 			<div>
 				제목 : <input type="text" name="title" class="form-control" id="title" th:value="${bdto.boardVO.title}" readonly>
-			</div>
-
+			</div><br>
 			<div>
-				작성자 : <input type="text" name="writer" class="form-control" id="writer" th:value="${bdto.boardVO.writer}"
-					readonly>
-			</div>
+				내용 : <textarea class="form-control" name="content" id="content" readonly>[[${bdto.boardVO.content}]]</textarea>
+			</div><br>
 			<div>
-				등록일 : <input type="text" name="regAt" class="form-control" id="regAt" th:value="${bdto.boardVO.regAt}" readonly>
-			</div>
+				작성자 : <input type="text" name="writer" class="form-control" id="writer" th:value="${bdto.boardVO.writer}" readonly>
+			</div><br>
 			<div>
-				내용 :
-				<textarea class="form-control" name="content" id="content" readonly>[[${bdto.boardVO.content}]]</textarea>
-			</div>
+				작성일 : <input type="text" name="regAt" class="form-control" id="regAt" th:value="${bdto.boardVO.regAt}" readonly>
+			</div><br>
 			
-						<!-- 파일 표시 라인 -->
+			<!-- 파일 표시 라인 -->
 			<div>
 				<ul>
 					<li th:each="fvo : ${bdto.flist}">
-					
 						<div>
 							<img th:src="@{|/upload/${fvo.saveDir}/${fvo.uuid}_${fvo.fileName}|}">
+
 						</div> 
 
 						<div>
-							<div class="fw-bold">[[${fvo.fileName}]]</div>
+							<div class="fw-bold">[[${fvo.fileName}]]
+							<button type="button" class="fileDelBtn" th:data-uuid="${fvo.uuid}" style="display : none;">파일삭제</button></div>
 						</div>
-						
-						<span>[[${fvo.fileSize}]]Bytes</span>
 					</li>
 				</ul>
 			</div>
+							<input type="hidden" id="uuids" name="uuids">
+			
+			<!-- file 입력 라인 추가 -->
+			<div style="display: none" id="fileDiv">
+				<input type="file" name="files" id="files" multiple="multiple" style="display: none;"><br>
+				<button type="button" class="btn btn-success" id="trigger">사진 등록</button>
+			</div>
+			<!-- 파일 목록 표시라인 -->
+			<div id="fileZone">
+				
+			</div>
 
-			<button type="button" id="modBtn">수정</button>
+			<button type="button" id="changeBtn">수정</button>
 
 			<button type="button" id="delBtn">삭제</button>
 
@@ -69,3 +76,4 @@
 </th:block>
 
 <script src="/js/board/modify.js"></script>
+<script src="/js/board/file.js"></script>

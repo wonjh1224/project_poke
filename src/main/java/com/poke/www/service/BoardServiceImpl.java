@@ -17,33 +17,29 @@ import lombok.extern.slf4j.Slf4j;
 @RequiredArgsConstructor
 @Service
 @Slf4j
-public class BoardServiceImpl implements BoardService{
-
+public class BoardServiceImpl implements BoardService {
 
 	private final BoardMapper boardMapper;
-	
+
 	private final FileMapper fileMapper;
 
 	@Transactional
 	@Override
 	public void register(BoardDTO boardDTO) {
-		
-		if(boardDTO.getFlist() == null) {
-			boardMapper.insert(boardDTO.getBoardVO());			
-		}
-		
-		//boardVO insert후 파일 있다면 파일 등록
-		if(boardDTO.getFlist() != null) {
-			boardMapper.insert(boardDTO.getBoardVO());	
+
+		if (boardDTO.getFlist() == null) {
+			boardMapper.insert(boardDTO.getBoardVO());
+		} else {
+			boardMapper.insert(boardDTO.getBoardVO());
 			long bno = boardMapper.maxBno();
-			for(FileVO fvo : boardDTO.getFlist()) {
+			for (FileVO fvo : boardDTO.getFlist()) {
 				fvo.setBno(bno);
 				fileMapper.insertFile(fvo);
 			}
-			
 		}
-		
+
 	}
+
 	@Override
 	public List<BoardVO> getList() {
 		// TODO Auto-generated method stub
@@ -58,23 +54,33 @@ public class BoardServiceImpl implements BoardService{
 		return boardDTO;
 	}
 
-
-
 	@Override
 	public void delete(long bno) {
 		boardMapper.delete(bno);
 		fileMapper.deleteFile(bno);
-		
+
 	}
 
 	@Override
-	public void modify(BoardVO bvo) {
-		boardMapper.update(bvo);
+	public void modify(BoardDTO boardDTO) {
+
+		if (boardDTO.getFlist() == null) {
+			boardMapper.update(boardDTO.getBoardVO());
+		} else {
+			boardMapper.update(boardDTO.getBoardVO());
+			long bno = boardMapper.maxBno();
+			for (FileVO fvo : boardDTO.getFlist()) {
+				fvo.setBno(bno);
+				fileMapper.insertFile(fvo);
+			}
+		}
+
+	}
+
+	@Override
+	public void deleteFile(String uuid) {
+		fileMapper.deleteFileUUID(uuid);
 		
 	}
 
-
-
-
-	
 }

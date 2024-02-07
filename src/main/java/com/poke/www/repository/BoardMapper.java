@@ -22,5 +22,7 @@ public interface BoardMapper {
 
 	BoardVO selectOne(long bno);
 
+	
+
 
 }

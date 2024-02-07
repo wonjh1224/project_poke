@@ -15,6 +15,8 @@ public interface BoardService {
 
 	void delete(long bno);
 
-	void modify(BoardVO bvo);
+	void modify(BoardDTO boardDTO);
+
+	void deleteFile(String uuid);
 
 }
