@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 
 import com.poke.www.domain.ItemStorageVO;
+import com.poke.www.domain.ProductVO;
 
 @Mapper
 public interface StorageMapper {
@@ -14,5 +15,9 @@ public interface StorageMapper {
 	List<ItemStorageVO> selectItemsByMemberId(String memberId);
 
 	int deleteItemByStorageId(int storageId);
+
+	int selectProductIdByStorageId(int storageId);
+
+	ProductVO selectProductByStorageId(int storageId);
 
 }

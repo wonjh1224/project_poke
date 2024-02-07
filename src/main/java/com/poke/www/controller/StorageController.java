@@ -1,5 +1,7 @@
 package com.poke.www.controller;
 
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import org.springframework.stereotype.Controller;
@@ -13,8 +15,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.poke.www.domain.ItemStorageVO;
 import com.poke.www.domain.MemberVO;
+import com.poke.www.domain.ProductVO;
 import com.poke.www.service.MemberService;
 import com.poke.www.service.StorageService;
+import com.poke.www.service.StoreService;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -43,10 +47,19 @@ public class StorageController {
 	}
 	
 	@ResponseBody
-	@PostMapping("/asdf")
+	@PostMapping("/use-item")
 	public String useItemInStorage(@RequestBody String body) {
 		int storageId = Integer.parseInt(body);
-		storageService.removeItemByStorageId(storageId);
+		ProductVO pvo = storageService.getProductByStorageId(storageId);
+//		storageService.removeItemByStorageId(storageId);
+		int pokemonId = getRandomPokemonId(pvo);
+//		log.info("포켓몬 도감번호 : {}",pokemonId);
 		return "OK";
+	}
+	
+	public int getRandomPokemonId(ProductVO pvo) {
+		String[] arr = pvo.getContent().split(",");
+		int randomIndex = (int)(Math.random()*arr.length);
+		return Integer.parseInt(arr[randomIndex]);
 	}
 }

@@ -10,8 +10,7 @@ document.addEventListener('click',(e)=>{
 
 async function useItemInStorage(storageId){
     try{
-
-        const url = "/storage/asdf"
+        const url = "/storage/use-item"
         const config = {
             method : "post",
             body : storageId
@@ -22,6 +21,5 @@ async function useItemInStorage(storageId){
     }catch(error){
         console.log(error)
     }
-
-
 }
+

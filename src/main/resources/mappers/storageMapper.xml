@@ -18,4 +18,14 @@
 	<delete id="deleteItemByStorageId">
 		delete from item_storage where storage_id = #{storageId}
 	</delete>
+	
+	<select id="selectProductIdByStorageId">
+		select product_id from item_storage where storage_id = #{storageId}
+	</select>
+	
+	<select id="selectProductByStorageId">
+		select * from product 
+		where product_id = 
+		(select product_id from item_storage where storage_id = #{storageId});
+	</select>
 </mapper>

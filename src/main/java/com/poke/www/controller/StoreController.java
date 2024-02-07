@@ -39,14 +39,14 @@ public class StoreController {
 	
 	@GetMapping("/{productId}")
 	public String getProductDetail(Model m, @PathVariable("productId") int productId) {
-		ProductVO pvo = storeService.getProduct(productId);
+		ProductVO pvo = storeService.getProductByProductId(productId);
 		m.addAttribute("pvo",pvo);
 		return "/store/detail";
 	}
 	
 	@GetMapping("/{productId}/purchase")
 	public String getProductPurchaseForm(Model m, @PathVariable("productId") int productId) {
-		ProductVO pvo = storeService.getProduct(productId);
+		ProductVO pvo = storeService.getProductByProductId(productId);
 		m.addAttribute("pvo",pvo);
 		return "/store/purchase";
 	}
@@ -55,7 +55,7 @@ public class StoreController {
 	public String purchase(@RequestParam("productId") int productId, HttpServletRequest request) {
 		HttpSession session = request.getSession(false);
 		MemberVO mvo = (MemberVO)session.getAttribute("loginMember");
-		ProductVO pvo = storeService.getProduct(productId);
+		ProductVO pvo = storeService.getProductByProductId(productId);
 		
 		//잔액<금액이면 오류페이지로 (추후 추가예정)
 		if(mvo.getPoint()<pvo.getPrice()) {

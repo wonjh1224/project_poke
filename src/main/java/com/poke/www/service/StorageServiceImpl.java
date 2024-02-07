@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.poke.www.domain.ItemStorageVO;
+import com.poke.www.domain.ProductVO;
 import com.poke.www.repository.StorageMapper;
 
 import lombok.RequiredArgsConstructor;
@@ -30,5 +31,15 @@ public class StorageServiceImpl implements StorageService{
 	@Override
 	public int removeItemByStorageId(int storageId) {
 		return mapper.deleteItemByStorageId(storageId);
+	}
+
+	@Override
+	public int getProductIdByStorageId(int storageId) {
+		return mapper.selectProductIdByStorageId(storageId);
+	}
+
+	@Override
+	public ProductVO getProductByStorageId(int storageId) {
+		return mapper.selectProductByStorageId(storageId);
 	}
 }
