@@ -18,7 +18,6 @@ import com.poke.www.domain.MemberVO;
 import com.poke.www.domain.ProductVO;
 import com.poke.www.service.MemberService;
 import com.poke.www.service.StorageService;
-import com.poke.www.service.StoreService;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -48,12 +47,13 @@ public class StorageController {
 	
 	@ResponseBody
 	@PostMapping("/use-item")
-	public String useItemInStorage(@RequestBody String body) {
-		int storageId = Integer.parseInt(body);
+	public String useItemInStorage(@RequestBody ItemStorageVO itemStorageVO) {
+		int storageId = Integer.parseInt(itemStorageVO.getStorageId());
 		ProductVO pvo = storageService.getProductByStorageId(storageId);
-//		storageService.removeItemByStorageId(storageId);
+		storageService.removeItemByStorageId(storageId);
 		int pokemonId = getRandomPokemonId(pvo);
-//		log.info("포켓몬 도감번호 : {}",pokemonId);
+		String memberId = itemStorageVO.getMemberId();
+		storageService.addPokemon(memberId,pokemonId);
 		return "OK";
 	}
 	

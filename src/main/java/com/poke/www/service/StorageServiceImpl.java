@@ -42,4 +42,9 @@ public class StorageServiceImpl implements StorageService{
 	public ProductVO getProductByStorageId(int storageId) {
 		return mapper.selectProductByStorageId(storageId);
 	}
+
+	@Override
+	public int addPokemon(String memberId,int pokemonId) {
+		return mapper.insertPokemon(memberId,pokemonId);
+	}
 }

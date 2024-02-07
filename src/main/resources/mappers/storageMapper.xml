@@ -28,4 +28,9 @@
 		where product_id = 
 		(select product_id from item_storage where storage_id = #{storageId});
 	</select>
+	
+	<insert id="insertPokemon">
+		insert into pokemon_storage (member_id, pokemon_id)
+		values (#{param1}, #{param2})
+	</insert>
 </mapper>

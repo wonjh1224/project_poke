@@ -17,4 +17,6 @@ public interface StorageService {
 
 	ProductVO getProductByStorageId(int storageId);
 
+	int addPokemon(String memberId,int pokemonId);
+
 }

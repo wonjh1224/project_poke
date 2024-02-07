@@ -20,4 +20,6 @@ public interface StorageMapper {
 
 	ProductVO selectProductByStorageId(int storageId);
 
+	int insertPokemon(String memberId, int pokemonId);
+
 }
