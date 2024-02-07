@@ -6,27 +6,29 @@ document.getElementById("changeBtn").addEventListener('click', () => {
 	document.getElementById('content').readOnly = false;
 
 	//사진 등록 버튼 노출
+    //diplay:none -> display:block
 	let fileDiv = document.getElementById('fileDiv');
 	fileDiv.style.display = 'block';
 
 	//사진 삭제 버튼 노출
 	/*fileDelBtn.style.display = 'block';*/
+    //diplay:none -> display:block
 	let fileDelBtns = document.querySelectorAll('.fileDelBtn');
 	for (let btn of fileDelBtns) {
 		btn.style.display = 'block'
 	}
 
     document.addEventListener('click', (e)=>{
+        //파일 삭제 버튼 클릭시
         if(e.target.classList.contains("fileDelBtn")){
             let li = e.target.closest('li');
             li.remove();
             let uuid = e.target.getAttribute("data-uuid");
             let uuids = document.getElementById('uuids');
-            uuids.value += uuid+",";
-      
+            //인풋창에 uuid 담기
+            uuids.value += uuid+",";   
         }
     })
-
 
 	//수정(전송) 버튼 생성
 	let modBtn = document.createElement('button');
@@ -44,7 +46,6 @@ document.getElementById("changeBtn").addEventListener('click', () => {
 			modBtn.setAttribute('type', 'submit');
 		}
 	})
-
 })
 
 document.getElementById("delBtn").addEventListener('click', () => {
