@@ -5,8 +5,10 @@ document.addEventListener('click',(e)=>{
 			memberId : memberId,
 			storageId : storageId
 		}
+        
         useItemInStorage(data).then(result=>{
-            console.log(result)
+            alert(result+"번 포켓몬 당첨")
+            spreadItems()
         })
     }
 })
@@ -29,3 +31,31 @@ async function useItemInStorage(data){
     }
 }
 
+function spreadItems(){
+    getItemListFromServer(memberId).then(result=>{
+        let itemBox = document.getElementById('itemBox')
+        itemBox.innerHTML = ''
+        if(result.length>0){
+            for(let item of result){
+                itemBox.innerHTML +=  `
+                <p>상품명 : ${item.name}</p>
+                <button data-storageid="${item.storageId}" class="useBtn">사용 / ${item.storageId}</button>
+                <hr>
+                `
+            }
+        }else{
+            itemBox.innerHTML = `<p>보유중인 상품이 없습니다.</p>`
+        }
+    })
+}
+
+async function getItemListFromServer(memberId){
+    try {
+        const url = "/storage/item-list/"+memberId
+        const resp = await fetch(url)
+        const result = await resp.json();
+        return result;
+    } catch (error) {
+        console.log(error)
+    }
+}

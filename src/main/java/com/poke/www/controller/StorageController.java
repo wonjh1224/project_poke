@@ -1,7 +1,5 @@
 package com.poke.www.controller;
 
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 import org.springframework.stereotype.Controller;
@@ -38,10 +36,8 @@ public class StorageController {
 		if(mvo==null) {
 			return "error";
 		}
-		List<ItemStorageVO> itemList =  storageService.getItemsByMemberId(memberId);
-		log.info("list ::::::::::: {}",itemList);
 		m.addAttribute("mvo",mvo);
-		m.addAttribute("itemList",itemList);
+		
 		return "/storage/item";
 	}
 	
@@ -54,7 +50,7 @@ public class StorageController {
 		int pokemonId = getRandomPokemonId(pvo);
 		String memberId = itemStorageVO.getMemberId();
 		storageService.addPokemon(memberId,pokemonId);
-		return "OK";
+		return String.valueOf(pokemonId);
 	}
 	
 	public int getRandomPokemonId(ProductVO pvo) {
@@ -62,4 +58,12 @@ public class StorageController {
 		int randomIndex = (int)(Math.random()*arr.length);
 		return Integer.parseInt(arr[randomIndex]);
 	}
+	
+	@ResponseBody
+	@GetMapping("/item-list/{memberId}")
+	public List<ItemStorageVO> getItemList(@PathVariable("memberId") String memberId) {
+		List<ItemStorageVO> list = storageService.getItemsByMemberId(memberId);
+		return list;
+	}
+	
 }
