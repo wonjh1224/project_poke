@@ -52,6 +52,7 @@ public class BoardController {
 	@PostMapping("/register")
 	public String register(BoardVO bvo, @RequestParam(name="files", required = false)MultipartFile[] files) {
 		log.info(">>> bvo >>> {}", bvo);
+		log.info("category {}", bvo.getCategory());
 		List<FileVO> flist = null;
 		
 		if(files[0].getSize() > 0) {
@@ -69,17 +70,27 @@ public class BoardController {
 		
 	}
 	
-	@GetMapping("/list")
-	public void list(Model m, PagingVO pagingVO) {
+	
+	@GetMapping({"/list", "/list/{category}"})
+	public void list(Model m, PagingVO pagingVO, @PathVariable(name="category", required=false) String category) {
 		log.info("pagingVO >>> {}", pagingVO);
+		log.info("category {}", category);
 		
 		int totalCount = boardService.getTotalCount(pagingVO);
+		if(totalCount < pagingVO.getQty()) {
+			pagingVO.setQty(totalCount);
+		}
 		
 		PagingHandler ph = new PagingHandler(pagingVO, totalCount);
-		
-		List<BoardVO> list = boardService.getList(pagingVO);
-		
-		m.addAttribute("list", list);
+		List<BoardVO> list;
+		if(category == null) {
+			list = boardService.getListAllBoard(pagingVO);
+     	}
+		else {
+			list = boardService.getListCategorized(pagingVO, category);
+		}
+	
+		m.addAttribute("list", list);	
 		m.addAttribute("ph", ph);
 		
 	}

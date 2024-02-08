@@ -4,6 +4,7 @@ document.getElementById("changeBtn").addEventListener('click', () => {
 	//제목, 내용 수정가능하게 변경
 	document.getElementById('title').readOnly = false;
 	document.getElementById('content').readOnly = false;
+	document.getElementById('content').focus();
 
 	//사진 등록 버튼 노출
     //diplay:none -> display:block

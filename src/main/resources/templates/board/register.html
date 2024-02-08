@@ -7,6 +7,14 @@
 		<br>
 
 		<form action="/board/register" method="post" id="regForm" enctype="multipart/form-data">
+		
+			<select name="category">
+ 			   <option value="자유">자유 게시판</option>
+ 			   <option value="질문">질문 게시판</option>
+  			   <option value="정보">정보 게시판</option>
+ 			   <option value="거래">거래 게시판</option>
+			</select>
+			
 			<div>
 				제목 : <input type="text" name="title" id="title">
 			</div>

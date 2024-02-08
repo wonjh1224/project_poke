@@ -2,6 +2,7 @@ package com.poke.www.service;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -39,12 +40,6 @@ public class BoardServiceImpl implements BoardService {
 			}
 		}
 
-	}
-
-	@Override
-	public List<BoardVO> getList(PagingVO pagingVO) {
-		// TODO Auto-generated method stub
-		return boardMapper.selectList(pagingVO);
 	}
 
 	@Override
@@ -89,6 +84,18 @@ public class BoardServiceImpl implements BoardService {
 	public int getTotalCount(PagingVO pagingVO) {
 		// TODO Auto-generated method stub
 		return boardMapper.getTotalCount(pagingVO);
+	}
+
+	@Override
+	public List<BoardVO> getListAllBoard(PagingVO pagingVO) {
+		// TODO Auto-generated method stub
+		return boardMapper.selectListAllBoard(pagingVO);
+	}
+
+	@Override
+	public List<BoardVO> getListCategorized(PagingVO pagingVO, String category) {
+		// TODO Auto-generated method stub
+		return boardMapper.selectListCateorized(pagingVO, category);
 	}
 
 }

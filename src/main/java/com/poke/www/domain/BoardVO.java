@@ -17,5 +17,6 @@ public class BoardVO {
 	private String regAt;
 	private String readCount;
 	private String commentCount;
+	private String category;
 	
 }

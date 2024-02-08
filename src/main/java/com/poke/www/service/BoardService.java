@@ -8,8 +8,6 @@ import com.poke.www.domain.PagingVO;
 
 public interface BoardService {
 
-	List<BoardVO> getList(PagingVO pagingVO);
-
 	void register(BoardDTO boardDTO);
 
 	BoardDTO getDetail(long bno);
@@ -21,5 +19,9 @@ public interface BoardService {
 	void deleteFile(String uuid);
 
 	int getTotalCount(PagingVO pagingVO);
+
+	List<BoardVO> getListAllBoard(PagingVO pagingVO);
+
+	List<BoardVO> getListCategorized(PagingVO pagingVO, String category);
 
 }

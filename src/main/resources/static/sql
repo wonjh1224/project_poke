@@ -34,3 +34,8 @@ file_size bigint,
 bno bigint,
 reg_at datetime default now(),
 primary key(uuid));
+
+-- 2024-02-08--
+보드 테이블 카테고리 칼럼 추가
+alter table board add category varchar(20) not null contraint 
+alter table board alter column category set default '자유';
