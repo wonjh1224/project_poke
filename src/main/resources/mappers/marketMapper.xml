@@ -8,4 +8,8 @@
 	select * from market_item
 </select>
 
+<insert id="insertItem">
+	insert into market_item (pokemon_id, member_id, price)
+	values(#{pokemonId}, #{memberId}, #{price})
+</insert>
 </mapper>

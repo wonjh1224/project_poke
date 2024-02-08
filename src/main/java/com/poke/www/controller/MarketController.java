@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.poke.www.domain.MarketItemVO;
@@ -25,5 +26,16 @@ public class MarketController {
 		List<MarketItemVO> list = marketService.getItems();
 		m.addAttribute("list",list);
 		return "/market/market";
+	}
+	
+	@GetMapping("/register")
+	public String getItemRegsiterPage(Model m) {
+		return "/market/register";
+	}
+	@PostMapping
+	public String registerItem(MarketItemVO marketItemVO) {
+		log.info("mvo : {}",marketItemVO);
+		marketService.addItem(marketItemVO);
+		return "redirect:/market";
 	}
 }

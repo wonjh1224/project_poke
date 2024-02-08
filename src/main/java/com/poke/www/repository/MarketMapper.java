@@ -10,5 +10,7 @@ import com.poke.www.domain.MarketItemVO;
 public interface MarketMapper {
 
 	List<MarketItemVO> selectItems();
+
+	int insertItem(MarketItemVO marketItemVO);
 	
 }

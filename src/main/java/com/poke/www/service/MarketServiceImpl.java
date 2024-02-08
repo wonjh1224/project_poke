@@ -20,4 +20,9 @@ public class MarketServiceImpl implements MarketService{
 	public List<MarketItemVO> getItems() {
 		return mapper.selectItems();
 	}
+
+	@Override
+	public int addItem(MarketItemVO marketItemVO) {
+		return mapper.insertItem(marketItemVO);
+	}
 }

@@ -8,4 +8,6 @@ public interface MarketService {
 
 	List<MarketItemVO> getItems();
 
+	int addItem(MarketItemVO marketItemVO);
+
 }
