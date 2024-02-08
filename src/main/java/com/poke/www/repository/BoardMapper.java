@@ -4,13 +4,13 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
-import com.poke.www.domain.BoardDTO;
 import com.poke.www.domain.BoardVO;
+import com.poke.www.domain.PagingVO;
 
 @Mapper
 public interface BoardMapper {
 
-	List<BoardVO> selectList();
+	List<BoardVO> selectList(PagingVO pagingVO);
 
 	void insert(BoardVO bvo);
 
@@ -21,6 +21,8 @@ public interface BoardMapper {
 	long maxBno();
 
 	BoardVO selectOne(long bno);
+
+	int getTotalCount(PagingVO pagingVO);
 
 	
 

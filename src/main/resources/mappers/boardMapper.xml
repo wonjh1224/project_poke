@@ -6,6 +6,7 @@
 
 <select id="selectList">
 	select * from board order by bno desc
+	limit #{pageStart}, #{qty}
 </select>
 
 <insert id="insert">
@@ -27,6 +28,10 @@
 
 <select id="maxBno">
 	select max(bno) from board
+</select>
+
+<select id="getTotalCount">
+	select count(bno) from board
 </select>
 
 </mapper>

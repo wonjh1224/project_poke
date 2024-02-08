@@ -2,51 +2,88 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <style>
-th, td{
-border: 1px solid black;
-text-align: center;
+th, td {
+	border: 1px solid black;
+	text-align: center;
 }
-.table{
-width:50%;
- border-collapse: collapse;
+
+.table {
+	width:100%;
+	border-collapse: collapse;
+}
+
+ul {
+	list-style: none;
+}
+
+li {
+	float: left;
+}
+a{
+	text-decoration: none;
 }
 
 </style>
 <th:block th:replace="~{/layout :: setFragment(~{this::content})}">
 
 	<th:block th:fragment="content">
-		<hr>
-		<br>
-		
-		
-		<div class="container">
-			<h2>게시판</h2>
-			
-			<table class="table" style="border: 1px solid black">
-				<thead>
-					<tr>
-						<th scope="col">번호</th>
-						<th scope="col">제목</th>
-						<th scope="col">작성자</th>
-						<th scope="col">등록일</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr th:each="bvo:${list}">
-						<th scope="row"><a th:href="|/board/detail/${bvo.bno}|">[[${bvo.bno}]]</a></th>
-						<td><a th:href="|/board/detail/${bvo.bno}|">[[${bvo.title}]]</a></td>
-						<td>[[${bvo.writer}]]</td>
-						<td>[[${bvo.regAt}]]</td>
-					</tr>
-					</th:Each>
-				</tbody>
-			</table>
 
-			<h4> <a href="/board/register">글쓰기</a></h4>
+	
+		<div>
+		
+			<div>
+				<ul>
+					<li><a>| 자유 게시판 |</a></li>
+					<li><a>| 질문 게시판 |</a></li>
+					<li><a>| 거래 게시판 |</a></li>
+					<li><a>| 자랑 & 스크린샷 |</a></li>
+				</ul>
+			</div>
+			<br>
+
+			<div>
+				<table class="table" style="border: 1px solid black">
+					<thead>
+						<tr>
+							<th scope="col">번호</th>
+							<th scope="col">제목</th>
+							<th scope="col">작성자</th>
+							<th scope="col">등록일</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="bvo:${list}">
+							<th scope="row"><a th:href="|/board/detail/${bvo.bno}|">[[${bvo.bno}]]</a></th>
+							<td><a th:href="|/board/detail/${bvo.bno}|">[[${bvo.title}]]</a></td>
+							<td>[[${bvo.writer}]]</td>
+							<td>[[${bvo.regAt}]]</td>
+						</tr>
+						</th:Each>
+					</tbody>
+				</table>
+				<h4>
+					<a href="/board/register">글쓰기</a>
+				</h4>
+				<!-- 페이지네이션 -->
+				<ul>
+					<li th:if=${ph.prev}>
+						<a th:href="@{/board/list(pageNo=${ph.startPage-1})}">이전|</a>
+					</li>
+					
+					<li th:each="i: ${#numbers.sequence(ph.startPage,ph.endPage)}">
+						<a th:href="|/board/list?pageNo=${i}"><[[${i}]]></a>
+					</li>
+					
+					<li th:if=${ph.next}>
+						<a th:href="@{/board/list(pageNo=${ph.endPage+1})}">|다음</a>
+					</li>
+				</ul>
+			</div>
+
 
 		</div>
 
-		
+
 		<br>
 		<br>
 		<hr>
@@ -54,6 +91,3 @@ width:50%;
 	</th:block>
 
 </th:block>
-
-
-

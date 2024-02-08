@@ -14,7 +14,9 @@ import org.springframework.web.multipart.MultipartFile;
 import com.poke.www.domain.BoardDTO;
 import com.poke.www.domain.BoardVO;
 import com.poke.www.domain.FileVO;
+import com.poke.www.domain.PagingVO;
 import com.poke.www.handler.FileHandler;
+import com.poke.www.handler.PagingHandler;
 import com.poke.www.service.BoardService;
 
 import lombok.RequiredArgsConstructor;
@@ -30,6 +32,19 @@ public class BoardController {
 	private final BoardService boardService;
 	
 	private final FileHandler fh;
+	
+	@GetMapping("/test")
+	public String testRegister() {
+		List<FileVO> flist = null;
+		for(int i=100; i<200; i++) {
+			BoardVO bvo = new BoardVO();
+			bvo.setTitle("제목"+i);
+			bvo.setWriter("작성"+i);
+			bvo.setContent("내용"+i);
+			boardService.register(new BoardDTO(bvo, flist));
+		}
+		return "redirect:/board/list";
+	}
 	
 	@GetMapping("/register")
 	public void register() {}
@@ -55,10 +70,17 @@ public class BoardController {
 	}
 	
 	@GetMapping("/list")
-	public void list(Model m) {
+	public void list(Model m, PagingVO pagingVO) {
+		log.info("pagingVO >>> {}", pagingVO);
 		
-		List<BoardVO> list = boardService.getList();
+		int totalCount = boardService.getTotalCount(pagingVO);
+		
+		PagingHandler ph = new PagingHandler(pagingVO, totalCount);
+		
+		List<BoardVO> list = boardService.getList(pagingVO);
+		
 		m.addAttribute("list", list);
+		m.addAttribute("ph", ph);
 		
 	}
 	

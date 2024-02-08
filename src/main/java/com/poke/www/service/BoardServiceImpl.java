@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.poke.www.domain.BoardDTO;
 import com.poke.www.domain.BoardVO;
 import com.poke.www.domain.FileVO;
+import com.poke.www.domain.PagingVO;
 import com.poke.www.repository.BoardMapper;
 import com.poke.www.repository.FileMapper;
 
@@ -41,9 +42,9 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public List<BoardVO> getList() {
+	public List<BoardVO> getList(PagingVO pagingVO) {
 		// TODO Auto-generated method stub
-		return boardMapper.selectList();
+		return boardMapper.selectList(pagingVO);
 	}
 
 	@Override
@@ -82,6 +83,12 @@ public class BoardServiceImpl implements BoardService {
 	public void deleteFile(String uuid) {
 		fileMapper.deleteFileUUID(uuid);
 		
+	}
+
+	@Override
+	public int getTotalCount(PagingVO pagingVO) {
+		// TODO Auto-generated method stub
+		return boardMapper.getTotalCount(pagingVO);
 	}
 
 }
