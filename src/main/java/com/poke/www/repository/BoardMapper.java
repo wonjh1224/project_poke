@@ -23,11 +23,13 @@ public interface BoardMapper {
 
 	BoardVO selectOne(long bno);
 
-	int getTotalCount(PagingVO pagingVO);
+	int getTotalCountCategoized(String category);
 
 	List<BoardVO> selectListAllBoard(PagingVO pagingVO);
 
 	List<BoardVO> selectListCateorized(@Param("pagingVO")PagingVO pagingVO, @Param("category")String category);
+
+	int getTotalCount();
 
 	
 

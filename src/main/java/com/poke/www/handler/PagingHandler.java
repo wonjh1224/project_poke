@@ -24,14 +24,15 @@ public class PagingHandler {
 		endPage = (int) (Math.ceil (pagingVO.getPageNo() / (double) pagingVO.getQty()) ) * pagingVO.getQty();
 		startPage = endPage - 9;
 		
+		//스타트페이지 수정
+		if(startPage < 0) {
+			startPage = 1;
+		}
+		
 		int realEndPage = (int) Math.ceil( totalCount / (double)pagingVO.getQty() );
 		
 		if(endPage > realEndPage) {
 			endPage = realEndPage;
-			//게시물이 10개 이하 일때 페이지수는 1개여야함
-			if(endPage == 1) {
-				startPage = 1;
-			}
 		}
 		
 		prev = startPage > 1;

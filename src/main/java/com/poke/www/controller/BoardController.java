@@ -28,7 +28,6 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class BoardController {
 
-	
 	private final BoardService boardService;
 	
 	private final FileHandler fh;
@@ -36,12 +35,12 @@ public class BoardController {
 	@GetMapping("/test")
 	public String testRegister() {
 		List<FileVO> flist = null;
-		for(int i=1; i<100; i++) {
+		for(int i=2; i<13; i++) {
 			BoardVO bvo = new BoardVO();
 			bvo.setTitle("제목"+i);
 			bvo.setWriter("작성"+i);
 			bvo.setContent("내용"+i);
-			bvo.setCategory("테스트"+i);
+			bvo.setCategory("질문");
 			boardService.register(new BoardDTO(bvo, flist));
 		}
 		return "redirect:/board/list";
@@ -72,20 +71,27 @@ public class BoardController {
 	}
 	
 	
-	@GetMapping({"/list", "/list/{category}"})
-	public void list(Model m, PagingVO pagingVO, @PathVariable(name="category", required=false) String category) {
+	@GetMapping({"/list"})
+	public String list(Model m, PagingVO pagingVO, @RequestParam(name="category", required=false) String category) {
 		log.info("pagingVO >>> {}", pagingVO);
 		log.info("category {}", category);
 		
 		
-		int totalCount = boardService.getTotalCount(pagingVO);
+		int totalCount = 0;
+		if(category == null) {
+			totalCount = boardService.getTotalCount();
+		}else {
+			totalCount = boardService.getTotalCountCategoized(category);			
+		}
 		
 		if(totalCount < pagingVO.getQty()) {
 			pagingVO.setQty(totalCount);
 		}
+		log.info("totalCount {}", totalCount);
 		
 		PagingHandler ph = new PagingHandler(pagingVO, totalCount);
-		log.info("ph {} {}", ph.getStartPage(), ph.getEndPage());
+
+		log.info("startPapge >{} endPage >{}", ph.getStartPage(), ph.getEndPage());
 		
 		List<BoardVO> list;
 		
@@ -96,8 +102,10 @@ public class BoardController {
 			list = boardService.getListCategorized(pagingVO, category);
 		}
 	
+		m.addAttribute("category", category);
 		m.addAttribute("list", list);	
 		m.addAttribute("ph", ph);
+		return "/board/list";
 		
 	}
 	

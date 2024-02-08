@@ -18,10 +18,12 @@ public interface BoardService {
 
 	void deleteFile(String uuid);
 
-	int getTotalCount(PagingVO pagingVO);
+	int getTotalCountCategoized(String category);
 
 	List<BoardVO> getListAllBoard(PagingVO pagingVO);
 
 	List<BoardVO> getListCategorized(PagingVO pagingVO, String category);
+
+	int getTotalCount();
 
 }

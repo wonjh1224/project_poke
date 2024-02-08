@@ -5,8 +5,9 @@
 <mapper namespace="com.poke.www.repository.BoardMapper">
 
 <select id="selectListCateorized">
-	select * from board order by bno desc
+	select * from board
 	where category = #{category}
+	order by bno desc
 	limit #{pagingVO.pageStart}, #{pagingVO.qty}
 </select>
 
@@ -34,6 +35,10 @@
 
 <select id="maxBno">
 	select max(bno) from board
+</select>
+
+<select id="getTotalCountCategoized">
+	select count(bno) from board where category = #{category}
 </select>
 
 <select id="getTotalCount">

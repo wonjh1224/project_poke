@@ -81,9 +81,9 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public int getTotalCount(PagingVO pagingVO) {
+	public int getTotalCountCategoized(String category) {
 		// TODO Auto-generated method stub
-		return boardMapper.getTotalCount(pagingVO);
+		return boardMapper.getTotalCountCategoized(category);
 	}
 
 	@Override
@@ -96,6 +96,12 @@ public class BoardServiceImpl implements BoardService {
 	public List<BoardVO> getListCategorized(PagingVO pagingVO, String category) {
 		// TODO Auto-generated method stub
 		return boardMapper.selectListCateorized(pagingVO, category);
+	}
+
+	@Override
+	public int getTotalCount() {
+		// TODO Auto-generated method stub
+		return boardMapper.getTotalCount();
 	}
 
 }
