@@ -36,11 +36,12 @@ public class BoardController {
 	@GetMapping("/test")
 	public String testRegister() {
 		List<FileVO> flist = null;
-		for(int i=100; i<200; i++) {
+		for(int i=1; i<100; i++) {
 			BoardVO bvo = new BoardVO();
 			bvo.setTitle("제목"+i);
 			bvo.setWriter("작성"+i);
 			bvo.setContent("내용"+i);
+			bvo.setCategory("테스트"+i);
 			boardService.register(new BoardDTO(bvo, flist));
 		}
 		return "redirect:/board/list";
@@ -76,13 +77,18 @@ public class BoardController {
 		log.info("pagingVO >>> {}", pagingVO);
 		log.info("category {}", category);
 		
+		
 		int totalCount = boardService.getTotalCount(pagingVO);
+		
 		if(totalCount < pagingVO.getQty()) {
 			pagingVO.setQty(totalCount);
 		}
 		
 		PagingHandler ph = new PagingHandler(pagingVO, totalCount);
+		log.info("ph {} {}", ph.getStartPage(), ph.getEndPage());
+		
 		List<BoardVO> list;
+		
 		if(category == null) {
 			list = boardService.getListAllBoard(pagingVO);
      	}

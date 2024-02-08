@@ -28,6 +28,10 @@ public class PagingHandler {
 		
 		if(endPage > realEndPage) {
 			endPage = realEndPage;
+			//게시물이 10개 이하 일때 페이지수는 1개여야함
+			if(endPage == 1) {
+				startPage = 1;
+			}
 		}
 		
 		prev = startPage > 1;
