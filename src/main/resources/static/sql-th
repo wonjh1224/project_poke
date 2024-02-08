@@ -50,3 +50,16 @@ name varchar(20) not null)
 
 -- 2024 - 02 - 08 --
 alter table pokemon add column image varchar(100) not null
+
+create table market_item(
+item_id int auto_increment primary key,
+pokemon_id int not null,
+member_id varchar(20) not null,
+price int not null,
+start_date datetime,
+end_date datetime);
+
+CREATE TRIGGER end_date_trigger BEFORE INSERT ON market_item
+FOR EACH ROW SET
+    NEW.start_date = IFNULL(NEW.start_date, NOW()),
+    NEW.end_date = TIMESTAMPADD(DAY, 3, NEW.start_date);
