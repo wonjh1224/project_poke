@@ -63,3 +63,4 @@ CREATE TRIGGER end_date_trigger BEFORE INSERT ON market_item
 FOR EACH ROW SET
     NEW.start_date = IFNULL(NEW.start_date, NOW()),
     NEW.end_date = TIMESTAMPADD(DAY, 3, NEW.start_date);
+출처 : https://stackoverflow.com/questions/9190758/mysql-default-date-14-days-for-a-column
