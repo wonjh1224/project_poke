@@ -14,4 +14,5 @@ public class PokemonStorageVO {
 	private int pokemonId;
 	
 	private String name;
+	private String image;
 }

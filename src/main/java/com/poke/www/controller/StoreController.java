@@ -74,6 +74,6 @@ public class StoreController {
 		session.setAttribute("loginMember", mvo);
 		
 		
-		return "redirect:/";
+		return "redirect:/storage/"+mvo.getMemberId();
 	}
 }

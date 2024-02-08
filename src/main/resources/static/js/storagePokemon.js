@@ -9,9 +9,10 @@ function spreadPokemons(){
         if(result.length>0){
             for(let pokemon of result){
                 pokemonBox.innerHTML +=  `
-                <p>[${pokemon.pokemonId}] ${pokemon.name}</p>
-                <img src="${pokemon.image}">
-                <hr>
+                <div style="border:1px solid black; width:200px;float:left">
+	                <p>[${pokemon.pokemonId}] ${pokemon.name}</p>
+	               
+                </div>
                 `
             }
         }else{
