@@ -29,7 +29,7 @@ public class MarketController {
 	}
 	
 	@GetMapping("/register")
-	public String getItemRegsiterPage(Model m) {
+	public String getItemRegsiterPage() {
 		return "/market/register";
 	}
 	@PostMapping
