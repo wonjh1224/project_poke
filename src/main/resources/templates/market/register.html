@@ -42,51 +42,28 @@
 <th:block th:replace="~{/layout :: setFragment(~{this::content})}">
 <th:block th:fragment="content">
 	<h2>거래소 등록페이지임</h2>
-	<button type="button" id="modal-open">모달버튼</button>
-	<form action="/market" method="post">
-		포켓몬아이디<input type="text" name="pokemonId">
-		멤버아이디<input type="text" name="memberId">
-		가격<input type="text" name="price">
-		<button type="submit">등록</button>
-	</form>
+	<button type="button" id="modal-open">포켓몬선택</button>
+		<div id="pokemonDetail">
+		</div>
+		<form action="/market" method="post">
+			<input type="hidden" name="storageId" id="storageId">
+			<input type="hidden" name="pokemonId" id="pokemonId">
+			<input type="hidden" name="memberId" id="memberId">
+			가격 : <input type="text" name="price" id="price">
+			<button type="submit">등록</button>
+		</form>
 	<div id="modal" class="modal">
-	
 	  <div class="modal-content">
 	    <span class="modal-close">&times;</span>
-	    <p>Some text in the Modal..</p>
-	    <p>Some text in the Modal..</p>
-	    <p>Some text in the Modal..</p>
-	    <p>Some text in the Modal..</p>
-	    <p>Some text in the Modal..</p>
+	    <th:block th:each="pokemon : ${list}">
+	    	<img th:src="${pokemon.image}" th:data-storageId="${pokemon.storageId}" class="pokemon">
+	    </th:block>
 	  </div>
 	
 	</div>
 </th:block>
 </th:block>
-<script>
-//Get the modal
-var modal = document.getElementById('modal');
-
-// Get the button that opens the modal
-var modalOpen = document.getElementById("modal-open");
-
-// Get the <span> element that closes the modal
-var modalClose = document.getElementsByClassName("modal-close")[0];
-
-// When the user clicks the button, open the modal 
-modalOpen.onclick = function() {
-    modal.style.display = "block";
-}
-
-// When the user clicks on <span> (x), close the modal
-modalClose.onclick = function() {
-    modal.style.display = "none";
-}
-
-// When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
-    if (event.target == modal) {
-        modal.style.display = "none";
-    }
-}
+<script th:inline="javascript">
+	let list = [[${list}]]
 </script>
+<script src="/js/marketRegister.js"></script>

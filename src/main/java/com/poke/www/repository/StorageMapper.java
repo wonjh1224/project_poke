@@ -25,4 +25,6 @@ public interface StorageMapper {
 
 	List<PokemonStorageVO> selectPokemonsByMemberId(String memberId);
 
+	int deletePokemonByStorageId(int storageId);
+
 }

@@ -13,6 +13,8 @@ public interface StorageService {
 	List<ItemStorageVO> getItemsByMemberId(String memberId);
 
 	int removeItemByStorageId(int storageId);
+	
+	int removePokemonByStorageId(int storageId);
 
 	int getProductIdByStorageId(int storageId);
 
