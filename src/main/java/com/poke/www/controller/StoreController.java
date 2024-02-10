@@ -63,7 +63,7 @@ public class StoreController {
 		}
 		
 		//결제처리 (내 돈 - 가격)
-		memberService.subtractPriceFromMemberPoint(mvo.getMemberId(),pvo.getPrice());
+		memberService.modifyPointByMemberId(mvo.getMemberId(),-(pvo.getPrice()));
 		
 		//(보관함에 구매한 상품 추가)
 		storageService.addItem(mvo.getMemberId(),productId);

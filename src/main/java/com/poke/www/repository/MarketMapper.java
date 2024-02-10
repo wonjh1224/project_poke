@@ -14,5 +14,7 @@ public interface MarketMapper {
 	int insertItem(MarketItemVO marketItemVO);
 
 	MarketItemVO selectItemByItemId(int itemId);
+
+	int deleteItemByItemId(int itemId);
 	
 }

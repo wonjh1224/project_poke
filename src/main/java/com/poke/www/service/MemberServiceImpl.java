@@ -36,7 +36,9 @@ public class MemberServiceImpl implements MemberService {
 	
 	
 	@Override
-	public int subtractPriceFromMemberPoint(String memberId, int price) {
+	public int modifyPointByMemberId(String memberId, int price) {
 		return mapper.updatePointById(price,memberId);
 	}
+
+
 }

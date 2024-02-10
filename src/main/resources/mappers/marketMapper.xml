@@ -16,4 +16,8 @@
 <select id="selectItemByItemId">
 	select * from market_item where item_id = #{itemId}
 </select>
+
+<delete id="deleteItemByItemId">
+	delete from market_item where item_id = #{itemId}
+</delete>
 </mapper>

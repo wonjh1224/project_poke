@@ -30,4 +30,9 @@ public class MarketServiceImpl implements MarketService{
 	public MarketItemVO getItemByItemId(int itemId) {
 		return mapper.selectItemByItemId(itemId);
 	}
+
+	@Override
+	public int removeItemByItemId(int itemId) {
+		return mapper.deleteItemByItemId(itemId);
+	}
 }

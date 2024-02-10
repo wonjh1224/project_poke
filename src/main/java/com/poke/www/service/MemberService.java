@@ -10,6 +10,7 @@ public interface MemberService {
 
 	MemberVO getMember(String memberId);
 
-	int subtractPriceFromMemberPoint(String memberId, int price);
+	int modifyPointByMemberId(String memberId, int price);
+	
 
 }

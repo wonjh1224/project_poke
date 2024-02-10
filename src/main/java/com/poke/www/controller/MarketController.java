@@ -16,6 +16,7 @@ import com.poke.www.domain.MarketItemVO;
 import com.poke.www.domain.MemberVO;
 import com.poke.www.domain.PokemonStorageVO;
 import com.poke.www.service.MarketService;
+import com.poke.www.service.MemberService;
 import com.poke.www.service.StorageService;
 
 import lombok.RequiredArgsConstructor;
@@ -28,6 +29,7 @@ import lombok.extern.slf4j.Slf4j;
 public class MarketController {
 	private final MarketService marketService;
 	private final StorageService storageService;
+	private final MemberService memberService;
 	
 	@GetMapping
 	public String getMarketMain(Model m) {
@@ -63,7 +65,22 @@ public class MarketController {
 	@PostMapping("/purchase")
 	public String buyItem(@RequestBody MarketItemVO bodyMarketItemVO) {
 		log.info("마켓@@@@@@@ {}",bodyMarketItemVO);
+		String loginMember = bodyMarketItemVO.getMemberId();
 		MarketItemVO marketItemVO = marketService.getItemByItemId(bodyMarketItemVO.getItemId());
+		int price = marketItemVO.getPrice();
+		//구매자 보관함에 포켓몬 추가
+		storageService.addPokemon(loginMember, marketItemVO.getPokemonId());
+
+		//판매자 포인트 증가
+		memberService.modifyPointByMemberId(marketItemVO.getMemberId(), price);
+		
+		//구매자 포인트 차감
+		memberService.modifyPointByMemberId(loginMember,-price);
+		log.info("price :::: {} " ,price);
+		
+		//거래소 아이템 삭제
+		marketService.removeItemByItemId(marketItemVO.getItemId());
+				
 		
 		return "ok";
 	}

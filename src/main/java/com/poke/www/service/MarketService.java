@@ -12,4 +12,6 @@ public interface MarketService {
 
 	MarketItemVO getItemByItemId(int itemId);
 
+	int removeItemByItemId(int itemId);
+	
 }
