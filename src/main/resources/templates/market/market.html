@@ -4,14 +4,12 @@
 <th:block th:replace="~{/layout :: setFragment(~{this::content})}">
 	<th:block th:fragment="content">
 		<h2>거래소페이지임</h2><button th:onclick="|location.href='@{/market/register}'|">물품등록</button>
-		<div th:each="item : ${list}">
-			<hr>
-			<p th:text="|아이템 번호 : ${item.itemId}|"></p>
-			<p th:text="|포켓몬 번호 : ${item.pokemonId}|"></p>
-			<p th:text="|판매자 : ${item.memberId}|"></p>
-			<p th:text="|가격 : ${item.price}|"></p>
-			<button>구매</button>
-			<hr>
+		<div id="itemZone">
+
 		</div>
 	</th:block>
 </th:block>
+<script th:inline="javascript">
+let loginMemberId = [[${session.loginMemberId}]]
+</script>
+<script src="/js/marketList.js"></script>

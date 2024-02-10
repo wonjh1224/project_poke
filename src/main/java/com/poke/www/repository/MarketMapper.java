@@ -12,5 +12,7 @@ public interface MarketMapper {
 	List<MarketItemVO> selectItems();
 
 	int insertItem(MarketItemVO marketItemVO);
+
+	MarketItemVO selectItemByItemId(int itemId);
 	
 }

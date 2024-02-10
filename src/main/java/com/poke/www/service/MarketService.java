@@ -10,4 +10,6 @@ public interface MarketService {
 
 	int addItem(MarketItemVO marketItemVO);
 
+	MarketItemVO getItemByItemId(int itemId);
+
 }

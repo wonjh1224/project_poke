@@ -31,8 +31,6 @@ public class MarketController {
 	
 	@GetMapping
 	public String getMarketMain(Model m) {
-		List<MarketItemVO> list = marketService.getItems();
-		m.addAttribute("list",list);
 		return "/market/market";
 	}
 	
@@ -52,5 +50,21 @@ public class MarketController {
 		marketService.addItem(marketItemVO);
 		storageService.removePokemonByStorageId(storageId);
 		return "redirect:/market";
+	}
+	
+	@ResponseBody
+	@GetMapping("/list")
+	public List<MarketItemVO> getItemList(){
+		List<MarketItemVO> list = marketService.getItems();
+		return list;
+	}
+	
+	@ResponseBody
+	@PostMapping("/purchase")
+	public String buyItem(@RequestBody MarketItemVO bodyMarketItemVO) {
+		log.info("마켓@@@@@@@ {}",bodyMarketItemVO);
+		MarketItemVO marketItemVO = marketService.getItemByItemId(bodyMarketItemVO.getItemId());
+		
+		return "ok";
 	}
 }

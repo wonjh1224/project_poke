@@ -42,6 +42,7 @@ public class MemberController {
 		
 		HttpSession session = request.getSession();
 		session.setAttribute("loginMember", loginMember);
+		session.setAttribute("loginMemberId", loginMember.getMemberId());
 		
 		return "redirect:/";
 	}

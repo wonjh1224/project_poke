@@ -32,7 +32,7 @@ document.addEventListener('click', (e) =>{
         let image;
         let pokemonIdInput = document.getElementById('pokemonId');
         let memberIdInput = document.getElementById('memberId');
-        let storageIdInput = document.getElementById('storageId')
+        let storageIdInput = document.getElementById('storageId');
         for(let pokemon of list){
             if(pokemon.storageId == storageId){
                 name = pokemon.name
