@@ -7,9 +7,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.poke.www.domain.ItemStorageVO;
 import com.poke.www.domain.MemberVO;
 import com.poke.www.domain.ProductVO;
 import com.poke.www.service.MemberService;
@@ -51,29 +53,24 @@ public class StoreController {
 		return "/store/purchase";
 	}
 	
+	@ResponseBody
 	@PostMapping("/purchase")
-	public String purchase(@RequestParam("productId") int productId, HttpServletRequest request) {
-		HttpSession session = request.getSession(false);
-		MemberVO mvo = (MemberVO)session.getAttribute("loginMember");
-		ProductVO pvo = storeService.getProductByProductId(productId);
-		
+	public String purchase(@RequestBody ItemStorageVO bodyItemStorageVO) {
+		MemberVO mvo = memberService.getMember(bodyItemStorageVO.getMemberId());
+		ProductVO pvo = storeService.getProductByProductId(bodyItemStorageVO.getProductId());
+		log.info("asdf {}",bodyItemStorageVO);
+
 		//잔액<금액이면 오류페이지로 (추후 추가예정)
 		if(mvo.getPoint()<pvo.getPrice()) {
-			return "error";
+			return "/error";
 		}
 		
 		//결제처리 (내 돈 - 가격)
-		memberService.modifyPointByMemberId(mvo.getMemberId(),-(pvo.getPrice()));
+		memberService.modifyPointByMemberId(mvo.getMemberId(),-pvo.getPrice());
 		
 		//(보관함에 구매한 상품 추가)
-		storageService.addItem(mvo.getMemberId(),productId);
-		
-		
-		//세션정보 업데이트
-		mvo = memberService.getMember(mvo.getMemberId());
-		session.setAttribute("loginMember", mvo);
-		
-		
-		return "redirect:/storage/"+mvo.getMemberId();
+		storageService.addItem(mvo.getMemberId(),pvo.getProductId());
+				
+		return "/storage/"+mvo.getMemberId();
 	}
 }

@@ -80,7 +80,7 @@ public class MarketController {
 		
 		//거래소 아이템 삭제
 		marketService.removeItemByItemId(marketItemVO.getItemId());
-				
+		
 		
 		return "ok";
 	}
