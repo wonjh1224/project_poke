@@ -71,7 +71,7 @@ a{
 					</li>
 					
 					<li th:each="i: ${#numbers.sequence(ph.startPage,ph.endPage)}">
-						<a th:href="@{/board/list(pageNo=${i}, category=${category})}"><[[${i}]]></a>
+						<a th:href="|/board/list?pageNo=${i}${category==null ? '' : '&category='}${category?:''}|"><[[${i}]]></a>
 					</li>
 					
 					<li th:if=${ph.next}>
