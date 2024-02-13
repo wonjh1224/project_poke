@@ -27,4 +27,6 @@ public interface StorageMapper {
 
 	int deletePokemonByStorageId(int storageId);
 
+	PokemonStorageVO selectPokemonByStorageId(int storageId);
+
 }

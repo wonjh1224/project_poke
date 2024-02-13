@@ -1,12 +1,30 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-
+<link rel="stylesheet" href="/css/storagePokemon.css">
 <th:block th:replace="~{/layout :: setFragment(~{this::content})}">
 <th:block th:fragment="content">
 	<h2>'[[${memberId}]]'의 포켓몬 보관함</h2>
 	<div id="pokemonBox" style="width:1010px; height:1000px;">
 		
 	</div>
+
+	<button type="button" class="modal-open">모달오픈</button>
+	<div id="pokemonDetail">
+	</div>
+	<form action="/market" method="post">
+		<input type="hidden" name="storageId" id="storageId">
+		<input type="hidden" name="pokemonId" id="pokemonId">
+		<input type="hidden" name="memberId" id="memberId">
+		가격 : <input type="text" name="price" id="price">
+		<button type="submit">등록</button>
+	</form>
+	<div id="modal" class="modal">
+		<div class="modal-content" id="modal-content">
+			<span class="modal-close">&times;</span>
+			
+		</div>	
+	</div>
+
 
 </th:block>
 </th:block>

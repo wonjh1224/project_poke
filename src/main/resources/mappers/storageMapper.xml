@@ -43,4 +43,10 @@
 	<delete id="deletePokemonByStorageId">
 		delete from pokemon_storage where storage_id = #{storageId}
 	</delete>
+	
+	<select id="selectPokemonByStorageId">
+		select * from pokemon_storage s 
+		join pokemon p on s.pokemon_id = p.pokemon_id
+		where storage_id = #{storageId}
+	</select>
 </mapper>

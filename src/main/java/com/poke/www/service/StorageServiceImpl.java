@@ -58,4 +58,9 @@ public class StorageServiceImpl implements StorageService{
 	public int removePokemonByStorageId(int storageId) {
 		return mapper.deletePokemonByStorageId(storageId);
 	}
+
+	@Override
+	public PokemonStorageVO getPokemonByStorageId(int storageId) {
+		return mapper.selectPokemonByStorageId(storageId);
+	}
 }
