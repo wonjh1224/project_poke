@@ -39,3 +39,13 @@ primary key(uuid));
 보드 테이블 카테고리 칼럼 추가
 ALTER TABLE board ADD category VARCHAR(20) NOT NULL;
 alter table board alter column category set default '자유';
+
+-- 2024 - 02 - 13 --
+댓글 시작
+create table comment(
+cno bigint auto_increment,
+bno bigint not null,
+writer varchar(200) not null,
+content text not null,
+reg_at datetime default now(),
+primary key(cno));

@@ -63,12 +63,30 @@
 			<button type="button" id="changeBtn">수정</button>
 
 			<button type="button" id="delBtn">삭제</button>
-
 		</form>
 		
 		<form action="/board/delete" method="post" id="delForm">
 				<input type="hidden" th:value="${bdto.boardVO.bno}" name="bno">
 		</form>
+		<br>
+		<hr>
+		<!-- 댓글 -->
+		<div>
+			<div class="commentBox"></div>
+			<span id="cmtWriter">작성자</span>
+			<input type="text" id="cmtText"><br>
+			<button type="button" id="cmtRegBtn">등록</button>
+		</div>
+		<hr>
+		<!-- 댓글 표시 라인 -->
+		<ul>
+			<li>
+				<div>
+					<div>작성자</div>
+					<div>content</div>
+				</div>
+			</li>
+		</ul>
 
 		<br>
 		<br>
@@ -78,5 +96,10 @@
 
 </th:block>
 
+<script th:inline="javascript">
+	let bnoVal = [[${bdto.boardVO.bno}]];
+</script>
+
 <script src="/js/board/modify.js"></script>
 <script src="/js/board/file.js"></script>
+<script src="/js/comment/register.js"></script>
