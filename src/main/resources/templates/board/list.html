@@ -30,7 +30,9 @@ a{
 
 	
 		<div>
-		
+				<h4>
+					게시글 수 : [[${ph.totalCount}]]
+				</h4>
 			<div>
 				<ul>
 					<li><a href="/board/list?category=자유">| 자유 게시판 |</a></li>
@@ -67,15 +69,18 @@ a{
 				<!-- 페이지네이션 -->
 				<ul>
 					<li th:if=${ph.prev}>
-						<a th:href="@{/board/list(pageNo=${ph.startPage-1})}">이전|</a>
+						<a th:href="|/board/list?pageNo=${ph.startPage-1}${category==null ? '' : '&category='}
+						${category?:''}|">이전|</a>
 					</li>
 					
 					<li th:each="i: ${#numbers.sequence(ph.startPage,ph.endPage)}">
-						<a th:href="|/board/list?pageNo=${i}${category==null ? '' : '&category='}${category?:''}|"><[[${i}]]></a>
+						<a th:href="|/board/list?pageNo=${i}${category==null ? '' : '&category='}
+						${category?:''}|"><[[${i}]]></a>
 					</li>
 					
 					<li th:if=${ph.next}>
-						<a th:href="@{/board/list(pageNo=${ph.endPage+1})}">|다음</a>
+						<a th:href="|/board/list?pageNo=${ph.endPage+1}${category==null ? '' : '&category='}
+						${category?:''}|">|다음</a>
 					</li>
 				</ul>
 			</div>
