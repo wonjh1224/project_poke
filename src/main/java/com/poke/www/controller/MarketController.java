@@ -48,7 +48,6 @@ public class MarketController {
 	}
 	@PostMapping	
 	public String registerItem(MarketItemVO marketItemVO,@RequestParam("storageId")int storageId) {
-		log.info("mvo : {}",marketItemVO);
 		marketService.addItem(marketItemVO);
 		storageService.removePokemonByStorageId(storageId);
 		return "redirect:/market";
@@ -64,18 +63,25 @@ public class MarketController {
 	@ResponseBody
 	@PostMapping("/purchase")
 	public String buyItem(@RequestBody MarketItemVO bodyMarketItemVO) {
-		log.info("마켓@@@@@@@ {}",bodyMarketItemVO);
-		String loginMember = bodyMarketItemVO.getMemberId();
+		MemberVO loginMember = memberService.getMember(bodyMarketItemVO.getMemberId());
 		MarketItemVO marketItemVO = marketService.getItemByItemId(bodyMarketItemVO.getItemId());
 		int price = marketItemVO.getPrice();
+		
+		if(loginMember.getPoint()<price) {
+			return "/error";
+		}
+		if(loginMember.getMemberId().equals(marketItemVO.getMemberId())) {
+			return "/error";
+		}
+		
 		//구매자 보관함에 포켓몬 추가
-		storageService.addPokemon(loginMember, marketItemVO.getPokemonId());
+		storageService.addPokemon(loginMember.getMemberId(), marketItemVO.getPokemonId());
 
 		//판매자 포인트 증가
 		memberService.modifyPointByMemberId(marketItemVO.getMemberId(), price);
 		
 		//구매자 포인트 차감
-		memberService.modifyPointByMemberId(loginMember,-price);
+		memberService.modifyPointByMemberId(loginMember.getMemberId(),-price);
 		log.info("price :::: {} " ,price);
 		
 		//거래소 아이템 삭제

@@ -38,6 +38,7 @@ document.addEventListener('click',(e)=>{
                     spreadItems()
                 }else{
                     alert('구매실패')
+                    location.href=result
                 }
             })
         }
