@@ -24,6 +24,6 @@ public interface BoardService {
 
 	List<BoardVO> getListCategorized(PagingVO pagingVO, String category);
 
-	int getTotalCount();
+	int getTotalCount(PagingVO pagingVO);
 
 }

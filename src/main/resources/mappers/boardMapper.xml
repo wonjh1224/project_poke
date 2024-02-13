@@ -12,7 +12,9 @@
 </select>
 
 <select id="selectListAllBoard">
-	select * from board order by bno desc
+	select * from board 
+	<include refid="search"></include>
+	 order by bno desc
 	limit #{pageStart}, #{qty}
 </select>
 
@@ -43,6 +45,31 @@
 
 <select id="getTotalCount">
 	select count(bno) from board
+	<include refid="search"></include>
 </select>
+
+
+	<!-- 검색 -->
+	<sql id="search">
+		<if test="type != null">
+			<trim prefix="where(" suffix=")" prefixOverrides="or">
+				<foreach collection="typeToArray" item="type">
+					<trim prefix="or">
+						<choose>
+							<when test="type == 't'.toString()">
+								title like concat('%', #{keyword}, '%')
+							</when>
+							<when test="type == 'w'.toString()">
+								writer like concat('%', #{keyword}, '%')
+							</when>
+							<when test="type == 'c'.toString()">
+								content like concat('%', #{keyword}, '%')
+							</when>
+						</choose>
+					</trim>
+				</foreach>
+			</trim>
+		</if>
+	</sql>
 
 </mapper>

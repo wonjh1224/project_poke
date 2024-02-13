@@ -29,7 +29,7 @@ public interface BoardMapper {
 
 	List<BoardVO> selectListCateorized(@Param("pagingVO")PagingVO pagingVO, @Param("category")String category);
 
-	int getTotalCount();
+	int getTotalCount(PagingVO pagingVO);
 
 	
 

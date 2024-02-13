@@ -79,7 +79,7 @@ public class BoardController {
 		
 		int totalCount = 0;
 		if(category == null) {
-			totalCount = boardService.getTotalCount();
+			totalCount = boardService.getTotalCount(pagingVO);
 		}else {
 			totalCount = boardService.getTotalCountCategoized(category);			
 		}
