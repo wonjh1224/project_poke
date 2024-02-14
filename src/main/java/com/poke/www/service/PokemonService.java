@@ -12,4 +12,6 @@ public interface PokemonService {
 
 	List<PokemonVO> getPokemons();
 
+	PokemonVO getPokemonByPokemonId(int pokemonId);
+
 }

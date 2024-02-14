@@ -15,4 +15,6 @@ public interface PokemonMapper {
 
 	List<PokemonVO> selectPokemons();
 
+	PokemonVO selectPokemonByPokemonId(int pokemonId);
+
 }

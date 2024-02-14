@@ -6,6 +6,5 @@ import com.poke.www.domain.MemberVO;
 
 public interface RankingService {
 
-	List<MemberVO> getRanking();
 
 }

@@ -1,5 +1,7 @@
 package com.poke.www.service;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import com.poke.www.domain.MemberVO;
@@ -38,6 +40,16 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public int modifyPointByMemberId(String memberId, int price) {
 		return mapper.updatePointById(price,memberId);
+	}
+
+	@Override
+	public List<MemberVO> getRanking() {
+		return mapper.selectMembersOrderByScore();
+	}
+
+	@Override
+	public int addScore(int score, String memberId) {
+		return mapper.updateScoreByMemberId(score,memberId);
 	}
 
 

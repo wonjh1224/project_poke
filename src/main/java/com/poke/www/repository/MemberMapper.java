@@ -1,5 +1,7 @@
 package com.poke.www.repository;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Mapper;
 
 import com.poke.www.domain.MemberVO;
@@ -12,5 +14,9 @@ public interface MemberMapper {
 	MemberVO selectMemberById(String loginId);
 
 	int updatePointById(int price, String memberId);
+
+	List<MemberVO> selectMembersOrderByScore();
+
+	int updateScoreByMemberId(int score, String memberId);
 
 }

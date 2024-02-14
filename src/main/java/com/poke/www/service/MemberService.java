@@ -1,5 +1,7 @@
 package com.poke.www.service;
 
+import java.util.List;
+
 import com.poke.www.domain.MemberVO;
 
 public interface MemberService {
@@ -11,6 +13,10 @@ public interface MemberService {
 	MemberVO getMember(String memberId);
 
 	int modifyPointByMemberId(String memberId, int price);
+
+	List<MemberVO> getRanking();
+
+	int addScore(int score, String memberId);
 	
 
 }

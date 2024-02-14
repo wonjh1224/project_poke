@@ -30,4 +30,9 @@ public class PokemonServiceImpl implements PokemonService{
 	public List<PokemonVO> getPokemons() {
 		return mapper.selectPokemons();
 	}
+
+	@Override
+	public PokemonVO getPokemonByPokemonId(int pokemonId) {
+		return mapper.selectPokemonByPokemonId(pokemonId);
+	}
 }

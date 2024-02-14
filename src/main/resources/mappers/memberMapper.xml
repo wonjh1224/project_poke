@@ -16,4 +16,12 @@
 <update id="updatePointById">
 	update member set point = point + #{param1} where member_id = #{param2}
 </update>
+
+<select id="selectMembersOrderByScore">
+	select member_id, score from member order by score desc
+</select>
+
+<update id="updateScoreByMemberId">
+	update member set score = score + #{param1} where member_id = #{param2} 
+</update>
 </mapper>

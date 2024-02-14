@@ -14,6 +14,7 @@ import com.poke.www.domain.PokedexDTO;
 import com.poke.www.domain.PokedexVO;
 import com.poke.www.domain.PokemonStorageVO;
 import com.poke.www.domain.PokemonVO;
+import com.poke.www.service.MemberService;
 import com.poke.www.service.PokedexService;
 import com.poke.www.service.PokemonService;
 import com.poke.www.service.StorageService;
@@ -29,6 +30,7 @@ public class PokedexController {
 	private final PokedexService pokedexService;
 	private final StorageService storageService;
 	private final PokemonService pokemonService;
+	private final MemberService memberService;
 	
 	@GetMapping("/{memberId}")
 	public String getPokedexPage(@PathVariable("memberId")String memberId) {
@@ -39,12 +41,20 @@ public class PokedexController {
 	@ResponseBody
 	public String registerPokedex(@RequestBody String strStorageId) {
 		int storageId = Integer.parseInt(strStorageId);
-		PokemonStorageVO pokemon = storageService.getPokemonByStorageId(storageId);
+		PokemonStorageVO pokemonStorageVO = storageService.getPokemonByStorageId(storageId);
+		String memberId = pokemonStorageVO.getMemberId();
+		int pokemonId = pokemonStorageVO.getPokemonId();
+		PokemonVO pokemon = pokemonService.getPokemonByPokemonId(pokemonId);
+		int score = pokemon.getScore();
 		
-		if(pokedexService.getPokemonByMemberIdAndPokemonId(pokemon.getMemberId(),pokemon.getPokemonId())==null) {
-			pokedexService.addPokemon(pokemon.getMemberId(),pokemon.getPokemonId());
+		// 도감에 등록 되어있는지 확인
+		if(pokedexService.getPokemonByMemberIdAndPokemonId(memberId,pokemonId)==null) {
+			//도감에 포켓몬 추가
+			pokedexService.addPokemon(memberId,pokemonId);
+			//포켓몬보관함에서 포켓몬 삭제
 			storageService.removePokemonByStorageId(storageId);
-			
+			//
+			memberService.addScore(score,memberId);
 		}else {
 			return "already";
 		}

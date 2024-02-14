@@ -16,8 +16,4 @@ import lombok.extern.slf4j.Slf4j;
 public class RankingServiceImpl implements RankingService{
 	private final RankingMapper mapper;
 
-	@Override
-	public List<MemberVO> getRanking() {
-		return mapper.selectMemberOrderByScore();
-	}
 }
