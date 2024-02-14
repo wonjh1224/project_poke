@@ -26,6 +26,11 @@ public class HomeController {
 		return "index";
 	}
 	
+	/**
+	 * pokemon 테이블에 포켓몬들을 insert 함
+	 * @param list 포켓몬 n마리가 들어있는 list
+	 * @return n마리가 등록됐다고 리턴함
+	 */
 	@ResponseBody
 	@PutMapping("/pokemon-init")
 	public String pokemonInit(@RequestBody List<PokemonVO> list) {
@@ -33,8 +38,6 @@ public class HomeController {
 		for(PokemonVO pvo : list) {
 			pokemonService.addPokemon(pvo);
 		}
-		
-		
 		return String.valueOf(list.size());
 	}
 }
