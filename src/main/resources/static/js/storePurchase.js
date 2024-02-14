@@ -49,7 +49,7 @@ async function getMember(){
 
 async function spreadMemberPoint(){
     getMember().then(member=>{
-        document.getElementById('memberPoint').innerText = member.point
+        document.getElementById('memberPoint').innerText = "잔액 : " + member.point
         if(member.point<price){
             document.getElementById('purchaseBtn').disabled=true;
         }
