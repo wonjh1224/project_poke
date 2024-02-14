@@ -10,29 +10,39 @@
 </th:block>
 
 <script>
-async function getPokemonKoreanName(pokemonId){
+async function getPokemonKorean(pokemonId){
     try {
         const url = "https://pokeapi.co/api/v2/pokemon-species/"+pokemonId
         const resp = await fetch(url)
         const result = await resp.json();
-        return result.names[2].name;
+        return result;
     } catch (error) {
         console.log(error)
     }
 }
 
+
 async function setPokemon(){
 	let pno = document.getElementById('pno').value
 	let pokemons = []
     for(let i=1; i<=pno; i++){
-        let pokemon_id = i
-        let name = await getPokemonKoreanName(i)
+        let pokemonKorean = await getPokemonKorean(i)
+    	let pokemon_id = i
+        let name = pokemonKorean.names[2].name
+        let flavor
+        for(f of pokemonKorean.flavor_text_entries){
+        	
+        	if(f.language.name == "ko"){
+        		flavor = f.flavor_text.replaceAll("\n",' ')  		
+        	}
+        }
         let image = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${i}.png`
         
         let pokemon = {
             pokemonId : pokemon_id,
             name : name,
-            image : image    
+            image : image,
+            flavor : flavor
         }
         pokemons.push(pokemon)
     }
