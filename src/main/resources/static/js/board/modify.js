@@ -30,7 +30,6 @@ document.getElementById("changeBtn").addEventListener('click', () => {
             uuids.value += uuid+",";   
         }
     })
-
 	//기존 디테일 페이지에 있는 게시글 수정, 게시글 삭제 버튼 삭제
 	document.getElementById('changeBtn').remove();
 	document.getElementById('delBtn').remove();
@@ -41,7 +40,6 @@ document.getElementById("changeBtn").addEventListener('click', () => {
 	modBtn.setAttribute('id', 'submitBtn');
 	modBtn.innerText = '수정 하기';
 	document.getElementById('modForm').appendChild(modBtn);
-
 
 	document.getElementById('submitBtn').addEventListener('click', () => {
 		if (confirm('게시글을 수정하시겠습니까?')) {
@@ -55,4 +53,3 @@ document.getElementById("delBtn").addEventListener('click', () => {
 		document.getElementById('delForm').submit();
 	}
 })
-

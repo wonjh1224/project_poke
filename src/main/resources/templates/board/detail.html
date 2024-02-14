@@ -72,6 +72,7 @@
 		<hr>
 		<!-- 댓글 -->
 		<div>
+			<h4>댓글 작성</h4>
 			<div class="commentBox"></div>
 			<span id="cmtWriter">작성자</span>
 			<input type="text" id="cmtText"><br>
@@ -79,11 +80,11 @@
 		</div>
 		<hr>
 		<!-- 댓글 표시 라인 -->
-		<ul>
+		<ul id="cmtListArea">
 			<li>
 				<div>
 					<div>작성자</div>
-					<div>content</div>
+					<input type="text">
 				</div>
 			</li>
 		</ul>
@@ -100,6 +101,11 @@
 	let bnoVal = [[${bdto.boardVO.bno}]];
 </script>
 
+
 <script src="/js/board/modify.js"></script>
 <script src="/js/board/file.js"></script>
 <script src="/js/comment/register.js"></script>
+
+<script type="text/javascript">
+	spreadCommentList(bnoVal);
+</script>

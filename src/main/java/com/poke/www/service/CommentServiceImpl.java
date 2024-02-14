@@ -1,5 +1,7 @@
 package com.poke.www.service;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import com.poke.www.domain.CommentVO;
@@ -19,6 +21,24 @@ public class CommentServiceImpl implements CommentService{
 	public int register(CommentVO commentVO) {
 		// TODO Auto-generated method stub
 		return commentMapper.insert(commentVO);
+	}
+
+	@Override
+	public List<CommentVO> getList(long bno) {
+		// TODO Auto-generated method stub
+		return commentMapper.selectList(bno);
+	}
+
+	@Override
+	public int modify(CommentVO commentVO) {
+		// TODO Auto-generated method stub
+		return commentMapper.update(commentVO);
+	}
+
+	@Override
+	public int delete(long cno) {
+		// TODO Auto-generated method stub
+		return commentMapper.delete(cno);
 	}
 	
 	
