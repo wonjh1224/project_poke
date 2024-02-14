@@ -62,9 +62,13 @@ document.addEventListener('click',(e)=>{
             <img src="${image}">
             <p>${name}</p>
             <button type="button" onclick="registerPokedex(${storageId}).then(result=>{
-                alert(result)
-                spreadPokemons()
-                modal.style.display = "none";
+                if(result=='ok'){
+                    alert('등록성공')
+                }else{
+                    alert(result)
+                }
+                spreadPokemons();
+                modal.style.display = 'none';
             })">도감등록</button>
         `
         modal.style.display = "block";
