@@ -9,7 +9,7 @@ import lombok.ToString;
 @Getter @Setter @ToString 
 @AllArgsConstructor @NoArgsConstructor
 public class PokemonVO {
-	private String pokemonId;
+	private int pokemonId;
 	private String name;
 	private String image;
 	private String flavor;
