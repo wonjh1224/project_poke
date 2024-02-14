@@ -46,11 +46,8 @@ async function commentRegister(cmtData) {
 //댓글 리스트 받아오기
 async function getCommentList(bno) {
 	try {
-		const url = "/comment/list"+bno;
-		const config = {
-			method:"get"
-		}
-		
+		const url = "/comment/list/" + bno;
+
 		const resp = await fetch(url);
 		const result = await resp.json();
 		console.log("list : ", result);
@@ -94,8 +91,8 @@ document.addEventListener('click', (e) => {
 		cmtContent.readOnly = false;
 
 		let cmtModBtn = e.target.closest('button');
-		console.log(cmtModBtn) 
-	
+		console.log(cmtModBtn)
+
 		//진짜 수정(전송) 버튼 으로 변경
 		cmtModBtn.setAttribute('class', 'cmtModBtn');
 		cmtModBtn.innerText = "수정하기";
@@ -114,25 +111,27 @@ document.addEventListener('click', (e) => {
 			content: cmtContent.value
 		}
 		console.log(cmtData);
-		modifyComment(cmtData).then(result=>{
-			if(result == '1'){
-				alert("수정 완료");
-				//수정(전송)후 다시 change버튼 으로 변경
-				let cmtModBtn = e.target.closest('button');
-				cmtModBtn.setAttribute('class', 'change');
-				cmtModBtn.innerText = "수정";
-				//삭제 버튼 표시
-				let cmtDelBtn = cmtModBtn.nextSibling;
-				cmtDelBtn.style.display = 'inline';
+		modifyComment(cmtData).then(result => {
+			if (confirm("댓글을 수정하겠습니까?")) {
+				if (result == '1') {
+					alert("수정 완료");
+					//수정(전송)후 다시 change버튼 으로 변경
+					let cmtModBtn = e.target.closest('button');
+					cmtModBtn.setAttribute('class', 'change');
+					cmtModBtn.innerText = "수정";
+					//삭제 버튼 표시
+					let cmtDelBtn = cmtModBtn.nextSibling;
+					cmtDelBtn.style.display = 'inline';
+				}
 			}
 		})
-	}else if(e.target.classList.contains("del")){
+	} else if (e.target.classList.contains("del")) {
 		let li = e.target.closest('li')
 		let cno = li.dataset.cno;
 		console.log(cno);
-		if(confirm('댓글을 삭제하겠습니까?')){
-			deleteComment(cno).then(result=>{
-				if(result == '1'){
+		if (confirm('댓글을 삭제하겠습니까?')) {
+			deleteComment(cno).then(result => {
+				if (result == '1') {
 					spreadCommentList(bnoVal);
 					alert("삭제 성공")
 				}
@@ -160,11 +159,11 @@ async function modifyComment(cmtDataMod) {
 	}
 }
 
-async function deleteComment(cno){
+async function deleteComment(cno) {
 	try {
-		const url = "/comment/delete/"+cno;
+		const url = "/comment/delete/" + cno;
 		const config = {
-			method : 'delete'
+			method: 'delete'
 		}
 		const resp = await fetch(url, config);
 		const result = await resp.text(); // -> 1
