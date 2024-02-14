@@ -11,4 +11,8 @@
 <select id="selectPokemonByMemberIdAndPokemonId">
 	select * from pokedex where member_id = #{param1} and pokemon_id = #{param2}
 </select>
+
+<select id="selectPokemonsByMemberId">
+	select * from pokedex where member_id = #{memberId}
+</select>
 </mapper>

@@ -1,5 +1,7 @@
 package com.poke.www.service;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import com.poke.www.domain.PokedexVO;
@@ -22,6 +24,11 @@ public class PokedexServiceImpl implements PokedexService {
 	@Override
 	public PokedexVO getPokemonByMemberIdAndPokemonId(String memberId, int pokemonId) {
 		return mapper.selectPokemonByMemberIdAndPokemonId(memberId,pokemonId);
+	}
+
+	@Override
+	public List<PokedexVO> getPokemonsByMemberId(String memberId) {
+		return mapper.selectPokemonsByMemberId(memberId);
 	}
 
 

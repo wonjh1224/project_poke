@@ -1,5 +1,7 @@
 package com.poke.www.service;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import com.poke.www.domain.PokemonVO;
@@ -22,5 +24,10 @@ public class PokemonServiceImpl implements PokemonService{
 	@Override
 	public int addPokemon(PokemonVO pvo) {
 		return mapper.insertPokemon(pvo);
+	}
+
+	@Override
+	public List<PokemonVO> getPokemons() {
+		return mapper.selectPokemons();
 	}
 }

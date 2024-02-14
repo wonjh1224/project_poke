@@ -12,4 +12,8 @@
 	insert into pokemon (pokemon_id, name, image)
 	values (#{pokemonId}, #{name}, #{image})
 </insert>
+
+<select id="selectPokemons">
+	select * from pokemon
+</select>
 </mapper>

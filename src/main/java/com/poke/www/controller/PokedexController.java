@@ -1,5 +1,7 @@
 package com.poke.www.controller;
 
+import java.util.List;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -7,9 +9,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.poke.www.domain.PokedexDTO;
 import com.poke.www.domain.PokedexVO;
 import com.poke.www.domain.PokemonStorageVO;
+import com.poke.www.domain.PokemonVO;
 import com.poke.www.service.PokedexService;
+import com.poke.www.service.PokemonService;
 import com.poke.www.service.StorageService;
 
 import lombok.RequiredArgsConstructor;
@@ -22,6 +27,7 @@ import lombok.extern.slf4j.Slf4j;
 public class PokedexController {
 	private final PokedexService pokedexService;
 	private final StorageService storageService;
+	private final PokemonService pokemonService;
 	
 	@GetMapping
 	public String getPokedexPage() {
@@ -40,9 +46,17 @@ public class PokedexController {
 		}else {
 			return "already";
 		}
-		
-		
+			
 		return "ok";
 	}
 	
+	@GetMapping("/list")
+	@ResponseBody
+	public PokedexDTO getPokedexList(@RequestBody String memberId){
+		
+		List<PokemonVO> allPokemonList = pokemonService.getPokemons();
+		List<PokedexVO> userPokemonList = pokedexService.getPokemonsByMemberId(memberId);
+		
+		return new PokedexDTO(userPokemonList,allPokemonList);
+	}
 }

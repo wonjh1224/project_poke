@@ -10,4 +10,5 @@ import lombok.ToString;
 public class PokedexVO {
 	private String memberId;
 	private int pokemonId;
+	private String registerDate;
 }
