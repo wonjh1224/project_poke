@@ -8,7 +8,7 @@ import lombok.ToString;
 
 @Getter @Setter @ToString @NoArgsConstructor @AllArgsConstructor
 public class ItemStorageVO {
-	private String storageId;
+	private int storageId;
 	private String memberId;
 	private int productId;
 	

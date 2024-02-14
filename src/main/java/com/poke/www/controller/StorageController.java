@@ -45,7 +45,7 @@ public class StorageController {
 	@ResponseBody
 	@PostMapping("/use-item")
 	public int useItemInStorage(@RequestBody ItemStorageVO itemStorageVO) {
-		int storageId = Integer.parseInt(itemStorageVO.getStorageId());
+		int storageId = itemStorageVO.getStorageId();
 		ProductVO pvo = storageService.getProductByStorageId(storageId);
 		String memberId = itemStorageVO.getMemberId();
 		
