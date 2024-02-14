@@ -3,7 +3,13 @@
 
 <th:block th:replace="~{/layout :: setFragment(~{this::content})}">
 <th:block th:fragment="content">
-	<h2>도감페이지임</h2>
-	
+	<h2>'[[${memberId}]]'의 도감페이지</h2>
+	<div id="pokedexLine">
+		
+	</div>
 </th:block>
 </th:block>
+<script th:inline="javascript">
+	let memberId = [[${memberId}]]
+</script>
+<script src="/js/pokedexList.js"></script>

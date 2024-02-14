@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,8 +30,8 @@ public class PokedexController {
 	private final StorageService storageService;
 	private final PokemonService pokemonService;
 	
-	@GetMapping
-	public String getPokedexPage() {
+	@GetMapping("/{memberId}")
+	public String getPokedexPage(@PathVariable("memberId")String memberId) {
 		return "/pokedex/pokedex";
 	}
 	
@@ -50,10 +51,9 @@ public class PokedexController {
 		return "ok";
 	}
 	
-	@GetMapping("/list")
+	@PostMapping("/list")
 	@ResponseBody
 	public PokedexDTO getPokedexList(@RequestBody String memberId){
-		
 		List<PokemonVO> allPokemonList = pokemonService.getPokemons();
 		List<PokedexVO> userPokemonList = pokedexService.getPokemonsByMemberId(memberId);
 		
