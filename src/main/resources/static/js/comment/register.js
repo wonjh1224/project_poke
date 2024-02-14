@@ -46,7 +46,12 @@ async function commentRegister(cmtData) {
 //댓글 리스트 받아오기
 async function getCommentList(bno) {
 	try {
-		const resp = await fetch("/comment/list/" + bno);
+		const url = "/comment/list"+bno;
+		const config = {
+			method:"get"
+		}
+		
+		const resp = await fetch(url);
 		const result = await resp.json();
 		console.log("list : ", result);
 		return result;
@@ -161,8 +166,8 @@ async function deleteComment(cno){
 		const config = {
 			method : 'delete'
 		}
-		const resp = await fetch(url, config)
-		const result = await resp.text();
+		const resp = await fetch(url, config);
+		const result = await resp.text(); // -> 1
 		return result;
 	} catch (error) {
 		console.log(error);
