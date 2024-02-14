@@ -9,8 +9,8 @@
 </delete>
 
 <insert id="insertPokemon">
-	insert into pokemon (pokemon_id, name, image, flavor)
-	values (#{pokemonId}, #{name}, #{image}, #{flavor})
+	insert into pokemon (pokemon_id, name, image, flavor, score)
+	values (#{pokemonId}, #{name}, #{image}, #{flavor}, #{score})
 </insert>
 
 <select id="selectPokemons">

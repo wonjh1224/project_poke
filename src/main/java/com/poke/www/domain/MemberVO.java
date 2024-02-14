@@ -19,5 +19,6 @@ public class MemberVO {
 	private String email; 
 	private String phone;
 	private int point;
+	private int score;
 	
 }

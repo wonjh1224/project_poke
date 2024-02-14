@@ -21,6 +21,16 @@ async function getPokemonKorean(pokemonId){
     }
 }
 
+async function getPokemonStats(pokemonId){
+    try {
+        const url = "https://pokeapi.co/api/v2/pokemon/"+pokemonId
+        const resp = await fetch(url)
+        const result = await resp.json();
+        return result.stats;
+    } catch (error) {
+        console.log(error)
+    }
+}
 
 
 async function setPokemon(){
@@ -28,12 +38,16 @@ async function setPokemon(){
 	let pokemons = []
     for(let i=1; i<=pno; i++){
         let pokemonKorean = await getPokemonKorean(i)
-        
+       
+        let pokemonStats = await getPokemonStats(i)
+        let stats = 0;
+        for(stat of pokemonStats){
+        	stats += stat.base_stat
+        }
     	let pokemon_id = i
         let name = pokemonKorean.names[2].name
         let flavor
         for(f of pokemonKorean.flavor_text_entries){
-        	
         	if(f.language.name == "ko"){
         		flavor = f.flavor_text.replaceAll("\n",' ')  		
         	}
@@ -44,7 +58,8 @@ async function setPokemon(){
             pokemonId : pokemon_id,
             name : name,
             image : image,
-            flavor : flavor
+            flavor : flavor,
+            score : stats
         }
         pokemons.push(pokemon)
     }
