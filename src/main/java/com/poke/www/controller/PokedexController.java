@@ -44,6 +44,7 @@ public class PokedexController {
 		if(pokedexService.getPokemonByMemberIdAndPokemonId(pokemon.getMemberId(),pokemon.getPokemonId())==null) {
 			pokedexService.addPokemon(pokemon.getMemberId(),pokemon.getPokemonId());
 			storageService.removePokemonByStorageId(storageId);
+			
 		}else {
 			return "already";
 		}

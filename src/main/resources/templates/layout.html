@@ -11,6 +11,7 @@
 		<a href="/register">회원가입 |</a>
 		<a th:if="${session.loginMember == null}" href="/login">로그인 |</a>
 		<a href="/market">거래소 |</a>
+		<a href="/ranking">랭킹 |</a>
 		<th:block th:unless="${session.loginMember == null}">
 			<a th:href="|@{/pokedex/{memberId}(memberId=${session.loginMember.memberId})}|">도감 |</a>
 			<a th:href="|@{/storage/{memberId}(memberId=${session.loginMember.memberId})}|">팩 보관함 |</a>
