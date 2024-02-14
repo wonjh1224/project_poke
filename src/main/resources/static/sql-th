@@ -68,6 +68,7 @@ FOR EACH ROW SET
 
 -- 2024 - 02 - 13 --
 create table pokedex(
-member_id varchar(20),
+pokedex_id int auto_increment primary key,
+member_id varchar(20) not null,
 pokemon_id int not null,
 register_date datetime default now());
