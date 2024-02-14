@@ -22,11 +22,13 @@ async function getPokemonKorean(pokemonId){
 }
 
 
+
 async function setPokemon(){
 	let pno = document.getElementById('pno').value
 	let pokemons = []
     for(let i=1; i<=pno; i++){
         let pokemonKorean = await getPokemonKorean(i)
+        
     	let pokemon_id = i
         let name = pokemonKorean.names[2].name
         let flavor

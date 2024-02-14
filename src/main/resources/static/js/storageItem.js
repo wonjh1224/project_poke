@@ -60,3 +60,9 @@ async function getItemListFromServer(memberId){
     }
 }
 spreadItems()
+
+
+
+
+
+

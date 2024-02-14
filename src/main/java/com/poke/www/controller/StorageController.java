@@ -44,14 +44,20 @@ public class StorageController {
 	
 	@ResponseBody
 	@PostMapping("/use-item")
-	public String useItemInStorage(@RequestBody ItemStorageVO itemStorageVO) {
+	public int useItemInStorage(@RequestBody ItemStorageVO itemStorageVO) {
 		int storageId = Integer.parseInt(itemStorageVO.getStorageId());
 		ProductVO pvo = storageService.getProductByStorageId(storageId);
-		storageService.removeItemByStorageId(storageId);
-		int pokemonId = getRandomPokemonId(pvo);
 		String memberId = itemStorageVO.getMemberId();
+		
+		
+		storageService.removeItemByStorageId(storageId);
+		
+		
+		int pokemonId = getRandomPokemonId(pvo);
+		
+		
 		storageService.addPokemon(memberId,pokemonId);
-		return String.valueOf(pokemonId);
+		return pokemonId;
 	}
 	
 	public int getRandomPokemonId(ProductVO pvo) {
