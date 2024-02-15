@@ -9,5 +9,6 @@ import com.poke.www.domain.MemberVO;
 @Mapper
 public interface RankingMapper {
 
+	List<MemberVO> selectMemberListByScore();
 
 }

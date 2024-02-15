@@ -2,8 +2,19 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <th:block th:replace="~{/layout :: setFragment(~{this::content})}">
-<th:block th:fragment="content">
-	<h2>랭킹 페이지임</h2>
+	<th:block th:fragment="content">
+		<h2>랭킹 페이지임</h2>
 
-</th:block>
+		
+		<div>
+			<ol>
+				<li th:each="mvo:${list}">
+				[[${mvo.memberId}]]([[${mvo.name}]]) / 점수 : [[${mvo.score}]]
+				</li>
+			</ol>
+		</div>
+		
+		
+		
+	</th:block>
 </th:block>

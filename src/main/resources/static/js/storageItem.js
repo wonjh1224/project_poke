@@ -59,6 +59,7 @@ async function getItemListFromServer(memberId){
         console.log(error)
     }
 }
+
 spreadItems()
 
 

@@ -63,4 +63,5 @@ public class MemberController {
 		return memberService.getMember(mvo.getMemberId());
 	}
 	
+	
 }

@@ -8,12 +8,17 @@ import com.poke.www.domain.MemberVO;
 import com.poke.www.repository.RankingMapper;
 
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 
-@Service
-@Slf4j
 @RequiredArgsConstructor
+@Service
 public class RankingServiceImpl implements RankingService{
-	private final RankingMapper mapper;
 
+	private final RankingMapper rankingMapper;
+
+	@Override
+	public List<MemberVO> getMemberList() {
+		// TODO Auto-generated method stub
+		return rankingMapper.selectMemberListByScore();
+	}
+	
 }
