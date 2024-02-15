@@ -7,7 +7,7 @@
 	<h2>상품 구매 페이지임</h2>
 	<p th:text="|상품 가격 :${pvo.price}|">상품금액</p>
 	<p id="memberPoint">잔액</p>
-	<button>충전버튼</button>
+	<button th:onclick="|location.href='@{/my/charge?rd-url=/store/{productId}/purchase(productId=${pvo.productId})}'|">충전버튼</button>
 	<button type="button" id="purchaseBtn">구매버튼</button>
 	</th:block>
 </th:block>

@@ -17,6 +17,9 @@
 			<a th:href="|@{/pokedex/{memberId}(memberId=${session.loginMember.memberId})}|">도감 |</a>
 			<a th:href="|@{/storage/{memberId}(memberId=${session.loginMember.memberId})}|">팩 보관함 |</a>
 			<a th:href="|@{/storage/{memberId}/pokemon(memberId=${session.loginMember.memberId})}|">포켓몬 보관함 |</a>
+			<br>
+			마이페이지 임시 ==>>
+			<a th:href="|@{/my/charge}|">충전</a>
 			<form th:action="@{/logout}" method="post">	
 				<button type="submit">로그아웃</button>
 			</form>

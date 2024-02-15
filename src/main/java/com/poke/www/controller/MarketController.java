@@ -42,6 +42,8 @@ public class MarketController {
 		if(loginMember == null) {
 			return "redirect:/login";
 		}
+		log.info("loginMember  :::::: {}",loginMember);
+		
 		List<PokemonStorageVO> list = storageService.getPokemonsByMemberId(loginMember.getMemberId());
 		m.addAttribute("list",list);
 		return "/market/register";
