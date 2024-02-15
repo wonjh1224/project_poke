@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<th:block th:replace="~{/layout :: setFragment(~{this::content})}">
+
+	<th:block th:fragment="content">
+		<hr>
+		<br>
+
+
+		<h2>게시판</h2>
+		<br>
+
+		<form action="/board/modify" method="post" id="modForm" enctype="multipart/form-data">
+
+				
+			<div>
+				게시판 종류 : <input type="text" name="bno" class="form-control" id="bno" th:value="${bdto.boardVO.category}" readonly disabled="disabled">
+			</div><br>
+			<div>
+				번호 : <input type="text" name="bno" class="form-control" id="bno" th:value="${bdto.boardVO.bno}" readonly>
+			</div><br>
+			<div>
+				제목 : <input type="text" name="title" class="form-control" id="title" th:value="${bdto.boardVO.title}" readonly>
+			</div><br>
+			<div>
+				내용 : <textarea class="form-control" name="content" id="content" readonly>[[${bdto.boardVO.content}]]</textarea>
+			</div><br>
+			<div>
+				작성자 : <input type="text" name="writer" class="form-control" id="writer" th:value="${bdto.boardVO.writer}" readonly>
+			</div><br>
+			<div>
+				작성일 : <input type="text" name="regAt" class="form-control" id="regAt" th:value="${bdto.boardVO.regAt}" readonly>
+			</div><br>
+			
+			<!-- 파일 표시 라인 -->
+			<div>
+				<ul>
+					<li th:each="fvo : ${bdto.flist}">
+						<div>
+							<img style="width: 300px; height: 300px;" th:src="@{|/upload/${fvo.saveDir}/${fvo.uuid}_${fvo.fileName}|}">
+						</div> 
+
+						<div>
+							<div class="fw-bold">[[${fvo.fileName}]]
+							<button type="button" class="fileDelBtn" th:data-uuid="${fvo.uuid}" style="display : none;">파일삭제</button></div>
+						</div>
+					</li>
+				</ul>
+			</div>
+							<!-- 파일 삭제 버튼 누르면 버튼에 해당하는 이미지의 UUID를 input 창에 담기 위함-->
+							<input type="hidden" id="uuids" name="uuids">
+			
+			<!-- file 입력 라인 추가 -->
+			<div style="display: none" id="fileDiv">
+				<input type="file" name="files" id="files" multiple="multiple" style="display: none;"><br>
+				<button type="button" class="btn btn-success" id="trigger">사진 등록</button>
+			</div>
+			<!-- 파일 목록 표시라인 -->
+			<div id="fileZone">
+				
+			</div>
+
+			<button type="button" id="changeBtn">수정</button>
+
+			<button type="button" id="delBtn">삭제</button>
+		</form>
+		
+		<form action="/board/delete" method="post" id="delForm">
+				<input type="hidden" th:value="${bdto.boardVO.bno}" name="bno">
+		</form>
+		<br>
+		<hr>
+		<!-- 댓글 -->
+		<div>
+			<h4>댓글 작성</h4>
+			<div class="commentBox"></div>
+			<span id="cmtWriter">작성자</span>
+			<input type="text" id="cmtText"><br>
+			<button type="button" id="cmtRegBtn">등록</button>
+		</div>
+		<hr>
+		<!-- 댓글 표시 라인 -->
+		<ul id="cmtListArea">
+			<li>
+				<div>
+					<div>작성자</div>
+					<input type="text">
+				</div>
+			</li>
+		</ul>
+
+		<br>
+		<br>
+		<hr>
+
+	</th:block>
+
+</th:block>
+
+<script th:inline="javascript">
+	let bnoVal = [[${bdto.boardVO.bno}]];
+</script>
+
+
+<script src="/js/board/modify.js"></script>
+<script src="/js/board/file.js"></script>
+<script src="/js/comment/register.js"></script>
+
+<script type="text/javascript">
+	spreadCommentList(bnoVal);
+</script>

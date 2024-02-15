@@ -1,0 +1,51 @@
+-- 2024-02-04 --
+create database pokedb;
+
+-- user 생성 구문
+create user 'pokeUser'@'localhost'
+identified by 'mysql' ;
+
+-- user 권한 부여
+grant all privileges on pokedb.* to
+'pokeUser'@'localhost' with grant option;
+
+-- 권한 설정 완료
+flush privileges;
+
+/ --
+
+-- 2024-02-05 --
+create table board(
+bno bigint not null auto_increment,
+title varchar(200) not null,
+writer varchar(200) not null,
+content text not null,
+reg_at datetime default now(),
+read_count int default 0,
+comment_count int default 0,
+primary key(bno));
+
+-- 2024-02-06 --
+create table file(
+uuid varchar(256) not null,
+save_dir varchar(256) not null,
+file_name varchar(256) not null,
+file_size bigint,
+bno bigint,
+reg_at datetime default now(),
+primary key(uuid));
+
+-- 2024-02-08--
+보드 테이블 카테고리 칼럼 추가
+ALTER TABLE board ADD category VARCHAR(20) NOT NULL;
+alter table board alter column category set default '자유';
+
+-- 2024 - 02 - 13 --
+댓글 시작
+create table comment(
+cno bigint auto_increment,
+bno bigint not null,
+writer varchar(200) not null,
+content text not null,
+reg_at datetime default now(),
+primary key(cno));

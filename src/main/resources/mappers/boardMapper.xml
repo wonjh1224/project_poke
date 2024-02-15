@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.poke.www.repository.BoardMapper">
+
+<select id="selectListCateorized">
+	select * from board
+	where category = #{category}
+	order by bno desc
+	limit #{pagingVO.pageStart}, #{pagingVO.qty}
+</select>
+
+<select id="selectListAllBoard">
+	select * from board 
+	<include refid="search"></include>
+	 order by bno desc
+	limit #{pageStart}, #{qty}
+</select>
+
+<insert id="insert">
+	insert into board(title, writer, content, category)
+	values(#{title}, #{writer}, #{content}, #{category})
+</insert>
+
+<select id="selectOne">
+	select * from board where bno = #{bno}
+</select>
+
+<delete id="delete">
+	delete from board where bno = #{bno}
+</delete>
+
+<update id="update">
+	update board set title = #{title}, content = #{content} where bno = #{bno}
+</update>
+
+<select id="maxBno">
+	select max(bno) from board
+</select>
+
+<select id="getTotalCountCategoized">
+	select count(bno) from board where category = #{category}
+</select>
+
+<select id="getTotalCount">
+	select count(bno) from board
+	<include refid="search"></include>
+</select>
+
+
+	<!-- 검색 -->
+	<sql id="search">
+		<if test="type != null">
+			<trim prefix="where(" suffix=")" prefixOverrides="or">
+				<foreach collection="typeToArray" item="type">
+					<trim prefix="or">
+						<choose>
+							<when test="type == 't'.toString()">
+								title like concat('%', #{keyword}, '%')
+							</when>
+							<when test="type == 'w'.toString()">
+								writer like concat('%', #{keyword}, '%')
+							</when>
+							<when test="type == 'c'.toString()">
+								content like concat('%', #{keyword}, '%')
+							</when>
+						</choose>
+					</trim>
+				</foreach>
+			</trim>
+		</if>
+	</sql>
+
+</mapper>

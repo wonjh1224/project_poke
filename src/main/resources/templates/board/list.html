@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<style>
+th, td {
+	border: 1px solid black;
+	text-align: center;
+}
+
+.table {
+	width:100%;
+	border-collapse: collapse;
+}
+
+ul {
+	list-style: none;
+}
+
+li {
+	float: left;
+}
+a{
+	text-decoration: none;
+}
+
+</style>
+<th:block th:replace="~{/layout :: setFragment(~{this::content})}">
+
+	<th:block th:fragment="content">
+
+	
+		<div>
+				<h4>
+					게시글 수 : [[${ph.totalCount}]]
+				</h4>
+				
+			<div>
+				<ul>
+					<li><a href="/board/list?category=자유">| 자유 게시판 |</a></li>
+					<li><a href="/board/list?category=질문">| 질문 게시판 |</a></li>
+					<li><a href="/board/list?category=정보">| 정보 게시판 |</a></li>
+					<li><a href="/board/list?category=거래">| 거래 게시판 |</a></li>
+				</ul>
+			</div>
+			<br>
+			<br>
+			
+			<!-- 검색 -->
+			<form action="/board/list">
+				<input type="hidden" name="pageNo" value="1">
+				<input type="hidden" name="qty" value="10">
+				
+				<div>
+					<select name="type">
+						<option th:value="twc">전체</option>
+						<option th:value="t">제목</option>
+						<option th:value="w">작성자</option>
+						<option th:value="c">내용</option>
+					</select>
+				</div>
+				
+				<input type="text" name="keyword" th:value="${ph.pagingVO.keyword}" placeholder="검색어를 입력해주세요">
+				
+				<button type="submit">검색</button>
+				
+			</form>
+			<!-- /검색 -->
+
+			<br>
+			<div>
+				<table class="table" style="border: 1px solid black">
+					<thead>
+						<tr>
+							<th scope="col">번호</th>
+							<th scope="col">게시판</th>
+							<th scope="col">제목</th>
+							<th scope="col">작성자</th>
+							<th scope="col">등록일</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="bvo:${list}">
+							<th scope="row"><a th:href="|/board/detail/${bvo.bno}|">[[${bvo.bno}]]</a></th>
+							<td>[[${bvo.category}]]게시판</td>
+							<td><a th:href="|/board/detail/${bvo.bno}|">[[${bvo.title}]]</a></td>
+							<td>[[${bvo.writer}]]</td>
+							<td>[[${bvo.regAt}]]</td>
+						</tr>
+						</th:Each>
+					</tbody>
+				</table>
+				<h4>
+					<a href="/board/register">글쓰기</a>
+				</h4>
+				<!-- 페이지네이션 -->
+				<ul>
+					<li th:if=${ph.prev}>
+						<a th:href="|/board/list?pageNo=${ph.startPage-1}
+						${ph.pagingVO.qty < 0 ? '' : '&qty='}
+						${ph.pagingVO.qty?:''}
+						${category==null ? '' : '&category='}
+						${category?:''}
+						${ph.pagingVO.type==null ? '' : '&type='}
+						${ph.pagingVO.type?:''}
+						${ph.pagingVO.keyword==null ? '' : '&keyword='}
+						${ph.pagingVO.keyword?:''}|">이전|
+						</a>
+					</li>
+					
+					<li th:each="i: ${#numbers.sequence(ph.startPage,ph.endPage)}">
+						<a th:href="|/board/list?pageNo=${i}
+						${ph.pagingVO.qty < 0 ? '' : '&qty='}
+						${ph.pagingVO.qty?:''}
+						${category==null ? '' : '&category='}
+						${category?:''}
+						${ph.pagingVO.type==null ? '' : '&type='}
+						${ph.pagingVO.type?:''}
+						${ph.pagingVO.keyword==null ? '' : '&keyword='}
+						${ph.pagingVO.keyword?:''}|"> 	
+						<[[${i}]]> </a>	
+					</li>
+					
+					<li th:if=${ph.next}>
+						<a th:href="|/board/list?pageNo=${ph.endPage+1}
+						${ph.pagingVO.qty < 0 ? '' : '&qty='}
+						${ph.pagingVO.qty?:''}
+						${category==null ? '' : '&category='}
+						${category?:''}
+						${ph.pagingVO.type==null ? '' : '&type='}
+						${ph.pagingVO.type?:''}
+						${ph.pagingVO.keyword==null ? '' : '&keyword='}
+						${ph.pagingVO.keyword?:''}|">|다음
+						</a>
+					</li>
+				</ul>
+			</div>
+
+
+		</div>
+
+
+		<br>
+		<br>
+		<hr>
+
+	</th:block>
+
+</th:block>

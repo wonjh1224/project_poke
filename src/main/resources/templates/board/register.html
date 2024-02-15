@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<th:block th:replace="~{/layout :: setFragment(~{this::content})}">
+
+	<th:block th:fragment="content">
+		<hr>
+		<br>
+
+		<form action="/board/register" method="post" id="regForm" enctype="multipart/form-data">
+		
+			<select name="category">
+ 			   <option value="자유">자유 게시판</option>
+ 			   <option value="질문">질문 게시판</option>
+  			   <option value="정보">정보 게시판</option>
+ 			   <option value="거래">거래 게시판</option>
+			</select>
+			
+			<div>
+				제목 : <input type="text" name="title" id="title">
+			</div>
+
+			<div>
+				작성자 : <input type="text" name="writer" id="writer">
+			</div>
+
+			<div>
+				내용 : <textarea name="content" id="content"></textarea>
+			</div>
+
+			<!-- file 입력 라인 추가 -->
+			<div>
+				<input type="file" name="files" id="files" multiple="multiple" style="display: none;"><br>
+				<button type="button" class="btn btn-success" id="trigger">사진 등록</button>
+			</div>
+			<!-- 파일 목록 표시라인 -->
+			<div id="fileZone">
+				
+			</div>
+
+				<br>
+				<button type="button" id="submitBtn">글쓰기</button>
+				
+		</form>
+
+		<br>
+		<br>
+		<hr>
+
+	</th:block>
+
+</th:block>
+
+<script src="/js/board/register.js"></script>
+<script src="/js/board/file.js"></script>
