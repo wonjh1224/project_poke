@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import com.poke.www.domain.MarketItemVO;
 import com.poke.www.domain.OrderVO;
+import com.poke.www.domain.TradeVO;
 import com.poke.www.repository.MyMapper;
 
 import lombok.RequiredArgsConstructor;
@@ -35,5 +36,10 @@ public class MyServiceImpl implements MyService {
 	@Override
 	public List<MarketItemVO> getMarketItemsByMemberId(String loginMemberId) {
 		return mapper.selectMarketItemsByMemberId(loginMemberId);
+	}
+
+	@Override
+	public List<TradeVO> getTradeList(String loginMemberId) {
+		return mapper.selectTradeList(loginMemberId);
 	}
 }

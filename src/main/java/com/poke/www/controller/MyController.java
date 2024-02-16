@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.SessionAttribute;
 import com.poke.www.domain.MarketItemVO;
 import com.poke.www.domain.MemberVO;
 import com.poke.www.domain.OrderVO;
+import com.poke.www.domain.TradeVO;
 import com.poke.www.service.MemberService;
 import com.poke.www.service.MyService;
 
@@ -63,11 +64,18 @@ public class MyController {
 		m.addAttribute("orderList",orderList);
 		return "/my/purchasesPoints";
 	}
-	@GetMapping("/sales/on-sale")
+	@GetMapping("/market/on-sale")
 	private String getSalesPoketmonsPage(Model m,
 			@SessionAttribute("loginMemberId") String loginMemberId) {
 		List<MarketItemVO> itemList = myService.getMarketItemsByMemberId(loginMemberId);
 		m.addAttribute("itemList",itemList);
 		return "/my/onSale";
+	}
+	@GetMapping("/market/trade")
+	private String getTradePage(Model m,
+			@SessionAttribute("loginMemberId") String loginMemberId) {
+		List<TradeVO> tradeList = myService.getTradeList(loginMemberId);
+		m.addAttribute("tradeList",tradeList);
+		return "/my/trade";
 	}
 }

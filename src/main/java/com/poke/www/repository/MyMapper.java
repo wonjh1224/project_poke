@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Mapper;
 
 import com.poke.www.domain.MarketItemVO;
 import com.poke.www.domain.OrderVO;
+import com.poke.www.domain.TradeVO;
 
 @Mapper
 public interface MyMapper {
@@ -17,5 +18,7 @@ public interface MyMapper {
 	List<OrderVO> selectOrderPointList(String loginMemberId);
 
 	List<MarketItemVO> selectMarketItemsByMemberId(String loginMemberId);
+
+	List<TradeVO> selectTradeList(String loginMemberId);
 
 }

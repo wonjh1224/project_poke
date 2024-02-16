@@ -20,4 +20,8 @@
 <select id="selectMarketItemsByMemberId">
 	select * from market_item m join pokemon p on m.pokemon_id = p.pokemon_id where member_id = #{memberId}
 </select>
+
+<select id="selectTradeList">
+	select * from market_trade m join pokemon p on m.pokemon_id = p.pokemon_id where buyer = #{memberId} or seller = #{memberId}
+</select>
 </mapper>
