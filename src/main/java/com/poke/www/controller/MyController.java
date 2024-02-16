@@ -1,5 +1,7 @@
 package com.poke.www.controller;
 
+import java.util.List;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
 import com.poke.www.domain.MemberVO;
+import com.poke.www.domain.OrderProductVO;
 import com.poke.www.service.MemberService;
 import com.poke.www.service.MyService;
 
@@ -25,9 +28,8 @@ public class MyController {
 	private final MyService myService;
 	private final MemberService memberService;
 	@GetMapping("/charge")
-	private String getChargePage(Model m,@SessionAttribute(name="loginMemberId",required=false) String loginMemberId,
+	private String getChargePage(Model m,@SessionAttribute("loginMemberId") String loginMemberId,
 			@RequestParam(name="rd-url",required=false)String url) {
-		log.info("rd-url >>>> {} ",url);
 
 		m.addAttribute("loginMemberId",loginMemberId);
 		if(url!=null) {
@@ -42,6 +44,15 @@ public class MyController {
 		String memberId = mvo.getMemberId();
 		int point = mvo.getPoint();
 		memberService.modifyPointByMemberId(memberId, point);
+		myService.addChargeHistory(memberId,point);
 		return point;
+	}
+	
+	@GetMapping({"/purchases","/purchases/packs"})
+	private String getPurchasesPacksPage(Model m,
+			@SessionAttribute("loginMemberId") String loginMemberId) {
+		List<OrderProductVO> orderList = myService.getOrderProductList(loginMemberId);
+		m.addAttribute("orderList",orderList);
+		return "/my/purchasesPacks";
 	}
 }

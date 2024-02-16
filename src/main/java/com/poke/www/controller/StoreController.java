@@ -72,7 +72,7 @@ public class StoreController {
 		storageService.addItem(mvo.getMemberId(),pvo.getProductId());
 		
 		//구매 내역 추가
-		storeService.addHistory(mvo.getMemberId(),pvo.getProductId());
+		storeService.addPurchaseHistory(mvo.getMemberId(),pvo.getProductId());
 		
 		return "/storage/"+mvo.getMemberId();
 	}

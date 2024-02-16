@@ -28,7 +28,7 @@ public class StoreServiceImpl implements StoreService {
 	}
 
 	@Override
-	public int addHistory(String memberId, int productId) {
-		return mapper.insertHistory(memberId,productId);
+	public int addPurchaseHistory(String memberId, int productId) {
+		return mapper.insertPurchaseHistory(memberId,productId);
 	}
 }

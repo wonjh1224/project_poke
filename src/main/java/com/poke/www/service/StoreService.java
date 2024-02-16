@@ -10,6 +10,6 @@ public interface StoreService {
 
 	ProductVO getProductByProductId(int productId);
 
-	int addHistory(String memberId, int productId);
+	int addPurchaseHistory(String memberId, int productId);
 
 }

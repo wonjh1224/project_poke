@@ -13,6 +13,6 @@ public interface StoreMapper {
 
 	ProductVO selectProductById(int productId);
 
-	int insertHistory(String memberId, int productId);
+	int insertPurchaseHistory(String memberId, int productId);
 
 }
