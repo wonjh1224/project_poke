@@ -16,5 +16,7 @@ public interface MarketMapper {
 	MarketItemVO selectItemByItemId(int itemId);
 
 	int deleteItemByItemId(int itemId);
+
+	int insertTradeHistory(String buyer, String seller, int price, int pokemonId);
 	
 }

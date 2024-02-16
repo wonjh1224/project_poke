@@ -9,8 +9,15 @@
 </select>
 
 <insert id="insertChargeHistory">
-	insert into order_payment (member_id, point)
+	insert into order_point (member_id, point)
 	values (#{param1}, #{param2})
 </insert>
 
+<select id="selectOrderPointList">
+	select * from order_point where member_id = #{memberId}
+</select>
+
+<select id="selectMarketItemsByMemberId">
+	select * from market_item m join pokemon p on m.pokemon_id = p.pokemon_id where member_id = #{memberId}
+</select>
 </mapper>

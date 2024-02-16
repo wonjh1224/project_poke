@@ -20,4 +20,9 @@
 <delete id="deleteItemByItemId">
 	delete from market_item where item_id = #{itemId}
 </delete>
+
+<insert id="insertTradeHistory">
+	insert into market_trade (buyer,seller,price,pokemon_Id)
+	values (#{param1},#{param2},#{param3},#{param4})
+</insert>
 </mapper>

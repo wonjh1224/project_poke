@@ -86,6 +86,9 @@ public class MarketController {
 		memberService.modifyPointByMemberId(loginMember.getMemberId(),-price);
 		log.info("price :::: {} " ,price);
 		
+		//거래 기록 추가
+		marketService.addTradeHistory(loginMember.getMemberId(),marketItemVO.getMemberId(),price,marketItemVO.getPokemonId());
+		
 		//거래소 아이템 삭제
 		marketService.removeItemByItemId(marketItemVO.getItemId());
 		

@@ -16,4 +16,5 @@ public class MarketItemVO {
 	private String end_date;
 	
 	private String image;
+	private String name;
 }

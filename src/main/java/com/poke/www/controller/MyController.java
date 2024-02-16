@@ -12,8 +12,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
+import com.poke.www.domain.MarketItemVO;
 import com.poke.www.domain.MemberVO;
-import com.poke.www.domain.OrderProductVO;
+import com.poke.www.domain.OrderVO;
 import com.poke.www.service.MemberService;
 import com.poke.www.service.MyService;
 
@@ -51,8 +52,22 @@ public class MyController {
 	@GetMapping({"/purchases","/purchases/packs"})
 	private String getPurchasesPacksPage(Model m,
 			@SessionAttribute("loginMemberId") String loginMemberId) {
-		List<OrderProductVO> orderList = myService.getOrderProductList(loginMemberId);
+		List<OrderVO> orderList = myService.getOrderProductList(loginMemberId);
 		m.addAttribute("orderList",orderList);
 		return "/my/purchasesPacks";
+	}
+	@GetMapping("/purchases/points")
+	private String getPurchasesPointsPage(Model m,
+			@SessionAttribute("loginMemberId") String loginMemberId) {
+		List<OrderVO> orderList = myService.getOrderPointList(loginMemberId);
+		m.addAttribute("orderList",orderList);
+		return "/my/purchasesPoints";
+	}
+	@GetMapping("/sales/on-sale")
+	private String getSalesPoketmonsPage(Model m,
+			@SessionAttribute("loginMemberId") String loginMemberId) {
+		List<MarketItemVO> itemList = myService.getMarketItemsByMemberId(loginMemberId);
+		m.addAttribute("itemList",itemList);
+		return "/my/onSale";
 	}
 }

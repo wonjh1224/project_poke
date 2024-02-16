@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.poke.www.domain.MarketItemVO;
+import com.poke.www.domain.MemberVO;
 import com.poke.www.repository.MarketMapper;
 
 import lombok.RequiredArgsConstructor;
@@ -34,5 +35,10 @@ public class MarketServiceImpl implements MarketService{
 	@Override
 	public int removeItemByItemId(int itemId) {
 		return mapper.deleteItemByItemId(itemId);
+	}
+
+	@Override
+	public int addTradeHistory(String buyer, String seller, int price, int pokemonId) {
+		return mapper.insertTradeHistory(buyer,seller,price,pokemonId);
 	}
 }

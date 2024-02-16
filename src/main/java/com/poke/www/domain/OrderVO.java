@@ -7,7 +7,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 @Getter @Setter @ToString @NoArgsConstructor @AllArgsConstructor
-public class OrderProductVO {
+public class OrderVO {
 	
 	private int order_id;
 	private String memberId;
@@ -15,6 +15,8 @@ public class OrderProductVO {
 	private String orderDate;
 	
 	private String name;
-	private String price;
+	private int price;
+	
+	private int point;
 	
 }
