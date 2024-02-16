@@ -12,4 +12,9 @@
 	select * from product where product_id = #{productId}
 </select>
 
+<insert id="insertHistory">
+	insert into order_product (member_id,product_id)
+	values (#{param1}, #{param2}) 
+</insert>
+
 </mapper>

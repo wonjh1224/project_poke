@@ -26,4 +26,9 @@ public class StoreServiceImpl implements StoreService {
 		// TODO Auto-generated method stub
 		return mapper.selectProductById(productId);
 	}
+
+	@Override
+	public int addHistory(String memberId, int productId) {
+		return mapper.insertHistory(memberId,productId);
+	}
 }

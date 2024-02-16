@@ -70,7 +70,10 @@ public class StoreController {
 		
 		//(보관함에 구매한 상품 추가)
 		storageService.addItem(mvo.getMemberId(),pvo.getProductId());
-				
+		
+		//구매 내역 추가
+		storeService.addHistory(mvo.getMemberId(),pvo.getProductId());
+		
 		return "/storage/"+mvo.getMemberId();
 	}
 }
