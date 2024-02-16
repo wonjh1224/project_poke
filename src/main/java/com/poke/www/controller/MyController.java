@@ -67,10 +67,16 @@ public class MyController {
 	@GetMapping("/market/on-sale")
 	private String getSalesPoketmonsPage(Model m,
 			@SessionAttribute("loginMemberId") String loginMemberId) {
-		List<MarketItemVO> itemList = myService.getMarketItemsByMemberId(loginMemberId);
-		m.addAttribute("itemList",itemList);
+		m.addAttribute("loginMemberId",loginMemberId);
 		return "/my/onSale";
 	}
+	
+	@ResponseBody
+	@PostMapping("/market/on-sale/list")
+	private List<MarketItemVO> getItemList(@RequestBody String memberId) {
+		return myService.getMarketItemsByMemberId(memberId);
+	}
+	
 	@GetMapping("/market/trade")
 	private String getTradePage(Model m,
 			@SessionAttribute("loginMemberId") String loginMemberId) {

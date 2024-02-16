@@ -4,23 +4,14 @@
 <th:block th:replace="~{/layout :: setFragment(~{this::content})}">
 <th:block th:fragment="content">
 	<h2>포켓몬 판매 관리</h2>
-	<table>
-		<tr th:each="item:${itemList}">
-			<td>
-				<img th:src="${item.image}">
-			</td>
-			<td>
-				이름 : [[${item.name}]]
-			</td>
-			<td>
-				가격 : [[${item.price}]]
-			</td>
-			<td>
-				<button>판매취소</button>
-			</td>
-			
-		</tr>	
-	</table>
+	<div id="itemZone">
+	
+	</div>
+	
 
 </th:block>
 </th:block>
+<script th:inline="javascript">
+	const memberId = [[${loginMemberId}]]
+</script>
+<script src="/js/myOnsale.js"></script>
