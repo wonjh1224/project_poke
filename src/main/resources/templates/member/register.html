@@ -1,19 +1,35 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-
+<style>
+.profileImage{
+	width:56px;
+	height:56px;
+	border: 1px solid transparent;
+	border-radius:50%;
+}
+</style>
 <th:block th:replace="~{/layout :: setFragment(~{this::content})}">
 	<th:block th:fragment="content">
-	<form action="/register" method="post">
+	<form action="/register" method="post" enctype="multipart/form-data">
 		ID:<input type="text" name="memberId"><br>
 		PWD:<input type="text" name="password"><br>
 		이름:<input type="text" name="name"><br>
 		생년월일:<input type="text" name="birth" value="2000-01-01"><br>
 		Email:<input type="text" name="email" value="test@test"><br>
 		휴대전화:<input type="text" name="phone" value="010-0123-4567"><br>
-	
-	<button type="submit">가입</button>
+	<div>
+		<div id="inputDiv">
+			<input type="file" name="profile" id="profile" accept="image/jpeg,image/jpg,image/png" style="display:none;">
+		</div>
+		<div id="img">
+			<img class="profileImage" src="/upload/profile/default/default.png">
+		</div>
+		<button type="button" id="trigger">프로필 이미지 선택</button>
+	</div>
+	<button id="submitBtn" type="submit">가입</button>
 		
 	</form>
 	
 	</th:block>
 </th:block>
+<script src="/js/memberRegister.js"></script>

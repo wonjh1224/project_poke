@@ -20,5 +20,5 @@ public class MemberVO {
 	private String phone;
 	private int point;
 	private int score;
-	
+	private String hasProfile;
 }

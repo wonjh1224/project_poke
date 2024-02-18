@@ -105,3 +105,7 @@ buyer varchar(20) not null,
 seller varchar(20) not null,
 price int not null,
 trade_date datetime default now());
+
+-- 2024 - 02 - 18 --
+멤버 프로필
+alter table member add has_profile varchar(5) default 'n'

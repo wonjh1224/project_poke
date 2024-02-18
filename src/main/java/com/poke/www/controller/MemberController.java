@@ -1,11 +1,15 @@
 package com.poke.www.controller;
 
+import java.io.File;
+import java.io.IOException;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.poke.www.domain.MemberVO;
 import com.poke.www.service.MemberService;
@@ -61,6 +65,18 @@ public class MemberController {
 	@PostMapping("/member")
 	public MemberVO getMember(@RequestBody MemberVO mvo) {
 		return memberService.getMember(mvo.getMemberId());
+	}
+	
+	@ResponseBody
+	@PostMapping("/test")
+	public String testata(@RequestParam("image") MultipartFile file) throws IOException {
+		
+		if (!file.isEmpty()) {
+			String fullPath = "C:\\_poke\\_project\\_fileUpload\\profile\\tmp\\"+file.getOriginalFilename();
+			file.transferTo(new File(fullPath));
+			return "profile\\tmp\\"+file.getOriginalFilename();
+		}
+		return null;
 	}
 	
 }
