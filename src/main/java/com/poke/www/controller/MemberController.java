@@ -34,8 +34,7 @@ public class MemberController {
 			@RequestParam(name="profile", required = false)MultipartFile profile) throws IOException {
 		memberService.register(mvo);
 		if(!profile.isEmpty()) {
-			String type = profile.getOriginalFilename().substring(profile.getOriginalFilename().lastIndexOf("."));
-			String path = "C:\\_poke\\_project\\_fileUpload\\profile\\"+mvo.getMemberId()+type;
+			String path = "C:\\_poke\\_project\\_fileUpload\\profile\\"+mvo.getMemberId()+".png";
 			profile.transferTo(new File(path));
 			memberService.modifyHasProfile(mvo.getMemberId(),true);
 		}

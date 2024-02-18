@@ -1,10 +1,19 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <th:block th:fragment="setFragment(content)">
 	<head>
 	<meta charset="UTF-8">
 	<title>Insert title here</title>
 	</head>
+	<style>
+	.profileImage{
+		width:38px;
+		height:38px;
+		border: 1px solid transparent;
+		border-radius:50%;
+	}
+	</style>
 	<body>
 		<a href="/">인덱스로 |</a>
 		<a href="/board/list">게시판</a>
@@ -24,6 +33,7 @@
 			<a th:href="|@{/my/purchases/points}|">충전내역</a>
 			<a th:href="|@{/my/market/on-sale}|">판매관리</a>
 			<a th:href="|@{/my/market/trade}|">거래내역</a>
+			<img class="profileImage" th:src="|/upload/profile/${session.loginMember.hasProfile == 'y' ? session.loginMember.memberId+'.png' : 'default/default.png'}|">
 			<form th:action="@{/logout}" method="post">	
 				<button type="submit">로그아웃</button>
 			</form>
