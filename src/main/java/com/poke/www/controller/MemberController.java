@@ -30,8 +30,15 @@ public class MemberController {
 		return "/member/register";
 	}
 	@PostMapping("/register")
-	public String memberRegister(MemberVO mvo) {
-		int isOk = memberService.register(mvo);
+	public String memberRegister(MemberVO mvo,
+			@RequestParam(name="profile", required = false)MultipartFile profile) throws IOException {
+		memberService.register(mvo);
+		if(!profile.isEmpty()) {
+			String type = profile.getOriginalFilename().substring(profile.getOriginalFilename().lastIndexOf("."));
+			String path = "C:\\_poke\\_project\\_fileUpload\\profile\\"+mvo.getMemberId()+type;
+			profile.transferTo(new File(path));
+			memberService.modifyHasProfile(mvo.getMemberId(),true);
+		}
 		return "redirect:/";
 	}
 	@GetMapping("/login")
@@ -72,8 +79,8 @@ public class MemberController {
 	public String testata(@RequestParam("image") MultipartFile file) throws IOException {
 		
 		if (!file.isEmpty()) {
-			String fullPath = "C:\\_poke\\_project\\_fileUpload\\profile\\tmp\\"+file.getOriginalFilename();
-			file.transferTo(new File(fullPath));
+			String path = "C:\\_poke\\_project\\_fileUpload\\profile\\tmp\\"+file.getOriginalFilename();
+			file.transferTo(new File(path));
 			return "profile\\tmp\\"+file.getOriginalFilename();
 		}
 		return null;

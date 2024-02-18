@@ -52,5 +52,11 @@ public class MemberServiceImpl implements MemberService {
 		return mapper.updateScoreByMemberId(score,memberId);
 	}
 
+	@Override
+	public int modifyHasProfile(String memberId, boolean b) {
+		String status = b? "y" : "n";
+		return mapper.updateHasProfile(status,memberId);
+	}
+
 
 }
