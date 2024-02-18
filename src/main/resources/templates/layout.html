@@ -16,9 +16,9 @@
 	</style>
 	<body>
 		<a href="/">인덱스로 |</a>
-		<a href="/board/list">게시판</a>
+		<a href="/board/list">게시판 |</a>
 		<a href="/store">상점 |</a>
-		<a href="/register">회원가입 |</a>
+		<a th:if="${session.loginMember == null}" href="/register">회원가입 |</a>
 		<a th:if="${session.loginMember == null}" href="/login">로그인 |</a>
 		<a href="/market">거래소 |</a>
 		<a href="/ranking">랭킹 |</a>
@@ -34,6 +34,7 @@
 			<a th:href="|@{/my/market/on-sale}|">판매관리</a>
 			<a th:href="|@{/my/market/trade}|">거래내역</a>
 			<img class="profileImage" th:src="|/upload/profile/${session.loginMember.hasProfile == 'y' ? session.loginMember.memberId+'.png' : 'default/default.png'}|">
+			<p>점수 : [[${session.loginMember.score}]]</p>
 			<form th:action="@{/logout}" method="post">	
 				<button type="submit">로그아웃</button>
 			</form>
