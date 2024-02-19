@@ -61,21 +61,25 @@ document.addEventListener('click',(e)=>{
             <span class="modal-close">&times;</span>
             <img src="${image}">
             <p>${name}</p>
-            <button type="button" onclick="registerPokedex(${storageId}).then(result=>{
-                if(result=='ok'){
-                    alert('등록성공')
-                }else{
-                    alert(result)
-                }
-                spreadPokemons();
-                modal.style.display = 'none';
-            })">도감등록</button>
+            <button type="button" onclick="registerPokedex(${storageId})">도감등록</button>
         `
         modal.style.display = "block";
     }
 })
 
-async function registerPokedex(storageId){
+function registerPokedex(storageId){
+	postPokedex(storageId).then(result=>{
+		if(result=='ok'){
+            alert('등록성공')
+        }else{
+            alert(result)
+        }
+        location.href="/storage/"+memberId+"/pokemon"
+        modal.style.display = 'none';
+	})
+}
+
+async function postPokedex(storageId){
     try {
         const url = "/pokedex"
         const config = {
