@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.poke.www.domain.MemberVO;
 import com.poke.www.domain.PagingVO;
+import com.poke.www.domain.RankingVO;
 import com.poke.www.handler.PagingHandler;
 import com.poke.www.service.RankingService;
 
@@ -31,11 +32,19 @@ public class RankingController {
 		
 		log.info("pagingVO {}", pagingVO);
 		
+		//전체 유저 수
 		int totalMemberCount = rankingService.getMemberCount();
 		
 		PagingHandler ph = new PagingHandler(pagingVO, totalMemberCount);
 		
 		log.info("ph >>> {}", ph);
+		
+		
+		//랭킹 테이블 만든 후 
+		List<RankingVO> ranking = rankingService.getRankingList();
+		log.info("ranking >>> {}", ranking);
+		m.addAttribute("ranking", ranking);
+		
 		
 		m.addAttribute("list", list);
 		m.addAttribute("cnt", totalMemberCount);

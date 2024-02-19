@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import com.poke.www.domain.MemberVO;
 import com.poke.www.domain.PagingVO;
+import com.poke.www.domain.RankingVO;
 import com.poke.www.repository.RankingMapper;
 
 import lombok.RequiredArgsConstructor;
@@ -44,6 +45,12 @@ public class RankingServiceImpl implements RankingService{
 	public void updateRanking(String memberId, int i) {
 		rankingMapper.updateRanking(memberId, i);
 		
+	}
+
+	@Override
+	public List<RankingVO> getRankingList() {
+		// TODO Auto-generated method stub
+		return rankingMapper.selectRankingList();
 	}
 	
 }

@@ -25,5 +25,9 @@
 	<update id="updateRanking">
 		update ranking set ranking = #{param2} where member_id = #{param1}
 	</update>
+	
+	<select id="selectRankingList">
+		select * from ranking order by ranking
+	</select>
 
 </mapper>

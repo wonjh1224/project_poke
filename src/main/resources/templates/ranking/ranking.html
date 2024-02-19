@@ -2,41 +2,38 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <style>
-
-
-
-
 ul {
 	list-style: none;
 }
 
-
-a{
+a {
 	text-decoration: none;
 }
 
-ul li{
+.paging li {
 	float: left;
 }
-
 </style>
 
 <th:block th:replace="~{/layout :: setFragment(~{this::content})}">
 	<th:block th:fragment="content">
 		<h2>랭킹 페이지임</h2>
-		
+
 		<button type="button" id="insert">슛</button>
 
 		<h4>유저 수 : [[${cnt}]]</h4>
-		
+
 		<div>
-			<ol>
-				<li th:each="mvo:${list}">
-				[[${mvo.memberId}]]([[${mvo.name}]]) / 점수 : [[${mvo.score}]]
-				</li>
-			</ol>
-			
 			<ul>
+				<li th:each="ranking:${ranking}">
+					<!-- 랭킹 반영 안된 사람들은 표시 x --> 
+					<th:block th:if="${ranking.ranking > 0}">
+						[[${ranking.ranking}]]등 : [[${ranking.memberId}]]
+					</th:block>
+				</li>
+			</ul>
+
+			<ul class="paging">
 				<li>이전</li>
 				<li th:each="i: ${#numbers.sequence(ph.startPage,ph.endPage)}">
 					<a th:href="|/ranking?pageNo=${i}|"><[[${i}]]></a>
@@ -44,10 +41,10 @@ ul li{
 				<li>다음</li>
 			</ul>
 		</div>
-		
+
 		<br>
-		
-			
+
+
 	</th:block>
 </th:block>
 

@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.poke.www.domain.MemberVO;
 import com.poke.www.domain.PagingVO;
+import com.poke.www.domain.RankingVO;
 
 public interface RankingService {
 
@@ -16,5 +17,7 @@ public interface RankingService {
 	List<MemberVO> getMemberListOrderByScore();
 
 	void updateRanking(String memberId, int i);
+
+	List<RankingVO> getRankingList();
 
 }
