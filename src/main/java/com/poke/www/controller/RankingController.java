@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.poke.www.domain.MemberVO;
@@ -39,7 +40,25 @@ public class RankingController {
 		m.addAttribute("list", list);
 		m.addAttribute("cnt", totalMemberCount);
 		m.addAttribute("ph", ph);
+		
 		return "/ranking/ranking";
 	}
+	
+	@PostMapping("/update")
+	public String update() {
+		List<MemberVO> list = rankingService.getMemberListOrderByScore();
+		
+		for(int i=0; i<list.size(); i++) {
+			rankingService.updateRanking(list.get(i).getMemberId(), i+1);
+		}
+		
+		return "1";
+		
+	}
+	
+
+	
+	
+	
 	
 }

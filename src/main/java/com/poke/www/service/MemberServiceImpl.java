@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import com.poke.www.domain.MemberVO;
 import com.poke.www.repository.MemberMapper;
+import com.poke.www.repository.RankingMapper;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

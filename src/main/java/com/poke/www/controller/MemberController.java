@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.poke.www.domain.MemberVO;
 import com.poke.www.service.MemberService;
+import com.poke.www.service.RankingService;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
@@ -20,10 +21,11 @@ import lombok.extern.slf4j.Slf4j;
 @RequiredArgsConstructor
 public class MemberController {
 	private final MemberService memberService;
+	private final RankingService rankingService;
 	
 	@GetMapping("/register/test")
 	public void registerTest() {
-		for(int i=100; i<150; i++) {
+		for(int i=1; i<21; i++) {
 			MemberVO mvo = new MemberVO();
 			mvo.setMemberId("test"+i);
 			mvo.setPassword("test"+i);
@@ -42,6 +44,10 @@ public class MemberController {
 	@PostMapping("/register")
 	public String memberRegister(MemberVO mvo) {
 		int isOk = memberService.register(mvo);
+		
+		//랭킹 db에도 추가
+		rankingService.register(mvo.getMemberId());
+		
 		return "redirect:/";
 	}
 	@GetMapping("/login")

@@ -14,4 +14,10 @@ public interface RankingMapper {
 
 	int selectMemberCount();
 
+	void insert(String memberId);
+
+	List<MemberVO> selectMemberListOrderByScore();
+
+	void updateRanking(String memberId, int i);
+
 }

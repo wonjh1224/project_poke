@@ -27,5 +27,23 @@ public class RankingServiceImpl implements RankingService{
 		// TODO Auto-generated method stub
 		return rankingMapper.selectMemberCount();
 	}
+
+	@Override
+	public void register(String memberId) {
+		rankingMapper.insert(memberId);
+		
+	}
+
+	@Override
+	public List<MemberVO> getMemberListOrderByScore() {
+		// TODO Auto-generated method stub
+		return rankingMapper.selectMemberListOrderByScore();
+	}
+
+	@Override
+	public void updateRanking(String memberId, int i) {
+		rankingMapper.updateRanking(memberId, i);
+		
+	}
 	
 }

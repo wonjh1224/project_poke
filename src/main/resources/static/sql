@@ -52,3 +52,12 @@ primary key(cno));
 
 -- 2024 - 02 - 15 -- 
 랭킹 시작
+
+-- 2024 - 02 - 19 --
+랭킹 테이블 생성
+create table ranking(
+member_id varchar(20),
+ranking int,
+primary key(member_id)
+);
+

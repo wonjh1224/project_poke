@@ -24,6 +24,8 @@ ul li{
 <th:block th:replace="~{/layout :: setFragment(~{this::content})}">
 	<th:block th:fragment="content">
 		<h2>랭킹 페이지임</h2>
+		
+		<button type="button" id="insert">슛</button>
 
 		<h4>유저 수 : [[${cnt}]]</h4>
 		
@@ -48,3 +50,5 @@ ul li{
 			
 	</th:block>
 </th:block>
+
+<script src="/js/ranking/register.js"></script>

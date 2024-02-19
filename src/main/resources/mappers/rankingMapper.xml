@@ -12,5 +12,18 @@
 	<select id="selectMemberCount">
 		select count(member_id) from member
 	</select>
+	
+	<insert id="insert">
+		insert into ranking(member_id)
+		values(#{memberId})
+	</insert>
+	
+	<select id="selectMemberListOrderByScore">
+		select member_id from member order by score desc
+	</select>
+	
+	<update id="updateRanking">
+		update ranking set ranking = #{param2} where member_id = #{param1}
+	</update>
 
 </mapper>

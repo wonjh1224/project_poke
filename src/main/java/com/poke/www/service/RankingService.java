@@ -11,4 +11,10 @@ public interface RankingService {
 
 	int getMemberCount();
 
+	void register(String memberId);
+
+	List<MemberVO> getMemberListOrderByScore();
+
+	void updateRanking(String memberId, int i);
+
 }
