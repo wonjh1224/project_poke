@@ -37,7 +37,7 @@ document.addEventListener('change',(e)=>{
 })
 
 document.getElementById('resetBtn').addEventListener('click',()=>{
-    document.getElementById('inputDiv').innerHTML=`<input type="file" name="profile" id="profile" accept="image/jpeg,image/jpg,image/png">`
+    document.getElementById('inputDiv').innerHTML=`<input type="file" name="profile" id="profile" accept="image/jpeg,image/jpg,image/png" style="display:none;">`
     document.getElementById('img').innerHTML=`<img id="tmpimg" data-isdefault="y" class="profileImage" src="/upload/profile/default/default.png">`
     document.getElementById('submitBtn').disabled = false
 })
