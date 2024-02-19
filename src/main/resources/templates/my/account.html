@@ -17,7 +17,7 @@
 			<input type="file" name="profile" id="profile" accept="image/jpeg,image/jpg,image/png">
 		</div>
 		<div id="img">
-			<img class="profileImage" src="/upload/profile/default/default.png">
+			<img id="tmpimg" class="profileImage" data-isdefault="n" th:src="|/upload/profile/${session.loginMember.hasProfile == 'y' ? session.loginMember.memberId+'.png' : 'default/default.png'}|">
 		</div>
 		<button type="button" id="trigger">프로필 이미지 선택</button>
 		<button type="button" id="resetBtn">프로필 이미지 초기화</button>

@@ -28,7 +28,7 @@ document.addEventListener('change',(e)=>{
             saveTemporaryProfileImage(formData).then(result=>{
                 
                 let img = document.getElementById('img')
-                img.innerHTML = `<img id="tmpImage" data-isdefault="n" class="profileImage" src="/upload/${result}">`
+                img.innerHTML = `<img id="tmpimg" data-isdefault="n" class="profileImage" src="/upload/${result}">`
             })
         }else{
             document.getElementById('submitBtn').disabled = true
@@ -38,7 +38,7 @@ document.addEventListener('change',(e)=>{
 
 document.getElementById('resetBtn').addEventListener('click',()=>{
     document.getElementById('inputDiv').innerHTML=`<input type="file" name="profile" id="profile" accept="image/jpeg,image/jpg,image/png">`
-    document.getElementById('img').innerHTML=`<img id="tmpImage" data-isdefault="y" class="profileImage" src="/upload/profile/default/default.png">`
+    document.getElementById('img').innerHTML=`<img id="tmpimg" data-isdefault="y" class="profileImage" src="/upload/profile/default/default.png">`
     document.getElementById('submitBtn').disabled = false
 })
 
@@ -59,14 +59,15 @@ async function saveTemporaryProfileImage(formData){
 }
 
 document.getElementById('submitBtn').addEventListener('click',()=>{
-    console.log(document.getElementById('tmpImage'))
     const fileInput = document.getElementById('profile')
     const formData = new FormData();
     formData.append("image", fileInput.files[0])
     formData.append("memberId", memberId)
-    // formData.append("isDefault", document.getElementById("tmpImage").dataset.isdefault)
+    formData.append("isDefault", document.getElementById("tmpimg").dataset.isdefault)
 
-    modifyProfileImage(formData)
+    modifyProfileImage(formData).then(result=>{
+        location.href=result
+    })
 })
 
 async function modifyProfileImage(formData){

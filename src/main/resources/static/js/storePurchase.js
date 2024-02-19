@@ -27,8 +27,7 @@ async function purchaseItem(){
         console.log(error)
     }
 }
-
-async function getMember(){
+/*async function getMember(){
     try {
         const url = "/member"
         const config = {
@@ -40,12 +39,12 @@ async function getMember(){
         }
         const resp = await fetch(url,config)
         const result = await resp.json()
-        console.log(result)
         return result;
     } catch (error) {
         console.log(error)
     }
 }
+
 
 async function spreadMemberPoint(){
     getMember().then(member=>{
@@ -54,6 +53,6 @@ async function spreadMemberPoint(){
             document.getElementById('purchaseBtn').disabled=true;
         }
     })
-}
+}*/
 
 spreadMemberPoint()

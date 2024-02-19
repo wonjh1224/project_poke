@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttribute;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.poke.www.domain.ItemStorageVO;
 import com.poke.www.domain.MemberVO;
@@ -18,8 +20,6 @@ import com.poke.www.service.MemberService;
 import com.poke.www.service.StorageService;
 import com.poke.www.service.StoreService;
 
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
@@ -27,6 +27,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @RequestMapping("/store")
 @RequiredArgsConstructor
+@SessionAttributes("loginMember")
 public class StoreController {
 	private final StoreService storeService;
 	private final MemberService memberService;
@@ -46,8 +47,13 @@ public class StoreController {
 		return "/store/detail";
 	}
 	
+	
 	@GetMapping("/{productId}/purchase")
-	public String getProductPurchaseForm(Model m, @PathVariable("productId") int productId) {
+	public String getProductPurchaseForm(Model m, @PathVariable("productId") int productId,
+			@SessionAttribute("loginMember")MemberVO loginMember) {
+		MemberVO mvo = memberService.getMember(loginMember.getMemberId());
+		//세션갱신
+		m.addAttribute("loginMember",mvo);
 		ProductVO pvo = storeService.getProductByProductId(productId);
 		m.addAttribute("pvo",pvo);
 		return "/store/purchase";

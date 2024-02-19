@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttribute;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.poke.www.domain.MarketItemVO;
@@ -30,6 +31,7 @@ import lombok.extern.slf4j.Slf4j;
 @RequiredArgsConstructor
 @Slf4j
 @RequestMapping("/my")
+@SessionAttributes("loginMember")
 public class MyController {
 	private final MyService myService;
 	private final MemberService memberService;
@@ -105,18 +107,24 @@ public class MyController {
 		}
 		return null;
 	}
+	@ResponseBody
 	@PutMapping("/profile")
 	public String modifyProfileImage(
 			@RequestParam(name="image", required=false) MultipartFile file,
 			@RequestParam("memberId") String memberId,
-			@RequestParam("isDefault") String isDefault) throws IOException {
+			@RequestParam("isDefault") String isDefault,
+			Model m) throws IOException {
 		if (file!=null) {
 			String path = "C:\\_poke\\_project\\_fileUpload\\profile\\"+memberId+".png";
 			file.transferTo(new File(path));
+			memberService.modifyHasProfile(memberId, true);
 		}else {
-			log.info("파일 비었음 파일 비었음 파일 비었음 @@@@@@{}",isDefault);
+			if(isDefault.equals("y")) {
+				memberService.modifyHasProfile(memberId, false);
+			}
 		}
-		return "/my/account";
+		m.addAttribute("loginMember",memberService.getMember(memberId));
+		return "/";
 	}
 	
 }
