@@ -33,6 +33,7 @@
 			<a th:href="|@{/my/purchases/points}|">충전내역</a>
 			<a th:href="|@{/my/market/on-sale}|">판매관리</a>
 			<a th:href="|@{/my/market/trade}|">거래내역</a>
+			<a th:href="|@{/my/account}|">프로필 수정</a>
 			<img class="profileImage" th:src="|/upload/profile/${session.loginMember.hasProfile == 'y' ? session.loginMember.memberId+'.png' : 'default/default.png'}|">
 			<p>점수 : [[${session.loginMember.score}]]</p>
 			<form th:action="@{/logout}" method="post">	

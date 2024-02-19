@@ -11,9 +11,11 @@ function fileValidation(fileName, fileSize){
     }
 }
 
+
 document.getElementById('trigger').addEventListener('click', ()=>{
     document.getElementById('profile').click()
 })
+
 
 document.addEventListener('change',(e)=>{
     if(e.target.id=='profile'){
@@ -23,10 +25,10 @@ document.addEventListener('change',(e)=>{
         if(validResult==1){
             const formData = new FormData();
             formData.append("image", e.target.files[0])
-            SaveTemporaryProfileImage(formData).then(result=>{
+            saveTemporaryProfileImage(formData).then(result=>{
                 
                 let img = document.getElementById('img')
-                img.innerHTML = `<img class="profileImage" src="/upload/${result}">`
+                img.innerHTML = `<img id="tmpImage" data-isdefault="n" class="profileImage" src="/upload/${result}">`
             })
         }else{
             document.getElementById('submitBtn').disabled = true
@@ -35,17 +37,43 @@ document.addEventListener('change',(e)=>{
 })
 
 document.getElementById('resetBtn').addEventListener('click',()=>{
-    document.getElementById('inputDiv').innerHTML=`<input type="file" name="profile" id="profile" accept="image/jpeg,image/jpg,image/png" style="display:none;" >`
-    document.getElementById('img').innerHTML=`<img class="profileImage" src="/upload/profile/default/default.png">`
+    document.getElementById('inputDiv').innerHTML=`<input type="file" name="profile" id="profile" accept="image/jpeg,image/jpg,image/png">`
+    document.getElementById('img').innerHTML=`<img id="tmpImage" data-isdefault="y" class="profileImage" src="/upload/profile/default/default.png">`
     document.getElementById('submitBtn').disabled = false
 })
 
-
-async function SaveTemporaryProfileImage(formData){
+async function saveTemporaryProfileImage(formData){
     try {
         const url = "/my/tmp-profile"
         const config = {
             method : "post",
+            body : formData
+        }
+        const resp = await fetch(url,config)
+        const result = await resp.text()
+        return result
+    } catch (error) {
+        console.log(error)
+    }
+
+}
+
+document.getElementById('submitBtn').addEventListener('click',()=>{
+    console.log(document.getElementById('tmpImage'))
+    const fileInput = document.getElementById('profile')
+    const formData = new FormData();
+    formData.append("image", fileInput.files[0])
+    formData.append("memberId", memberId)
+    // formData.append("isDefault", document.getElementById("tmpImage").dataset.isdefault)
+
+    modifyProfileImage(formData)
+})
+
+async function modifyProfileImage(formData){
+    try {
+        const url = "/my/profile"
+        const config = {
+            method : "put",
             body : formData
         }
         const resp = await fetch(url,config)

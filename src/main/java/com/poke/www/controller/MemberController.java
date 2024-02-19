@@ -73,16 +73,6 @@ public class MemberController {
 		return memberService.getMember(mvo.getMemberId());
 	}
 	
-	@ResponseBody
-	@PostMapping("/test")
-	public String testata(@RequestParam("image") MultipartFile file) throws IOException {
-		
-		if (!file.isEmpty()) {
-			String path = "C:\\_poke\\_project\\_fileUpload\\profile\\tmp\\"+file.getOriginalFilename();
-			file.transferTo(new File(path));
-			return "profile\\tmp\\"+file.getOriginalFilename();
-		}
-		return null;
-	}
+
 	
 }
