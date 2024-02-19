@@ -6,6 +6,11 @@
 
 	<select id="selectMemberListByScore">
 		select * from member order by score desc
+		limit #{pageStart}, #{qty}
+	</select>
+	
+	<select id="selectMemberCount">
+		select count(member_id) from member
 	</select>
 
 </mapper>

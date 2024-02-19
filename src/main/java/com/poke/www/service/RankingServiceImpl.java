@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.poke.www.domain.MemberVO;
+import com.poke.www.domain.PagingVO;
 import com.poke.www.repository.RankingMapper;
 
 import lombok.RequiredArgsConstructor;
@@ -16,9 +17,15 @@ public class RankingServiceImpl implements RankingService{
 	private final RankingMapper rankingMapper;
 
 	@Override
-	public List<MemberVO> getMemberList() {
+	public List<MemberVO> getMemberList(PagingVO pagingVO) {
 		// TODO Auto-generated method stub
-		return rankingMapper.selectMemberListByScore();
+		return rankingMapper.selectMemberListByScore(pagingVO);
+	}
+
+	@Override
+	public int getMemberCount() {
+		// TODO Auto-generated method stub
+		return rankingMapper.selectMemberCount();
 	}
 	
 }

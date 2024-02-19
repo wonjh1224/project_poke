@@ -21,6 +21,20 @@ import lombok.extern.slf4j.Slf4j;
 public class MemberController {
 	private final MemberService memberService;
 	
+	@GetMapping("/register/test")
+	public void registerTest() {
+		for(int i=100; i<150; i++) {
+			MemberVO mvo = new MemberVO();
+			mvo.setMemberId("test"+i);
+			mvo.setPassword("test"+i);
+			mvo.setName("test"+i);
+			mvo.setBirth("2000-01-01");
+			mvo.setEmail("test"+i);
+			mvo.setPhone("test"+i);
+			int isOk = memberService.register(mvo);
+		}
+	}
+	
 	@GetMapping("/register")
 	public String getRegisterForm() {
 		return "/member/register";

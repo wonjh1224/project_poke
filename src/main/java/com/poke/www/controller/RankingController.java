@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.poke.www.domain.MemberVO;
+import com.poke.www.domain.PagingVO;
+import com.poke.www.handler.PagingHandler;
 import com.poke.www.service.RankingService;
 
 import lombok.RequiredArgsConstructor;
@@ -22,9 +24,21 @@ public class RankingController {
 	private final RankingService rankingService;
 	
 	@GetMapping
-	public String ranking(Model m) {
-		List<MemberVO> list = rankingService.getMemberList();
+	public String ranking(Model m, PagingVO pagingVO) {
+		
+		List<MemberVO> list = rankingService.getMemberList(pagingVO);
+		
+		log.info("pagingVO {}", pagingVO);
+		
+		int totalMemberCount = rankingService.getMemberCount();
+		
+		PagingHandler ph = new PagingHandler(pagingVO, totalMemberCount);
+		
+		log.info("ph >>> {}", ph);
+		
 		m.addAttribute("list", list);
+		m.addAttribute("cnt", totalMemberCount);
+		m.addAttribute("ph", ph);
 		return "/ranking/ranking";
 	}
 	
