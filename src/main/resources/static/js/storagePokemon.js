@@ -1,8 +1,10 @@
+let pokemonList;
 spreadPokemons()
+let pokemonBox = document.getElementById('pokemonBox')
 
 function spreadPokemons(){
     getPokemonListFromServer(memberId).then(result=>{
-        let pokemonBox = document.getElementById('pokemonBox')
+        pokemonList = result
         pokemonBox.innerHTML = ''
         if(result.length>0){
             for(let pokemon of result){
@@ -19,6 +21,7 @@ function spreadPokemons(){
         }
     })
 }
+
 async function getPokemonListFromServer(memberId){
     try {
         const url = "/storage/pokemon-list/"+memberId
@@ -31,6 +34,23 @@ async function getPokemonListFromServer(memberId){
 }
 
 
+document.addEventListener('input',(e)=>{
+    let add = []
+    for(pokemon of pokemonList){
+        if(pokemon.name.includes(e.target.value) || pokemon.pokemonId == (e.target.value)){
+            add.push(pokemon)
+        }
+    }
+    pokemonBox.innerHTML = ''
+    for(pokemon of add){
+        pokemonBox.innerHTML +=`
+            <div class="modal-open" data-storageId="${pokemon.storageId}" data-pokemonId="${pokemon.pokemonId}" data-name="${pokemon.name}" data-image="${pokemon.image}" style="border:1px solid black; width:200px;float:left">
+            <img src="${pokemon.image}">
+            <p>[${pokemon.pokemonId}] ${pokemon.name}</p>
+            </div>
+            `
+    }
+})
 
 
 
