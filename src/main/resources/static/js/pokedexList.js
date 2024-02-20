@@ -19,17 +19,22 @@ function spreadList(){
         for(pokemon of result.userPokemons){
             userPokemonIds.push(pokemon.pokemonId)
         }
+
         let pokedexLine = document.getElementById('pokedexLine')
         pokedexLine.innerHTML = ''
-
+        let cnt = 0;
         for(pokemon of result.allPokemons){
             pokedexLine.innerHTML += `
                 <div>
-                    <img src="${pokemon.image}" class="${userPokemonIds.includes(pokemon.pokemonId) ? 'color' : 'gray'} abc">
+                    <img src="/upload/pokemon/${pokemon.pokemonId}.png" class="${userPokemonIds.includes(pokemon.pokemonId) ? 'color' : 'gray'} abc">
                     <p>${userPokemonIds.includes(pokemon.pokemonId)? pokemon.name : '???'}</p>
                     <p>${userPokemonIds.includes(pokemon.pokemonId)? pokemon.flavor : ''}</p>
                 </div>
             `
+            cnt++;
+            if(cnt==5){
+                break;
+            }
         }
     })
 }
