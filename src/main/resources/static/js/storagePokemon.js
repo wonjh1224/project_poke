@@ -2,6 +2,7 @@ let pokemonList;
 spreadPokemons()
 let pokemonBox = document.getElementById('pokemonBox')
 
+//최초 1회 뿌리기
 function spreadPokemons(){
     getPokemonListFromServer(memberId).then(result=>{
         pokemonList = result
@@ -33,18 +34,18 @@ async function getPokemonListFromServer(memberId){
     }
 }
 
-
+//포켓몬 검색기능
 document.addEventListener('input',(e)=>{
-    let add = []
+    let searchResult = []
     for(pokemon of pokemonList){
         if(pokemon.name.includes(e.target.value) || pokemon.pokemonId == (e.target.value)){
-            add.push(pokemon)
+            searchResult.push(pokemon)
         }
     }
     pokemonBox.innerHTML = ''
-    if(add.length>0){
+    if(searchResult.length>0){
 
-        for(pokemon of add){
+        for(pokemon of searchResult){
             pokemonBox.innerHTML +=`
                 <div class="modal-open" data-storageId="${pokemon.storageId}" data-pokemonId="${pokemon.pokemonId}" data-name="${pokemon.name}" data-image="${pokemon.image}" style="border:1px solid black; width:200px;float:left">
                 <img src="${pokemon.image}">
@@ -52,7 +53,7 @@ document.addEventListener('input',(e)=>{
                 </div>
                 `
         }
-    }else if(add.length==0 && pokemonList.length>0){
+    }else if(searchResult.length==0 && pokemonList.length>0){
         pokemonBox.innerHTML = `<p>검색 결과가 없습니다.</p>`
     }else{
         pokemonBox.innerHTML = `<p>보유중인 포켓몬이 없습니다.</p>`
