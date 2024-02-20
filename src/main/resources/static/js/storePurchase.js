@@ -54,5 +54,5 @@ async function spreadMemberPoint(){
         }
     })
 }*/
-
-spreadMemberPoint()
+/*
+spreadMemberPoint()*/

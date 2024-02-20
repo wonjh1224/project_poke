@@ -7,7 +7,11 @@ document.addEventListener('click',(e)=>{
 		}
         
         useItemInStorage(data).then(result=>{
-            alert(result+"번 포켓몬 당첨")
+            pokemonNames = [];
+            for(pokemon of result){
+                pokemonNames.push(pokemon.name)
+            }
+            alert(pokemonNames+" 당첨")
             spreadItems()
         })
     }
@@ -24,7 +28,7 @@ async function useItemInStorage(data){
             body : JSON.stringify(data)
         }
         const resp = await fetch(url,config)
-        const result = await resp.text();
+        const result = await resp.json();
         return result;
     }catch(error){
         console.log(error)
@@ -39,7 +43,7 @@ function spreadItems(){
             for(let item of result){
                 itemBox.innerHTML +=  `
                 <p>상품명 : ${item.name}</p>
-                <button data-storageid="${item.storageId}" class="useBtn">사용 / ${item.storageId}</button>
+                <button data-storageid="${item.storageId}" class="useBtn">사용하기</button>
                 <hr>
                 `
             }

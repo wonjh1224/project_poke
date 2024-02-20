@@ -110,3 +110,8 @@ trade_date datetime default now());
 멤버 프로필
 alter table member add has_profile varchar(5) default 'n'
 alter table member add register_date datetime default now()
+
+-- 2024 - 02 - 20 --
+
+카드 내용물 여러개 나오게
+alter table product add column number_of_cards int(2) default 1
