@@ -42,13 +42,18 @@ document.addEventListener('input',(e)=>{
         }
     }
     pokemonBox.innerHTML = ''
-    for(pokemon of add){
-        pokemonBox.innerHTML +=`
-            <div class="modal-open" data-storageId="${pokemon.storageId}" data-pokemonId="${pokemon.pokemonId}" data-name="${pokemon.name}" data-image="${pokemon.image}" style="border:1px solid black; width:200px;float:left">
-            <img src="${pokemon.image}">
-            <p>[${pokemon.pokemonId}] ${pokemon.name}</p>
-            </div>
-            `
+    if(add.length>0){
+
+        for(pokemon of add){
+            pokemonBox.innerHTML +=`
+                <div class="modal-open" data-storageId="${pokemon.storageId}" data-pokemonId="${pokemon.pokemonId}" data-name="${pokemon.name}" data-image="${pokemon.image}" style="border:1px solid black; width:200px;float:left">
+                <img src="${pokemon.image}">
+                <p>[${pokemon.pokemonId}] ${pokemon.name}</p>
+                </div>
+                `
+        }
+    }else{
+        pokemonBox.innerHTML = '검색 결과 없음'
     }
 })
 
