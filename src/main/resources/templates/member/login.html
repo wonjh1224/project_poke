@@ -3,7 +3,7 @@
 
 <th:block th:replace="~{/layout :: setFragment(~{this::content})}">
 	<th:block th:fragment="content">
-	<form action="/login" method="post">
+	<form th:action="|/login?rd-url=${url}|" method="post">
 		ID:<input type="text" name="memberId"><br>
 		PWD:<input type="text" name="password"><br>
 	<button type="submit">로그인</button>

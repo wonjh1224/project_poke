@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -41,12 +42,13 @@ public class MemberController {
 		return "redirect:/";
 	}
 	@GetMapping("/login")
-	public String getLoginForm() {
-		
+	public String getLoginForm(Model m, @RequestParam(name="rd-url", defaultValue = "/")String url) {
+		m.addAttribute("url",url);
 		return "/member/login";
 	}
 	@PostMapping("/login")
-	public String memberLogin(MemberVO mvo, HttpServletRequest request) {
+	public String memberLogin(MemberVO mvo, HttpServletRequest request,
+			@RequestParam(name="rd-url", defaultValue = "/")String url) {
 		MemberVO loginMember = memberService.login(mvo.getMemberId(),mvo.getPassword());
 		if(loginMember == null) {
 			return "/member/login";
@@ -55,8 +57,8 @@ public class MemberController {
 		HttpSession session = request.getSession();
 		session.setAttribute("loginMember", loginMember);
 		session.setAttribute("loginMemberId", loginMember.getMemberId());
-		
-		return "redirect:/";
+		log.info("url url url url : {}",url);
+		return "redirect:" + url;
 	}
 	@PostMapping("/logout")
 	public String memberLogout(HttpServletRequest request) {
