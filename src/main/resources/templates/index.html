@@ -4,12 +4,17 @@
 <th:block th:replace="~{/layout :: setFragment(~{this::content})}">
 	<th:block th:fragment="content">
 	
-	<h1>인덱스 내용</h1>
-	<input type="text" id="pno"><button onclick="setPokemon()">포켓몬추가</button>
+	<h1>메인화면</h1>
+	<input type="text" id="pno" disabled><button disabled onclick="setPokemon()">포켓몬추가</button>
+	<hr>
+		
+	
 	</th:block>
 </th:block>
 
 <script>
+
+	
 async function getPokemonKorean(pokemonId){
     try {
         const url = "https://pokeapi.co/api/v2/pokemon-species/"+pokemonId

@@ -4,6 +4,42 @@
 <th:block th:replace="~{/layout :: setFragment(~{this::content})}">
 <th:block th:fragment="content">
 	<h2>랭킹 페이지임</h2>
+	<input id="aa">
+	<button id="bb">dd</button>
+</th:block>
+</th:block>
 
-</th:block>
-</th:block>
+<script th:inline="javascript">
+let dd = 1;
+document.getElementById('bb').addEventListener('click',(e)=>{
+    let aa = document.getElementById('aa')
+    let b = document.getElementById('bb')
+    
+    for(let i=1; i<=10;i++){
+        imageSrc = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${dd}.png`
+		downloadImage(imageSrc,dd)
+        console.log(dd)
+        dd=dd+1
+        
+        if(dd==494){
+        	break;
+        }
+    }
+})
+
+async function downloadImage(imageSrc,fileName) {
+    const image = await fetch(imageSrc)
+    const imageBlog = await image.blob()
+    const imageURL = URL.createObjectURL(imageBlog)
+    
+    const link = document.createElement('a')
+    link.href = imageURL
+    link.download = fileName
+    document.body.appendChild(link)
+    link.click()
+    document.body.removeChild(link)
+}
+	
+
+
+</script>

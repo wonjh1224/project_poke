@@ -57,7 +57,6 @@ public class StorageController {
 	 * @param itemStorageVO : memberId, storageId
 	 * @return 카드팩 사용 후 결과물을 List<PokemonVO> 타입으로 리턴
 	 */
-	
 	@ResponseBody
 	@PostMapping("/use-item")
 	public List<PokemonVO> useItemInStorage(@RequestBody ItemStorageVO itemStorageVO) {
