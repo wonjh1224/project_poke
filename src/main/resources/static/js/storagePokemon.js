@@ -52,8 +52,10 @@ document.addEventListener('input',(e)=>{
                 </div>
                 `
         }
+    }else if(add.length==0 && pokemonList.length>0){
+        pokemonBox.innerHTML = `<p>검색 결과가 없습니다.</p>`
     }else{
-        pokemonBox.innerHTML = '검색 결과 없음'
+        pokemonBox.innerHTML = `<p>보유중인 포켓몬이 없습니다.</p>`
     }
 })
 
