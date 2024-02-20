@@ -3,9 +3,11 @@
 <link rel="stylesheet" href="/css/storagePokemon.css">
 <th:block th:replace="~{/layout :: setFragment(~{this::content})}">
 <th:block th:fragment="content">
+	<div>
+	
 	<h2>'[[${memberId}]]'의 포켓몬 보관함</h2>
 	<input type="text" id="searchBox" placeholder="번호 또는 이름 입력">
-	<div id="pokemonBox" style="width:1010px; height:1000px;">
+	<div id="pokemonBox">
 	</div>
 
 	<div id="modal" class="modal">
@@ -13,6 +15,7 @@
 			<span class="modal-close">&times;</span>
 			
 		</div>	
+	</div>
 	</div>
 
 
