@@ -12,4 +12,6 @@ public class RankingVO {
 	private String memberId;
 	private int ranking;
 	
+	private int score;
+	
 }

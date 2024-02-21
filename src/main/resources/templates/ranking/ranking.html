@@ -23,23 +23,41 @@ a {
 
 		<h4>유저 수 : [[${cnt}]]</h4>
 
+		<form action="/ranking">
+			<input type="text" name="keyword" placeholder="닉네임">
+			<button type="submit" id="search">검색</button>
+		</form>
+
 		<div>
 			<ul>
-				<li th:each="ranking:${ranking}">
+			
+				<li th:each="member:${ranking}">
 					<!-- 랭킹 반영 안된 사람들은 표시 x --> 
-					<th:block th:if="${ranking.ranking > 0}">
-						[[${ranking.ranking}]]등 : [[${ranking.memberId}]]
+					<th:block th:if="${member.ranking > 0}">
+						[[${member.ranking}]]등 : [[${member.memberId}]] ( [[${member.score}]]점 )
 					</th:block>
 				</li>
+				
+				<th:block th:if="${ranking.size == 0}">
+					검색결과가 없습니다.
+				</th:block>
+				
 			</ul>
 
-			<ul class="paging">
-				<li>이전</li>
-				<li th:each="i: ${#numbers.sequence(ph.startPage,ph.endPage)}">
-					<a th:href="|/ranking?pageNo=${i}|"><[[${i}]]></a>
-				</li>
-				<li>다음</li>
-			</ul>
+			<th:block th:if="${pagingVO.keyword == null}">
+			
+				<ul class="paging">
+					<li th:if="${ph.prev}"><a
+						th:href="|/ranking?pageNo=${ph.startPage-1}|">이전</a></li>
+					<li th:each="i: ${#numbers.sequence(ph.startPage,ph.endPage)}">
+						<a th:href="|/ranking?pageNo=${i}|"><[[${i}]]></a>
+					</li>
+					<li th:if="${ph.next}"><a
+						th:href="|/ranking?pageNo=${ph.endPage+1}|">다음</a></li>
+				</ul>
+				
+			</th:block>
+			
 		</div>
 
 		<br>

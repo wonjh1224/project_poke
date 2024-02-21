@@ -19,3 +19,8 @@ async function firstUpdateRanking(){
     }
 }
 
+document.getElementById
+
+
+
+

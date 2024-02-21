@@ -3,19 +3,10 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.poke.www.repository.RankingMapper">
-
-	<select id="selectMemberListByScore">
-		select * from member order by score desc
-		limit #{pageStart}, #{qty}
-	</select>
-	
-	<select id="selectMemberCount">
-		select count(member_id) from member
-	</select>
 	
 	<insert id="insert">
 		insert into ranking(member_id)
-		values(#{memberId})
+		values(#{member_id})
 	</insert>
 	
 	<select id="selectMemberListOrderByScore">
@@ -26,8 +17,27 @@
 		update ranking set ranking = #{param2} where member_id = #{param1}
 	</update>
 	
+	
 	<select id="selectRankingList">
-		select * from ranking order by ranking
+		select * from ranking
+		where ranking is not null
+		<include refid="search"></include>
+		order by ranking limit #{pageStart}, #{qty}
 	</select>
+	
+	<select id="selectTotalCount">
+		select count(member_id) from ranking where ranking is not null
+	</select>
+	
+	<update id="updateScore">
+		update ranking r set score = (select score from member where member_id = r.member_id)
+	</update>
+	
+	
+	<sql id="search">
+		<if test="keyword != null">
+			and member_id = #{keyword}
+		</if>
+	</sql>
 
 </mapper>

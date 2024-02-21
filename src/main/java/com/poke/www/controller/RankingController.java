@@ -3,10 +3,12 @@ package com.poke.www.controller;
 import java.util.List;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.poke.www.domain.MemberVO;
 import com.poke.www.domain.PagingVO;
@@ -28,34 +30,29 @@ public class RankingController {
 	@GetMapping
 	public String ranking(Model m, PagingVO pagingVO) {
 		
-		List<MemberVO> list = rankingService.getMemberList(pagingVO);
+		List<RankingVO> ranking = rankingService.getRankingList(pagingVO);
 		
+		int totalRankingCount = rankingService.getTotalCount();
+		
+		PagingHandler ph = new PagingHandler(pagingVO, totalRankingCount);
+		
+		log.info("ph {}", ph);
 		log.info("pagingVO {}", pagingVO);
-		
-		//전체 유저 수
-		int totalMemberCount = rankingService.getMemberCount();
-		
-		PagingHandler ph = new PagingHandler(pagingVO, totalMemberCount);
-		
-		log.info("ph >>> {}", ph);
-		
-		
-		//랭킹 테이블 만든 후 
-		List<RankingVO> ranking = rankingService.getRankingList();
 		log.info("ranking >>> {}", ranking);
-		m.addAttribute("ranking", ranking);
 		
-		
-		m.addAttribute("list", list);
-		m.addAttribute("cnt", totalMemberCount);
+		m.addAttribute("cnt", totalRankingCount);
 		m.addAttribute("ph", ph);
-		
+		m.addAttribute("ranking", ranking);
+
 		return "/ranking/ranking";
 	}
 	
+	@Transactional
 	@PostMapping("/update")
 	public String update() {
 		List<MemberVO> list = rankingService.getMemberListOrderByScore();
+		
+		rankingService.updateScore();
 		
 		for(int i=0; i<list.size(); i++) {
 			rankingService.updateRanking(list.get(i).getMemberId(), i+1);

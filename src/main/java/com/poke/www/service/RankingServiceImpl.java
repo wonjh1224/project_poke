@@ -18,15 +18,20 @@ public class RankingServiceImpl implements RankingService{
 	private final RankingMapper rankingMapper;
 
 	@Override
-	public List<MemberVO> getMemberList(PagingVO pagingVO) {
+	public List<MemberVO> getMemberListOrderByScore() {
 		// TODO Auto-generated method stub
-		return rankingMapper.selectMemberListByScore(pagingVO);
+		return rankingMapper.selectMemberListOrderByScore();
 	}
 
 	@Override
-	public int getMemberCount() {
+	public void updateRanking(String memberId, int i) {
+		rankingMapper.updateRanking(memberId, i);
+	}
+
+	@Override
+	public List<RankingVO> getRankingList(PagingVO pagingVO) {
 		// TODO Auto-generated method stub
-		return rankingMapper.selectMemberCount();
+		return rankingMapper.selectRankingList(pagingVO);
 	}
 
 	@Override
@@ -36,21 +41,15 @@ public class RankingServiceImpl implements RankingService{
 	}
 
 	@Override
-	public List<MemberVO> getMemberListOrderByScore() {
+	public int getTotalCount() {
 		// TODO Auto-generated method stub
-		return rankingMapper.selectMemberListOrderByScore();
+		return rankingMapper.selectTotalCount();
 	}
 
 	@Override
-	public void updateRanking(String memberId, int i) {
-		rankingMapper.updateRanking(memberId, i);
+	public void updateScore() {
+		rankingMapper.updateScore();
 		
-	}
-
-	@Override
-	public List<RankingVO> getRankingList() {
-		// TODO Auto-generated method stub
-		return rankingMapper.selectRankingList();
 	}
 	
 }

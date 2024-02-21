@@ -25,15 +25,16 @@ public class MemberController {
 	
 	@GetMapping("/register/test")
 	public void registerTest() {
-		for(int i=1; i<21; i++) {
+		for(int i=223; i<250; i++) {
 			MemberVO mvo = new MemberVO();
-			mvo.setMemberId("test"+i);
+			mvo.setMemberId("Test"+i);
 			mvo.setPassword("test"+i);
-			mvo.setName("test"+i);
-			mvo.setBirth("2000-01-01");
-			mvo.setEmail("test"+i);
-			mvo.setPhone("test"+i);
+			mvo.setName("Tester"+" ["+i+"]");
+			mvo.setBirth("2024-02-21");
+			mvo.setEmail("test@"+i);
+			mvo.setPhone("010-"+i);
 			int isOk = memberService.register(mvo);
+			rankingService.register(mvo.getMemberId());
 		}
 	}
 	

@@ -61,3 +61,5 @@ ranking int,
 primary key(member_id)
 );
 
+alter table ranking add column score int default 0;
+

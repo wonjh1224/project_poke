@@ -24,4 +24,7 @@
 <update id="updateScoreByMemberId">
 	update member set score = score + #{param1} where member_id = #{param2} 
 </update>
+
+
+
 </mapper>

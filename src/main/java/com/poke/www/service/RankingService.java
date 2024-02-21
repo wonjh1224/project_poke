@@ -8,16 +8,16 @@ import com.poke.www.domain.RankingVO;
 
 public interface RankingService {
 
-	List<MemberVO> getMemberList(PagingVO pagingVO);
-
-	int getMemberCount();
-
-	void register(String memberId);
-
 	List<MemberVO> getMemberListOrderByScore();
 
 	void updateRanking(String memberId, int i);
 
-	List<RankingVO> getRankingList();
+	List<RankingVO> getRankingList(PagingVO pagingVO);
+
+	void register(String memberId);
+
+	int getTotalCount();
+
+	void updateScore();
 
 }

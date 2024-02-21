@@ -17,6 +17,8 @@ public interface MemberService {
 	List<MemberVO> getRanking();
 
 	int addScore(int score, String memberId);
+
+
 	
 
 }
