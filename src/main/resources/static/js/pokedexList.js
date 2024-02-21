@@ -61,7 +61,6 @@ function spreadAll(qty,added=false){
         }
     }
     cnt=cnt+qty
-    console.log(cnt)
 }
 
 function spread(startIndex,endIndex){
@@ -89,7 +88,7 @@ function spread(startIndex,endIndex){
 
 
 document.getElementById('more').addEventListener('click',()=>{
-    if(cnt<493){
+    if(cnt<493 && document.getElementById('search').value==''){
         spreadAll(qty,added)
     }
 })
