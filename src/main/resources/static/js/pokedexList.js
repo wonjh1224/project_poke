@@ -1,13 +1,19 @@
 let pokedexList
-
+let added = false;
 let cnt = 0;
+let userPokemonIds = [];
 const pokedexLine = document.getElementById('pokedexLine')
-
 //1번 당 뿌릴 포켓몬 수
-const qty = 50;
+const qty = 29;
 getPokedexList().then(result=>{
     pokedexList = result
+    for(pokemon of pokedexList.userPokemons){
+        userPokemonIds.push(pokemon.pokemonId)
+    }
+
     spreadAll(qty)
+    document.getElementById('h2').innerText=memberId+"의 도감페이지 ("+pokedexList.userPokemons.length+"/493)"
+
 })
 async function getPokedexList(){
     try {
@@ -24,38 +30,49 @@ async function getPokedexList(){
     }
 }
 
-function spreadAll(qty){
-    let userPokemonIds = [];
-    for(pokemon of pokedexList.userPokemons){
-        userPokemonIds.push(pokemon.pokemonId)
-    }
-    
+function spreadAll(qty,added=false){
     if(cnt==0){
         pokedexLine.innerHTML = ''
     }
-    for(i=cnt;i<cnt+qty;i++){
-        pokedexLine.innerHTML += `
+
+    if(added){
+        for(i=cnt;i<cnt+qty;i++){
+            if(userPokemonIds.includes(pokedexList.allPokemons[i].pokemonId)){
+                pokedexLine.innerHTML += 
+                `
+                <div>
+                    <img src="${pokedexList.allPokemons[i].image}" class="color"></img>
+                    <p>${pokedexList.allPokemons[i].name}</p>
+                    <p>${pokedexList.allPokemons[i].flavor}</p>
+                </div>
+                `
+            }
+        }
+    }else{
+        for(i=cnt;i<cnt+qty;i++){
+            pokedexLine.innerHTML += 
+            `
             <div>
-                <img src="${pokedexList.allPokemons[i].image}" class="${userPokemonIds.includes(pokedexList.allPokemons[i].pokemonId) ? 'color' : 'gray'} abc"></img>
+                <img src="${pokedexList.allPokemons[i].image}" class="${userPokemonIds.includes(pokedexList.allPokemons[i].pokemonId) ? 'color' : 'gray'}"></img>
                 <p>${userPokemonIds.includes(pokedexList.allPokemons[i].pokemonId)? pokedexList.allPokemons[i].name : '???'}</p>
                 <p>${userPokemonIds.includes(pokedexList.allPokemons[i].pokemonId)? pokedexList.allPokemons[i].flavor : ''}</p>
             </div>
-        `
+            `
+        }
     }
     cnt=cnt+qty
+    console.log(cnt)
 }
 
 function spread(startIndex,endIndex){
-    let userPokemonIds = [];
-    for(pokemon of pokedexList.userPokemons){
-        userPokemonIds.push(pokemon.pokemonId)
-    }
+
     
     pokedexLine.innerHTML = ''
     for(i=startIndex; i<endIndex; i++){
-        pokedexLine.innerHTML += `
+        pokedexLine.innerHTML += 
+        `
         <div>
-            <img src="${pokedexList.allPokemons[i].image}" class="${userPokemonIds.includes(pokedexList.allPokemons[i].pokemonId) ? 'color' : 'gray'} abc"></img>
+            <img src="${pokedexList.allPokemons[i].image}" class="${userPokemonIds.includes(pokedexList.allPokemons[i].pokemonId) ? 'color' : 'gray'}"></img>
             <p>${userPokemonIds.includes(pokedexList.allPokemons[i].pokemonId)? pokedexList.allPokemons[i].name : '???'}</p>
             <p>${userPokemonIds.includes(pokedexList.allPokemons[i].pokemonId)? pokedexList.allPokemons[i].flavor : ''}</p>
         </div>
@@ -72,7 +89,9 @@ function spread(startIndex,endIndex){
 
 
 document.getElementById('more').addEventListener('click',()=>{
-    spreadAll(qty)
+    if(cnt<493){
+        spreadAll(qty,added)
+    }
 })
 // document.addEventListener('scroll',()=>{
 //     console.log(window.scrollX,window.scrollY)
@@ -82,14 +101,18 @@ document.getElementById('more').addEventListener('click',()=>{
 
 document.getElementById('genAll').addEventListener('click',()=>{
     cnt = 0
-    spreadAll
-(qty)
+    added = false
+    spreadAll(qty,added)
 })
 
 
 
 
-
+document.getElementById('added').addEventListener('click',()=>{
+    cnt = 0
+    added = true
+    spreadAll(qty,added)
+})
 
 document.getElementById('gen1').addEventListener('click',()=>{
     spread(0,151)
@@ -111,8 +134,8 @@ document.addEventListener('input',(e)=>{
     let searchResult = []
     if(e.target.value==''){
         cnt = 0
-        spreadAll
-    (qty)
+        added=false
+        spreadAll(qty)
         return;
     }
     for(pokemon of pokedexList.allPokemons){
@@ -122,14 +145,15 @@ document.addEventListener('input',(e)=>{
     }
     pokedexLine.innerHTML = ''
     if(searchResult.length>0){
-
         for(pokemon of searchResult){
-            pokedexLine.innerHTML +=`
-                <div class="modal-open" data-storageId="${pokemon.storageId}" data-pokemonId="${pokemon.pokemonId}" data-name="${pokemon.name}" data-image="${pokemon.image}" style="border:1px solid black; width:200px;float:left">
-                <img src="${pokemon.image}">
-                <p>[${pokemon.pokemonId}] ${pokemon.name}</p>
-                </div>
-                `
+            pokedexLine.innerHTML +=
+            `
+            <div>
+                <img src="${pokemon.image}" class="${userPokemonIds.includes(pokemon.pokemonId) ? 'color' : 'gray'}"></img>
+                <p>${userPokemonIds.includes(pokemon.pokemonId)? pokemon.name : '???'}</p>
+                <p>${userPokemonIds.includes(pokemon.pokemonId)? pokemon.flavor : ''}</p>
+            </div>
+            `
         }
     }else if(searchResult.length==0){
         pokedexLine.innerHTML = `<p>검색 결과가 없습니다.</p>`
