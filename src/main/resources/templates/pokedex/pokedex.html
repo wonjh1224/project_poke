@@ -8,9 +8,16 @@
 <th:block th:replace="~{/layout :: setFragment(~{this::content})}">
 <th:block th:fragment="content">
 	<h2>'[[${memberId}]]'의 도감페이지</h2>
+	<input type="text" id="search" placeholder="이름이나 번호 입력">
+	<button id="gen0">전체</button>
+	<button id="gen1">1세대</button>
+	<button id="gen2">2세대</button>
+	<button id="gen3">3세대</button>
+	<button id="gen4">4세대</button>
 	<div id="pokedexLine">
 		
 	</div>
+	<button id="more">+</button>
 </th:block>
 </th:block>
 <script th:inline="javascript">
