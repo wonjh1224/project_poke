@@ -7,6 +7,7 @@ function spreadPokemons(){
     getPokemonListFromServer().then(result=>{
         pokemonList = result
         if(result.length>0){
+            pokemonBox.innerHTML = ''
             for(let pokemon of result){
                 pokemonBox.innerHTML +=  `
                 <div class="modal-open" data-storageId="${pokemon.storageId}" data-pokemonId="${pokemon.pokemonId}" data-name="${pokemon.name}" data-image="${pokemon.image}" style="border:1px solid black; width:200px;float:left">
@@ -20,6 +21,46 @@ function spreadPokemons(){
         }
     })
 }
+
+function spread(){
+    if(document.getElementById('notAddedBtn').checked){
+        getNotAddedPokemonListFromServer().then(result=>{
+            pokemonList = result
+            if(result.length>0){
+                pokemonBox.innerHTML = ''
+                for(let pokemon of result){
+                    pokemonBox.innerHTML +=  `
+                    <div class="modal-open" data-storageId="${pokemon.storageId}" data-pokemonId="${pokemon.pokemonId}" data-name="${pokemon.name}" data-image="${pokemon.image}" style="border:1px solid black; width:200px;float:left">
+                        <img src="${pokemon.image}">
+                        <p>[${pokemon.pokemonId}] ${pokemon.name}</p>
+                    </div>
+                    `
+                }
+            }else{
+                pokemonBox.innerHTML = `<p>보유중인 포켓몬이 없습니다.</p>`
+            }
+        })
+    }else {
+        spreadPokemons()
+    }
+}
+
+//도감에 등록 안 된 것만 뿌리기
+document.getElementById('notAddedBtn').addEventListener('click',()=>{
+    spread()
+})
+
+async function getNotAddedPokemonListFromServer(){
+    try {
+        const url = "/storage/not-added-pokemon-list/"+memberId
+        const resp = await fetch(url)
+        const result = await resp.json()
+        return result;
+    } catch (error) {
+        console.log(error)
+    }
+}
+
 
 async function getPokemonListFromServer(){
     try {
@@ -97,11 +138,12 @@ function registerPokedex(storageId){
 	postPokedex(storageId).then(result=>{
 		if(result=='ok'){
             alert('등록성공')
-        }else{
-            alert(result)
+        }else if(result=='already'){
+            alert("이미 등록된 포켓몬입니다.")
         }
-        location.href="/storage/"+memberId+"/pokemon"
         modal.style.display = 'none';
+        spread()
+
 	})
 }
 
@@ -137,5 +179,4 @@ window.onclick = function(event) {
         modal.style.display = "none";
     }
 }
-
 

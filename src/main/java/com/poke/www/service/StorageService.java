@@ -26,4 +26,6 @@ public interface StorageService {
 
 	List<PokemonStorageVO> getPokemonsByMemberId(String memberId);
 
+	List<PokemonStorageVO> getPokemonsByMemberIdAndNotInPokemonIds(String memberId, String addedPokemonIds);
+
 }

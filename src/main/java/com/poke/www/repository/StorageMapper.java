@@ -29,4 +29,6 @@ public interface StorageMapper {
 
 	PokemonStorageVO selectPokemonByStorageId(int storageId);
 
+	List<PokemonStorageVO> selectPokemonsByMemberIdAndNotInPokemonIds(String memberId, String addedPokemonIds);
+
 }

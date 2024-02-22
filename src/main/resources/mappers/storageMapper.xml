@@ -49,4 +49,11 @@
 		join pokemon p on s.pokemon_id = p.pokemon_id
 		where storage_id = #{storageId}
 	</select>
+	
+	<select id="selectPokemonsByMemberIdAndNotInPokemonIds">
+		select * from pokemon_storage s 
+		join pokemon p on s.pokemon_id = p.pokemon_id
+		where member_id = #{param1} and s.pokemon_id not in (${param2}) 
+	</select>
+	
 </mapper>

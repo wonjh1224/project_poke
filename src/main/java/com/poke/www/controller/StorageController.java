@@ -14,10 +14,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.poke.www.domain.ItemStorageVO;
 import com.poke.www.domain.MemberVO;
+import com.poke.www.domain.PokedexVO;
 import com.poke.www.domain.PokemonStorageVO;
 import com.poke.www.domain.PokemonVO;
 import com.poke.www.domain.ProductVO;
 import com.poke.www.service.MemberService;
+import com.poke.www.service.PokedexService;
 import com.poke.www.service.PokemonService;
 import com.poke.www.service.StorageService;
 
@@ -32,6 +34,7 @@ public class StorageController {
 	private final StorageService storageService;
 	private final MemberService memberService;
 	private final PokemonService pokemonService;
+	private final PokedexService pokedexService;
 	
 	@GetMapping({"/{memberId}/item","/{memberId}"})
 	public String getStorage(Model m,
@@ -109,6 +112,23 @@ public class StorageController {
 		List<PokemonStorageVO> list = storageService.getPokemonsByMemberId(memberId);
 		return list;
 	}
+	@ResponseBody
+	@GetMapping("/not-added-pokemon-list/{memberId}")
+	public List<PokemonStorageVO> getNotAddedPokemonList(@PathVariable("memberId") String memberId) {
+		List<PokedexVO> pokedexList = pokedexService.getPokemonsByMemberId(memberId);
+		
+		String addedPokemonIds = "";
+		for(PokedexVO pokemon : pokedexList) {
+			addedPokemonIds += pokemon.getPokemonId()+",";
+		}
+		addedPokemonIds = addedPokemonIds.substring(0,addedPokemonIds.length()-1);
+		
+		List<PokemonStorageVO> pokemonList = storageService.getPokemonsByMemberIdAndNotInPokemonIds(memberId,addedPokemonIds); 
+		
+		return pokemonList;
+	}
+	
+	
 	
 
 }

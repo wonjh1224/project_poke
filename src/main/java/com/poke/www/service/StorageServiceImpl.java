@@ -63,4 +63,9 @@ public class StorageServiceImpl implements StorageService{
 	public PokemonStorageVO getPokemonByStorageId(int storageId) {
 		return mapper.selectPokemonByStorageId(storageId);
 	}
+
+	@Override
+	public List<PokemonStorageVO> getPokemonsByMemberIdAndNotInPokemonIds(String memberId, String addedPokemonIds) {
+		return mapper.selectPokemonsByMemberIdAndNotInPokemonIds(memberId,addedPokemonIds);
+	}
 }
