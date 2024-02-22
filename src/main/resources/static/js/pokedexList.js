@@ -1,3 +1,5 @@
+console.log(memberId);
+
 async function getPokedexList(){
     try {
         const url = "/pokedex/list"
@@ -12,7 +14,9 @@ async function getPokedexList(){
         console.log(error)
     }
 }
+
 spreadList()
+
 function spreadList(){
     getPokedexList().then(result=>{
         let userPokemonIds = [];
@@ -25,7 +29,9 @@ function spreadList(){
         for(pokemon of result.allPokemons){
             pokedexLine.innerHTML += `
                 <div>
+                	<a href="/pokedex/${memberId}/${pokemon.name}">
                     <img src="${pokemon.image}" class="${userPokemonIds.includes(pokemon.pokemonId) ? 'color' : 'gray'} abc">
+                	</a>
                     <p>${userPokemonIds.includes(pokemon.pokemonId)? pokemon.name : '???'}</p>
                     <p>${userPokemonIds.includes(pokemon.pokemonId)? pokemon.flavor : ''}</p>
                 </div>

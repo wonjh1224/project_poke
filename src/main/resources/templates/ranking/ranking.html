@@ -47,13 +47,19 @@ a {
 			<th:block th:if="${pagingVO.keyword == null}">
 			
 				<ul class="paging">
-					<li th:if="${ph.prev}"><a
-						th:href="|/ranking?pageNo=${ph.startPage-1}|">이전</a></li>
+				
+					<li th:if="${ph.prev}">
+						<a th:href="|/ranking?pageNo=${ph.startPage-1}|">이전</a>
+					</li>
+					
 					<li th:each="i: ${#numbers.sequence(ph.startPage,ph.endPage)}">
 						<a th:href="|/ranking?pageNo=${i}|"><[[${i}]]></a>
 					</li>
-					<li th:if="${ph.next}"><a
-						th:href="|/ranking?pageNo=${ph.endPage+1}|">다음</a></li>
+					
+					<li th:if="${ph.next}">
+						<a th:href="|/ranking?pageNo=${ph.endPage+1}|">다음</a>
+					</li>
+					
 				</ul>
 				
 			</th:block>

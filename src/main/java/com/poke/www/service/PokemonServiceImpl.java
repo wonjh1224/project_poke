@@ -35,4 +35,10 @@ public class PokemonServiceImpl implements PokemonService{
 	public PokemonVO getPokemonByPokemonId(int pokemonId) {
 		return mapper.selectPokemonByPokemonId(pokemonId);
 	}
+
+	@Override
+	public PokemonVO getPokemonByName(String pokemonName) {
+		// TODO Auto-generated method stub
+		return mapper.selectPokemonByName(pokemonName);
+	}
 }

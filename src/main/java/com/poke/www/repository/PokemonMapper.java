@@ -17,4 +17,6 @@ public interface PokemonMapper {
 
 	PokemonVO selectPokemonByPokemonId(int pokemonId);
 
+	PokemonVO selectPokemonByName(String pokemonName);
+
 }

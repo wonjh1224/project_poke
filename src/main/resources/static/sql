@@ -61,5 +61,7 @@ ranking int,
 primary key(member_id)
 );
 
+-- 2024 - 02 - 21 --
+랭킹테이블에 스코어 칼럼 추가
 alter table ranking add column score int default 0;
 

@@ -20,4 +20,9 @@
 <select id="selectPokemonByPokemonId">
 	select * from pokemon where pokemon_id = #{pokemonId}
 </select>
+
+<select id="selectPokemonByName">
+	select * from pokemon where name = #{name}
+</select>
+
 </mapper>

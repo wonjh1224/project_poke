@@ -3,6 +3,7 @@ package com.poke.www.controller;
 import java.util.List;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -70,4 +71,16 @@ public class PokedexController {
 		
 		return new PokedexDTO(userPokemonList,allPokemonList);
 	}
+	
+	
+	@GetMapping("/{memberId}/{name}")
+	public String pokemon(@PathVariable("memberId")String memberId, @PathVariable("name")String pokemonName, Model m) {
+	
+		PokemonVO pokemonVO = pokemonService.getPokemonByName(pokemonName);
+		log.info("pvo >>> {}", pokemonVO);
+		m.addAttribute("pvo", pokemonVO);
+		return "/pokedex/pokemon";
+	}
+	
+	
 }

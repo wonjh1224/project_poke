@@ -7,10 +7,18 @@
 </style>
 <th:block th:replace="~{/layout :: setFragment(~{this::content})}">
 <th:block th:fragment="content">
-	<h2>'[[${memberId}]]'의 도감페이지</h2>
-	<div id="pokedexLine">
-		
+	<h2>도감 상세페이지</h2>
+	
+	<div>
+		No.[[${pvo.pokemonId}]]
+		[[${pvo.name}]] <br>
+		<img alt="" th:src="@{${pvo.image}}" height="150" width="150"> <br>
+		특징 : [[${pvo.flavor}]] <br>
+		타입 : ----- 키 : ------ 분류 : ------- <br>
+		종족값 : [[${pvo.score}]]
 	</div>
+
+
 </th:block>
 </th:block>
 
@@ -18,4 +26,3 @@
 	let memberId = [[${memberId}]]
 </script>
 
-<script src="/js/pokedexList.js"></script>
