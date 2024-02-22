@@ -12,10 +12,13 @@
 	<div>
 		No.[[${pvo.pokemonId}]]
 		[[${pvo.name}]] <br>
-		<img alt="" th:src="@{${pvo.image}}" height="150" width="150"> <br>
+		<img alt="" th:src="@{${pvo.image}}"> <br>
 		특징 : [[${pvo.flavor}]] <br>
-		타입 : ----- 키 : ------ 분류 : ------- <br>
-		종족값 : [[${pvo.score}]]
+		도감점수 : [[${pvo.score}]] 점
+		
+		<br><br>
+		--- api 받아와야 함 ---<br>
+		타입 : ----- 키 : ------ 분류 : -------
 	</div>
 
 
