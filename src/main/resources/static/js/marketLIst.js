@@ -10,9 +10,12 @@ function spreadItems(){
                     <img src="${item.image}">
                     <p>판매자 : ${item.memberId}</p>
                     <p>가격 : ${item.price}</p>
-                    <button type="button" data-itemId="${item.itemId}" class="buyBtn">구매</button>
+                    `
+                    if(loginMemberId != memberId){
+                        itemZone.innerHTML += `<button type="button" data-itemId="${item.itemId}" class="buyBtn">구매</button>`
+                    }
                     
-                `
+                
             }
         }else{
             itemZone.innerHTML=`<p>품목이 존재하지 않습니다.</p>`
