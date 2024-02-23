@@ -1,14 +1,20 @@
-<!DOCTYPE html>
+<!doctype html>
 <html xmlns:th="http://www.thymeleaf.org">
-
-<th:block th:replace="~{/layout :: setFragment(~{this::content})}">
-	<th:block th:fragment="content">
-	<form th:action="|/login?rd-url=${url}|" method="post">
-		ID:<input type="text" name="memberId"><br>
-		PWD:<input type="text" name="password"><br>
-	<button type="submit">로그인</button>
-		
-	</form>
-	
-	</th:block>
-</th:block>
+<head>
+<meta charset="utf-8">
+	<link
+		rel="stylesheet"
+		href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.jade.min.css"
+	/>
+<title>로그인</title>
+</head>
+<body>
+	<main class="container" style="width: 60%">
+		<form th:action="|/login?rd-url=${url}|" method="post">
+			<label> 아이디 <input name="memberId" placeholder="아이디 입력"></label> 
+			<label> 비밀번호 <input type="password" name="password" placeholder="비밀번호 입력"></label>
+			<button type="submit">로그인</button>
+		</form>
+	</main>
+</body>
+</html>
