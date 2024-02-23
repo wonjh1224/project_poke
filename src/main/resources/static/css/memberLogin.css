@@ -1,0 +1,33 @@
+@charset "UTF-8";
+	.login-box {
+			background-color: white;
+			width: 600px;
+			margin: 0 auto;
+			padding-left: 85px;
+			padding-right: 85px;
+			padding-top: 55px;
+			padding-bottom: 55px;
+			font-size: 15px;
+			border-radius: 10px;
+		}
+		.login-container {
+			height: 100vh;
+			background-color: rgb(244, 244, 244);
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+		h2,h2 a{
+			text-align: center;
+			text-decoration: none;
+		}
+		form div{
+			text-align: center;
+			text-decoration: none;
+			display: flex;
+			justify-content: space-around;
+			font-size: 13px;
+			width: 60%;
+			margin: auto;
+			margin-bottom: 15px;
+		}

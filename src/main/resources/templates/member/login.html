@@ -1,6 +1,7 @@
 <!doctype html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
+<link rel="stylesheet" href="/css/memberLogin.css">
 <meta charset="utf-8">
 	<link
 		rel="stylesheet"
@@ -9,12 +10,20 @@
 <title>로그인</title>
 </head>
 <body>
-	<main class="container" style="width: 60%">
-		<form th:action="|/login?rd-url=${url}|" method="post">
-			<label> 아이디 <input name="memberId" placeholder="아이디 입력"></label> 
-			<label> 비밀번호 <input type="password" name="password" placeholder="비밀번호 입력"></label>
-			<button type="submit">로그인</button>
-		</form>
-	</main>
+	<div class="login-container">
+		<div class="login-box">
+			<h2><a href="/">POKE</a></h2>
+			<form th:action="|/login?rd-url=${url}|" method="post">
+				<label> 아이디 <input name="memberId"></label>
+				<label> 비밀번호 <input type="password" name="password"></label>
+				<div>
+					<span><a>아이디 찾기</a></span>
+					<span><a>비밀번호 찾기</a></span>
+					<span><a>회원가입</a></span>
+				</div>
+				<button type="submit">로그인</button>
+			</form>
+		</div>
+	</div>
 </body>
 </html>
