@@ -75,7 +75,6 @@ public class PokedexController {
 	
 	@GetMapping("/{memberId}/{name}")
 	public String pokemon(@PathVariable("memberId")String memberId, @PathVariable("name")String pokemonName, Model m) {
-	
 		PokemonVO pokemonVO = pokemonService.getPokemonByName(pokemonName);
 		log.info("pvo >>> {}", pokemonVO);
 		m.addAttribute("pvo", pokemonVO);
