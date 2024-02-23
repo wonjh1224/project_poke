@@ -12,7 +12,7 @@ function spreadPokemons(){
             pokemonBox.innerHTML = ''
             for(let pokemon of result){
                 pokemonBox.innerHTML +=  `
-                <div class="modal-open" data-storageId="${pokemon.storageId}" data-pokemonId="${pokemon.pokemonId}" data-name="${pokemon.name}" data-image="${pokemon.image}" style="border:1px solid black; width:200px;float:left">
+                <div class="modal-open pokemon-card" data-storageId="${pokemon.storageId}" data-pokemonId="${pokemon.pokemonId}" data-name="${pokemon.name}" data-image="${pokemon.image}">
                     <img src="${pokemon.image}">
                     <p>[${pokemon.pokemonId}] ${pokemon.name}</p>
                 </div>
