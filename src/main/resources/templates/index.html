@@ -3,12 +3,14 @@
 
 <th:block th:replace="~{/layout :: setFragment(~{this::content})}">
 	<th:block th:fragment="content">
+	<div class="container">
 	
 	<h1>실험실</h1>
 	<input type="text" id="pno" disabled><button disabled onclick="setPokemon()">포켓몬추가</button>
 	<hr>
 	범위 : <input id="start"> 부터 <input id="end">까지 <button id="aa">숫자 출력</button>
 	<br> <input id="print"><br>
+	</div>
 
 	</th:block>
 </th:block>

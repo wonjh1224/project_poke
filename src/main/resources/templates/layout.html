@@ -4,52 +4,60 @@
 <th:block th:fragment="setFragment(content)">
 	<head>
 	<meta charset="UTF-8">
+	<link
+		rel="stylesheet"
+		href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.jade.min.css"
+	/>
 	<title>Insert title here</title>
 	</head>
 	<style>
 	.profileImage{
-		width:38px;
-		height:38px;
+		width:28px;
+		height:28px;
 		border: 1px solid transparent;
 		border-radius:50%;
 	}
 	</style>
 	<body>
-		<a href="/">인덱스로 |</a>
-		<a href="/board/list">게시판 |</a>
-		<a href="/store">상점 |</a>
-		<a th:if="${session.loginMember == null}" href="/register">회원가입 |</a>
-		<a th:if="${session.loginMember == null}" href="/login">로그인 |</a>
-		<a href="/market">거래소 |</a>
-		<a href="/ranking">랭킹 |</a>
-		<th:block th:unless="${session.loginMember == null}">
-			<a th:href="|@{/pokedex/{memberId}(memberId=${session.loginMember.memberId})}|">도감 |</a>
-			<a th:href="|@{/storage/{memberId}(memberId=${session.loginMember.memberId})}|">팩 보관함 |</a>
-			<a th:href="|@{/storage/{memberId}/pokemon(memberId=${session.loginMember.memberId})}|">포켓몬 보관함 |</a>
-			<br>
-			마이페이지 임시 ==>>
-			<a th:href="|@{/my/charge}|">충전</a>
-			<a th:href="|@{/my/purchases}|">구매내역</a>
-			<a th:href="|@{/my/purchases/points}|">충전내역</a>
-			<a th:href="|@{/my/market/on-sale}|">판매관리</a>
-			<a th:href="|@{/my/market/trade}|">거래내역</a>
-			<a th:href="|@{/my/account}|">프로필 수정</a>
-			<img class="profileImage" th:src="|/upload/profile/${session.loginMember.hasProfile == 'y' ? session.loginMember.memberId+'.png' : 'default/default.png'}|">
-			<p>점수 : [[${session.loginMember.score}]]</p>
-			<form th:action="@{/logout}" method="post">	
-				<button type="submit">로그아웃</button>
-			</form>
-		</th:block>
-		<br>
-		[layout시작]
-		<hr>
-		<div>
+	<nav class="container" style="width:60%">
+	<ul>
+		<li><a class="contrast" href="/">인덱스로</a></li>
+	</ul>
+	<ul>
+		<li><a class="contrast" href="/board/list">게시판</a></li>
+		<li><a class="contrast" href="/store">상점</a></li>
+		<li><a class="contrast" th:href="|@{/pokedex/{memberId}(memberId=${session.loginMemberId})}|">도감</a></li>
+		<li><a class="contrast" href="/market">거래소</a></li>
+		<li><a class="contrast" th:href="|@{/storage/{memberId}(memberId=${session.loginMemberId})}|">팩 보관함</a></li>
+		<li><a class="contrast" th:href="|@{/storage/{memberId}/pokemon(memberId=${session.loginMemberId})}|">포켓몬 보관함</a></li>
+		<li><a class="contrast" href="/ranking">랭킹</a></li>
+	</ul>
+	<ul>
+		<li><a class="contrast" th:if="${session.loginMember == null}" href="/login">로그인</a></li>
+		<li><a class="contrast" th:if="${session.loginMember == null}" href="/register">회원가입</a></li>
+		<li th:unless="${session.loginMember == null}">
+			<details class="dropdown">
+				<summary role="button" class="outline">
+					<img class="profileImage" th:src="|/upload/profile/${session.loginMember.hasProfile == 'y' ? session.loginMember.memberId+'.png' : 'default/default.png'}|">
+				</summary>
+				<ul dir="rtl">
+					<li><a th:href="|@{/my/charge}|">충전</a></li>
+					<li><a th:href="|@{/my/purchases}|">구매내역</a></li>
+					<li><a th:href="|@{/my/purchases/points}|">충전내역</a></li>
+					<li><a th:href="|@{/my/market/on-sale}|">판매관리</a></li>
+					<li><a th:href="|@{/my/market/trade}|">거래내역</a></li>
+					<li><a th:href="|@{/my/account}|">프로필 수정</a></li>
+					<li><a href="#" id="logoutBtn">로그아웃</a></li>
+				</ul>
+			</details>
+		</li>
+	</ul>
+	
+	</nav>
+		<div class="container" style="width:60%">
 			<th:block th:replace="${content}"></th:block>
 		</div>
-		<div>
-			<hr>
-			[layout끝]		
-		</div>
 	</body>
+<script src="/js/layout.js"></script>
 </th:block>
 </html>
