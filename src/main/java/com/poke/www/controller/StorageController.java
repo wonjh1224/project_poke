@@ -117,6 +117,11 @@ public class StorageController {
 	public List<PokemonStorageVO> getNotAddedPokemonList(@PathVariable("memberId") String memberId) {
 		List<PokedexVO> pokedexList = pokedexService.getPokemonsByMemberId(memberId);
 		
+		//도감에 등록된 포켓몬이 없을 경우
+		if(pokedexList.size() == 0) {
+			return storageService.getPokemonsByMemberId(memberId);
+		}
+		
 		String addedPokemonIds = "";
 		for(PokedexVO pokemon : pokedexList) {
 			addedPokemonIds += pokemon.getPokemonId()+",";

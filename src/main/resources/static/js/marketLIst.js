@@ -11,7 +11,7 @@ function spreadItems(){
                     <p>판매자 : ${item.memberId}</p>
                     <p>가격 : ${item.price}</p>
                     `
-                    if(loginMemberId != memberId){
+                    if(loginMemberId != item.memberId){
                         itemZone.innerHTML += `<button type="button" data-itemId="${item.itemId}" class="buyBtn">구매</button>`
                     }
                     
