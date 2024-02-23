@@ -1,5 +1,5 @@
 // <img src="${pokemon.image}">
-// 
+// <img style="width:80px;height:60px;image-rendering:pixelated"src="/upload/icon/${pokemon.pokemonId}.png">
 let pokemonList;
 spreadPokemons()
 let pokemonBox = document.getElementById('pokemonBox')
@@ -14,7 +14,6 @@ function spreadPokemons(){
                 pokemonBox.innerHTML +=  `
                 <div class="modal-open" data-storageId="${pokemon.storageId}" data-pokemonId="${pokemon.pokemonId}" data-name="${pokemon.name}" data-image="${pokemon.image}" style="border:1px solid black; width:200px;float:left">
                     <img src="${pokemon.image}">
-                    <img style="width:80px;height:60px;image-rendering:pixelated"src="/upload/icon/${pokemon.pokemonId}.png">
                     <p>[${pokemon.pokemonId}] ${pokemon.name}</p>
                 </div>
                 `
