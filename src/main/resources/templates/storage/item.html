@@ -4,6 +4,13 @@
 <th:block th:replace="~{/layout :: setFragment(~{this::content})}">
 <th:block th:fragment="content">
 	<h2>'[[${memberId}]]'의 아이템 보관함</h2>
+	<div role="group">
+		<button th:onclick="|location.href='@{/storage/{memberId}/item(memberId=${session.loginMemberId})}'|">몬스터볼 보관함</button>
+		<button class="outline" th:onclick="|location.href='@{/storage/{memberId}/pokemon(memberId=${session.loginMemberId})}'|">포켓몬 보관함</button>
+	</div>
+	<div>
+		<video src="/upload/video/Pokeball Animation.mp4" autoplay muted></video>
+	</div>
 	<div id="itemBox">
 
 	</div>

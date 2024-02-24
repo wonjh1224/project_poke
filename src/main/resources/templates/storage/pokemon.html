@@ -3,12 +3,12 @@
 <link rel="stylesheet" href="/css/storagePokemon.css">
 <th:block th:replace="~{/layout :: setFragment(~{this::content})}">
 <th:block th:fragment="content">
+	<h2>'[[${memberId}]]'의 포켓몬 보관함</h2>
 	<div role="group">
-		<button class="outline">몬스터볼 보관함</button>
-		<button>포켓몬 보관함</button>
+		<button class="outline" th:onclick="|location.href='@{/storage/{memberId}/item(memberId=${session.loginMemberId})}'|">몬스터볼 보관함</button>
+		<button th:onclick="|location.href='@{/storage/{memberId}/pokemon(memberId=${session.loginMemberId})}'|">포켓몬 보관함</button>
 	</div>
 	<div>
-		<h2>'[[${memberId}]]'의 포켓몬 보관함</h2>
 		<input type="text" id="searchBox" placeholder="번호 또는 이름 입력">
 		<input type="checkbox" id="notAddedBtn"><label for="notAddedBtn">도감에 없는 포켓몬만 보기</label>
 	<div id="pokemonBox">

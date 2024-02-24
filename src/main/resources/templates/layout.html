@@ -28,8 +28,7 @@
 		<li><a class="contrast" href="/store">상점</a></li>
 		<li><a class="contrast" th:href="|@{/pokedex/{memberId}(memberId=${session.loginMemberId})}|">도감</a></li>
 		<li><a class="contrast" href="/market">거래소</a></li>
-		<li><a class="contrast" th:href="|@{/storage/{memberId}(memberId=${session.loginMemberId})}|">팩 보관함</a></li>
-		<li><a class="contrast" th:href="|@{/storage/{memberId}/pokemon(memberId=${session.loginMemberId})}|">포켓몬 보관함</a></li>
+		<li><a class="contrast" th:href="|@{/storage/{memberId}(memberId=${session.loginMemberId})}|">보관함</a></li>
 		<li><a class="contrast" href="/ranking">랭킹</a></li>
 	</ul>
 	<ul>
