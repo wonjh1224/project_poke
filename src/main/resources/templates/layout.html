@@ -27,24 +27,24 @@
 		</ul>
 		<ul>
 			<li><a class="nes-btn" th:if="${session.loginMember == null}" href="/login">로그인</a></li>
-			<li><img th:if="${session.loginMember != null}" class="profileImage" th:src="|/upload/profile/${session.loginMember.hasProfile == 'y' ? session.loginMember.memberId+'.png' : 'default/default.png'}|"></li>
-			<!-- <li><a class="nes-btn" th:if="${session.loginMember == null}" href="/register">회원가입</a></li> -->
-<!-- 			<li th:unless="${session.loginMember == null}">
-				
-					<ul>
-						<li><a th:href="|@{/my/charge}|">충전</a></li>
-						<li><a th:href="|@{/my/purchases}|">구매내역</a></li>
-						<li><a th:href="|@{/my/purchases/points}|">충전내역</a></li>
-						<li><a th:href="|@{/my/market/on-sale}|">판매관리</a></li>
-						<li><a th:href="|@{/my/market/trade}|">거래내역</a></li>
-						<li><a th:href="|@{/my/account}|">프로필 수정</a></li>
-						<li><a href="#" id="logoutBtn">로그아웃</a></li>
-					</ul>
-	
-			</li> -->
+			<li>
+				<img th:if="${session.loginMember != null}" id="profileImage" class="profileImage" th:src="|/upload/profile/${session.loginMember.hasProfile == 'y' ? session.loginMember.memberId+'.png' : 'default/default.png'}|">
+			</li>			
 		</ul>
-	
+			
+
 	</nav>
+		<div th:if="${session.loginMember != null}" id="dropdown-content" class="lists dropdown-content">
+			<ul class="nes-list is-disc">
+				<li><a th:href="|@{/my/charge}|">충전</a></li>
+				<li><a th:href="|@{/my/purchases}|">구매내역</a></li>
+				<li><a th:href="|@{/my/purchases/points}|">충전내역</a></li>
+				<li><a th:href="|@{/my/market/on-sale}|">판매관리</a></li>
+				<li><a th:href="|@{/my/market/trade}|">거래내역</a></li>
+				<li><a th:href="|@{/my/account}|">프로필 수정</a></li>
+				<li><a href="#" id="logoutBtn">로그아웃</a></li>
+			</ul>
+		</div>
 		<div class="nes-container with-title container" style="width:60%">
 			<th:block th:replace="${content}"></th:block>
 		</div>

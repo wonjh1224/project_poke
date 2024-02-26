@@ -10,3 +10,8 @@ async function logout(){
     }
     fetch(url,config)
 }
+
+
+document.getElementById('profileImage').addEventListener('click',()=>{
+    document.getElementById('dropdown-content').style.display='block'
+})
