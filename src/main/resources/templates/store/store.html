@@ -1,13 +1,19 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-
+<link href="/css/store/store.css" rel="stylesheet" />
 <th:block th:replace="~{/layout :: setFragment(~{this::content})}">
 	<th:block th:fragment="content">
-	
-	<h2>store내용임</h2>
-	<h3 th:each="pvo:${list}" >
-		<a th:href="|/store/${pvo.productId}|" th:text="|${pvo.name} ${pvo.price}원|"></a>		
-	</h3>
+	<p class="title">상점</p>	
+	<div class="product-container">
+		<div class="product" th:each="pvo:${list}">
+			<img class="product-img" src="/image/yello.png"><br>
+			<a th:href="|/store/${pvo.productId}|" class="nes-badge is-icon">
+			  <span class="is-warning">a</span>
+			  <span class="is-dark">[[${pvo.name}]]</span>
+			</a><br>
+			
+		</div>
+	</div>
 	
 	</th:block>
 </th:block>
