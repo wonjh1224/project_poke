@@ -32,18 +32,86 @@ async function getPokemonStats(pokemonId){
     }
 }
 
+async function getPokemonHeight(pokemonId){
+	try{
+		const url = "https://pokeapi.co/api/v2/pokemon/"+pokemonId
+		const resp = await fetch(url)
+		const result = await resp.json()
+		return result.height
+	}catch(error){
+		console.log(error)
+	}
+}
+
+async function getPokemonWeight(pokemonId){
+	try{
+		const url = "https://pokeapi.co/api/v2/pokemon/"+pokemonId
+		const resp = await fetch(url)
+		const result = await resp.json()
+		return result.weight
+	}catch(error){
+		console.log(error)
+	}
+}
+
+async function getPokemonGenera(pokemonId){
+	try{
+		const url = "https://pokeapi.co/api/v2/pokemon-species/"+pokemonId
+		const resp = await fetch(url)
+		const result = await resp.json()
+		return result.genera
+	}catch(error){
+		console.log(error)
+	}
+}
+
+async function getPokemonTypes(pokemonId){
+	try{
+		const url = "https://pokeapi.co/api/v2/pokemon/"+pokemonId
+		const resp = await fetch(url)
+		const result = await resp.json()
+		return result.types
+	}catch(error){
+		console.log(error)
+	}
+	
+}
 
 async function setPokemon(){
 	let pno = document.getElementById('pno').value
 	let pokemons = []
     for(let i=1; i<=pno; i++){
         let pokemonKorean = await getPokemonKorean(i)
-       
+        
+        let pokemonHeight = await getPokemonHeight(i)
+        let pokemonWeight = await getPokemonWeight(i)
+        
+        let pokemonGenera = await getPokemonGenera(i)
+        let genus = pokemonGenera[1].genus
+        
+        let pokemonTypes = await getPokemonTypes(i)
+        
+    	let typeKor = '';
+        
+        for(type of pokemonTypes){
+        	console.log(type.type.url);
+        	let url = type.type.url;
+        	
+        	let resp = await fetch(url)
+        	let result = await resp.json()
+        	console.log(result.names[1].name);
+        	typeKor += result.names[1].name+","
+        }
+        
+        typeKor = typeKor.substring(0, typeKor.lastIndexOf(","));
+        
         let pokemonStats = await getPokemonStats(i)
         let stats = 0;
+              
         for(stat of pokemonStats){
         	stats += stat.base_stat
         }
+        
     	let pokemon_id = i
         let name = pokemonKorean.names[2].name
         let flavor
@@ -52,6 +120,7 @@ async function setPokemon(){
         		flavor = f.flavor_text.replaceAll("\n",' ')  		
         	}
         }
+    	
         let image = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${i}.png`
         
         let pokemon = {
@@ -59,10 +128,15 @@ async function setPokemon(){
             name : name,
             image : image,
             flavor : flavor,
-            score : stats
+            score : stats,
+            height : pokemonHeight,
+            weight : pokemonWeight,
+            genus : genus,
+            type : typeKor
         }
         pokemons.push(pokemon)
     }
+	
     const url = "/pokemon-init"
     const config = {
         method : "put",
@@ -75,4 +149,5 @@ async function setPokemon(){
     const result = await resp.text()
     alert(result+"개 포켓몬 추가완료")   
 }
+
 </script>

@@ -65,3 +65,9 @@ primary key(member_id)
 랭킹테이블에 스코어 칼럼 추가
 alter table ranking add column score int default 0;
 
+-- 2024 - 02 - 26 --
+alter table pokemon add column height int not null;
+alter table pokemon add column weight int not null;
+alter table pokemon add column genus varchar(20) not null;
+alter table pokemon add column type varchar(20) not null;
+

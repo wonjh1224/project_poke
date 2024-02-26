@@ -14,4 +14,8 @@ public class PokemonVO {
 	private String image;
 	private String flavor;
 	private int score;
+	private int height;
+	private int weight;
+	private String genus;
+	private String type;
 }
