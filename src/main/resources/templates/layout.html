@@ -4,6 +4,9 @@
 <th:block th:fragment="setFragment(content)">
 	<head>
 	<meta charset="UTF-8">
+
+<!-- latest -->
+<link href="https://unpkg.com/nes.css@latest/css/nes.min.css" rel="stylesheet" />
 	<link
 		rel="stylesheet"
 		href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.jade.min.css"
@@ -14,7 +17,7 @@
 	<style>
 	@font-face{
 		font-family : 'dgm';
-		src : url('/font/neodgm.ttf')
+		src : url('/font/PF스타더스트.ttf')
 	}
 	body{
 		font-family : 'dgm'
@@ -29,7 +32,7 @@
 	<body>
 	<nav class="container" style="width:60%">
 	<ul>
-		<li><a class="contrast" href="/">인덱스로</a></li>
+		<li><a class="nes-text is-primary" href="/">인덱스로</a></li>
 	</ul>
 	<ul>
 		<li><a class="contrast" href="/board/list">게시판</a></li>

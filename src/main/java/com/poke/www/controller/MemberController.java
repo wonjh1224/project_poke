@@ -43,14 +43,16 @@ public class MemberController {
 	}
 	@GetMapping("/login")
 	public String getLoginForm(Model m, @RequestParam(name="rd-url", defaultValue = "/")String url) {
+
 		m.addAttribute("url",url);
 		return "/member/login";
 	}
 	@PostMapping("/login")
-	public String memberLogin(MemberVO mvo, HttpServletRequest request,
+	public String memberLogin(Model m,MemberVO mvo, HttpServletRequest request,
 			@RequestParam(name="rd-url", defaultValue = "/")String url) {
 		MemberVO loginMember = memberService.login(mvo.getMemberId(),mvo.getPassword());
 		if(loginMember == null) {
+			m.addAttribute("url",url);
 			return "/member/login";
 		}
 		
