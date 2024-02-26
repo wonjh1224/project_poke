@@ -19,11 +19,11 @@
 		</ul>
 		<ul>
 			<li><a class="nes-btn" href="/board/list"><i class="nes-icon is-medium like"></i>게시판</a></li>
-			<li><a class="nes-btn" href="/store"><img src="/image/packicon2.png" style="width:48px;height:48px;margin-bottom:7px">상점</a></li>
+			<li><a class="nes-btn" href="/store"><img src="/image/pack.png" style="width:48px;height:48px;margin-bottom:7px">상점</a></li>
 			<li><a class="nes-btn" th:href="|@{/pokedex/{memberId}(memberId=${session.loginMemberId})}|"><i class="nes-icon is-medium star"></i>도감</a></li>
 			<li><a class="nes-btn" href="/market"><i class="nes-icon coin is-medium"></i>거래소</a></li>
 			<li><a class="nes-btn" href="/ranking"><i class="nes-icon trophy is-medium"></i>랭킹</a></li>
-			<li><a class="nes-btn" th:href="|@{/storage/{memberId}(memberId=${session.loginMemberId})}|"><i class="nes-icon is-medium heart"></i>보관함</a></li>
+			<li><a class="nes-btn" th:href="|@{/storage/{memberId}(memberId=${session.loginMemberId})}|"><img src="/image/box.png" style="width:48px;height:48px;margin-bottom:7px"></i>보관함</a></li>
 		</ul>
 		<ul>
 			<li><a class="nes-btn" th:if="${session.loginMember == null}" href="/login">로그인</a></li>
