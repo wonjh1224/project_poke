@@ -7,23 +7,22 @@
 		font-family : 'dgm'
 	}
 	.profileImage{
-		width:44px;
-		height:44px;
+		width:48px;
+		height:48px;
 		border: 1px solid transparent;
 		border-radius:50%;
 	}
-	.dropdown-content{
-		display: none;
-		position: absolute;
-	}
 
+	
 	nav{
 		display: flex;
-		justify-content: space-between;
-		width: 60%;
+		justify-content: space-around;
+		
 		margin: auto;
 		margin-top: 30px;
-		margin-bottom: 50px;
+		margin-bottom: 80px;
+		width: 90%;
+		
 	}
 	nav ul{
 		display: flex;
@@ -40,16 +39,40 @@
 		place-items: center;
 		height: 84px;
 	}
+	nav ul li a span{
+		margin-top: 4px;
+		
+	}
+	
+
+	.dropdown-content{
+		display: none;
+		position: absolute;
+		top: 12%;
+		background-color: white;
+		z-index: 1;
+	}
+	.dropdown-content ul{ 
+		padding-left: 10px;
+		display: block;
+	}
+	.dropdown-content ul li{ 
+		padding: 0;
+		margin-bottom: 10px;
+		display: block;
+		height: 100%;
+		text-align: left;
+	}
+	
 	nav ul li a{
 		width: 84px;
+		color: black;
 	}
 
 	.container{
 		margin: auto;
 	}
-	body{
-		background: none;
-	}
+
 
 
 

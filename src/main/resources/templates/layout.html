@@ -13,38 +13,40 @@
 	</head>
 	
 	<body>
-	<nav >
+	<nav>
 		<ul>
 			<li><a href="/"><i class="nes-pokeball"></i></a></li>
 		</ul>
 		<ul>
-			<li><a class="nes-btn" href="/board/list">게시판</a></li>
-			<li><a class="nes-btn" href="/store">상점</a></li>
-			<li><a class="nes-btn" th:href="|@{/pokedex/{memberId}(memberId=${session.loginMemberId})}|">도감</a></li>
-			<li><a class="nes-btn" href="/market">거래소</a></li>
-			<li><a class="nes-btn" href="/ranking">랭킹</a></li>
-			<li><a class="nes-btn" th:href="|@{/storage/{memberId}(memberId=${session.loginMemberId})}|">보관함</a></li>
+			<li><a class="nes-btn" href="/board/list"><i class="nes-icon is-medium like"></i>게시판</a></li>
+			<li><a class="nes-btn" href="/store"><img src="/image/packicon2.png" style="width:48px;height:48px;margin-bottom:7px">상점</a></li>
+			<li><a class="nes-btn" th:href="|@{/pokedex/{memberId}(memberId=${session.loginMemberId})}|"><i class="nes-icon is-medium star"></i>도감</a></li>
+			<li><a class="nes-btn" href="/market"><i class="nes-icon coin is-medium"></i>거래소</a></li>
+			<li><a class="nes-btn" href="/ranking"><i class="nes-icon trophy is-medium"></i>랭킹</a></li>
+			<li><a class="nes-btn" th:href="|@{/storage/{memberId}(memberId=${session.loginMemberId})}|"><i class="nes-icon is-medium heart"></i>보관함</a></li>
 		</ul>
 		<ul>
 			<li><a class="nes-btn" th:if="${session.loginMember == null}" href="/login">로그인</a></li>
 			<li>
 				<img th:if="${session.loginMember != null}" id="profileImage" class="profileImage" th:src="|/upload/profile/${session.loginMember.hasProfile == 'y' ? session.loginMember.memberId+'.png' : 'default/default.png'}|">
+				<div th:if="${session.loginMember != null}" class="nes-container dropdown-content" id="dropdown-content" >
+					<div class="lists">
+						<ul class="nes-list is-disc">
+							<li><a th:href="|@{/my/charge}|">충전</a></li>
+							<li><a th:href="|@{/my/purchases}|">구매내역</a></li>
+							<li><a th:href="|@{/my/purchases/points}|">충전내역</a></li>
+							<li><a th:href="|@{/my/market/on-sale}|">판매관리</a></li>
+							<li><a th:href="|@{/my/market/trade}|">거래내역</a></li>
+							<li><a th:href="|@{/my/account}|">프로필 수정</a></li>
+							<li><a href="#" id="logoutBtn">로그아웃</a></li>
+						</ul>
+					</div>
+				</div>
 			</li>			
 		</ul>
 			
 
 	</nav>
-		<div th:if="${session.loginMember != null}" id="dropdown-content" class="lists dropdown-content">
-			<ul class="nes-list is-disc">
-				<li><a th:href="|@{/my/charge}|">충전</a></li>
-				<li><a th:href="|@{/my/purchases}|">구매내역</a></li>
-				<li><a th:href="|@{/my/purchases/points}|">충전내역</a></li>
-				<li><a th:href="|@{/my/market/on-sale}|">판매관리</a></li>
-				<li><a th:href="|@{/my/market/trade}|">거래내역</a></li>
-				<li><a th:href="|@{/my/account}|">프로필 수정</a></li>
-				<li><a href="#" id="logoutBtn">로그아웃</a></li>
-			</ul>
-		</div>
 		<div class="nes-container with-title container" style="width:60%">
 			<th:block th:replace="${content}"></th:block>
 		</div>

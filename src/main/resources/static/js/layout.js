@@ -13,5 +13,10 @@ async function logout(){
 
 
 document.getElementById('profileImage').addEventListener('click',()=>{
-    document.getElementById('dropdown-content').style.display='block'
+    if(document.getElementById('dropdown-content').style.display=='block'){
+        document.getElementById('dropdown-content').style.display='none'
+    }else{
+        document.getElementById('dropdown-content').style.display='block'
+    }
+
 })
