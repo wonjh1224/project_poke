@@ -3,9 +3,10 @@
 <link rel="stylesheet" href="/css/storagePokemon.css">
 <th:block th:replace="~{/layout :: setFragment(~{this::content})}">
 <th:block th:fragment="content">
-	<h2>'[[${memberId}]]'의 포켓몬 보관함</h2>
+<p class="title" style="font-size:30px;margin-top:-40px">'[[${memberId}]]'의 포켓몬 보관함</p>
+	
 	<div role="group">
-		<button class="outline" th:onclick="|location.href='@{/storage/{memberId}/item(memberId=${session.loginMemberId})}'|">몬스터볼 보관함</button>
+		<button class="outline" th:onclick="|location.href='@{/storage/{memberId}/item(memberId=${session.loginMemberId})}'|">팩 보관함</button>
 		<button th:onclick="|location.href='@{/storage/{memberId}/pokemon(memberId=${session.loginMemberId})}'|">포켓몬 보관함</button>
 	</div>
 	<div>

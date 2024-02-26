@@ -3,7 +3,9 @@
 
 <th:block th:replace="~{/layout :: setFragment(~{this::content})}">
 	<th:block th:fragment="content">
-		<h2>거래소페이지임</h2><button th:onclick="|location.href='@{/market/register}'|">물품등록</button>
+	<p class="title" style="font-size:30px;margin-top:-40px">거래소</p>	
+		
+		<button th:onclick="|location.href='@{/market/register}'|">물품등록</button>
 		<div id="itemZone">
 
 		</div>

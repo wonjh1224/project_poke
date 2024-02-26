@@ -3,7 +3,7 @@
 <link href="/css/store/store.css" rel="stylesheet" />
 <th:block th:replace="~{/layout :: setFragment(~{this::content})}">
 	<th:block th:fragment="content">
-	<p class="title">상점</p>	
+	<p class="title" style="font-size:30px;margin-top:-40px">상점</p>
 	<div class="product-container">
 		<div class="product" th:each="pvo:${list}">
 			<img class="product-img" src="/image/yello.png"><br>
