@@ -7,8 +7,42 @@
 		font-family : 'dgm'
 	}
 	.profileImage{
-		width:28px;
-		height:28px;
+		width:44px;
+		height:44px;
 		border: 1px solid transparent;
 		border-radius:50%;
 	}
+
+	nav{
+		display: flex;
+		justify-content: space-between;
+		width: 60%;
+		margin: auto;
+		margin-top: 30px;
+		margin-bottom: 50px;
+	}
+	nav ul{
+		display: flex;
+		list-style-type: none;
+		text-align: center;
+		padding : 0;
+		margin: 0;
+		
+	}
+	nav ul li{
+		padding-left : 15px;
+		padding-right : 15px;
+		display:grid;
+		place-items: center;
+		height: 84px;
+	}
+	nav ul li a{
+		width: 84px;
+	}
+
+	.container{
+		margin: auto;
+	}
+
+
+
