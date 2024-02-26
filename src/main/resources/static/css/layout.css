@@ -1,0 +1,14 @@
+@charset "UTF-8";
+	@font-face{
+		font-family : 'dgm';
+		src : url('/font/dgm.ttf')
+	}
+	body{
+		font-family : 'dgm'
+	}
+	.profileImage{
+		width:28px;
+		height:28px;
+		border: 1px solid transparent;
+		border-radius:50%;
+	}

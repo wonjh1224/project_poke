@@ -4,51 +4,32 @@
 <th:block th:fragment="setFragment(content)">
 	<head>
 	<meta charset="UTF-8">
-
-<link href="https://unpkg.com/nes.css@2.3.0/css/nes.min.css" rel="stylesheet" />
-	<link
-		rel="stylesheet"
-		href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.jade.min.css"
-	/> 
-
+	
+	<!-- 8비트느낌 -->
+	<link href="https://unpkg.com/nes.css@2.3.0/css/nes.min.css" rel="stylesheet" />
+	<link href="/css/layout.css" rel="stylesheet" />
+	
 	<title>Poke</title>
 	</head>
-	<style>
-	@font-face{
-		font-family : 'dgm';
-		src : url('/font/neodgm.ttf')
-	}
-	body{
-		font-family : 'dgm'
-	}
-	.profileImage{
-		width:28px;
-		height:28px;
-		border: 1px solid transparent;
-		border-radius:50%;
-	}
-	</style>
+	
 	<body>
-	<nav class="container" style="width:60%">
+	<nav>
 	<ul>
-		<li><a href="/">인덱스로</a></li>
+		<li><a href="/"><i class="nes-pokeball"></i></a></li>
 	</ul>
 	<ul>
 		<li><a class="nes-btn" href="/board/list">게시판</a></li>
-		<li><a class="contrast" href="/store">상점</a></li>
-		<li><a class="contrast" th:href="|@{/pokedex/{memberId}(memberId=${session.loginMemberId})}|">도감</a></li>
-		<li><a class="contrast" href="/market">거래소</a></li>
-		<li><a class="contrast" th:href="|@{/storage/{memberId}(memberId=${session.loginMemberId})}|">보관함</a></li>
-		<li><a class="contrast" href="/ranking">랭킹</a></li>
+		<li><a class="nes-btn" href="/store">상점</a></li>
+		<li><a class="nes-btn" th:href="|@{/pokedex/{memberId}(memberId=${session.loginMemberId})}|">도감</a></li>
+		<li><a class="nes-btn" href="/market">거래소</a></li>
+		<li><a class="nes-btn" href="/ranking">랭킹</a></li>
+		<li><a class="nes-btn" th:href="|@{/storage/{memberId}(memberId=${session.loginMemberId})}|">보관함</a></li>
 	</ul>
 	<ul>
-		<li><a class="contrast" th:if="${session.loginMember == null}" href="/login">로그인</a></li>
-		<li><a class="contrast" th:if="${session.loginMember == null}" href="/register">회원가입</a></li>
+		<li><a class="nes-btn" th:if="${session.loginMember == null}" href="/login">로그인</a></li>
+		<!-- <li><a class="nes-btn" th:if="${session.loginMember == null}" href="/register">회원가입</a></li> -->
 		<li th:unless="${session.loginMember == null}">
-			<details class="dropdown">
-				<summary role="button" class="outline">
-					<img class="profileImage" th:src="|/upload/profile/${session.loginMember.hasProfile == 'y' ? session.loginMember.memberId+'.png' : 'default/default.png'}|">
-				</summary>
+			
 				<ul dir="rtl">
 					<li><a th:href="|@{/my/charge}|">충전</a></li>
 					<li><a th:href="|@{/my/purchases}|">구매내역</a></li>
@@ -58,7 +39,7 @@
 					<li><a th:href="|@{/my/account}|">프로필 수정</a></li>
 					<li><a href="#" id="logoutBtn">로그아웃</a></li>
 				</ul>
-			</details>
+
 		</li>
 	</ul>
 	

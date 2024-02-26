@@ -3,15 +3,13 @@
 <head>
 <link rel="stylesheet" href="/css/memberLogin.css">
 <meta charset="utf-8">
-	<link
-		rel="stylesheet"
-		href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.jade.min.css"
-	/>
+
+	<link href="https://unpkg.com/nes.css@2.3.0/css/nes.min.css" rel="stylesheet" />
 <title>로그인</title>
 </head>
 <body>
 	<div class="login-container">
-		<article class="login-box">
+		<div class="login-box nes-container with-title is-centered">
 			<h2><a href="/">POKE</a></h2>
 			<form th:action="|/login?rd-url=${url}|" method="post">
 				<label> 아이디 <input name="memberId"></label>
@@ -19,11 +17,11 @@
 				<div>
 					<span><a>아이디 찾기</a></span>
 					<span><a>비밀번호 찾기</a></span>
-					<span><a>회원가입</a></span>
+					<span><a href="/register">회원가입</a></span>
 				</div>
 				<button type="submit">로그인</button>
 			</form>
-		</article>
+		</div>
 	</div>
 </body>
 </html>

@@ -10,7 +10,15 @@
 </style>
 <th:block th:replace="~{/layout :: setFragment(~{this::content})}">
 	<th:block th:fragment="content">
+	
+	<div class="nes-container with-title is-centered">
+  	<p class="title">회원가입</p>
+
 	<form action="/register" method="post" enctype="multipart/form-data">
+	<div class="nes-field" style="width:50%">
+		<label for="name_field">Your name</label>
+  		<input type="text" id="name_field" class="nes-input">
+	</div>
 		ID:<input type="text" name="memberId"><br>
 		PWD:<input type="text" name="password"><br>
 		이름:<input type="text" name="name"><br>
@@ -30,6 +38,8 @@
 	<button id="submitBtn" type="submit">가입</button>
 		
 	</form>
+	</div>
+	
 	
 	</th:block>
 </th:block>

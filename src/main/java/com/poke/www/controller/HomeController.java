@@ -20,7 +20,7 @@ import lombok.extern.slf4j.Slf4j;
 public class HomeController {
 	private final PokemonService pokemonService;
 	
-	@GetMapping({"/","/null"})
+	@GetMapping("/")
 	public String home(Model m) {
 		m.addAttribute("msg","메세지테스트");
 		return "index";
