@@ -12,10 +12,10 @@
 	
 		<form action="/register" method="post" enctype="multipart/form-data">
 			<div class="nes-field">
-				<label for="memberId">아이디</label>
+				<label for="memberId">아이디<span class="nes-text" id="idSpan"></span></label>
 				<div class="flex-box">
 			  		<input type="text" id="memberId" name="memberId" class="nes-input">
-			  		<button type="button" class="nes-btn is-success">중복 확인</button>
+			  		<button type="button" id="idCheckBtn" class="nes-btn is-success">중복 확인</button>
 				</div>
 			
 				<div class="input-box">
@@ -33,10 +33,10 @@
 			  		<input type="text" id="name" name="name" class="nes-input">
 		  		</div>
 	  		
-				<label for="nickname">닉네임</label>
+				<label for="nickname">닉네임<span class="nes-text" id="nicknameSpan"></span></label>
 		  		<div class="flex-box">
 			  		<input type="text" id="nickname" name="nickname" class="nes-input ">
-			  		<button type="button" class="nes-btn is-success">중복 확인</button>
+			  		<button type="button" id="nicknameCheckBtn" class="nes-btn is-success">중복 확인</button>
 	  			</div>
 	  			<div class="input-box">
 					<label for="email">이메일</label>
@@ -45,13 +45,13 @@
 			</div>
 				
 			<div class="profile-box">
-				<div  id="img">
+				<div id="img">
 					<img class="profileImage" src="/upload/profile/default/default.png">
 				</div>
 				<div class="btn-box">			
 					<button class="nes-btn is-primary" type="button" id="trigger">프로필 이미지 선택</button>
 					<button class="nes-btn is-error" type="button" id="resetBtn">프로필 이미지 초기화</button>
-			<button class="nes-btn is-warning" id="submitBtn" type="submit">회원가입</button>
+					<button class="nes-btn is-warning" id="submitBtn" type="submit">회원가입</button>
 				</div>
 			</div>
 			<div id="inputDiv">

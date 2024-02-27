@@ -19,6 +19,8 @@ public interface MemberService {
 	int addScore(int score, String memberId);
 
 	int modifyHasProfile(String memberId, boolean b);
+
+	MemberVO getMemberByNickname(String nickname);
 	
 
 }

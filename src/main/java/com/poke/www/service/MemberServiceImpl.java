@@ -58,5 +58,10 @@ public class MemberServiceImpl implements MemberService {
 		return mapper.updateHasProfile(status,memberId);
 	}
 
+	@Override
+	public MemberVO getMemberByNickname(String nickname) {
+		return mapper.selectMemberByNickname(nickname);
+	}
+
 
 }

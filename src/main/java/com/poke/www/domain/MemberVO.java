@@ -15,9 +15,8 @@ public class MemberVO {
 	private String memberId;
 	private String password;
 	private String name;
-	private String birth;
-	private String email; 
-	private String phone;
+	private String nickname;
+	private String email;
 	private int point;
 	private int score;
 	private String hasProfile;

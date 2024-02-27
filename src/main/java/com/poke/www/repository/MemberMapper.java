@@ -21,4 +21,6 @@ public interface MemberMapper {
 
 	int updateHasProfile(String status, String memberId);
 
+	MemberVO selectMemberByNickname(String nickname);
+
 }

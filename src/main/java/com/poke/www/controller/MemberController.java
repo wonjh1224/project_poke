@@ -77,6 +77,22 @@ public class MemberController {
 		return memberService.getMember(mvo.getMemberId());
 	}
 	
+	@ResponseBody
+	@PostMapping("/register/id-check")
+	public String idDuplicateCheck(@RequestBody String memberId) {
+		if(memberService.getMember(memberId) == null) {
+			return "사용가능";
+		}
+		return "사용불가";
+	}
+	@ResponseBody
+	@PostMapping("/register/nickname-check")
+	public String nicknameDuplicateCheck(@RequestBody String nickname) {
+		if(memberService.getMemberByNickname(nickname) == null) {
+			return "사용가능";
+		}
+		return "사용불가";
+	}
 
 	
 }
