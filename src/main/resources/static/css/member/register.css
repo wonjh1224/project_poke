@@ -7,3 +7,23 @@
 	border-radius:50%;
 }
 
+.flex-box{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+.flex-box input{
+    width: 300px;
+}
+
+.input-box{
+    margin-bottom: 20px;
+}
+
+label{
+    
+}
+
+.nes-field label{
+    margin-bottom: 3px;
+}
