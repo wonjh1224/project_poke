@@ -3,6 +3,7 @@
 <link href="/css/store/store.css" rel="stylesheet" />
 <th:block th:replace="~{/layout :: setFragment(~{this::content})}">
 	<th:block th:fragment="content">
+	<div class="nes-container with-title container" style="width:60%">
 	<p class="title" style="font-size:30px;margin-top:-40px">상점</p>
 	<div class="product-container">
 		<div class="product" th:each="pvo:${list}">
@@ -15,5 +16,6 @@
 		</div>
 	</div>
 	
+	</div>
 	</th:block>
 </th:block>

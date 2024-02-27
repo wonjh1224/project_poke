@@ -1,0 +1,9 @@
+@charset "UTF-8";
+
+.profileImage{
+	width:56px;
+	height:56px;
+	border: 1px solid transparent;
+	border-radius:50%;
+}
+

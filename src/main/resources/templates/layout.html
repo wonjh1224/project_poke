@@ -51,7 +51,11 @@
 			</li>
 		</ul>
 		<ul>
-			<li><a class="nes-btn" th:if="${session.loginMember == null}" href="/login">로그인</a></li>
+			<li>
+				<a class="nes-btn" th:if="${session.loginMember == null}" href="/login">
+					<img src="/image/key.png" style="width:48px;height:48px;margin-bottom:7px">로그인
+				</a>
+			</li>
 			<li>
 				<img th:if="${session.loginMember != null}" id="profileImage" class="profileImage" th:src="|/upload/profile/${session.loginMember.hasProfile == 'y' ? session.loginMember.memberId+'.png' : 'default/default.png'}|">
 				<div th:if="${session.loginMember != null}" class="nes-container dropdown-content" id="dropdown-content" >
@@ -72,9 +76,7 @@
 			
 
 	</nav>
-		<div class="nes-container with-title container" style="width:60%">
-			<th:block th:replace="${content}"></th:block>
-		</div>
+	<th:block th:replace="${content}"></th:block>
 	</body>
 <script src="/js/layout.js"></script>
 </th:block>

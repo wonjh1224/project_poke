@@ -3,18 +3,20 @@
 
 <th:block th:replace="~{/layout :: setFragment(~{this::content})}">
 	<th:block th:fragment="content">
-	<p class="title" style="font-size:30px;margin-top:-40px">인덱스</p>	
-	
-	
-	<input type="text" id="pno" disabled><button disabled onclick="setPokemon()">포켓몬추가</button>
-	<hr>
-	<input id="start" placeholder="start"><input id="end" placeholder="end">
-	<br> <input id="print" placeholder="print"><br>
-	<button type="button" id="aa">숫자 출력</button>
-	<div class="framed">
-	    <span>You can get the frame in it's original (unscaled) size by adding the no-hd class.</span>
-	</div>
+	<div class="nes-container with-title container" style="width:60%">
+		<p class="title" style="font-size:30px;margin-top:-40px">인덱스</p>	
+		
+		
+		<input type="text" id="pno" disabled><button disabled onclick="setPokemon()">포켓몬추가</button>
+		<hr>
+		<input id="start" placeholder="start"><input id="end" placeholder="end">
+		<br> <input id="print" placeholder="print"><br>
+		<button type="button" id="aa">숫자 출력</button>
+		<div class="framed">
+		    <span>You can get the frame in it's original (unscaled) size by adding the no-hd class.</span>
+		</div>
 
+	</div>
 	</th:block>
 </th:block>
 
