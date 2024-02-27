@@ -10,102 +10,59 @@
 </th:block>
 
 <script>
-async function getPokemonKorean(pokemonId){
-    try {
-        const url = "https://pokeapi.co/api/v2/pokemon-species/"+pokemonId
-        const resp = await fetch(url)
-        const result = await resp.json();
-        return result;
-    } catch (error) {
-        console.log(error)
-    }
-}
 
-async function getPokemonStats(pokemonId){
-    try {
-        const url = "https://pokeapi.co/api/v2/pokemon/"+pokemonId
-        const resp = await fetch(url)
-        const result = await resp.json();
-        return result.stats;
-    } catch (error) {
-        console.log(error)
-    }
-}
-
-async function getPokemonHeight(pokemonId){
+async function getPokemonAPI(pokemonId){
 	try{
 		const url = "https://pokeapi.co/api/v2/pokemon/"+pokemonId
 		const resp = await fetch(url)
 		const result = await resp.json()
-		return result.height
+		return result
 	}catch(error){
 		console.log(error)
 	}
 }
-
-async function getPokemonWeight(pokemonId){
-	try{
-		const url = "https://pokeapi.co/api/v2/pokemon/"+pokemonId
-		const resp = await fetch(url)
-		const result = await resp.json()
-		return result.weight
-	}catch(error){
-		console.log(error)
-	}
-}
-
-async function getPokemonGenera(pokemonId){
+async function getPokemon_speciesAPI(pokemonId){
 	try{
 		const url = "https://pokeapi.co/api/v2/pokemon-species/"+pokemonId
 		const resp = await fetch(url)
 		const result = await resp.json()
-		return result.genera
+		return result
 	}catch(error){
 		console.log(error)
 	}
-}
-
-async function getPokemonTypes(pokemonId){
-	try{
-		const url = "https://pokeapi.co/api/v2/pokemon/"+pokemonId
-		const resp = await fetch(url)
-		const result = await resp.json()
-		return result.types
-	}catch(error){
-		console.log(error)
-	}
-	
 }
 
 async function setPokemon(){
 	let pno = document.getElementById('pno').value
 	let pokemons = []
     for(let i=1; i<=pno; i++){
-        let pokemonKorean = await getPokemonKorean(i)
+    	let pokemonAPI = await getPokemonAPI(i)
+    	let pokemon_speciesAPI = await getPokemon_speciesAPI(i)
+    	
+        let pokemonKorean = pokemon_speciesAPI
         
-        let pokemonHeight = await getPokemonHeight(i)
-        let pokemonWeight = await getPokemonWeight(i)
+        let height = pokemonAPI.height
+        let weight = pokemonAPI.weight   
         
-        let pokemonGenera = await getPokemonGenera(i)
-        let genus = pokemonGenera[1].genus
+        let pokemonGenera = pokemon_speciesAPI.genera
+        let genus = pokemonGenera[1].genus	
         
-        let pokemonTypes = await getPokemonTypes(i)
+        let pokemonTypes = pokemonAPI.types
+    	let type = '';
         
-    	let typeKor = '';
-        
-        for(type of pokemonTypes){
-        	console.log(type.type.url);
-        	let url = type.type.url;
-        	
+    	//타입(한글)
+        for(t of pokemonTypes){
+        	let url = t.type.url;
+     
         	let resp = await fetch(url)
         	let result = await resp.json()
-        	console.log(result.names[1].name);
-        	typeKor += result.names[1].name+","
+     
+        	type += result.names[1].name+","
         }
         
-        typeKor = typeKor.substring(0, typeKor.lastIndexOf(","));
+        type = type.substring(0, type.lastIndexOf(","));
         
-        let pokemonStats = await getPokemonStats(i)
+        let pokemonStats = pokemonAPI.stats
         let stats = 0;
               
         for(stat of pokemonStats){
@@ -129,10 +86,10 @@ async function setPokemon(){
             image : image,
             flavor : flavor,
             score : stats,
-            height : pokemonHeight,
-            weight : pokemonWeight,
+            height : height,
+            weight : weight,
             genus : genus,
-            type : typeKor
+            type : type
         }
         pokemons.push(pokemon)
     }
