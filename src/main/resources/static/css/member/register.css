@@ -14,9 +14,6 @@
     margin-bottom: 20px;
 }
 
-/* body{
-    background-image: url('https://images5.alphacoders.com/608/608323.png'); 
-} */
 
 .nes-field label{
     margin-bottom: 3px;
@@ -39,7 +36,7 @@
 
 }
 .btn-box button{
-    margin-top: 30px;
+    margin-top: 50px;
     width: 200px;
 }
 
