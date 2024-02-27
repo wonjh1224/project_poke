@@ -1,11 +1,5 @@
 @charset "UTF-8";
 
-.profileImage{
-	width:56px;
-	height:56px;
-	border: 1px solid transparent;
-	border-radius:50%;
-}
 
 .flex-box{
     display: flex;
@@ -20,10 +14,36 @@
     margin-bottom: 20px;
 }
 
-label{
-    
-}
+/* body{
+    background-image: url('https://images5.alphacoders.com/608/608323.png'); 
+} */
 
 .nes-field label{
     margin-bottom: 3px;
+}
+
+.profile-box{
+    display: flex;
+    justify-content: space-evenly;    
+    
+}
+.profileImage{
+    width:80px;
+    height:80px;
+    border: 1px solid transparent;
+    border-radius:50%;
+}
+
+.btn-box{
+    display: inline-block;
+    
+    width: 50%;
+}
+.btn-box button{
+    width: 200px;
+}
+
+#img{
+    display: flex;
+    align-items: center;
 }
