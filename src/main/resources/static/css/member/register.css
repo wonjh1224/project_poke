@@ -23,9 +23,7 @@
 }
 
 .profile-box{
-    display: flex;
-    justify-content: space-evenly;    
-    
+    margin-top: 40px;
 }
 .profileImage{
     width:80px;
@@ -36,14 +34,18 @@
 
 .btn-box{
     display: inline-block;
-    
-    width: 50%;
+    margin-bottom: 10px;
+    text-align: center;
+
 }
 .btn-box button{
+    margin-top: 30px;
     width: 200px;
 }
 
 #img{
     display: flex;
+    justify-content: center;
     align-items: center;
+    margin-top: 20px;
 }
