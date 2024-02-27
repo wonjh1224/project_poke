@@ -90,18 +90,18 @@ document.getElementById('nicknameCheckBtn').addEventListener('click',()=>{
         nickSpan.innerText = " - 닉네임을 입력하세요"
         return
     }
-    idDuplicateCheck(memberId).then(result=>{
+    nicknameDuplicateCheck(nickname).then(result=>{
         if(result == "사용불가"){
-            idInput.classList.add('is-error')
-            idSpan.classList.add('is-error')
-            idSpan.innerText = " - 이미 사용중인 아이디입니다."
+            nickInput.classList.add('is-error')
+            nickSpan.classList.add('is-error')
+            nickSpan.innerText = " - 이미 사용중인 닉네임입니다."
             return
         }else if(result == "사용가능"){
-            idInput.classList.remove('is-error')
-            idSpan.classList.remove('is-error')
-            idInput.classList.add('is-success')
-            idSpan.classList.add('is-success')
-            idSpan.innerText = " - 사용 가능한 아이디입니다."
+            nickInput.classList.remove('is-error')
+            nickSpan.classList.remove('is-error')
+            nickInput.classList.add('is-success')
+            nickSpan.classList.add('is-success')
+            nickSpan.innerText = " - 사용 가능한 닉네임입니다."
             return
         }
     })
