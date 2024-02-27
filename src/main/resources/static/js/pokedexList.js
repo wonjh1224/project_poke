@@ -29,7 +29,7 @@ function spreadList(){
         for(pokemon of result.allPokemons){
             pokedexLine.innerHTML += `
                 <div>
-                	<a href="/pokedex/${memberId}/${pokemon.name}">
+                	<a href="/pokedex/pokemon/${pokemon.pokemonId}">
                     <img src="${pokemon.image}" class="${userPokemonIds.includes(pokemon.pokemonId) ? 'color' : 'gray'} abc">
                 	</a>
                     <p>${userPokemonIds.includes(pokemon.pokemonId)? pokemon.name : '???'}</p>

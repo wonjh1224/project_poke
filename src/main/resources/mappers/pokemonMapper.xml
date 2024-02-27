@@ -22,7 +22,7 @@
 </select>
 
 <select id="selectPokemonByName">
-	select * from pokemon where name = #{name}
+	select * from pokemon where pokemon_id = #{pokemonId}
 </select>
 
 </mapper>

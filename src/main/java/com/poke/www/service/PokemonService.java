@@ -14,6 +14,6 @@ public interface PokemonService {
 
 	PokemonVO getPokemonByPokemonId(int pokemonId);
 
-	PokemonVO getPokemonByName(String pokemonName);
+	PokemonVO getPokemonByName(int pokemonId);
 
 }
