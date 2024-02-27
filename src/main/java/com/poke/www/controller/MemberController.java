@@ -1,7 +1,9 @@
 package com.poke.www.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -82,6 +84,19 @@ public class MemberController {
 	@PostMapping("/member")
 	public MemberVO getMember(@RequestBody MemberVO mvo) {
 		return memberService.getMember(mvo.getMemberId());
+	}
+	
+	
+	@GetMapping("/member/{memberId}")
+	public String detailPage(@PathVariable("memberId")String memberId, Model m) {
+		int ranking = rankingService.getRankingByMemberId(memberId);
+		m.addAttribute("ranking", ranking);
+		
+		int score = rankingService.getScoreByMemberId(memberId);
+		double percent = Math.round((score / 204451.0) * 100 * 100) / 100.0;
+		log.info("per {}", percent);
+		m.addAttribute("per", percent);
+		return "/member/detail";
 	}
 	
 	

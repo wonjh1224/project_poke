@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<th:block th:replace="~{/layout :: setFragment(~{this::content})}">
+	<th:block th:fragment="content">
+	
+	<h2>유저 디테일 페이지임</h2>
+	<div>
+		<p>아이디 : [[${memberId}]]</p>
+		<p>컨텐츠들</p>
+		<div>대표 포켓몬 5마리</div>
+		<div>랭킹 : [[${ranking}]] 등</div>
+		<div>도감 : [[${per}]] %</div>
+		<div>업적</div>
+		<div>..?</div>
+	</div>
+
+	</th:block>
+</th:block>

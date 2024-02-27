@@ -20,4 +20,8 @@ public interface RankingService {
 
 	void updateScore();
 
+	int getRankingByMemberId(String memberId);
+
+	int getScoreByMemberId(String memberId);
+
 }

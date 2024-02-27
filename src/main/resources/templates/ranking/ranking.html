@@ -34,7 +34,9 @@ a {
 				<li th:each="member:${ranking}">
 					<!-- 랭킹 반영 안된 사람들은 표시 x --> 
 					<th:block th:if="${member.ranking > 0}">
-						[[${member.ranking}]]등 : [[${member.memberId}]] ( [[${member.score}]]점 )
+						<span>[[${member.ranking}]]등 :</span> 
+						<span><a th:href="|/member/${member.memberId}|">[[${member.memberId}]]</a></span> 
+						<span>( [[${member.score}]]점 )</span>
 						<progress class="nes-progress is-success" th:value="${member.score}" max="204451"></progress>
 					</th:block>
 				</li>

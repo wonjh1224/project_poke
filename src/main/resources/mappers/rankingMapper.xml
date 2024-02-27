@@ -34,6 +34,14 @@
 		update ranking r set score = (select score from member where member_id = r.member_id)
 	</update>
 	
+	<select id="selectrankingByMemberId">
+		select ranking from ranking where member_id = #{member_id}
+	</select>
+	
+	<select id="selectScoreByMemberId">
+		select score from ranking where member_id = #{member_id}
+	</select>
+	
 	
 	<sql id="search">
 		<if test="keyword != null">

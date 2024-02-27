@@ -51,5 +51,17 @@ public class RankingServiceImpl implements RankingService{
 		rankingMapper.updateScore();
 		
 	}
+
+	@Override
+	public int getRankingByMemberId(String memberId) {
+		// TODO Auto-generated method stub
+		return rankingMapper.selectrankingByMemberId(memberId);
+	}
+
+	@Override
+	public int getScoreByMemberId(String memberId) {
+		// TODO Auto-generated method stub
+		return rankingMapper.selectScoreByMemberId(memberId);
+	}
 	
 }
