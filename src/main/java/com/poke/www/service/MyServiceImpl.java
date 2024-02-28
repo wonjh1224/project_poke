@@ -42,4 +42,15 @@ public class MyServiceImpl implements MyService {
 	public List<TradeVO> getTradeList(String loginMemberId) {
 		return mapper.selectTradeList(loginMemberId);
 	}
+
+	@Override
+	public String getProfileUuidByMemberId(String memberId) {
+		String uuid = mapper.selectProfileUuidByMemberId(memberId);
+		return uuid;
+	}
+
+	@Override
+	public int modifyProfile(String memberId, String uuid) {
+		return mapper.updateProfileByMemberId(uuid,memberId);
+	}
 }

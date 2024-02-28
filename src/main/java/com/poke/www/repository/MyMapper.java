@@ -21,4 +21,8 @@ public interface MyMapper {
 
 	List<TradeVO> selectTradeList(String loginMemberId);
 
+	String selectProfileUuidByMemberId(String memberId);
+
+	int updateProfileByMemberId(String uuid, String memberId);
+
 }

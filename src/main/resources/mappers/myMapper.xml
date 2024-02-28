@@ -24,4 +24,12 @@
 <select id="selectTradeList">
 	select * from market_trade m join pokemon p on m.pokemon_id = p.pokemon_id where buyer = #{memberId} or seller = #{memberId}
 </select>
+
+<select id="selectProfileUuidByMemberId">
+	select uuid from profile where member_id = #{memberId}
+</select>
+
+<update id="updateProfileByMemberId">
+	update profile set uuid = #{param1} where member_id = #{param2}
+</update>
 </mapper>

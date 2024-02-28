@@ -3,6 +3,7 @@ package com.poke.www.controller;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
+import java.util.UUID;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -115,9 +116,19 @@ public class MyController {
 			@RequestParam("isDefault") String isDefault,
 			Model m) throws IOException {
 		if (file!=null) {
-			String path = "C:\\_poke\\_project\\_fileUpload\\profile\\"+memberId+".png";
+			String uuid = UUID.randomUUID().toString();
+			String path = "C:\\_poke\\_project\\_fileUpload\\profile\\"+uuid+"_"+memberId+".png";
 			file.transferTo(new File(path));
 			memberService.modifyHasProfile(memberId, true);
+			String oldUuid = memberService.getProfileUuidByMemberId(memberId); 
+			if(oldUuid != null) {
+				myService.modifyProfile(memberId,uuid);
+				new File("C:\\_poke\\_project\\_fileUpload\\profile\\"+oldUuid+"_"+memberId+".png")
+						.delete();
+			}else if(oldUuid == null) {
+				memberService.addProfile(memberId, uuid);
+			}
+			
 		}else {
 			if(isDefault.equals("y")) {
 				memberService.modifyHasProfile(memberId, false);

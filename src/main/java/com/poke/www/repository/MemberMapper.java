@@ -23,4 +23,8 @@ public interface MemberMapper {
 
 	MemberVO selectMemberByNickname(String nickname);
 
+	int insertProfile(String memberId, String uuid);
+
+	String selectProfileUuidByMemberId(String memberId);
+
 }

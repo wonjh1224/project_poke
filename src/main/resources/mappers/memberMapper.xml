@@ -10,7 +10,10 @@
 </insert>
 
 <select id="selectMemberById">
-	select * from member where member_id=#{memberId}
+	select * from member m
+	join profile p
+	on m.member_id = p.member_id
+	where m.member_id = #{memberId}
 </select>
 
 <update id="updatePointById">
@@ -32,4 +35,14 @@
 <select id="selectMemberByNickname">
 	select * from member where nickname=#{nickname}
 </select>
+
+<insert id="insertProfile">
+	insert into profile (member_id,uuid)
+	values (#{param1},#{param2})
+</insert>
+
+<select id="selectProfileUuidByMemberId">
+	select uuid from profile where member_id = #{memberId}
+</select>
+
 </mapper>

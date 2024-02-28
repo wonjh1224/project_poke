@@ -57,7 +57,7 @@
 				</a>
 			</li>
 			<li>
-				<img th:if="${session.loginMember != null}" id="profileImage" class="profileImage" th:src="|/upload/profile/${session.loginMember.hasProfile == 'y' ? session.loginMember.memberId+'.png' : 'default/default.png'}|">
+				<img th:if="${session.loginMember != null}" id="profileImage" class="profileImage" th:src="|/upload/profile/${session.loginMember.hasProfile == 'y' ? session.loginMember.uuid+'_'+session.loginMember.memberId+'.png' : 'default/default.png'}|">
 				<div th:if="${session.loginMember != null}" class="nes-container dropdown-content" id="dropdown-content" >
 					<div class="lists">
 						<ul class="nes-list is-disc">

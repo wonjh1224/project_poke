@@ -21,6 +21,10 @@ public interface MemberService {
 	int modifyHasProfile(String memberId, boolean b);
 
 	MemberVO getMemberByNickname(String nickname);
+
+	int addProfile(String memberId, String uuid);
+
+	String getProfileUuidByMemberId(String memberId);
 	
 
 }

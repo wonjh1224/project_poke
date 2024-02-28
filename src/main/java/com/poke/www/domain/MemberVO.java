@@ -19,4 +19,6 @@ public class MemberVO {
 	private int point;
 	private int score;
 	private String hasProfile;
+	
+	private String uuid;
 }

@@ -158,3 +158,8 @@ alter table member drop column phone;
 alter table member drop column birth;
 alter table member drop column name;
 멤버에 닉네임추가, 폰번호,생일,이름 삭제
+
+-- 2024 - 02 - 28 --
+create table profile(
+member_id varchar(20) primary key,
+uuid varchar(50) not null);

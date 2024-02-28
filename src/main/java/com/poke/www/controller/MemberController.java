@@ -2,6 +2,7 @@ package com.poke.www.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.UUID;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -35,8 +36,10 @@ public class MemberController {
 			@RequestParam(name="profile", required = false)MultipartFile profile) throws IOException {
 		memberService.register(mvo);
 		if(!profile.isEmpty()) {
-			String path = "C:\\_poke\\_project\\_fileUpload\\profile\\"+mvo.getMemberId()+".png";
+			String uuid = UUID.randomUUID().toString();
+			String path = "C:\\_poke\\_project\\_fileUpload\\profile\\"+uuid+"_"+mvo.getMemberId()+".png";
 			profile.transferTo(new File(path));
+			memberService.addProfile(mvo.getMemberId(),uuid);
 			memberService.modifyHasProfile(mvo.getMemberId(),true);
 		}
 		return "redirect:/";
@@ -55,11 +58,9 @@ public class MemberController {
 			m.addAttribute("url",url);
 			return "/member/login";
 		}
-		
 		HttpSession session = request.getSession();
 		session.setAttribute("loginMember", loginMember);
 		session.setAttribute("loginMemberId", loginMember.getMemberId());
-		log.info("url url url url : {}",url);
 		return "redirect:" + url;
 	}
 	@PostMapping("/logout")

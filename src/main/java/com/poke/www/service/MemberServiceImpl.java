@@ -63,5 +63,15 @@ public class MemberServiceImpl implements MemberService {
 		return mapper.selectMemberByNickname(nickname);
 	}
 
+	@Override
+	public int addProfile(String memberId, String uuid) {
+		return mapper.insertProfile(memberId,uuid);
+	}
+
+	@Override
+	public String getProfileUuidByMemberId(String memberId) {
+		return mapper.selectProfileUuidByMemberId(memberId);
+	}
+
 
 }

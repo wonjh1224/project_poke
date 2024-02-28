@@ -18,4 +18,8 @@ public interface MyService {
 
 	List<TradeVO> getTradeList(String loginMemberId);
 
+	String getProfileUuidByMemberId(String memberId);
+
+	int modifyProfile(String memberId, String uuid);
+
 }
