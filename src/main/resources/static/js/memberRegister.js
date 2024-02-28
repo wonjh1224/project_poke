@@ -52,6 +52,13 @@ async function idDuplicateCheck(memberId){
     return result;
 }
 
+// 정규식
+// id, pw
+var regIdPw = /^[a-zA-Z0-9]{4,12}$/;
+// 이름
+var regName = /^[가-힣a-zA-Z]{2,15}$/;
+    
+
 //아이디 중복체크
 document.getElementById('idCheckBtn').addEventListener('click',()=>{
     let idInput = document.getElementById('memberId')
@@ -67,6 +74,12 @@ document.getElementById('idCheckBtn').addEventListener('click',()=>{
         idInput.className = "nes-input is-error"
         idSpan.className = "nes-text is-error"
         idSpan.innerText = " - 띄어쓰기는 사용할 수 없습니다."
+        return
+    }
+    if(!regIdPw.test(memberId)){
+        idInput.className = "nes-input is-error"
+        idSpan.className = "nes-text is-error"
+        idSpan.innerText = " - 4~12자의 영어/숫자만 허용됩니다."
         return
     }
     idDuplicateCheck(memberId).then(result=>{
@@ -101,6 +114,12 @@ document.getElementById('nicknameCheckBtn').addEventListener('click',()=>{
         nickInput.className = "nes-input is-error"
         nickSpan.className = "nes-text is-error"
         nickSpan.innerText = " - 띄어쓰기는 사용할 수 없습니다."
+        return
+    }
+    if(!regName.test(nickname)){
+        nickInput.className = "nes-input is-error"
+        nickSpan.className = "nes-text is-error"
+        nickSpan.innerText = " - 2~12자의 한글/영어/숫자만 허용됩니다."
         return
     }
     nicknameDuplicateCheck(nickname).then(result=>{
@@ -140,6 +159,8 @@ function emailCheck(email_address){
 		return true;
 	}
 }
+
+
 
 //회원가입 폼 검증
 document.addEventListener('input',(e)=>{
@@ -197,6 +218,19 @@ document.addEventListener('input',(e)=>{
         let span = e.target.id + "Span"
         document.getElementById(span).className = "nes-text"
         document.getElementById(span).innerText = ""
+    }
+
+    if((e.target.id == 'password'|| e.target.id == 'password2') && !regIdPw.test(pwInput.value)){
+        pwInput.classList.remove('is-success')
+        pw2Input.classList.remove('is-success')
+
+        pwInput.classList.add('is-error')
+        pw2Input.classList.add('is-error')
+
+        pwSpan.className = "nes-text is-error"
+        pwSpan.innerText = " - 4~12자의 영어/숫자만 허용됩니다."
+        pw2Span.className = "nes-text is-error"
+        pw2Span.innerText = " - 4~12자의 영어/숫자만 허용됩니다."
     }
 
     if(e.target.value.includes(' ')){
