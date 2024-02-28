@@ -36,6 +36,8 @@ function spreadList(){
                     <p>${userPokemonIds.includes(pokemon.pokemonId)? pokemon.flavor : ''}</p>
                 </div>
             `
+            
+            
         }
     })
 }
