@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.poke.www.repository.FarmMapper">
+
+	<insert id="insertPokemon">
+		insert into farm (member_id, slot_1, slot_2, slot_3, slot_4, slot_5)
+		values(#{param1}, ${param2}, ${param3}, ${param4}, ${param5}, ${param6})
+	</insert>
+
+</mapper>

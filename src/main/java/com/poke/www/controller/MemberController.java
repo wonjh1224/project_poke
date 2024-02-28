@@ -1,5 +1,7 @@
 package com.poke.www.controller;
 
+import java.util.List;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,7 +12,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.poke.www.domain.MemberVO;
+import com.poke.www.domain.PokedexVO;
+import com.poke.www.domain.PokemonVO;
 import com.poke.www.service.MemberService;
+import com.poke.www.service.PokedexService;
 import com.poke.www.service.RankingService;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -24,6 +29,7 @@ import lombok.extern.slf4j.Slf4j;
 public class MemberController {
 	private final MemberService memberService;
 	private final RankingService rankingService;
+	private final PokedexService pokedexService;
 	
 	@GetMapping("/register/test")
 	public void registerTest() {
@@ -94,10 +100,14 @@ public class MemberController {
 		
 		int score = rankingService.getScoreByMemberId(memberId);
 		double percent = Math.round((score / 204451.0) * 100 * 100) / 100.0;
-		log.info("per {}", percent);
 		m.addAttribute("per", percent);
+		
+		List<PokedexVO> list = pokedexService.getPokemonsByMemberId(memberId);
+		m.addAttribute("list", list);
+		
 		return "/member/detail";
 	}
+	
 	
 	
 }

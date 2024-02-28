@@ -71,3 +71,13 @@ alter table pokemon add column weight int not null;
 alter table pokemon add column genus varchar(20) not null;
 alter table pokemon add column type varchar(20) not null;
 
+-- 2024 - 02 - 28 --
+농장테이블 생성
+create table farm(
+member_id varchar(20),
+slot_1 int not null,
+slot_2 int not null,
+slot_3 int not null,
+slot_4 int not null,
+slot_5 int not null,
+primary key(member_id));
