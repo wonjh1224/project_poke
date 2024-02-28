@@ -247,7 +247,7 @@ document.getElementById('submitBtn').addEventListener('click',()=>{
             return
         }
     }
-    document.registerForm.submit()
+    document.getElementById('registerForm').submit();
 })
 
 
