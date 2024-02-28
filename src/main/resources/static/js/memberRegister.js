@@ -55,31 +55,38 @@ async function idDuplicateCheck(memberId){
 //아이디 중복체크
 document.getElementById('idCheckBtn').addEventListener('click',()=>{
     let idInput = document.getElementById('memberId')
-    let idSpan = document.getElementById('idSpan')
+    let idSpan = document.getElementById('memberIdSpan')
     let memberId = idInput.value
     if(memberId == '' || memberId == null){
-        idInput.classList.add('is-error')
-        idSpan.classList.add('is-error')
-        idSpan.innerText = " - 아이디를 입력하세요"
+        idInput.className = "nes-input is-error"
+        idSpan.className = "nes-text is-error"
+        idSpan.innerText = " - 아이디를 입력하세요."
+        return
+    }
+    if(memberId.includes(' ')){
+        idInput.className = "nes-input is-error"
+        idSpan.className = "nes-text is-error"
+        idSpan.innerText = " - 띄어쓰기는 사용할 수 없습니다."
         return
     }
     idDuplicateCheck(memberId).then(result=>{
         if(result == "사용불가"){
-            idInput.classList.add('is-error')
-            idSpan.classList.add('is-error')
+            idInput.className = "nes-input is-error"
+            idSpan.className = "nes-text is-error"
             idSpan.innerText = " - 이미 사용중인 아이디입니다."
             return
         }else if(result == "사용가능"){
-            idInput.classList.remove('is-error')
-            idSpan.classList.remove('is-error')
-            idInput.classList.add('is-success')
-            idSpan.classList.add('is-success')
+            idInput.className = "nes-input is-success"
+            idSpan.className = "nes-text is-success"
             idSpan.innerText = " - 사용 가능한 아이디입니다."
             return
         }
     })
 })
 
+
+
+//닉네임 중복체크
 document.getElementById('nicknameCheckBtn').addEventListener('click',()=>{
     let nickInput = document.getElementById('nickname')
     let nickSpan = document.getElementById('nicknameSpan')
@@ -88,6 +95,12 @@ document.getElementById('nicknameCheckBtn').addEventListener('click',()=>{
         nickInput.classList.add('is-error')
         nickSpan.classList.add('is-error')
         nickSpan.innerText = " - 닉네임을 입력하세요"
+        return
+    }
+    if(nickname.includes(' ')){
+        nickInput.className = "nes-input is-error"
+        nickSpan.className = "nes-text is-error"
+        nickSpan.innerText = " - 띄어쓰기는 사용할 수 없습니다."
         return
     }
     nicknameDuplicateCheck(nickname).then(result=>{
@@ -119,13 +132,93 @@ async function nicknameDuplicateCheck(nickname){
     return result;
 }
 
+function emailCheck(email_address){     
+	email_regex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/i;
+	if(!email_regex.test(email_address)){ 
+		return false; 
+	}else{
+		return true;
+	}
+}
+
+//회원가입 폼 검증
+document.addEventListener('input',(e)=>{
+    let pwInput = document.getElementById('password')
+    let pwSpan = document.getElementById('passwordSpan')
+    let pw2Input = document.getElementById('password2')
+    let pw2Span = document.getElementById('password2Span')
+
+    let emailInput = document.getElementById('email')
+    let emailSpan = document.getElementById('emailSpan')
+
+    
+    if(pwInput.value != pw2Input.value){
+        pwInput.classList.remove('is-success')
+        pw2Input.classList.remove('is-success')
+
+        pwInput.classList.add('is-error')
+        pw2Input.classList.add('is-error')
+
+        pwSpan.className = "nes-text is-error"
+        pwSpan.innerText = " - 동일한 비밀번호를 입력해 주세요."
+        pw2Span.className = "nes-text is-error"
+        pw2Span.innerText = " - 동일한 비밀번호를 입력해 주세요."
+    }
+    if(pwInput.value == pw2Input.value && pw2Input.value != ''){
+        pwInput.classList.remove('is-error')
+        pw2Input.classList.remove('is-error')
+
+        pwInput.classList.add('is-success')
+        pw2Input.classList.add('is-success')
+
+        pwSpan.className = "nes-text is-success"
+        pw2Span.className = "nes-text is-success"
+
+        pwSpan.innerText = ""
+        pw2Span.innerText = ""
+    }
+
+    if(emailInput.value == ''){
+        emailInput.className = "nes-input"
+    }
+    if(emailInput.value != '' && emailCheck(emailInput.value)){
+        emailInput.className = "nes-input is-success"
+        emailSpan.className = "nes-text is-success"
+        emailSpan.innerText = ""
+    }
+    if(emailInput.value != '' && !emailCheck(emailInput.value)){
+        emailInput.className = "nes-input is-error"
+        emailSpan.className = "nes-text is-error"
+        emailSpan.innerText = " - 이메일 형식이 올바르지 않습니다."
+    }
+
+    if(e.target.id == 'memberId' || e.target.id == 'nickname'){
+        e.target.className = "nes-input"
+        let span = e.target.id + "Span"
+        document.getElementById(span).className = "nes-text"
+        document.getElementById(span).innerText = ""
+    }
+
+    if(e.target.value.includes(' ')){
+        alert("띄어쓰기는 사용할 수 없습니다.")
+        e.target.value = ""
+    }
+})
+
+document.getElementById('submitBtn').addEventListener('click',()=>{
+    for(input of document.querySelectorAll(".nes-input")){
+        if(!input.classList.contains('is-success')){
+            alert('입력한 정보를 확인해 주세요.')
+            input.focus()
+            return
+        }
+    }
+})
+
+
+
+//프로필 사진 로직
 document.addEventListener('change',(e)=>{
-    
-    
-    
-    
-    
-    //프로필 사진 로직
     if(e.target.id=='profile'){
         document.getElementById('submitBtn').disabled = false
         let validResult = fileValidation(e.target.files[0].name,e.target.files[0].size)

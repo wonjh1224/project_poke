@@ -5,8 +5,8 @@
 <mapper namespace="com.poke.www.repository.MemberMapper">
 
 <insert id="insertMember">
-	insert into member (member_id,password,name,birth,email,phone)
-	values(#{memberId},#{password},#{name},#{birth},#{email},#{phone})
+	insert into member (member_id,password,nickname,email)
+	values(#{memberId},#{password},#{nickname},#{email})
 </insert>
 
 <select id="selectMemberById">
