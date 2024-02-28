@@ -156,4 +156,5 @@ values ('[묶음] 전체 카드 팩 *5',38000,5,'1,2,3,4,5,6,7,8,9,10,11,12,13,1
 alter table member add column nickname varchar(20) not null;
 alter table member drop column phone;
 alter table member drop column birth;
-멤버에 닉네임추가, 폰번호,생일 삭제
+alter table member drop column name;
+멤버에 닉네임추가, 폰번호,생일,이름 삭제
