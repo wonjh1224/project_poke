@@ -170,3 +170,9 @@ update product set name = '2세대 팩 x5' where product_id = 8;
 update product set name = '3세대 팩 x5' where product_id = 10; 
 update product set name = '4세대 팩 x5' where product_id = 12; 
 update product set name = '전체 카드 팩 x5' where product_id = 14; 
+
+alter table pokemon add column rarity varchar(5);
+update pokemon set rarity = '일반';
+update pokemon set rarity = '고급' where score>=400;
+update pokemon set rarity = '희귀' where score>=500;
+update pokemon set rarity = '전설' where score>=600;
