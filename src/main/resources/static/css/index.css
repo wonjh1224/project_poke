@@ -3,34 +3,47 @@
 .img-box{
     width: 350px;
 }
-
+.bd{
+width: 50%;
+}
 .hd {
-    
+    width: 50%;    
     animation-name: move;
-    animation-duration: 5s;
-    animation-iteration-count: infinite;
+    animation-duration: 3s;
   }
-  /* @keyframes rule */
+
   @keyframes move {
-    /* keyframe */
-    from {
-      margin-bottom: 0;
+
+    0% {
+      transform-origin: 100% 100%; 
     }
-    /* keyframe */
-    to {
-        transform: matrix(1, 2, 3, 4, 5, 0,);
+    5%{
+      transform-origin: 100% 100%;
+      border-radius: 0 20% 0 40%;
+    }
+    20%{
+      transform-origin: 100% 100%;
+      border-radius: 0 20% 0 70%;
+    }
+
+    30%{
+      transform-origin: 100% 100%;
+      border-radius: 0 20% 0 80%;
+      transform: skewX(-45deg) skewY(20deg) translateY(10px)rotateX(10deg) ;
+      opacity: 100%;
+    }
+
+    50% {
+      transform-origin: 100% 100%;
+      border-radius: 0 20% 0 50%;
+      transform: scale(80%) skewX(-45deg) skewY(20deg) translateY(-55px) rotateX(10deg) rotateZ(90deg) ;
+      opacity: 0%;
+    }
+    100% {
+      transform-origin: 100% 100%;
+      border-radius: 0 20% 0 50%;
+      transform: scale(80%) skewX(-45deg) skewY(20deg) translateY(-55px) rotateX(10deg) rotateZ(90deg) ;
+      opacity: 0%;
     }
   }
 
-  .hd:hover {
-    animation: tearoff 1s both;
-    cursor: default;
-    transform-origin: 0 100%;
-    z-index: 10;
-    -webkit-filter: drop-shadow(1px 1px 2px hsla(0,0%,0%,.25));
-  }
-  @keyframes tearoff {
-    50% { left: 0; }
-    60% { transform: rotate(5deg); }
-    100% { left: 1.5em; }
-  }
