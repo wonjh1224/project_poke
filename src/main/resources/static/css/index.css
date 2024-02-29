@@ -3,39 +3,46 @@
 .img-box{
     width: 350px;
 }
+
 .pokemon-card{
   width: 130px;
-  height: 150px;
-  text-align: center;
-  background-color: rgb(255, 255, 255);
-  margin-left: 10px;
-  margin-right: 10px;
-  margin-bottom: 20px;
-  box-sizing: border-box;
-  border-radius: 15px;
-  
-  position: absolute;
-  top: 90px;
-  left: 45px;
-  z-index: 0;
-  display: flex;
-  align-content: center;
+  height: 210px;
+  background-color: rgba(255, 255, 255, 0.715);
+  /* display: flex;
   justify-content: center;
-  
+  flex-wrap: wrap;
+  align-content: flex-start; */
+  border-radius: 15px;
+  font-size: 16px;
+  text-align: center;
+}
+.pokemon-card img{
+  width: 100px;
+  height: 100px;
+  margin-bottom: 25px;
+}
+.pokemon-card p{
+  margin: 0;
+}
+.pokemon-card .nes-badge{
+  margin-bottom: 15px;
+  text-align: left;
+  width: 70%;
+}
+.pokemon-card .grade{
+  width: 40%;
+}
 
+
+.card-anime{
   animation-name: color;
-  animation-duration: 3s;
+  animation-duration: 2s;
+  
   animation-iteration-count: infinite;
   animation-direction: alternate-reverse;
 }
 
-.pokemon-card img{
-  width: 100px;
-  height: 100px;
-  image-rendering: pixelated;
-  z-index: 1;
-  position: relative;
-}
+
 .bd{
   width: 50%;
   animation-name: move;
@@ -99,12 +106,12 @@
   }
   @keyframes color {
     0%{
-      box-shadow: 0px 0px 40px 10px orange;
+      box-shadow: 0px 0px 40px 12px rgb(255, 166, 0);
     }
     50%{
-      box-shadow: 0px 0px 30px 10px rgb(255, 237, 173);
+      box-shadow: 0px 0px 50px 12px rgb(255, 237, 173);
     }
     100%{
-      box-shadow: 0px 0px 60px 20px rgb(254, 135, 31)
+      box-shadow: 0px 0px 50px 20px rgb(255, 213, 63)
     }
   }
