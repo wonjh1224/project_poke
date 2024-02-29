@@ -7,11 +7,11 @@
 	<p class="title" style="font-size:30px;margin-top:-40px">상점</p>
 	<div class="product-container">
 		<div class="product" th:each="pvo:${list}">
-			<img class="product-img" src="/image/yello.png"><br>
-			<a th:href="|/store/${pvo.productId}|" class="nes-badge is-icon">
-			  <span class="is-warning">a</span>
+			<img class="product-img" th:src="|/image/${pvo.name}.png|"><br>
+			<a th:href="|/store/${pvo.productId}|" class="">
 			  <span class="is-dark">[[${pvo.name}]]</span>
-			</a><br>
+			</a>
+		
 			
 		</div>
 	</div>

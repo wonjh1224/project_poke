@@ -11,7 +11,7 @@
 
 <select id="selectMemberById">
 	select * from member m
-	join profile p
+	left join profile p
 	on m.member_id = p.member_id
 	where m.member_id = #{memberId}
 </select>

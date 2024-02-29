@@ -163,3 +163,10 @@ alter table member drop column name;
 create table profile(
 member_id varchar(20) primary key,
 uuid varchar(50) not null);
+
+-- 2024 - 02 - 29 --
+update product set name = '1세대 팩 x5' where product_id = 6;  
+update product set name = '2세대 팩 x5' where product_id = 8;  
+update product set name = '3세대 팩 x5' where product_id = 10; 
+update product set name = '4세대 팩 x5' where product_id = 12; 
+update product set name = '전체 카드 팩 x5' where product_id = 14; 
