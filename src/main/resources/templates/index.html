@@ -1,26 +1,35 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-
+<link href="/css/index.css" rel="stylesheet" />
 <th:block th:replace="~{/layout :: setFragment(~{this::content})}">
 	<th:block th:fragment="content">
 	<div class="nes-container with-title container" style="width:60%">
-		<p class="title" style="font-size:30px;margin-top:-40px;background-color: rgb(206, 231, 249);">인덱스</p>	
+		<p class="title" style="font-size:30px;margin-top:-40px;background-color: rgb(206, 231, 249);">인덱스라고 쓰고 실험실이라 읽는다</p>	
+		
+		<button class="start">시작</button>
+		<div class="img-box">
+			<img class="hd" src="/image/hd.png">
+			<img class="bd" src="/image/bd.png">
+		</div>
 		
 		
-		<input type="text" id="pno" disabled><button disabled onclick="setPokemon()">포켓몬추가</button>
+		
+		
+		
+		<!-- <input type="text" id="pno" disabled><button disabled onclick="setPokemon()">포켓몬추가</button>
 		<hr>
 		<input id="start" placeholder="start"><input id="end" placeholder="end">
 		<br> <input id="print" placeholder="print"><br>
-		<button type="button" id="aa">숫자 출력</button>
+		<button type="button" id="aa">숫자 출력</button> -->
 
 
 	</div>
 	</th:block>
 </th:block>
-
+<script src="/js/index.js"></script>
 <script>
 
-
+/* 
 document.getElementById('aa').addEventListener('click',()=>{
     let start = document.getElementById('start').value
     let end = document.getElementById('end').value
@@ -95,5 +104,5 @@ async function setPokemon(){
     const resp = await fetch(url,config)
     const result = await resp.text()
     alert(result+"개 포켓몬 추가완료")   
-}
+} */
 </script>
