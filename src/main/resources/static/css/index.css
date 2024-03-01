@@ -148,7 +148,7 @@
     30%{
       transform-origin: 100% 100%;
       border-radius: 0 20% 0 80%;
-      transform:scale(115%) skewX(-45deg) skewY(20deg) translateY(10px)rotateX(10deg) ;
+      transform:scale(115%) skewX(-45deg) skewY(20deg) translateY(3px)rotateX(10deg) ;
       opacity: 100%;
     }
 

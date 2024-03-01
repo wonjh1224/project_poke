@@ -42,7 +42,7 @@ function spreadItems() {
         if (result.length > 0) {
             for (let item of result) {
                 itemBox.innerHTML += `
-                <p>상품명 : ${item.name}</p>
+                <p>${item.name}</p>
                 <button data-storageid="${item.storageId}" class="useBtn">사용하기</button>
                 <hr>
                 `
