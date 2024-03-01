@@ -111,8 +111,22 @@
 
 
 
-.card-anime-color-legend{
-  animation-name: color-legend;
+.card-anime-color-legendary{
+  animation-name: color-legendary;
+  animation-duration: 1s;
+  
+  animation-iteration-count: infinite;
+  animation-direction: alternate-reverse;
+}
+.card-anime-color-rare{
+  animation-name: color-rare;
+  animation-duration: 1s;
+  
+  animation-iteration-count: infinite;
+  animation-direction: alternate-reverse;
+}
+.card-anime-color-uncommon{
+  animation-name: color-uncommon;
   animation-duration: 1s;
   
   animation-iteration-count: infinite;
@@ -161,11 +175,28 @@
     }
   }
 
-  @keyframes color-legend {
+  @keyframes color-legendary {
     0%{
-      box-shadow: 0px 0px 50px 20px rgb(255, 213, 63)
+      box-shadow: 0px 0px 50px 30px rgb(255, 158, 61)
     }
     100%{
-      box-shadow: 0px 0px 40px 10px rgb(255, 166, 0);
+      box-shadow: 0px 0px 40px 13px rgb(255, 128, 0);
+    }
+  }
+  @keyframes color-rare {
+    0%{
+      box-shadow: 0px 0px 50px 22px rgb(85, 150, 214);
+    }
+    100%{
+      box-shadow: 0px 0px 40px 13px rgb(0, 112, 221)
+      
+    }
+  }
+  @keyframes color-uncommon {
+    0%{
+      box-shadow: 0px 0px 50px 13px rgb(151, 255, 138)
+    }
+    100%{
+      box-shadow: 0px 0px 40px 6px rgb(30, 255, 0);
     }
   }
