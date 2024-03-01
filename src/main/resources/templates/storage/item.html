@@ -3,20 +3,17 @@
 
 <th:block th:replace="~{/layout :: setFragment(~{this::content})}">
 <th:block th:fragment="content">
-	<p class="title" style="font-size:30px;margin-top:-40px">'[[${memberId}]]'의 팩 보관함</p>
+	<div class="nes-container with-title container" style="width:60%">
+		<p class="title" style="font-size:30px;margin-top:-40px;background-color: rgb(206, 231, 249);">[[${session.loginMember.nickname}]]의 카드팩 보관함</p>
+		
+		<div>
+			<button class="nes-btn is-primary" th:onclick="|location.href='@{/storage/{memberId}/item(memberId=${session.loginMemberId})}'|">카드팩 보관함</button>
+			<button class="nes-btn" th:onclick="|location.href='@{/storage/{memberId}/pokemon(memberId=${session.loginMemberId})}'|">포켓몬 보관함</button>
+		</div>
 	
-	<div role="group">
-		<button th:onclick="|location.href='@{/storage/{memberId}/item(memberId=${session.loginMemberId})}'|">팩 보관함</button>
-		<button class="outline" th:onclick="|location.href='@{/storage/{memberId}/pokemon(memberId=${session.loginMemberId})}'|">포켓몬 보관함</button>
-	</div>
-	<div>
-		<!-- <video src="/upload/video/Pokeball Animation.mp4" autoplay muted></video> -->
-	</div>
-	<div id="itemBox">
+		<div id="itemBox">
+		</div>
 
-	</div>
-	<div id="testbox">
-	
 	</div>
 </th:block>
 </th:block>
