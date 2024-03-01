@@ -1,10 +1,34 @@
 @charset "UTF-8";
 
-.img-box{
-    width: 350px;
-    position: absolute;
-    left: 40%;
-    top: 40%;
+.btn-box{
+  position: absolute;
+  top: 80%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  width: 300px;
+  display: flex;
+  justify-content: space-between;
+}
+.btn-box button{
+  width: 120px;
+}
+
+.anime-box{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.803);
+  z-index: 20;
+  overflow: hidden;
+}
+
+.card-pack{
+    width: 175px;
+    position: relative;
 }
 
 .pokemon-card{
@@ -42,7 +66,7 @@
   animation-direction: alternate-reverse;
 }
 
-.img-box .pokemon-card{
+.card-pack .pokemon-card{
   position: absolute;
   left:24px;
   top: 12px;
@@ -51,7 +75,7 @@
 
 
 .bd{
-  width: 50%;
+  width: 175px;    
   animation-name: move;
   animation-duration: 2s;
   animation-delay: 2.5s;
@@ -60,13 +84,14 @@
   position: relative;
 }
 .hd {
-  width: 50%;    
+  width: 175px;    
   animation-name: open;
   animation-duration: 3s;
   animation-delay: 1s;
   animation-fill-mode: forwards;
   z-index: 10;
   position: relative;
+
 }
 
   @keyframes open {
@@ -97,14 +122,15 @@
     50% {
       transform-origin: 100% 100%;
       border-radius: 0 20% 0 50%;
-      transform: scale(120%) skewX(-45deg) skewY(20deg) translateY(-55px) rotateX(10deg) rotateZ(90deg) ;
+      transform: scale(120%) skewX(-45deg) skewY(20deg) translateY(-35px) rotateX(10deg) rotateZ(90deg) ;
       opacity: 0%;
     }
     100% {
       transform-origin: 100% 100%;
       border-radius: 0 20% 0 50%;
-      transform: scale(80%) skewX(-45deg) skewY(20deg) translateY(-55px) rotateX(10deg) rotateZ(90deg) ;
+      transform: scale(120%) skewX(-45deg) skewY(20deg) translateY(-35px) rotateX(10deg) rotateZ(90deg) ;
       opacity: 0%;
+      
     }
   }
 
@@ -113,8 +139,9 @@
 
     }
     100%{
-      transform: translateY(300px);
+      transform: translateY(400px);
       opacity: 0%;
+
     }
   }
   @keyframes color {
