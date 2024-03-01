@@ -21,7 +21,6 @@ public class FarmController {
 	
 	@PostMapping("/{memberId}")
 	public String test(@RequestParam("pokemonId")String pokemonId, @PathVariable("memberId") String memberId) {
-		log.info("되나? {}", pokemonId);
 		String slotArr[] = pokemonId.split(",");
 		farmService.addPokemon(memberId, slotArr[0], slotArr[1], slotArr[2], slotArr[3], slotArr[4]);
 		return "redirect:/member/{memberId}";

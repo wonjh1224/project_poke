@@ -1,7 +1,10 @@
 package com.poke.www.service;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
+import com.poke.www.domain.FarmVO;
 import com.poke.www.repository.FarmMapper;
 
 import lombok.RequiredArgsConstructor;
@@ -18,5 +21,12 @@ public class FarmServiceImpl implements FarmService{
 		farmMapper.insertPokemon(memberId, string, string2, string3, string4, string5);
 		
 	}
+
+	@Override
+	public FarmVO getFarmList(String memberId) {
+		// TODO Auto-generated method stub
+		return farmMapper.selectFarmList(memberId);
+	}
+
 	
 }

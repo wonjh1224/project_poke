@@ -11,9 +11,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.poke.www.domain.FarmVO;
 import com.poke.www.domain.MemberVO;
 import com.poke.www.domain.PokedexVO;
 import com.poke.www.domain.PokemonVO;
+import com.poke.www.service.FarmService;
 import com.poke.www.service.MemberService;
 import com.poke.www.service.PokedexService;
 import com.poke.www.service.RankingService;
@@ -30,6 +32,7 @@ public class MemberController {
 	private final MemberService memberService;
 	private final RankingService rankingService;
 	private final PokedexService pokedexService;
+	private final FarmService farmService;
 	
 	@GetMapping("/register/test")
 	public void registerTest() {
@@ -104,6 +107,13 @@ public class MemberController {
 		
 		List<PokedexVO> list = pokedexService.getPokemonsByMemberId(memberId);
 		m.addAttribute("list", list);
+		
+		FarmVO farm = farmService.getFarmList(memberId);
+
+		log.info("id {}", memberId);
+		log.info("farmVO {}", farm);
+		m.addAttribute("farm", farm);
+
 		
 		return "/member/detail";
 	}
