@@ -8,6 +8,7 @@
   width: 300px;
   display: flex;
   justify-content: space-between;
+  z-index: 30;
 }
 .btn-box button{
   width: 120px;
@@ -82,6 +83,17 @@
   z-index: 10;
   position: relative;
 
+}
+
+.msg{
+  position: absolute;
+  color: white;
+  font-size: 70px;
+  top: 20%;
+  left: 50%;
+  width: 1100px;
+  transform: translate(-50%,-50%);
+  text-align: center;
 }
 
 .card-anime-open{
