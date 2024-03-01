@@ -1,1 +1,202 @@
 @charset "UTF-8";
+
+.btn-box{
+    position: absolute;
+    top: 80%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    width: 300px;
+    display: flex;
+    justify-content: space-between;
+    z-index: 30;
+  }
+  .btn-box button{
+    width: 120px;
+  }
+  
+  .anime-box{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    display: flex;
+    visibility: hidden;
+    justify-content: space-evenly;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.803);
+    z-index: 20;
+    overflow: hidden;
+  }
+  
+  .card-pack{
+      width: 175px;
+      position: relative;
+  }
+  
+  .pokemon-card{
+    width: 130px;
+    height: 190px;
+    background-color: rgb(255, 255, 255);
+    border: 2px solid black;
+    /* border-radius: 15px; */
+    font-size: 16px;
+    text-align: center;
+  }
+  .pokemon-card img{
+    width: 100px;
+    height: 100px;
+    margin-bottom: 10px;
+    image-rendering: pixelated;
+  }
+  .pokemon-card p{
+    margin: 0;
+  }
+  .pokemon-card .nes-badge{
+    margin-bottom: 15px;
+    text-align: left;
+    width: 70%;
+  }
+  .pokemon-card .grade{
+    width: 40%;
+  }
+  
+  
+  
+  
+  .card-pack .pokemon-card{
+    position: absolute;
+    left:24px;
+    top: 12px;
+    
+  }
+  
+  
+  .pack-body{
+    width: 175px;    
+  
+    z-index: 10;
+    position: relative;
+  }
+  .pack-head {
+    width: 175px;    
+    
+    z-index: 10;
+    position: relative;
+  
+  }
+  
+  .msg{
+    position: absolute;
+    color: white;
+    font-size: 70px;
+    top: 20%;
+    left: 50%;
+    width: 1100px;
+    transform: translate(-50%,-50%);
+    text-align: center;
+  }
+  
+  .card-anime-open{
+    animation-name: open;
+    animation-duration: 3s;
+    
+    animation-fill-mode: forwards;
+  }
+  .card-anime-move{
+    animation-name: move;
+    animation-duration: 2s;
+    animation-delay: 1.5s;
+    animation-fill-mode: forwards;
+  }
+  
+  
+  
+  .card-anime-color-legendary{
+    animation-name: color-legendary;
+    animation-duration: 1s;
+    
+    animation-iteration-count: infinite;
+    animation-direction: alternate-reverse;
+  }
+  .card-anime-color-rare{
+    animation-name: color-rare;
+    animation-duration: 1s;
+    
+    animation-iteration-count: infinite;
+    animation-direction: alternate-reverse;
+  }
+  .card-anime-color-uncommon{
+    animation-name: color-uncommon;
+    animation-duration: 1s;
+    
+    animation-iteration-count: infinite;
+    animation-direction: alternate-reverse;
+  }
+    @keyframes open {
+  
+      0% {
+        transform-origin: 100% 100%; 
+      }
+      5%{
+        transform-origin: 100% 100%;
+        border-radius: 0 20% 0 40%;
+      }
+      20%{
+        transform-origin: 100% 100%;
+        border-radius: 0 20% 0 70%;
+      }
+      30%{
+        transform-origin: 100% 100%;
+        border-radius: 0 20% 0 80%;
+        transform:scale(115%) skewX(-45deg) skewY(20deg) translateY(3px)rotateX(10deg) ;
+        opacity: 100%;
+      }
+  
+      50% {
+        transform-origin: 100% 100%;
+        border-radius: 0 20% 0 50%;
+        transform: scale(120%) skewX(-45deg) skewY(20deg) translateY(-35px) rotateX(10deg) rotateZ(90deg) ;
+        opacity: 0%;
+      }
+      100% {
+        transform-origin: 100% 100%;
+        border-radius: 0 20% 0 50%;
+        transform: scale(120%) skewX(-45deg) skewY(20deg) translateY(-35px) rotateX(10deg) rotateZ(90deg) ;
+        opacity: 0%;
+      }
+    }
+  
+    @keyframes move {
+      0%{
+      }
+      100%{
+        transform: translateY(400px);
+        opacity: 0%
+      }
+    }
+  
+    @keyframes color-legendary {
+      0%{
+        box-shadow: 0px 0px 50px 30px rgb(255, 158, 61)
+      }
+      100%{
+        box-shadow: 0px 0px 40px 13px rgb(255, 128, 0);
+      }
+    }
+    @keyframes color-rare {
+      0%{
+        box-shadow: 0px 0px 50px 22px rgb(85, 150, 214);
+      }
+      100%{
+        box-shadow: 0px 0px 40px 13px rgb(0, 112, 221)
+        
+      }
+    }
+    @keyframes color-uncommon {
+      0%{
+        box-shadow: 0px 0px 50px 13px rgb(151, 255, 138)
+      }
+      100%{
+        box-shadow: 0px 0px 40px 6px rgb(30, 255, 0);
+      }
+    }

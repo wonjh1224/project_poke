@@ -1,21 +1,24 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<link href="/css/index.css" rel="stylesheet"/>
+<link href="/css/storage/item.css" rel="stylesheet"/>
 <th:block th:replace="~{/layout :: setFragment(~{this::content})}">
-<th:block th:fragment="content">
-	<div class="nes-container with-title container" style="width:60%">
-		<p class="title" style="font-size:30px;margin-top:-40px;background-color: rgb(206, 231, 249);">[[${session.loginMember.nickname}]]의 카드팩 보관함</p>
-		
-		<div>
-			<button class="nes-btn is-primary" th:onclick="|location.href='@{/storage/{memberId}/item(memberId=${session.loginMemberId})}'|">카드팩 보관함</button>
-			<button class="nes-btn" th:onclick="|location.href='@{/storage/{memberId}/pokemon(memberId=${session.loginMemberId})}'|">포켓몬 보관함</button>
-		</div>
-	
-		<div id="itemBox">
-		</div>
+	<th:block th:fragment="content">
+		<div class="anime-box">
 
-	</div>
-</th:block>
+		</div>
+		<div class="nes-container with-title container" style="width:60%">
+			<p class="title" style="font-size:30px;margin-top:-40px;background-color: rgb(206, 231, 249);">[[${session.loginMember.nickname}]]의 카드팩 보관함</p>
+			
+			<div>
+				<button class="nes-btn is-primary" th:onclick="|location.href='@{/storage/{memberId}/item(memberId=${session.loginMemberId})}'|">카드팩 보관함</button>
+				<button class="nes-btn" th:onclick="|location.href='@{/storage/{memberId}/pokemon(memberId=${session.loginMemberId})}'|">포켓몬 보관함</button>
+			</div>
+		
+			<div id="itemBox">
+			</div>
+	
+		</div>
+	</th:block>
 </th:block>
 <script th:inline="javascript">
 	const memberId = [[${memberId}]]
