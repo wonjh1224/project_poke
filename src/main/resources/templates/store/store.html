@@ -7,7 +7,7 @@
 	<p class="title" style="font-size:30px;margin-top:-40px">상점</p>
 	<div class="product-container">
 		<div class="product" th:each="pvo:${list}">
-			<img class="product-img" th:src="|/image/${pvo.name}.png|"><br>
+			<img class="product-img" th:src="|/image/cardpack/${pvo.name}.png|"><br>
 			<a th:href="|/store/${pvo.productId}|" class="">
 			  <span class="is-dark">[[${pvo.name}]]</span>
 			</a>
