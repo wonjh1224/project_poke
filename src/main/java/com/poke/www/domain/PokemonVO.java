@@ -14,4 +14,5 @@ public class PokemonVO {
 	private String image;
 	private String flavor;
 	private int score;
+	private String rarity;
 }
