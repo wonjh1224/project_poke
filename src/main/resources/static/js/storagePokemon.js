@@ -1,98 +1,92 @@
 //한번에 뿌릴 개수
-const qty = 50;
+const qty = 48;
 
 //현재 뿌려질 인덱스 담는 변수
 let cnt = 0;
 let pokemonList;
-spreadPokemons()
+
 let pokemonBox = document.getElementById('pokemonBox')
 
 //최초 1회 뿌리기
+ getPokemonListFromServer().then(result=>{
+    pokemonList = result
+    spreadPokemons()
+})
+
+
 function spreadPokemons(){
-    getPokemonListFromServer().then(result=>{
-        pokemonList = result
-        if(result.length>0){
+    if(pokemonList.length>0){
+        if(cnt == 0){
             pokemonBox.innerHTML = ''
-            for(let pokemon of result){
-                let html = ""
-                html +=  `
-                <div class="modal-open pokemon-card-cover" data-storageId="${pokemon.storageId}" data-pokemonId="${pokemon.pokemonId}" data-name="${pokemon.name}" data-image="${pokemon.image}">
-                    <div class="pokemon-card-wrap"></div>
-                    <div class="pokemon-card">
-                        <div>
-                            <img src="${pokemon.image}">
-                        </div>
-                        
-                        <p class="nes-badge rarity">
-                `
-                if(pokemon.rarity == "전설"){
-                    html += `<span class="is-warning">전설</span>`
-                }else if(pokemon.rarity == "희귀"){
-                    html += `<span class="is-primary">희귀</span>`
-                }else if(pokemon.rarity == "고급"){
-                    html += `<span class="is-success">고급</span>`
-                }else{
-                    html += `<span class="is-error">일반</span>`
-                }
-                html += `        
-                        </p>
-                        <p class="nes-badge">
-                            <span class="is-dark">${pokemon.name}</span>
-                        </p>
-                    </div>
-                </div>
-                `
-                pokemonBox.innerHTML += html
-            }
-        }else{
-            pokemonBox.innerHTML = `<p>보유중인 포켓몬이 없습니다.</p>`
         }
-    })
+        for(i=cnt;i<cnt+qty;i++){
+            if(pokemonList[i]==null){
+                document.getElementById('more').disabled = true
+                break;
+            }
+            let html = ""
+            html +=  `
+            <div class="modal-open pokemon-card-cover" data-storageId="${pokemonList[i].storageId}" data-pokemonId="${pokemonList[i].pokemonId}" data-name="${pokemonList[i].name}" data-image="${pokemonList[i].image}">
+                <div class="pokemon-card-wrap"></div>
+                <div class="pokemon-card">
+                    <div>
+                        <img src="${pokemonList[i].image}">
+                    </div>
+                    
+                    <p class="nes-badge rarity">
+            `
+            if(pokemonList[i].rarity == "전설"){
+                html += `<span class="is-warning">전설</span>`
+            }else if(pokemonList[i].rarity == "희귀"){
+                html += `<span class="is-primary">희귀</span>`
+            }else if(pokemonList[i].rarity == "고급"){
+                html += `<span class="is-success">고급</span>`
+            }else{
+                html += `<span class="is-error">일반</span>`
+            }
+            html += `        
+                    </p>
+                    <p class="nes-badge">
+                        <span class="is-dark">${pokemonList[i].name}</span>
+                    </p>
+                </div>
+            </div>
+            `
+            pokemonBox.innerHTML += html
+        }
+        cnt=cnt+qty
+    }else{
+        pokemonBox.innerHTML = `<p>보유중인 포켓몬이 없습니다.</p>`
+    }
 }
 
+document.getElementById('more').addEventListener('click',()=>{
+    if(document.getElementById('searchBox').value==''){
+        spreadPokemons()
+    }
+})
+window.addEventListener('scroll',()=>{
+    if(window.scrollY + window.innerHeight >= document.body.offsetHeight * 0.9){
+        document.getElementById('more').click()
+    }
+})
+
+
+
+
 function spread(){
+    cnt=0
+    document.getElementById('more').disabled = false
     if(document.getElementById('notAddedBtn').checked){
         getNotAddedPokemonListFromServer().then(result=>{
             pokemonList = result
-            if(result.length>0){
-                pokemonBox.innerHTML = ''
-                for(let pokemon of result){
-                    let html = ""
-                html +=  `
-                <div class="modal-open pokemon-card-cover" data-storageId="${pokemon.storageId}" data-pokemonId="${pokemon.pokemonId}" data-name="${pokemon.name}" data-image="${pokemon.image}">
-                    <div class="pokemon-card-wrap"></div>
-                    <div class="pokemon-card">
-                        <div>
-                            <img src="${pokemon.image}">
-                        </div>
-                        
-                        <p class="nes-badge rarity">
-                `
-                if(pokemon.rarity == "전설"){
-                    html += `<span class="is-warning">전설</span>`
-                }else if(pokemon.rarity == "희귀"){
-                    html += `<span class="is-primary">희귀</span>`
-                }else if(pokemon.rarity == "고급"){
-                    html += `<span class="is-success">고급</span>`
-                }else{
-                    html += `<span class="is-error">일반</span>`
-                }
-                html += `        
-                        </p>
-                        <p class="nes-badge">
-                            <span class="is-dark">${pokemon.name}</span>
-                        </p>
-                    </div>
-                </div>
-                `
-                pokemonBox.innerHTML += html
-                }
-            }else{
-                pokemonBox.innerHTML = `<p>보유중인 포켓몬이 없습니다.</p>`
-            }
+            spreadPokemons()
         })
     }else {
-        spreadPokemons()
+        getPokemonListFromServer().then(result=>{
+            pokemonList = result
+            spreadPokemons()
+        })
     }
 }
 
@@ -126,6 +120,10 @@ async function getPokemonListFromServer(){
 
 //포켓몬 검색기능
 document.addEventListener('input',(e)=>{
+    if(e.target.value==''){
+        spread()
+        return
+    }
     let searchResult = []
     for(pokemon of pokemonList){
         if(pokemon.name.includes(e.target.value) || pokemon.pokemonId == (e.target.value)){
