@@ -10,7 +10,7 @@
 				<button class="nes-btn is-success" th:onclick="|location.href='@{/storage/{memberId}/pokemon(memberId=${session.loginMemberId})}'|">포켓몬 보관함</button>
 			</div>
 			
-			<div>
+
 				<input type="text" class="nes-input" id="searchBox" placeholder="번호 또는 이름 입력">
 				<label>
 					<input type="checkbox" class="nes-checkbox" id="notAddedBtn">
@@ -22,8 +22,8 @@
 						<span class="modal-close">&times;</span>
 					</div>	
 				</div>
-			</div>
-			
+
+			<button id="more" style="display:none">+</button>
 		</div>
 </th:block>
 </th:block>

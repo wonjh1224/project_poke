@@ -1,5 +1,8 @@
-// <img src="${pokemon.image}">
-// <img style="width:80px;height:60px;image-rendering:pixelated"src="/upload/icon/${pokemon.pokemonId}.png">
+//한번에 뿌릴 개수
+const qty = 50;
+
+//현재 뿌려질 인덱스 담는 변수
+let cnt = 0;
 let pokemonList;
 spreadPokemons()
 let pokemonBox = document.getElementById('pokemonBox')

@@ -4,7 +4,7 @@ let cnt = 0;
 let userPokemonIds = [];
 const pokedexLine = document.getElementById('pokedexLine')
 //1번 당 뿌릴 포켓몬 수
-const qty = 100;
+const qty = 50;
 getPokedexList().then(result=>{
     pokedexList = result
     for(pokemon of pokedexList.userPokemons){
