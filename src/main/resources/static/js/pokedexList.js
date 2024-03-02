@@ -4,7 +4,7 @@ let cnt = 0;
 let userPokemonIds = [];
 const pokedexLine = document.getElementById('pokedexLine')
 //1번 당 뿌릴 포켓몬 수
-const qty = 29;
+const qty = 100;
 getPokedexList().then(result=>{
     pokedexList = result
     for(pokemon of pokedexList.userPokemons){
@@ -37,6 +37,9 @@ function spreadAll(qty,added=false){
 
     if(added){
         for(i=cnt;i<cnt+qty;i++){
+            if(pokedexList.allPokemons[i]==null){
+                break;
+            }
             if(userPokemonIds.includes(pokedexList.allPokemons[i].pokemonId)){
                 pokedexLine.innerHTML += 
                 `
@@ -50,6 +53,9 @@ function spreadAll(qty,added=false){
         }
     }else{
         for(i=cnt;i<cnt+qty;i++){
+            if(pokedexList.allPokemons[i]==null){
+                break;
+            }
             pokedexLine.innerHTML += 
             `
             <div>
