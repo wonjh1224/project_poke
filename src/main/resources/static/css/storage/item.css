@@ -1,5 +1,21 @@
 @charset "UTF-8";
 
+.body-btn-box{
+  width: 400px;
+  display: flex;
+  justify-content: space-around;
+  margin: auto;
+  margin-bottom: 40px;
+}
+.body-btn-box button{
+  width: 150px;
+  height: 60px;
+}
+
+
+
+
+
 .btn-box{
     position: absolute;
     top: 80%;
