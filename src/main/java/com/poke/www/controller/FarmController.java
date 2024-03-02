@@ -19,10 +19,17 @@ public class FarmController {
 	
 	private final FarmService farmService;
 	
-	@PostMapping("/{memberId}")
-	public String test(@RequestParam("pokemonId")String pokemonId, @PathVariable("memberId") String memberId) {
+	@PostMapping("/add/{memberId}")
+	public String add(@RequestParam("pokemonId")String pokemonId, @PathVariable("memberId") String memberId) {
 		String slotArr[] = pokemonId.split(",");
 		farmService.addPokemon(memberId, slotArr[0], slotArr[1], slotArr[2], slotArr[3], slotArr[4]);
+		return "redirect:/member/{memberId}";
+	}
+	
+	@PostMapping("/del/{memberId}")
+	public String del(@PathVariable("memberId")String memberId) {
+		log.info("memberId >>>>> {}", memberId);
+		farmService.delPokemon(memberId);
 		return "redirect:/member/{memberId}";
 	}
 }

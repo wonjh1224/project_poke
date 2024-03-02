@@ -10,12 +10,23 @@
 		<p>아이디 : [[${memberId}]]</p>
 		<p>컨텐츠들</p>
 		<div style="background-image:url(https://static.vecteezy.com/system/resources/previews/011/484/158/original/pixel-art-farm-landscape-with-barn-mill-fence-trees-8-bit-game-background-vector.jpg); background-size:contain; width: 600px; height: 200px; ">
-			<a>[[${farm.slot1}]]</a>	
-			<a>[[${farm.slot2}]]</a>	
-			<a>[[${farm.slot3}]]</a>	
-			<a>[[${farm.slot4}]]</a>	
-			<a>[[${farm.slot5}]]</a>	
-			<button th:if="${session.loginMember != null && session.loginMemberId == memberId}" id="farmAddBtn">+</button>	
+			
+			<!-- 농장 등록시 등록한 포켓몬 표시 -->
+			<th:block th:if="${farm != null}">
+				<a>[[${farm.slot1}]]</a>	
+				<a>[[${farm.slot2}]]</a>	
+				<a>[[${farm.slot3}]]</a>	
+				<a>[[${farm.slot4}]]</a>	
+				<a>[[${farm.slot5}]]</a>
+				
+				<form th:action="|/farm/del/${memberId}|" method="post">
+					<button th:if="${session.loginMember != null && session.loginMemberId == memberId}" id="farmDelBtn">x</button>	
+				</form>
+			</th:block>
+			
+			<th:block th:if="${farm == null}">
+				<button th:if="${session.loginMember != null && session.loginMemberId == memberId}" id="farmAddBtn">+</button>	
+			</th:block>
 			
 		</div>
 		<div>랭킹 : [[${ranking}]] 등</div>
@@ -28,7 +39,7 @@
 	<div id="modal" class="modal">
 		<div class="modal-content" id="modal-content">
 			<span class="modal-close">&times;</span>
-			<form th:action="|/farm/${memberId}|" method="post">
+			<form th:action="|/farm/add/${memberId}|" method="post">
 			<ul>
 				<li th:each="pokemon:${list}">
 					<input onclick="countChecked(this)" type="checkbox" name="pokemonId" th:value="${pokemon.pokemonId}">[[${pokemon.pokemonId}]]
