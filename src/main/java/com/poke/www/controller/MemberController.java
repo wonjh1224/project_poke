@@ -115,9 +115,11 @@ public class MemberController {
 		log.info("id {}", memberId);
 		log.info("farmVO {}", farm);
 		m.addAttribute("farm", farm);
-
-		String pokemonImage [] = pokemonService.getPokemonImage(farm.getSlot1(), farm.getSlot2(), farm.getSlot3(), farm.getSlot4(), farm.getSlot5());
-		m.addAttribute("image", pokemonImage);
+		
+		if(farm != null) {
+			String pokemonImage [] = pokemonService.getPokemonImage(farm.getSlot1(), farm.getSlot2(), farm.getSlot3(), farm.getSlot4(), farm.getSlot5());
+			m.addAttribute("image", pokemonImage);			
+		}
 		
 		return "/member/detail";
 	}
