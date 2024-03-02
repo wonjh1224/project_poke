@@ -98,9 +98,11 @@ document.getElementById('more').addEventListener('click',()=>{
         spreadAll(qty,added)
     }
 })
-// document.addEventListener('scroll',()=>{
-//     console.log(window.scrollX,window.scrollY)
-// })
+window.addEventListener('scroll',()=>{
+    if(window.scrollY + window.innerHeight >= document.body.offsetHeight * 0.9){
+        document.getElementById('more').click()
+    }
+})
 
 
 
