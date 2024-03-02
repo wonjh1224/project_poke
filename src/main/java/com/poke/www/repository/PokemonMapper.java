@@ -19,4 +19,6 @@ public interface PokemonMapper {
 
 	PokemonVO selectPokemonByName(int pokemonId);
 
+	String[] selectPokemonImage(int slot1, int slot2, int slot3, int slot4, int slot5);
+
 }
