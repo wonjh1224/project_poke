@@ -15,4 +15,5 @@ public class PokemonStorageVO {
 	
 	private String name;
 	private String image;
+	private String rarity;
 }

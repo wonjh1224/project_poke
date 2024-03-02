@@ -24,9 +24,9 @@ document.addEventListener('click', (e) => {
                     <img class="pack-head" src="/image/cardpack/${itemName}_head.png">
                     <div class="pokemon-card ${pokemon.rarity=="전설" ? 'card-anime-color-legendary' : pokemon.rarity == "희귀" ? 'card-anime-color-rare' : pokemon.rarity == "고급" ? 'card-anime-color-uncommon' : ''}">
                         <div>
-                            <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemon.pokemonId}.png">  
+                            <img src="${pokemon.image}">  
                         </div>
-                        <p class="nes-badge grade">
+                        <p class="nes-badge rarity">
                 `
                 if(pokemon.rarity == "전설"){
                     html += `<span class="is-warning">전설</span>`

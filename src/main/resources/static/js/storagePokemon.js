@@ -11,12 +11,35 @@ function spreadPokemons(){
         if(result.length>0){
             pokemonBox.innerHTML = ''
             for(let pokemon of result){
-                pokemonBox.innerHTML +=  `
-                <div class="modal-open pokemon-card" data-storageId="${pokemon.storageId}" data-pokemonId="${pokemon.pokemonId}" data-name="${pokemon.name}" data-image="${pokemon.image}">
-                    <img src="${pokemon.image}">
-                    <p>[${pokemon.pokemonId}] ${pokemon.name}</p>
+                let html = ""
+                html +=  `
+                <div class="modal-open pokemon-card-cover" data-storageId="${pokemon.storageId}" data-pokemonId="${pokemon.pokemonId}" data-name="${pokemon.name}" data-image="${pokemon.image}">
+                    <div class="pokemon-card-wrap"></div>
+                    <div class="pokemon-card">
+                        <div>
+                            <img src="${pokemon.image}">
+                        </div>
+                        
+                        <p class="nes-badge rarity">
+                `
+                if(pokemon.rarity == "전설"){
+                    html += `<span class="is-warning">전설</span>`
+                }else if(pokemon.rarity == "희귀"){
+                    html += `<span class="is-primary">희귀</span>`
+                }else if(pokemon.rarity == "고급"){
+                    html += `<span class="is-success">고급</span>`
+                }else{
+                    html += `<span class="is-error">일반</span>`
+                }
+                html += `        
+                        </p>
+                        <p class="nes-badge">
+                            <span class="is-dark">${pokemon.name}</span>
+                        </p>
+                    </div>
                 </div>
                 `
+                pokemonBox.innerHTML += html
             }
         }else{
             pokemonBox.innerHTML = `<p>보유중인 포켓몬이 없습니다.</p>`

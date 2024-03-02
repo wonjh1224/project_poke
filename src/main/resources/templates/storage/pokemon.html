@@ -2,28 +2,29 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <link rel="stylesheet" href="/css/storagePokemon.css">
 <th:block th:replace="~{/layout :: setFragment(~{this::content})}">
-<th:block th:fragment="content">
-<p class="title" style="font-size:30px;margin-top:-40px">'[[${memberId}]]'의 포켓몬 보관함</p>
-	
-	<div role="group">
-		<button class="outline" th:onclick="|location.href='@{/storage/{memberId}/item(memberId=${session.loginMemberId})}'|">팩 보관함</button>
-		<button th:onclick="|location.href='@{/storage/{memberId}/pokemon(memberId=${session.loginMemberId})}'|">포켓몬 보관함</button>
-	</div>
-	<div>
-		<input type="text" id="searchBox" placeholder="번호 또는 이름 입력">
-		<input type="checkbox" id="notAddedBtn"><label for="notAddedBtn">도감에 없는 포켓몬만 보기</label>
-	<div id="pokemonBox">
-	</div>
-
-	<div id="modal" class="modal">
-		<div class="modal-content" id="modal-content">
-			<span class="modal-close">&times;</span>
+	<th:block th:fragment="content">
+		<div class="nes-container with-title container" style="width:60%">
+			<p class="title" style="font-size:30px;margin-top:-40px;background-color: rgb(206, 231, 249);">[[${session.loginMember.nickname}]]의 포켓몬 보관함</p>
+			<div class="body-btn-box">		
+				<button class="nes-btn" th:onclick="|location.href='@{/storage/{memberId}/item(memberId=${session.loginMemberId})}'|">카드팩 보관함</button>
+				<button class="nes-btn is-primary" th:onclick="|location.href='@{/storage/{memberId}/pokemon(memberId=${session.loginMemberId})}'|">포켓몬 보관함</button>
+			</div>
 			
-		</div>	
-	</div>
-	</div>
-
-
+			<div>
+				<input type="text" class="nes-input" id="searchBox" placeholder="번호 또는 이름 입력">
+				<label>
+					<input type="checkbox" class="nes-checkbox" id="notAddedBtn">
+					<span>도감에 없는 포켓몬만 보기</span>
+				</label>	
+				<div id="pokemonBox"></div>
+				<div id="modal" class="modal">
+					<div class="modal-content" id="modal-content">
+						<span class="modal-close">&times;</span>
+					</div>	
+				</div>
+			</div>
+			
+		</div>
 </th:block>
 </th:block>
 <script th:inline="javascript">
