@@ -70,10 +70,20 @@
     position: absolute;
     background: rgb(0,0,0);
     background: linear-gradient(70deg, rgb(0, 0, 0,0.55) 1%, rgba(255,255,255,0.5679446778711485) 50%, rgba(0,0,0,0.55) 100%);
-
+    display: flex;
+    flex-wrap: wrap;
+    align-content: space-evenly;
+    justify-content: center;
     border: 3px dashed rgba(0, 0, 0, 0.714);
 
 }
+.pokemon-card-wrap button{
+  display:none;
+}
+
+.pokemon-card-wrap:hover button{
+    display:inline-block;
+  }
 
 .pokemon-card{
     width: 130px;
