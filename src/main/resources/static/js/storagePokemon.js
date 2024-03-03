@@ -29,7 +29,7 @@ function spreadPokemons(){
             <div class="pokemon-card-cover" data-storageId="${pokemonList[i].storageId}" data-pokemonId="${pokemonList[i].pokemonId}" data-name="${pokemonList[i].name}" data-image="${pokemonList[i].image}">
                 <div class="pokemon-card-wrap">
                     <button class="nes-btn is-warning pokedexBtn" onclick="registerPokedex(${pokemonList[i].storageId},'${pokemonList[i].name}')">도감 등록</button>
-                    <button class="nes-btn is-success marketBtn" onclick="">거래소 등록</button>
+                    <button class="nes-btn is-success marketBtn" onclick="registerMarket(${pokemonList[i].storageId},${pokemonList[i].pokemonId},'${pokemonList[i].name}','${pokemonList[i].image}')">거래소 등록</button>
                 </div>
                 <div class="pokemon-card">
                     <div>
@@ -123,6 +123,9 @@ async function getPokemonListFromServer(){
 
 //포켓몬 검색기능
 document.addEventListener('input',(e)=>{
+    if(e.target.id!='searchBox'){
+        return
+    }
     if(e.target.value==''){
         spread()
         return
@@ -142,7 +145,7 @@ document.addEventListener('input',(e)=>{
             <div class="pokemon-card-cover" data-storageId="${pokemon.storageId}" data-pokemonId="${pokemon.pokemonId}" data-name="${pokemon.name}" data-image="${pokemon.image}">
                 <div class="pokemon-card-wrap">
                     <button class="nes-btn is-warning pokedexBtn" onclick="registerPokedex(${pokemonList[i].storageId},'${pokemonList[i].name}')">도감 등록</button>
-                    <button class="nes-btn is-success marketBtn" onclick="">거래소 등록</button>
+                    <button class="nes-btn is-success marketBtn" onclick="registerMarket(${pokemonList[i].storageId},${pokemonList[i].pokemonId},'${pokemonList[i].name}','${pokemonList[i].image}')">거래소 등록</button>
                 </div>
                 <div class="pokemon-card">
                     <div>
@@ -195,26 +198,34 @@ var modalClose = document.getElementsByClassName("modal-close")[0];
 
 let modalContent = document.getElementById('modal-content')
 
-document.addEventListener('click',(e)=>{
-    if(e.target.classList.contains('modal-open')){
-        modalContent.innerHTML = `
-            <span class="modal-close">&times;</span>
-            <img src="${image}">
-            <button type="button" onclick="registerPokedex(${storageId})">거래소 등록</button>
-        `
-        modal.style.display = "block";
-    }
-})
+
 
 // 여기서부터 다시
-function registerMarket(){
+function registerMarket(storageId,pokemonId,name,image){
+    modalContent.innerHTML = `
+            <span class="modal-close">&times;</span>
+            <form id="marketForm" action="/market" method="post">
+                <input type="hidden" name="storageId" value="${storageId}">
+                <input type="hidden" name="pokemonId" value="${pokemonId}">
+                <input type="hidden" name="memberId" value="${memberId}">
+                <img src="${image}">
+                <p>이름 : ${name}</p>
+                가격 : <input type="text" name="price" class="nes-input">
+                <button type="button" onclick="formSubmit('${name}')">등록</button>
+            </form>
+        `
+    modal.style.display = "block";
+}
 
+function formSubmit(name){
+    if(confirm(name+' : 거래소에 등록할까요?')){
+        document.getElementById('marketForm').submit()
+    }
 }
 
 
-
 function registerPokedex(storageId,name){
-    if(confirm('도감에 등록할까요? : '+name)){
+    if(confirm(name+' : 도감에 등록할까요?')){
         postPokedex(storageId).then(result=>{
             if(result=='ok'){
                 alert('등록성공')
