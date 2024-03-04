@@ -21,7 +21,7 @@
 				<a th:href="|@{/my/charge?rd-url=/store/{productId}/purchase(productId=${pvo.productId})}|" class="nes-badge">
 					<span class="is-dark">충전하기</span>
 				</a>
-					<button th:class="|nes-btn ${pvo.price>loginMember.point ? 'is-disabled' : 'is-primary'}|" type="button" id="purchaseBtn" th:disasbled="|${pvo.price>loginMember.point ? 'true' : ''}|">구매하기</button>
+					<button th:class="|nes-btn ${pvo.price>loginMember.point ? 'is-disabled' : 'is-primary'}|" type="button" id="purchaseBtn">구매하기</button>
 			</div>
 		</div>
 	

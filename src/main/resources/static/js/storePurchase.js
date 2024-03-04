@@ -56,3 +56,7 @@ async function spreadMemberPoint(){
 }*/
 /*
 spreadMemberPoint()*/
+
+if(document.getElementById('purchaseBtn').classList.contains('is-disabled')){
+    document.getElementById('purchaseBtn').disabled=true
+}
