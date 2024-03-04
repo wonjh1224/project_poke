@@ -204,22 +204,35 @@ let modalContent = document.getElementById('modal-content')
 function registerMarket(storageId,pokemonId,name,image){
     modalContent.innerHTML = `
             <span class="modal-close">&times;</span>
-            <form id="marketForm" action="/market" method="post">
-                <input type="hidden" name="storageId" value="${storageId}">
-                <input type="hidden" name="pokemonId" value="${pokemonId}">
-                <input type="hidden" name="memberId" value="${memberId}">
-                <img src="${image}">
-                <p>이름 : ${name}</p>
-                가격 : <input type="text" name="price" class="nes-input">
-                <button type="button" onclick="formSubmit('${name}')">등록</button>
-            </form>
+            <img src="${image}">
+            <p>이름 : ${name}</p>
+            가격 : <input id="price" type="text" name="price" class="nes-input">
+            <button type="button" onclick="formSubmit('${name}',${storageId},${pokemonId},'${memberId}')">등록</button>
         `
     modal.style.display = "block";
 }
 
-function formSubmit(name){
+async function formSubmit(name,storageId,pokemonId,memberId){
     if(confirm(name+' : 거래소에 등록할까요?')){
-        document.getElementById('marketForm').submit()
+        let formData = new FormData();
+        formData.append('storageId',storageId)
+        formData.append('pokemonId',pokemonId)
+        formData.append('memberId',memberId)
+        formData.append('price',document.getElementById('price').value)
+        try {
+            const url = "/market"
+            const config = {
+                method : "post",
+                body : formData
+            }
+            const resp = await fetch(url,config)
+            const result = await resp.json()
+        } catch (error) {
+            console.log(error)
+        }
+        alert('등록 완료')
+        modal.style.display = "none";
+        spread()
     }
 }
 
