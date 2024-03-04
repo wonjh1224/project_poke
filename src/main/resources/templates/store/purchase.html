@@ -1,14 +1,32 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-
+<link href="/css/store/purchase.css" rel="stylesheet" />
 <th:block th:replace="~{/layout :: setFragment(~{this::content})}">
 	<th:block th:fragment="content">
+		<div class="nes-container with-title container" style="width:20%">
+			<p class="title" style="font-size:30px;margin-top:-40px;background-color: rgb(206, 231, 249);">카드팩 구매</p>
+			<div class="purchase-form">
+				<div>
+					<img class="product-img" th:src="|/image/cardpack/${pvo.name}.png|">				
+				</div>
+				<div class="product-text-box">
+					<span>상품명</span><span>[[${pvo.name}]]</span>
+				</div>
+				<div class="product-text-box">
+					<span>가격</span><span class="nes-text">[[${pvo.price}]]</span>
+				</div>
+				<div class="product-text-box">
+					<span>보유 포인트</span><span th:class="|nes-text ${pvo.price>loginMember.point ? 'is-error' : 'is-primary'}|">[[${loginMember.point}]]</span>
+				</div>
+				<a th:href="|@{/my/charge?rd-url=/store/{productId}/purchase(productId=${pvo.productId})}|" class="nes-badge">
+					<span class="is-dark">충전하기</span>
+				</a>
+					<button th:class="|nes-btn ${pvo.price>loginMember.point ? 'is-disabled' : 'is-primary'}|" type="button" id="purchaseBtn" th:disasbled="|${pvo.price>loginMember.point ? 'true' : ''}|">구매하기</button>
+			</div>
+		</div>
 	
-	<h2>상품 구매 페이지임</h2>
-	<p th:text="|상품 가격 :${pvo.price}|">상품금액</p>
-	<p id="memberPoint">잔액 : [[${loginMember.point}]]</p>
-	<button type="button" id="purchaseBtn">구매버튼</button>
-	<button th:onclick="|location.href='@{/my/charge?rd-url=/store/{productId}/purchase(productId=${pvo.productId})}'|">충전버튼</button>
+
+	
 	</th:block>
 </th:block>
 <script th:inline="javascript">

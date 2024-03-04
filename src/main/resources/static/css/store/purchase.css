@@ -1,0 +1,26 @@
+@charset "UTF-8";
+.purchase-form{
+    text-align: center;
+}
+
+.product-img{
+    width: 200px;
+}
+
+.product-text-box{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 22px;
+}
+
+#purchaseBtn{
+    width: 230px;
+    margin-top: 30px;
+    margin-bottom: 20px;
+}
+.purchase-form a{
+    width: 100px;
+    text-align: right;
+}
