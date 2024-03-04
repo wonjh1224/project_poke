@@ -4,15 +4,20 @@
 <th:block th:replace="~{/layout :: setFragment(~{this::content})}">
 	<th:block th:fragment="content">
 	<div class="nes-container with-title container" style="width:60%">
-	<p class="title" style="font-size:30px;margin-top:-40px">상점</p>
+	<p class="title" style="font-size:30px;margin-top:-40px;background-color: rgb(206, 231, 249);">상점</p>
 	<div class="product-container">
 		<div class="product" th:each="pvo:${list}">
-			<img class="product-img" th:src="|/image/cardpack/${pvo.name}.png|"><br>
-			<a th:href="|/store/${pvo.productId}|" class="">
-			  <span class="is-dark">[[${pvo.name}]]</span>
-			</a>
-		
-			
+				<div class="product-img-box">
+					<img class="product-img" th:src="|/image/cardpack/${pvo.name}.png|">				
+				</div>
+				<div class="product-text-box">
+					<p class="nes-text">[[${pvo.name}]]</p>
+					<p class="nes-text">가격 : [[${pvo.price}]]</p>
+					<a th:href="|/store/${pvo.productId}|" class="nes-btn">구매하기</a>
+				</div>
+<!-- 			<div th:if="${pvo.numberOfCards==5}" class="x5">
+					<img src="/image/x5.png">
+				</div> -->	
 		</div>
 	</div>
 	

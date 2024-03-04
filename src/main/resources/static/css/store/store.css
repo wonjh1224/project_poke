@@ -7,10 +7,35 @@
 }
 .product{
     width: 400px;
-    text-align: center;
-    
+    height: 200px;
+    margin: 20px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    position: relative;
 }
 .product-img{
-    width: 200px;
+    width: 120px;
     image-rendering: pixelated ;
+    margin: auto;
+}
+.product-text-box{
+    width: 150px;
+    font-size: 18px;
+}
+
+.product-text-box a{
+    width: 100px;
+    height: 40px;
+    font-size: 15px;
+}
+
+.x5{
+    position: absolute;
+    left: 27%;
+    top: 67%;
+    
+}
+.x5 img{
+    width: 65px;
 }

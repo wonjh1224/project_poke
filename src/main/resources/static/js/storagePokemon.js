@@ -204,16 +204,28 @@ let modalContent = document.getElementById('modal-content')
 function registerMarket(storageId,pokemonId,name,image){
     modalContent.innerHTML = `
             <span class="modal-close">&times;</span>
-            <img src="${image}">
-            <p>이름 : ${name}</p>
-            가격 : <input id="price" type="text" name="price" class="nes-input">
-            <button type="button" onclick="formSubmit('${name}',${storageId},${pokemonId},'${memberId}')">등록</button>
+            <div id="modal-box">
+                <img src="${image}">
+                <p>이름 : ${name}</p>
+                <p>가격 : <input id="price" type="text" name="price" class="nes-input"> <button class="nes-btn" type="button" onclick="formSubmit('${name}',${storageId},${pokemonId},'${memberId}')"> 등록</button></p>
+                
+            </div>
         `
     modal.style.display = "block";
 }
 
 async function formSubmit(name,storageId,pokemonId,memberId){
-    if(confirm(name+' : 거래소에 등록할까요?')){
+    if(document.getElementById('price').value==''){
+        alert('가격을 입력해 주세요')
+        document.getElementById('price').focus()
+        return
+    }
+    if(document.getElementById('price').value > 9999999){
+        alert('최대 9,999,999까지 입력 가능합니다.')
+        return
+    }
+    
+    if(confirm(name+' - 거래소에 등록할까요?')){
         let formData = new FormData();
         formData.append('storageId',storageId)
         formData.append('pokemonId',pokemonId)
@@ -238,10 +250,10 @@ async function formSubmit(name,storageId,pokemonId,memberId){
 
 
 function registerPokedex(storageId,name){
-    if(confirm(name+' : 도감에 등록할까요?')){
+    if(confirm(name+' - 도감에 등록할까요?')){
         postPokedex(storageId).then(result=>{
             if(result=='ok'){
-                alert('등록성공')
+                alert('도감에 등록했습니다.')
             }else if(result=='already'){
                 alert("이미 등록된 포켓몬입니다.")
             }
