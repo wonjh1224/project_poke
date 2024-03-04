@@ -1,13 +1,25 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-
+<link href="/css/store/detail.css" rel="stylesheet" />
 <th:block th:replace="~{/layout :: setFragment(~{this::content})}">
 	<th:block th:fragment="content">
-	
-	<h2>상품 디테일 페이지임</h2>
-	<p>상품명 : [[${pvo.name}]]</p>
-	<p>가격 : [[${pvo.price}]]원</p>
-	<button th:onclick="|location.href='@{/store/{productId}/purchase(productId=${pvo.productId})}'|">상품구매</button>
-	<button onclick="location.href='/store'">리스트로</button>
+		<div class="nes-container with-title container" style="width:60%">
+			<p class="title" style="font-size:30px;margin-top:-40px;background-color: rgb(206, 231, 249);">카드팩 상세정보</p>
+			<div class="product">
+				<div class="product-img-box">
+					<img class="product-img" th:src="|/image/cardpack/${pvo.name}.png|">				
+				</div>
+				<div class="product-text-box">
+					<p class="nes-text">[[${pvo.name}]]</p>
+					<p class="nes-text">가격 : [[${pvo.price}]]</p>
+					<a th:href="|/store/${pvo.productId}/purchase|" class="nes-btn">구매하기</a>
+				</div>
+			</div>
+			<div>
+				<label for="textarea_field">획득 가능한 포켓몬 목록 :</label>
+				<textarea id="textarea_field" class="nes-textarea">[[${pvo.content}]]</textarea>
+			</div>	
+			<button class="nes-btn" onclick="location.href='/store'">리스트로</button>
+		</div>
 	</th:block>
 </th:block>
