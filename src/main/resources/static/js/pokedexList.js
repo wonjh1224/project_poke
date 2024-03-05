@@ -41,8 +41,37 @@ function spreadAll(qty,added=false){
                 break;
             }
             if(userPokemonIds.includes(pokedexList.allPokemons[i].pokemonId)){
-                pokedexLine.innerHTML += 
+                let html = `
+                <div class="nes-table-responsive">
+                    <table class="nes-table is-bordered is-centered">
+                        <thead>
+                        <tr>
+                            <th>번호</th>
+                            <th>아이콘</th>
+                            <th>이름</th>
+                        </tr>
+                        </thead>
+                        <tbody>
                 `
+                html += `
+                        <tr>
+                            <td>Thou hast had a good morning</td>
+                            <td>Thou hast had a good afternoon</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                `
+                
+                html += `
+                <tr>
+                <td>Thou hast had a good morning</td>
+                <td>Thou hast had a good afternoon</td>
+                <td>Thou hast had a good afternoon</td>
+                </tr>
+                `
+
+                pokedexLine.innerHTML += `
                 <div>
                     <img src="${pokedexList.allPokemons[i].image}" class="color"></img>
                     <p>${pokedexList.allPokemons[i].name}</p>
