@@ -1,14 +1,14 @@
 @charset "UTF-8";
 
 .body-btn-box{
-  width: 400px;
+  width: 500px;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-evenly;
   margin: auto;
   margin-bottom: 40px;
 }
 .body-btn-box button{
-  width: 150px;
+  width: 200px;
   height: 60px;
 }
 
