@@ -56,7 +56,7 @@ async function idDuplicateCheck(memberId){
 // id, pw
 var regIdPw = /^[a-zA-Z0-9]{4,12}$/;
 // 이름
-var regName = /^[가-힣a-zA-Z]{2,15}$/;
+var regName = /^[가-힣a-zA-Z]{2,6}$/;
     
 
 //아이디 중복체크
@@ -119,7 +119,7 @@ document.getElementById('nicknameCheckBtn').addEventListener('click',()=>{
     if(!regName.test(nickname)){
         nickInput.className = "nes-input is-error"
         nickSpan.className = "nes-text is-error"
-        nickSpan.innerText = " - 2~12자의 한글/영어/숫자만 허용됩니다."
+        nickSpan.innerText = " - 2~6자의 한글/영어만 허용됩니다."
         return
     }
     nicknameDuplicateCheck(nickname).then(result=>{
