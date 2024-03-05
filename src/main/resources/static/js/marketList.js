@@ -1,5 +1,5 @@
 let itemList;
-const qty = 30
+const qty = 8
 let cnt = 0
 let itemZone = document.getElementById('itemZone')
 let member
@@ -95,3 +95,46 @@ async function buyItem(itemId){
     const result = await resp.text()
     return result;
 }
+
+document.addEventListener('input',(e)=>{
+    if(e.target.id!='searchBox'){
+        return
+    }
+    if(e.target.value==''){
+        console.log(itemList)
+        cnt=0
+        spreadItems()
+        return
+    }
+    let searchResult = []
+    for(pokemon of itemList){
+        if(pokemon.name.includes(e.target.value) || pokemon.pokemonId == (e.target.value)){
+            searchResult.push(pokemon)
+        }
+    }
+    itemZone.innerHTML=''
+    if(searchResult.length>0){
+        for(item of searchResult){
+            itemZone.innerHTML += `
+                <div class="item-box">
+                    <div class="img-box">
+                        <img src="${item.image}">
+                    </div>
+                    <div class="btn-box">
+                        <button class="nes-btn buyBtn" type="button" data-itemId="${item.itemId}"  ${loginMemberId == item.memberId ? 'style="display:none"':''}>구매</button>
+                    </div>
+                    <div class="text-box">
+                        <span>판매자</span><span>${item.nickname}</span>
+                    </div>
+                    <div class="text-box">
+                        <span>가격</span><span>${item.price}</span>
+                    </div>
+                </div>
+                `
+        }
+    }else if(searchResult.length==0){
+        itemZone.innerHTML = `<p>검색 결과가 없습니다.</p>`
+    }
+
+
+})

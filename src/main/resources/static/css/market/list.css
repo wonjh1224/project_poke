@@ -38,3 +38,17 @@
     align-items: center;
     background-color: black;
 }
+
+#input_btn{
+    display: flex;
+    
+}
+#input_btn input{
+    margin-left: 20px;
+    margin-right: 20px;
+    width: 280px;
+}
+#input_btn button{
+    display: block;
+    width: 100px;
+}

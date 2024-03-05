@@ -5,8 +5,10 @@
 	<th:block th:fragment="content">
 		<div class="nes-container with-title container" style="width:60%">
 			<p class="title" style="font-size:30px;margin-top:-40px;background-color: rgb(206, 231, 249);">거래소</p>
-			
-			<button class="nes-btn" th:onclick="|location.href='@{/market/register}'|">물품등록</button>
+			<div id="input_btn">
+				<input id="searchBox" type="text" class="nes-input" placeholder="번호 또는 이름 입력">
+				<button class="nes-btn" th:onclick="|location.href='@{/market/register}'|">물품등록</button>
+			</div>
 			<div id="itemZone">
 			</div>
 		</div>
