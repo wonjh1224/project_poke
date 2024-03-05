@@ -2,6 +2,27 @@ let itemList;
 const qty = 30
 let cnt = 0
 let itemZone = document.getElementById('itemZone')
+let member
+if(loginMemberId!=null){
+    console.log(loginMemberId)
+    getMemberFromServer().then(result=>{
+        member=result
+    })
+}
+
+async function getMemberFromServer(){
+    config = {
+        method:"post",
+        headers:{
+            "content-type" : "application/json; charset=utf-8"
+        },
+        body : JSON.stringify({memberId:loginMemberId})
+    }
+    const resp = await fetch('/member',config)
+    const result = await resp.json()
+    return result;
+}
+
 getItemListFromServer().then(result=>{
     itemList = result
     spreadItems()
@@ -14,14 +35,22 @@ function spreadItems(){
         }
         for(i = cnt; i < cnt + qty; i++){
             itemZone.innerHTML += `
-                <hr>
-                <img src="${itemList[i].image}">
-                <p>판매자 : ${itemList[i].memberId}</p>
-                <p>가격 : ${itemList[i].price}</p>
+                <div class="item-box">
+                    <div class="img-box">
+                        <img src="${itemList[i].image}">
+                    </div>
+                    <div class="btn-box">
+                        <button class="nes-btn buyBtn" type="button" data-itemId="${itemList[i].itemId}"  ${loginMemberId == itemList[i].memberId ? 'style="display:none"':''}>구매</button>
+                    </div>
+                    <div class="text-box">
+                        <span>판매자</span><span>${itemList[i].nickname}</span>
+                    </div>
+                    <div class="text-box">
+                        <span>가격</span><span>${itemList[i].price}</span>
+                    </div>
+    
+                </div>
                 `
-                if(loginMemberId != itemList[i].memberId){
-                    itemZone.innerHTML += `<button class="nes-btn" type="button" data-itemId="${itemList[i].itemId}" class="buyBtn">구매</button>`
-                }
         }
         cnt = cnt+qty
     }else{
@@ -36,8 +65,6 @@ async function getItemListFromServer(){
     const result = await resp.json()
     return result;
 }
-
-spreadItems()
 
 document.addEventListener('click',(e)=>{
     if(e.target.classList.contains('buyBtn')){

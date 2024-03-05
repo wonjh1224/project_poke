@@ -5,7 +5,9 @@
 <mapper namespace="com.poke.www.repository.MarketMapper">
 
 <select id="selectItems">
-	select * from pokemon p join market_item m on p.pokemon_id = m.pokemon_id
+	select * from pokemon p 
+	join market_item m on p.pokemon_id = m.pokemon_id
+	join member mb on m.member_id = mb.member_id
 </select>
 
 <insert id="insertItem">

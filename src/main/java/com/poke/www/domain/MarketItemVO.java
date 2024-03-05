@@ -17,4 +17,6 @@ public class MarketItemVO {
 	
 	private String image;
 	private String name;
+	
+	private String nickname;
 }

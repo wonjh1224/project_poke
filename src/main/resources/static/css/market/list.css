@@ -1,1 +1,40 @@
 @charset "UTF-8";
+#itemZone{
+    display: flex;
+    flex-wrap: wrap;
+}
+.item-box{
+    background-color: white;
+    border-radius: 15px;
+    width: 220px;
+
+    text-align: center;
+    margin: 20px;
+    border: 4px solid black;
+}
+
+.text-box{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 13px;
+    margin-bottom: 13px;
+    font-size: 18px;
+}
+.text-box span{
+    padding-left: 28px;
+    padding-right: 28px;
+}
+.img-box{
+    background-color: rgb(234, 77, 77);
+    border-radius: 10px 10px 0 0;
+}
+.img-box img{
+    width: 100px;
+    image-rendering: pixelated;
+}
+
+.btn-box{
+    height: 52px;
+    align-items: center;
+    background-color: black;
+}
