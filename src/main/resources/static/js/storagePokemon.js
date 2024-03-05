@@ -19,7 +19,7 @@ function spreadPokemons(){
         if(cnt == 0){
             pokemonBox.innerHTML = ''
         }
-        for(i=cnt;i<cnt+qty;i++){
+        for(i=cnt; i<cnt+qty; i++){
             if(pokemonList[i]==null){
                 document.getElementById('more').disabled = true
                 break;

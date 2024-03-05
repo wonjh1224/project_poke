@@ -75,7 +75,11 @@ document.addEventListener('click',(e)=>{
             buyItem(e.target.dataset.itemid).then(result=>{
                 if(result=='ok'){
                     alert('구매했습니다.')
-                    spreadItems()
+                    getItemListFromServer().then(result=>{
+                        itemList = result
+                        cnt=0
+                        spreadItems()
+                    })
                 }else{
                     alert('구매실패')
                     location.href=result
