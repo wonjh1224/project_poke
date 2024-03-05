@@ -200,7 +200,7 @@ let modalContent = document.getElementById('modal-content')
 
 
 
-// 여기서부터 다시
+
 function registerMarket(storageId,pokemonId,name,image){
     modalContent.innerHTML = `
             <span class="modal-close">&times;</span>
