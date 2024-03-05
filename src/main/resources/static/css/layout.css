@@ -60,7 +60,7 @@
 	.dropdown-content{
 		display: none;
 		position: absolute;
-		top: 12%;
+		top: 14%;
 		background-color: white;
 		z-index: 1;
 	}

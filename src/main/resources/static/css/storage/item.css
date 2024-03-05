@@ -13,6 +13,34 @@
 }
 
 
+#itemBox{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.item_cardpack{
+  width: 160px;
+  position: relative;
+  text-align: center;
+  margin: 30px;
+  
+}
+.item_cardpack span{
+  text-align: left;
+}
+.item_cardpack img{
+  width: 120px;
+  margin-bottom: 10px;
+}
+.item_cardpack button{
+  position: absolute;
+  top: 33%; 
+  left: 21%;
+  display: none;
+}
+.item_cardpack:hover button{
+  display: block;
+}
 
 
 

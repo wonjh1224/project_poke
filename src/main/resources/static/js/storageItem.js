@@ -106,10 +106,14 @@ function spreadItems() {
         if (result.length > 0) {
             for (let item of result) {
                 itemBox.innerHTML += `
-                <p>${item.name}</p>
-                <img src="/image/cardpack/${item.name}.png">
-                <button data-storageid="${item.storageId}" data-name="${item.name}" class="useBtn">사용하기</button>
-                <hr>
+                <div class="item_cardpack">
+                    <img src="/image/cardpack/${item.name}.png">
+                    <span href="#" class="nes-badge">
+                      <span class="is-dark">${item.name}</span>
+                    </span>
+                    
+                    <button data-storageid="${item.storageId}" data-name="${item.name}" class="nes-btn useBtn">사용하기</button>
+                </div>
                 `
             }
         } else {
