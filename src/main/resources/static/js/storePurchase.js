@@ -1,10 +1,12 @@
 document.getElementById('purchaseBtn').addEventListener('click',()=>{
     purchaseItem().then(result=>{        
         if(result!="/error"){
-            alert('구매완료')
+            alert('구매했습니다.')
+            if(confirm('카드팩 보관함으로 이동할까요?')){
+                location.href=result
+            }
+            location.href="/store"   
         }
-        
-        location.href=result
     })
 })
 
