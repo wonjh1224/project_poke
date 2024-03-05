@@ -34,6 +34,9 @@ function spreadItems(){
             itemZone.innerHTML=''
         }
         for(i = cnt; i < cnt + qty; i++){
+            if(itemList[i]==null){
+                break;
+            }
             itemZone.innerHTML += `
                 <div class="item-box">
                     <div class="img-box">
@@ -135,6 +138,15 @@ document.addEventListener('input',(e)=>{
     }else if(searchResult.length==0){
         itemZone.innerHTML = `<p>검색 결과가 없습니다.</p>`
     }
+})
 
-
+document.getElementById('more').addEventListener('click',()=>{
+    if(document.getElementById('searchBox').value==''){
+        spreadItems()
+    }
+})
+window.addEventListener('scroll',()=>{
+    if(window.scrollY + window.innerHeight >= document.body.offsetHeight * 0.9){
+        document.getElementById('more').click()
+    }
 })
