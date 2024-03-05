@@ -165,6 +165,7 @@ member_id varchar(20) primary key,
 uuid varchar(50) not null);
 
 -- 2024 - 02 - 29 --
+// 그냥 전부 delete하고 위에꺼로 다시 insert 할 것
 update product set name = '1세대 팩 x5' where product_id = 6;  
 update product set name = '2세대 팩 x5' where product_id = 8;  
 update product set name = '3세대 팩 x5' where product_id = 10; 
