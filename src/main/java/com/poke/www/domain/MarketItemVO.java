@@ -12,8 +12,8 @@ public class MarketItemVO {
 	private int pokemonId;  
 	private String memberId;
 	private int price;
-	private String start_date;
-	private String end_date;
+	private String startDate;
+	private String endDate;
 	
 	private String image;
 	private String name;

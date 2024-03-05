@@ -1,27 +1,34 @@
+let itemList;
+const qty = 30
+let cnt = 0
+let itemZone = document.getElementById('itemZone')
+getItemListFromServer().then(result=>{
+    itemList = result
+    spreadItems()
+})
 
 function spreadItems(){
-    getItemListFromServer().then(result=>{
-        let itemZone = document.getElementById('itemZone')
-        itemZone.innerHTML=''
-        if(result.length>0){
-            for(let item of result){
-                itemZone.innerHTML += `
-                    <hr>
-                    <img src="${item.image}">
-                    <p>판매자 : ${item.memberId}</p>
-                    <p>가격 : ${item.price}</p>
-                    `
-                    if(loginMemberId != item.memberId){
-                        itemZone.innerHTML += `<button type="button" data-itemId="${item.itemId}" class="buyBtn">구매</button>`
-                    }
-                    
-                
-            }
-        }else{
-            itemZone.innerHTML=`<p>품목이 존재하지 않습니다.</p>`
+    if(itemList.length>0){
+        if(cnt == 0){
+            itemZone.innerHTML=''
         }
-    })
+        for(i = cnt; i < cnt + qty; i++){
+            itemZone.innerHTML += `
+                <hr>
+                <img src="${itemList[i].image}">
+                <p>판매자 : ${itemList[i].memberId}</p>
+                <p>가격 : ${itemList[i].price}</p>
+                `
+                if(loginMemberId != itemList[i].memberId){
+                    itemZone.innerHTML += `<button class="nes-btn" type="button" data-itemId="${itemList[i].itemId}" class="buyBtn">구매</button>`
+                }
+        }
+        cnt = cnt+qty
+    }else{
+        itemZone.innerHTML=`<p>품목이 존재하지 않습니다.</p>`
+    }
 }
+
 
 async function getItemListFromServer(){
     const url = "/market/list"
