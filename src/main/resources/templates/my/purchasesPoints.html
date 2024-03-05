@@ -1,19 +1,33 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-
+<link href="/css/my/purchasesPacks.css" rel="stylesheet">
 <th:block th:replace="~{/layout :: setFragment(~{this::content})}">
 <th:block th:fragment="content">
-	<h2>충전 내역</h2>
-	<table>
-		<tr th:each="order:${orderList}">
-			<td>
-				충전 금액 : [[${order.point}]]
-			</td>
-			<td>
-				충전 일시 : [[${order.orderDate}]]
-			</td>
-		</tr>	
-	</table>
-
+<div class="btn-box nes-container">
+		<button onclick="location.href='/my/purchases'" class="nes-btn">카드팩 구매내역</button>
+		<button onclick="location.href='/my/purchases/points'" class="nes-btn is-success">충전 내역</button>
+		<button onclick="location.href='/my/market/trade'" class="nes-btn">거래내역</button>
+	</div>
+	<div class="nes-container with-title container is-centered" style="width:40%">
+		<p class="title" style="font-size:30px;margin-top:-40px;background-color: rgb(206, 231, 249);">카드팩 구매내역</p>
+		<div class="table-box">
+			<div class="nes-table-responsive">
+			  <table class="nes-table is-bordered is-centered">
+			    <thead>
+			      <tr>
+			        <th>충전 금액</th>
+			        <th>충전 일시</th>
+			      </tr>
+			    </thead>
+			    <tbody>
+			      <tr th:each="order:${orderList}">
+			        <td>[[${order.point}]]</td>
+			        <td>[[${order.orderDate}]]</td>
+			      </tr>
+			    </tbody>
+			  </table>
+			</div>
+		</div>
+	</div>
 </th:block>
 </th:block>

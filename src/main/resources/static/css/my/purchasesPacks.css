@@ -1,0 +1,15 @@
+@charset "UTF-8";
+.nes-table-responsive{
+    display: flex;
+    justify-content: center;
+}
+
+.btn-box{
+    display: flex;
+    justify-content: space-evenly;
+    width: 40%;
+    margin: auto;
+}
+.btn-box button{
+    width: 160px;
+}

@@ -1,8 +1,38 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-
+<link href="/css/my/purchasesPacks.css" rel="stylesheet">
 <th:block th:replace="~{/layout :: setFragment(~{this::content})}">
 <th:block th:fragment="content">
+<div class="btn-box nes-container">
+		<button onclick="location.href='/my/purchases'" class="nes-btn">카드팩 구매내역</button>
+		<button onclick="location.href='/my/purchases/points'" class="nes-btn">충전 내역</button>
+		<button onclick="location.href='/my/market/trade'" class="nes-btn is-success">거래내역</button>
+	</div>
+	<div class="nes-container with-title container is-centered" style="width:40%">
+		<p class="title" style="font-size:30px;margin-top:-40px;background-color: rgb(206, 231, 249);">카드팩 구매내역</p>
+		<div class="table-box">
+			<div class="nes-table-responsive">
+			  <table class="nes-table is-bordered is-centered">
+			    <thead>
+			      <tr>
+			        <th>구분</th>
+			        <th>거래 물품</th>
+			        <th>가격</th>
+			        <th>거래 일자</th>
+			      </tr>
+			    </thead>
+			    <tbody>
+			      <tr th:each="trade:${tradeList}">
+			        <td th:class="|nes-text ${trade.seller == session.loginMemberId ? 'is-primary' : 'is-error'}|">[[${trade.seller == session.loginMemberId ? '[판매]' : '[구매]'}]]</td>
+			        <td>[[${trade.name}]]</td>
+			        <td>[[${trade.price}]]</td>
+			        <td>[[${trade.tradeDate}]]</td>
+			      </tr>
+			    </tbody>
+			  </table>
+			</div>
+		</div>
+	</div>
 	<h2>포켓몬 거래 관리</h2>
 	<table>
 		<tr th:each="trade:${tradeList}">
