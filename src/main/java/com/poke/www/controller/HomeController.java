@@ -2,6 +2,8 @@ package com.poke.www.controller;
 
 import java.util.List;
 
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,7 +21,7 @@ import lombok.extern.slf4j.Slf4j;
 @RequiredArgsConstructor
 public class HomeController {
 	private final PokemonService pokemonService;
-	
+	private final JavaMailSender javaMailSender;
 	@GetMapping("/")
 	public String home(Model m) {
 		m.addAttribute("msg","메세지테스트");
@@ -40,4 +42,16 @@ public class HomeController {
 		}
 		return String.valueOf(list.size());
 	}
+	
+	@GetMapping("/mail")
+	public String getMethodName() {
+		SimpleMailMessage msg = new SimpleMailMessage();
+		msg.setTo("taehwan7918@naver.com");
+		msg.setSubject("메일테스트ㅋㅋ");
+		msg.setText("ㅎㅇㅎ");
+		javaMailSender.send(msg);
+		return "index";
+	}
+	
+
 }
