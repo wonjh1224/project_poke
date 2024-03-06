@@ -28,15 +28,11 @@
 				<!-- 타이머 -->
 				<a th:if="${rnTime > 0}">[[${rnTime}]]</a>
 			
-				
+				<!-- 타이머 시간 끝 -->
 				<th:block th:if="${rnTime < 0}">	
-					
 					<form th:action="|/farm/del/${memberId}|" method="post">
-					
-						<button th:if="${session.loginMember != null && session.loginMemberId == memberId}" id="farmDelBtn">보상받기</button>	
-						
-					</form>
-					
+						<button th:if="${session.loginMember != null && session.loginMemberId == memberId}" id="farmDelBtn">보상받기</button>						
+					</form>					
 				</th:block>
 				
 			</th:block>
