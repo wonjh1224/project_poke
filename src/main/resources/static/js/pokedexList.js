@@ -12,7 +12,7 @@ getPokedexList().then(result=>{
     }
 
     spreadAll(qty)
-    document.getElementById('h2').innerText=memberId+"의 도감페이지 ("+pokedexList.userPokemons.length+"/493)"
+    document.querySelector('.title').innerText+=" ("+pokedexList.userPokemons.length+"/493)"
 
 })
 async function getPokedexList(){
