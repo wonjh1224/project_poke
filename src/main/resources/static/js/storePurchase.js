@@ -4,6 +4,7 @@ document.getElementById('purchaseBtn').addEventListener('click',()=>{
             alert('구매했습니다.')
             if(confirm('카드팩 보관함으로 이동할까요?')){
                 location.href=result
+                return
             }
             location.href="/store"   
         }
