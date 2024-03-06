@@ -2,12 +2,15 @@ spreadItems()
 document.addEventListener('click',(e)=>{
     if(e.target.classList.contains('cancelBtn')){
         let itemId = e.target.dataset.itemid
-        cancelSale(itemId).then((result)=>{
-            if(result==itemId){
-                alert("취소 완료")
-                spreadItems()
-            }
-        })
+        if(confirm('등록을 취소할까요?')){
+            cancelSale(itemId).then((result)=>{
+                if(result==itemId){
+                    alert("취소했습니다.")
+                    spreadItems()
+                }
+            })
+        }
+
     }
 })
 
