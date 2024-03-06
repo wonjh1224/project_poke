@@ -11,11 +11,14 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.poke.www.domain.FarmVO;
 import com.poke.www.domain.MemberVO;
 import com.poke.www.domain.PokedexVO;
 import com.poke.www.domain.PokemonVO;
+import com.poke.www.service.FarmService;
 import com.poke.www.service.MemberService;
 import com.poke.www.service.PokedexService;
+import com.poke.www.service.PokemonService;
 import com.poke.www.service.RankingService;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -30,6 +33,8 @@ public class MemberController {
 	private final MemberService memberService;
 	private final RankingService rankingService;
 	private final PokedexService pokedexService;
+	private final FarmService farmService;
+	private final PokemonService pokemonService;
 	
 	@GetMapping("/register/test")
 	public void registerTest() {
@@ -104,6 +109,17 @@ public class MemberController {
 		
 		List<PokedexVO> list = pokedexService.getPokemonsByMemberId(memberId);
 		m.addAttribute("list", list);
+		
+		FarmVO farm = farmService.getFarmList(memberId);
+
+		log.info("id {}", memberId);
+		log.info("farmVO {}", farm);
+		m.addAttribute("farm", farm);
+		
+		if(farm != null) {
+			String pokemonImage [] = pokemonService.getPokemonImage(farm.getSlot1(), farm.getSlot2(), farm.getSlot3(), farm.getSlot4(), farm.getSlot5());
+			m.addAttribute("image", pokemonImage);			
+		}
 		
 		return "/member/detail";
 	}

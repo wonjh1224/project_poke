@@ -41,4 +41,10 @@ public class PokemonServiceImpl implements PokemonService{
 		// TODO Auto-generated method stub
 		return mapper.selectPokemonByName(pokemonId);
 	}
+
+	@Override
+	public String[] getPokemonImage(int slot1, int slot2, int slot3, int slot4, int slot5) {
+		// TODO Auto-generated method stub
+		return mapper.selectPokemonImage(slot1, slot2, slot3, slot4, slot5);
+	}
 }
