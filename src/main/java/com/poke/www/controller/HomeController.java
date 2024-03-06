@@ -21,7 +21,7 @@ import lombok.extern.slf4j.Slf4j;
 @RequiredArgsConstructor
 public class HomeController {
 	private final PokemonService pokemonService;
-	private final JavaMailSender javaMailSender;
+	
 	@GetMapping("/")
 	public String home(Model m) {
 		m.addAttribute("msg","메세지테스트");
@@ -43,15 +43,15 @@ public class HomeController {
 		return String.valueOf(list.size());
 	}
 	
-	@GetMapping("/mail")
-	public String getMethodName() {
-		SimpleMailMessage msg = new SimpleMailMessage();
-		msg.setTo("taehwan7918@naver.com");
-		msg.setSubject("메일테스트ㅋㅋ");
-		msg.setText("ㅎㅇㅎ");
-		javaMailSender.send(msg);
-		return "index";
-	}
+//	@GetMapping("/mail")
+//	public String getMethodName() {
+//		SimpleMailMessage msg = new SimpleMailMessage();
+//		msg.setTo("taehwan7918@naver.com");
+//		msg.setSubject("메일테스트ㅋㅋ");
+//		msg.setText("ㅎㅇㅎ");
+//		javaMailSender.send(msg);
+//		return "index";
+//	}
 	
 
 }
