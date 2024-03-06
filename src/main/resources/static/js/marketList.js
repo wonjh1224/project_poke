@@ -4,7 +4,6 @@ let cnt = 0
 let itemZone = document.getElementById('itemZone')
 let member
 if(loginMemberId!=null){
-    console.log(loginMemberId)
     getMemberFromServer().then(result=>{
         member=result
     })

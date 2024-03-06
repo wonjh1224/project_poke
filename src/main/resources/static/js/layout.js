@@ -21,3 +21,4 @@ document.getElementById('profileImage').addEventListener('click',()=>{
 
 })
 
+console.log(document.body.offsetHeight)
