@@ -1,23 +1,41 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<style>
-.gray{
-	filter:grayscale(100%);
-}
-</style>
+<link href="/css/pokedex/list.css" rel="stylesheet"/>
+
 <th:block th:replace="~{/layout :: setFragment(~{this::content})}">
 <th:block th:fragment="content">
 <div class="nes-container with-title container" style="width:60%">
-	<p class="title" style="font-size:30px;margin-top:-40px;background-color: rgb(206, 231, 249);">[[${memberId}]]의 도감페이지</p>
+	<p class="title" style="font-size:30px;margin-top:-40px;background-color: rgb(206, 231, 249);">[[${session.loginMember.nickname}]]의 도감페이지</p>
+	<div class="box-container">
+		<div class="input-box">
+			<input class="nes-input" type="text" id="search" placeholder="이름이나 번호 입력">	
+		</div>
+		<div class="btn-box">
+			<button class="nes-btn" id="genAll">전체</button>
+			<button class="nes-btn" id="gen1">1세대</button>
+			<button class="nes-btn" id="gen2">2세대</button>
+			<button class="nes-btn" id="gen3">3세대</button>
+			<button class="nes-btn" id="gen4">4세대</button>
+			<button class="nes-btn" id="added">등록한 것만 보기</button>
+		</div>
+	</div>
+	<div class="nes-table-responsive table-box">
+	  <table class="nes-table is-bordered is-centered">
+	    <thead>
+	      <tr>
+	        <th>번호</th>
+	        <th>모습</th>
+	        <th>이름</th>
+	        <th>설명</th>
+	        <th>전투력</th>
+	      </tr>
+	    </thead>
+	    <tbody id="pokedexLine">
 
-	<input class="nes-input" type="text" id="search" placeholder="이름이나 번호 입력">
-	<button class="nes-btn" id="genAll">전체</button>
-	<button class="nes-btn" id="gen1">1세대</button>
-	<button class="nes-btn" id="gen2">2세대</button>
-	<button class="nes-btn" id="gen3">3세대</button>
-	<button class="nes-btn" id="gen4">4세대</button>
-	<button class="nes-btn" id="added">등록한 것만 보기</button>
-	<div id="pokedexLine">
+	    </tbody>
+	  </table>
+	</div>
+	<div >
 		
 	</div>
 	<button id="more" style="display:none">+</button>

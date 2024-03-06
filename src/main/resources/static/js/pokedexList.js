@@ -4,7 +4,7 @@ let cnt = 0;
 let userPokemonIds = [];
 const pokedexLine = document.getElementById('pokedexLine')
 //1번 당 뿌릴 포켓몬 수
-const qty = 50;
+const qty = 80;
 getPokedexList().then(result=>{
     pokedexList = result
     for(pokemon of pokedexList.userPokemons){
@@ -42,11 +42,13 @@ function spreadAll(qty,added=false){
             }
             if(userPokemonIds.includes(pokedexList.allPokemons[i].pokemonId)){
                 pokedexLine.innerHTML += `
-                <div>
-                    <img src="${pokedexList.allPokemons[i].image}" class="color"></img>
-                    <p>${pokedexList.allPokemons[i].name}</p>
-                    <p>${pokedexList.allPokemons[i].flavor}</p>
-                </div>
+                <tr>
+                    <td>${pokedexList.allPokemons[i].pokemonId}</td>
+                    <td><img src="/upload/icon/${pokedexList.allPokemons[i].pokemonId}.png" class="color"></img></td>
+                    <td><span>${pokedexList.allPokemons[i].name}</span></td>
+                    <td><span>${pokedexList.allPokemons[i].flavor}</span></td>
+                    <td><span>${pokedexList.allPokemons[i].score}</span></td>
+                </tr>
                 `
             }
         }
@@ -57,11 +59,13 @@ function spreadAll(qty,added=false){
             }
             pokedexLine.innerHTML += 
             `
-            <div>
-                <img src="${pokedexList.allPokemons[i].image}" class="${userPokemonIds.includes(pokedexList.allPokemons[i].pokemonId) ? 'color' : 'gray'}"></img>
-                <p>${userPokemonIds.includes(pokedexList.allPokemons[i].pokemonId)? pokedexList.allPokemons[i].name : '???'}</p>
-                <p>${userPokemonIds.includes(pokedexList.allPokemons[i].pokemonId)? pokedexList.allPokemons[i].flavor : ''}</p>
-            </div>
+            <tr>
+                <td>${pokedexList.allPokemons[i].pokemonId}</td>
+                <td><img src="/upload/icon/${pokedexList.allPokemons[i].pokemonId}.png" class="${userPokemonIds.includes(pokedexList.allPokemons[i].pokemonId) ? 'color' : 'gray'}"></img></td>
+                <td><span>${userPokemonIds.includes(pokedexList.allPokemons[i].pokemonId)? pokedexList.allPokemons[i].name : '???'}</span></td>
+                <td><span>${userPokemonIds.includes(pokedexList.allPokemons[i].pokemonId)? pokedexList.allPokemons[i].flavor : ''}</span></td>
+                <td><span>${userPokemonIds.includes(pokedexList.allPokemons[i].pokemonId)? pokedexList.allPokemons[i].score : ''}</span></td>
+            </tr>
             `
         }
     }
@@ -75,11 +79,13 @@ function spread(startIndex,endIndex){
     for(i=startIndex; i<endIndex; i++){
         pokedexLine.innerHTML += 
         `
-        <div>
-            <img src="${pokedexList.allPokemons[i].image}" class="${userPokemonIds.includes(pokedexList.allPokemons[i].pokemonId) ? 'color' : 'gray'}"></img>
-            <p>${userPokemonIds.includes(pokedexList.allPokemons[i].pokemonId)? pokedexList.allPokemons[i].name : '???'}</p>
-            <p>${userPokemonIds.includes(pokedexList.allPokemons[i].pokemonId)? pokedexList.allPokemons[i].flavor : ''}</p>
-        </div>
+        <tr>
+            <td>${pokedexList.allPokemons[i].pokemonId}</td>
+            <td><img src="/upload/icon/${pokedexList.allPokemons[i].pokemonId}.png" class="${userPokemonIds.includes(pokedexList.allPokemons[i].pokemonId) ? 'color' : 'gray'}"></img></td>
+            <td><span>${userPokemonIds.includes(pokedexList.allPokemons[i].pokemonId)? pokedexList.allPokemons[i].name : '???'}</span></td>
+            <td><span>${userPokemonIds.includes(pokedexList.allPokemons[i].pokemonId)? pokedexList.allPokemons[i].flavor : ''}</span></td>
+            <td><span>${userPokemonIds.includes(pokedexList.allPokemons[i].pokemonId)? pokedexList.allPokemons[i].score : ''}</span></td>
+        </tr>
         `
     }
 
@@ -98,7 +104,7 @@ document.getElementById('more').addEventListener('click',()=>{
     }
 })
 window.addEventListener('scroll',()=>{
-    if(window.scrollY + window.innerHeight >= document.body.offsetHeight * 0.9){
+    if(window.scrollY + window.innerHeight >= document.body.offsetHeight * 0.5){
         document.getElementById('more').click()
     }
 })
@@ -121,15 +127,19 @@ document.getElementById('added').addEventListener('click',()=>{
 })
 
 document.getElementById('gen1').addEventListener('click',()=>{
+    document.getElementById('search').value=''
     spread(0,151)
 })
 document.getElementById('gen2').addEventListener('click',()=>{
+    document.getElementById('search').value=''
     spread(151,251)
 })
 document.getElementById('gen3').addEventListener('click',()=>{
+    document.getElementById('search').value=''
     spread(251,386)
 })
 document.getElementById('gen4').addEventListener('click',()=>{
+    document.getElementById('search').value=''
     spread(386,493)
 })
 
@@ -154,11 +164,13 @@ document.addEventListener('input',(e)=>{
         for(pokemon of searchResult){
             pokedexLine.innerHTML +=
             `
-            <div>
-                <img src="${pokemon.image}" class="${userPokemonIds.includes(pokemon.pokemonId) ? 'color' : 'gray'}"></img>
-                <p>${userPokemonIds.includes(pokemon.pokemonId)? pokemon.name : '???'}</p>
-                <p>${userPokemonIds.includes(pokemon.pokemonId)? pokemon.flavor : ''}</p>
-            </div>
+            <tr>
+                <td>${pokemon.pokemonId}</td>
+                <td><img src="/upload/icon/${pokemon.pokemonId}.png" class="${userPokemonIds.includes(pokemon.pokemonId) ? 'color' : 'gray'}"></img></td>
+                <td><span>${userPokemonIds.includes(pokemon.pokemonId)? pokemon.name : '???'}</span></td>
+                <td><span>${userPokemonIds.includes(pokemon.pokemonId)? pokemon.flavor : ''}</span></td>
+                <td><span>${userPokemonIds.includes(pokemon.pokemonId)? pokemon.score : ''}</span></td>
+            </tr>
             `
         }
     }else if(searchResult.length==0){
