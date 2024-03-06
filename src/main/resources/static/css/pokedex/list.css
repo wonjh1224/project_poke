@@ -14,3 +14,9 @@
 	display: flex;
 	margin-bottom: 20px;
 }
+.table-box{
+	text-align: center;
+}
+.flavor{
+	text-align: left;
+}

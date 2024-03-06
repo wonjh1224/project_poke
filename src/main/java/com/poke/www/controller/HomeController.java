@@ -24,6 +24,7 @@ public class HomeController {
 	@GetMapping("/")
 	public String home(Model m) {
 		m.addAttribute("msg","메세지테스트");
+		m.addAttribute("thth",false);
 		return "index";
 	}
 	

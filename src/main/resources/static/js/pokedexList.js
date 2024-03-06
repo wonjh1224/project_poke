@@ -46,7 +46,7 @@ function spreadAll(qty,added=false){
                     <td>${pokedexList.allPokemons[i].pokemonId}</td>
                     <td><img src="/upload/icon/${pokedexList.allPokemons[i].pokemonId}.png" class="color"></img></td>
                     <td><span>${pokedexList.allPokemons[i].name}</span></td>
-                    <td><span>${pokedexList.allPokemons[i].flavor}</span></td>
+                    <td class="flavor"><span>${pokedexList.allPokemons[i].flavor}</span></td>
                     <td><span>${pokedexList.allPokemons[i].score}</span></td>
                 </tr>
                 `
@@ -63,7 +63,7 @@ function spreadAll(qty,added=false){
                 <td>${pokedexList.allPokemons[i].pokemonId}</td>
                 <td><img src="/upload/icon/${pokedexList.allPokemons[i].pokemonId}.png" class="${userPokemonIds.includes(pokedexList.allPokemons[i].pokemonId) ? 'color' : 'gray'}"></img></td>
                 <td><span>${userPokemonIds.includes(pokedexList.allPokemons[i].pokemonId)? pokedexList.allPokemons[i].name : '???'}</span></td>
-                <td><span>${userPokemonIds.includes(pokedexList.allPokemons[i].pokemonId)? pokedexList.allPokemons[i].flavor : ''}</span></td>
+                <td class="flavor"><span>${userPokemonIds.includes(pokedexList.allPokemons[i].pokemonId)? pokedexList.allPokemons[i].flavor : ''}</span></td>
                 <td><span>${userPokemonIds.includes(pokedexList.allPokemons[i].pokemonId)? pokedexList.allPokemons[i].score : ''}</span></td>
             </tr>
             `
@@ -83,7 +83,7 @@ function spread(startIndex,endIndex){
             <td>${pokedexList.allPokemons[i].pokemonId}</td>
             <td><img src="/upload/icon/${pokedexList.allPokemons[i].pokemonId}.png" class="${userPokemonIds.includes(pokedexList.allPokemons[i].pokemonId) ? 'color' : 'gray'}"></img></td>
             <td><span>${userPokemonIds.includes(pokedexList.allPokemons[i].pokemonId)? pokedexList.allPokemons[i].name : '???'}</span></td>
-            <td><span>${userPokemonIds.includes(pokedexList.allPokemons[i].pokemonId)? pokedexList.allPokemons[i].flavor : ''}</span></td>
+            <td class="flavor"><span>${userPokemonIds.includes(pokedexList.allPokemons[i].pokemonId)? pokedexList.allPokemons[i].flavor : ''}</span></td>
             <td><span>${userPokemonIds.includes(pokedexList.allPokemons[i].pokemonId)? pokedexList.allPokemons[i].score : ''}</span></td>
         </tr>
         `
