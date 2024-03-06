@@ -1,7 +1,10 @@
-document.getElementById('logoutBtn').addEventListener('click',()=>{
-    logout()
-    location.href="/"
-})
+console.log(document.body.offsetHeight)
+console.log('asdf')
+
+if(document.body.offsetHeight<=845){
+    document.body.style.backgroundImage = "url('/image/bgimg.png')";
+    document.querySelector('footer').style.backgroundImage = "none";
+}
 
 async function logout(){
     const url = "/logout"
@@ -9,6 +12,7 @@ async function logout(){
         method : "post"
     }
     fetch(url,config)
+    location.href="/"
 }
 
 
@@ -20,5 +24,3 @@ document.getElementById('profileImage').addEventListener('click',()=>{
     }
 
 })
-
-console.log(document.body.offsetHeight)
