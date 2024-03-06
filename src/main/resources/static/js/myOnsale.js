@@ -31,11 +31,12 @@ async function cancelSale(itemId){
 function spreadItems(){
     getItemListFromServer().then(itemList=>{
         let itemZone = document.getElementById('itemZone')
-        itemZone.innerHTML = ``
+        itemZone.innerHTML = ''
         for(let item of itemList){
             itemZone.innerHTML+=`
-                
-            <p><img src="${item.image}">이름 : ${item.name} | 가격 : ${item.price} | <button class="cancelBtn" data-itemId="${item.itemId}">판매 취소</button></p>
+            <div>
+                <p><img src="/upload/icon/${item.pokemonId}.png">이름 : ${item.name} | 가격 : ${item.price} | <button class="cancelBtn" data-itemId="${item.itemId}">판매 취소</button></p>
+            </div>
             `
         }
     })
