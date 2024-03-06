@@ -8,6 +8,10 @@
 	<h2>유저 디테일 페이지임</h2>
 	<div>
 		<p>아이디 : [[${memberId}]]</p>
+		
+			<div>보상시간 : [[${endDate}]]</div>
+			<div>현재시간 : [[${now}]]</div>
+			
 		<div style="background-image:url(https://static.vecteezy.com/system/resources/previews/011/484/158/original/pixel-art-farm-landscape-with-barn-mill-fence-trees-8-bit-game-background-vector.jpg); background-size:contain; width: 600px; height: 200px; ">
 			
 			<!-- 농장 등록시 등록한 포켓몬 표시 -->
@@ -19,9 +23,22 @@
 				<img th:src="${image[3]}">
 				<img th:src="${image[4]}">
 				
-				<form th:action="|/farm/del/${memberId}|" method="post">
-					<button th:if="${session.loginMember != null && session.loginMemberId == memberId}" id="farmDelBtn">x</button>	
-				</form>
+				<div>등록시간 : [[${farm.regDate}]]</div>
+				
+				<!-- 타이머 -->
+				<a th:if="${rnTime > 0}">[[${rnTime}]]</a>
+			
+				
+				<th:block th:if="${rnTime < 0}">	
+					
+					<form th:action="|/farm/del/${memberId}|" method="post">
+					
+						<button th:if="${session.loginMember != null && session.loginMemberId == memberId}" id="farmDelBtn">보상받기</button>	
+						
+					</form>
+					
+				</th:block>
+				
 			</th:block>
 			
 			<th:block th:if="${farm == null}">

@@ -11,5 +11,6 @@ public class FarmVO {
 
 	private String member_id;
 	private int slot1, slot2, slot3, slot4, slot5;
+	private String regDate, endDate;
 	
 }

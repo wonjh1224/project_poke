@@ -13,4 +13,6 @@ public interface FarmMapper {
 
 	void deletePokemon(String memberId);
 
+	String selectEndDate(String memberId);
+
 }

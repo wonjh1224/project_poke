@@ -33,5 +33,11 @@ public class FarmServiceImpl implements FarmService{
 		
 	}
 
+	@Override
+	public String getEndDate(String memberId) {
+		// TODO Auto-generated method stub
+		return farmMapper.selectEndDate(memberId);
+	}
+
 	
 }

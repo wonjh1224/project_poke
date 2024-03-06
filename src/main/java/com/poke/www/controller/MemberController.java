@@ -1,20 +1,28 @@
 package com.poke.www.controller;
 
+
+import java.time.Duration;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 import java.util.List;
+
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
+
 import org.springframework.web.bind.annotation.ResponseBody;
+
 
 import com.poke.www.domain.FarmVO;
 import com.poke.www.domain.MemberVO;
 import com.poke.www.domain.PokedexVO;
-import com.poke.www.domain.PokemonVO;
+
 import com.poke.www.service.FarmService;
 import com.poke.www.service.MemberService;
 import com.poke.www.service.PokedexService;
@@ -100,6 +108,14 @@ public class MemberController {
 	
 	@GetMapping("/member/{memberId}")
 	public String detailPage(@PathVariable("memberId")String memberId, Model m) {
+		
+		//서버 시간
+		LocalDateTime now = LocalDateTime.now();
+		String time = now.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+		LocalDateTime nowDate = LocalDateTime.parse(time, formatter);
+		m.addAttribute("now", nowDate);
+		
 		int ranking = rankingService.getRankingByMemberId(memberId);
 		m.addAttribute("ranking", ranking);
 		
@@ -114,16 +130,30 @@ public class MemberController {
 
 		log.info("id {}", memberId);
 		log.info("farmVO {}", farm);
+		
 		m.addAttribute("farm", farm);
 		
 		if(farm != null) {
 			String pokemonImage [] = pokemonService.getPokemonImage(farm.getSlot1(), farm.getSlot2(), farm.getSlot3(), farm.getSlot4(), farm.getSlot5());
 			m.addAttribute("image", pokemonImage);			
+			
+			//등록 후 끝나는 시간
+			String end = farmService.getEndDate(memberId);
+			LocalDateTime endDate = LocalDateTime.parse(end, formatter);
+			m.addAttribute("endDate", endDate);
+		
+			m.addAttribute("isAfter", nowDate.isAfter(endDate));
+			
+			Duration rnTime = Duration.between(nowDate, endDate);
+		
+			log.info("rnTime {}", rnTime.toSeconds());
+			m.addAttribute("rnTime", rnTime.toSeconds());
+					
 		}
 		
 		return "/member/detail";
 	}
 	
-	
+
 	
 }

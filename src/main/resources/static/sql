@@ -81,3 +81,13 @@ slot_3 int not null,
 slot_4 int not null,
 slot_5 int not null,
 primary key(member_id));
+
+
+-- 2024 -03 - 06 --
+alter table farm add column reg_date datetime default now();
+alter table farm add column end_date datetime default now();
+
+CREATE TRIGGER farm_trigger BEFORE INSERT ON farm
+	FOR EACH ROW SET
+	NEW.reg_date = IFNULL(NEW.reg_date, NOW()),
+	NEW.end_date = TIMESTAMPADD(MINUTE, 5, NEW.reg_date);

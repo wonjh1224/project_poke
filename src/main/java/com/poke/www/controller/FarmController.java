@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.poke.www.service.FarmService;
+import com.poke.www.service.MemberService;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -18,6 +19,7 @@ import lombok.extern.slf4j.Slf4j;
 public class FarmController {
 	
 	private final FarmService farmService;
+	private final MemberService memberService;
 	
 	@PostMapping("/add/{memberId}")
 	public String add(@RequestParam("pokemonId")String pokemonId, @PathVariable("memberId") String memberId) {
@@ -30,6 +32,7 @@ public class FarmController {
 	public String del(@PathVariable("memberId")String memberId) {
 		log.info("memberId >>>>> {}", memberId);
 		farmService.delPokemon(memberId);
+		
 		return "redirect:/member/{memberId}";
 	}
 }

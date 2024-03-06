@@ -10,4 +10,6 @@ public interface FarmService {
 
 	void delPokemon(String memberId);
 
+	String getEndDate(String memberId);
+
 }
