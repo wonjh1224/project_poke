@@ -26,7 +26,7 @@
 				<div>등록시간 : [[${farm.regDate}]]</div>
 				
 				<!-- 타이머 -->
-				<a th:if="${rnTime > 0}">[[${rnTime}]]</a>
+				<a th:if="${rnTime > 0}">남은시간 : [[${rnTime}]]</a>
 			
 				<!-- 타이머 시간 끝 -->
 				<th:block th:if="${rnTime < 0}">	

@@ -25,6 +25,10 @@
 	update member set score = score + #{param1} where member_id = #{param2} 
 </update>
 
+<update id="updatePoint">
+	update member set point = point + ${param2} where member_id = #{param1}
+</update>
+
 
 
 </mapper>

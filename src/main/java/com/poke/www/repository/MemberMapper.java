@@ -19,4 +19,6 @@ public interface MemberMapper {
 
 	int updateScoreByMemberId(int score, String memberId);
 
+	void updatePoint(String memberId, int point);
+
 }

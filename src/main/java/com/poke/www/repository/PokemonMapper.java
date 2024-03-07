@@ -21,4 +21,6 @@ public interface PokemonMapper {
 
 	String[] selectPokemonImage(int slot1, int slot2, int slot3, int slot4, int slot5);
 
+	int selectTotalPoint(String string, String string2, String string3, String string4, String string5);
+
 }

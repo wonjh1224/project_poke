@@ -18,6 +18,8 @@ public interface MemberService {
 
 	int addScore(int score, String memberId);
 
+	void updatePoint(String memberId, int point);
+
 
 	
 

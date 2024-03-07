@@ -53,5 +53,11 @@ public class MemberServiceImpl implements MemberService {
 		return mapper.updateScoreByMemberId(score,memberId);
 	}
 
+	@Override
+	public void updatePoint(String memberId, int point) {
+		mapper.updatePoint(memberId, point);
+		
+	}
+
 
 }

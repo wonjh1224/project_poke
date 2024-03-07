@@ -16,8 +16,8 @@ public class FarmServiceImpl implements FarmService{
 	private final FarmMapper farmMapper;
 
 	@Override
-	public void addPokemon(String memberId, String string, String string2, String string3, String string4, String string5) {
-		farmMapper.insertPokemon(memberId, string, string2, string3, string4, string5);
+	public void addPokemon(String memberId, String string, String string2, String string3, String string4, String string5, int totalPoint) {
+		farmMapper.insertPokemon(memberId, string, string2, string3, string4, string5, totalPoint);
 		
 	}
 
@@ -37,6 +37,12 @@ public class FarmServiceImpl implements FarmService{
 	public String getEndDate(String memberId) {
 		// TODO Auto-generated method stub
 		return farmMapper.selectEndDate(memberId);
+	}
+
+	@Override
+	public int getTotalPoint(String memberId) {
+		// TODO Auto-generated method stub
+		return farmMapper.selectTotalPoint(memberId);
 	}
 
 	

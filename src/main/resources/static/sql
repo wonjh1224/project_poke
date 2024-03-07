@@ -90,9 +90,12 @@ alter table farm add column end_date datetime default now();
 CREATE TRIGGER farm_trigger BEFORE INSERT ON farm
 	FOR EACH ROW SET
 	NEW.reg_date = IFNULL(NEW.reg_date, NOW()),
-	NEW.end_date = TIMESTAMPADD(MINUTE, 5, NEW.reg_date);
+	NEW.end_date = TIMESTAMPADD(SECOND, 10, NEW.reg_date);
 	
 농장 등록시간, 보상시간 추가
 --할일--
 타이머 표시 (시간돌아가게)
 보상받기 -> 멤버 포인트 업데이트
+
+-- 2024 - 03 - 07 --
+alter table farm add column total_point int not null;
