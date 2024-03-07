@@ -4,8 +4,13 @@ var modalClose = document.getElementsByClassName("modal-close")[0];
 
 let modalContent = document.getElementById('modal-content')
 
-document.getElementById('farmAddBtn').addEventListener('click', ()=>{
-    modal.style.display = "block";
+let time = document.getElementById('rnTime').getAttribute('data-time');
+console.log(time);
+
+document.addEventListener('click', (e)=>{
+	if(e.target.id == 'farmAddBtn'){
+		modal.style.display = "block";
+	}
 })
 
 modalClose.onclick = function() {
@@ -51,4 +56,10 @@ function countChecked(field){
     }
 
 }
+
+
+
+
+
+
 
