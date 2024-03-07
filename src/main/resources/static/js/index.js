@@ -1,4 +1,3 @@
-
 function start() {
     document.querySelector('.anime-box').style.visibility="visible"
     document.querySelector('.anime-box').innerHTML=`
