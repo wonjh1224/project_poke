@@ -12,7 +12,7 @@
 			<div>보상시간 : [[${endDate}]]</div>
 			<div>현재시간 : [[${now}]]</div>
 			
-		<div style="background-image:url(https://img.freepik.com/premium-vector/pixel-art-game-background-grass-sky-clouds_210544-60.jpg); background-size:contain; width: 600px; height: 200px; ">
+		<div style="background-image:url(https://img.freepik.com/premium-vector/pixel-art-game-background-grass-sky-clouds_210544-60.jpg); background-size:contain; width: 600px; height: 400px; ">
 			
 			<!-- 농장 등록시 등록한 포켓몬 표시 -->
 			<th:block th:if="${farm != null}">
@@ -32,7 +32,7 @@
 						<!-- 타이머 -->
 						<br>
 						<!-- <a th:if="${rnTime > 0}" th:data-value="${rnTime}" id="timer">보상까지 남은시간 : [[${rnTime}]]</a> -->
-						<input type="text" id="timer" th:value="${rnTime}" th:if="${rnTime > 0}">
+						<!-- <input type="text" id="timer" th:value="${rnTime}" th:if="${rnTime > 0}"> -->
 						 
 						<input type="text" id="min" th:value="${rnTime/60}" th:if="${rnTime > 0}"> 
 						<input type="text" id="sec" th:value="${rnTime%60}" th:if="${rnTime > 0}"> 
@@ -54,8 +54,6 @@
 		</div>
 		<div>랭킹 : [[${ranking}]] 등</div>
 		<div>도감 : [[${per}]] %</div>
-		<div>업적</div>
-		<div>..?</div>
 	</div>
 	
 	

@@ -25,22 +25,21 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public MemberVO login(String loginId, String password) {
 		MemberVO mvo = mapper.selectMemberById(loginId);
-		if(mvo != null && mvo.getPassword().equals(password)) {
+		if (mvo != null && mvo.getPassword().equals(password)) {
 			return mvo;
 		}
-		return null;			
-		
+		return null;
+
 	}
 
 	@Override
 	public MemberVO getMember(String memberId) {
 		return mapper.selectMemberById(memberId);
 	}
-	
-	
+
 	@Override
 	public int modifyPointByMemberId(String memberId, int price) {
-		return mapper.updatePointById(price,memberId);
+		return mapper.updatePointById(price, memberId);
 	}
 
 	@Override
@@ -50,13 +49,13 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override
 	public int addScore(int score, String memberId) {
-		return mapper.updateScoreByMemberId(score,memberId);
+		return mapper.updateScoreByMemberId(score, memberId);
 	}
 
 	@Override
 	public int modifyHasProfile(String memberId, boolean b) {
-		String status = b? "y" : "n";
-		return mapper.updateHasProfile(status,memberId);
+		String status = b ? "y" : "n";
+		return mapper.updateHasProfile(status, memberId);
 	}
 
 	@Override
@@ -66,16 +65,18 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override
 	public int addProfile(String memberId, String uuid) {
-		return mapper.insertProfile(memberId,uuid);
+		return mapper.insertProfile(memberId, uuid);
 	}
 
 	@Override
 	public String getProfileUuidByMemberId(String memberId) {
 		return mapper.selectProfileUuidByMemberId(memberId);
-	public void updatePoint(String memberId, int point) {
-		mapper.updatePoint(memberId, point);
-		
 	}
 
+	@Override
+	public void updatePoint(String memberId, int point) {
+		mapper.updatePoint(memberId, point);
+
+	}
 
 }
