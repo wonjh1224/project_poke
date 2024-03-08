@@ -90,7 +90,7 @@ alter table farm add column end_date datetime default now();
 CREATE TRIGGER farm_trigger BEFORE INSERT ON farm
 	FOR EACH ROW SET
 	NEW.reg_date = IFNULL(NEW.reg_date, NOW()),
-	NEW.end_date = TIMESTAMPADD(SECOND, 10, NEW.reg_date);
+	NEW.end_date = TIMESTAMPADD(minute, 3, NEW.reg_date);
 	
 농장 등록시간, 보상시간 추가
 --할일--

@@ -31,11 +31,16 @@
 					<th:block th:if="${session.loginMember != null && session.loginMemberId == memberId}">
 						<!-- 타이머 -->
 						<br>
-						<a th:if="${rnTime > 0}" th:data-time="${rnTime}" id="rnTime">보상까지 남은시간 : [[${rnTime}]]</a>
+						<!-- <a th:if="${rnTime > 0}" th:data-value="${rnTime}" id="timer">보상까지 남은시간 : [[${rnTime}]]</a> -->
+						<input type="text" id="timer" th:value="${rnTime}" th:if="${rnTime > 0}">
+						 
+						<input type="text" id="min" th:value="${rnTime/60}" th:if="${rnTime > 0}"> 
+						<input type="text" id="sec" th:value="${rnTime%60}" th:if="${rnTime > 0}"> 
+						
 						<!-- 타이머 시간 끝 -->
 						<th:block th:if="${rnTime <= 0}">	
 							<form th:action="|/farm/del/${memberId}|" method="post">
-								<button id="farmDelBtn">보상받기</button>						
+								<button id="farmDelBtn" style="visibility: visible;">보상받기</button>						
 							</form>					
 						</th:block>
 					</th:block>
