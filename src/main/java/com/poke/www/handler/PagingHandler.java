@@ -24,7 +24,6 @@ public class PagingHandler {
 		endPage = (int) (Math.ceil (pagingVO.getPageNo() / (double) pagingVO.getQty()) ) * pagingVO.getQty();
 		startPage = endPage - 9;
 		
-		
 		//스타트페이지 수정
 		if(startPage < 0) {
 			startPage = 1;
@@ -40,7 +39,6 @@ public class PagingHandler {
 			endPage = 1;
 		}
 
-		
 		prev = startPage > 1;
 		next = endPage < realEndPage;
 		

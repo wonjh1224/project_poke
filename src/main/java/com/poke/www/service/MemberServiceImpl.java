@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import com.poke.www.domain.MemberVO;
 import com.poke.www.repository.MemberMapper;
+import com.poke.www.repository.RankingMapper;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -71,6 +72,9 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public String getProfileUuidByMemberId(String memberId) {
 		return mapper.selectProfileUuidByMemberId(memberId);
+	public void updatePoint(String memberId, int point) {
+		mapper.updatePoint(memberId, point);
+		
 	}
 
 

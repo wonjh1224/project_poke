@@ -49,3 +49,53 @@ writer varchar(200) not null,
 content text not null,
 reg_at datetime default now(),
 primary key(cno));
+
+-- 2024 - 02 - 15 -- 
+랭킹 시작
+
+-- 2024 - 02 - 19 --
+랭킹 테이블 생성
+create table ranking(
+member_id varchar(20),
+ranking int,
+primary key(member_id)
+);
+
+-- 2024 - 02 - 21 --
+랭킹테이블에 스코어 칼럼 추가
+alter table ranking add column score int default 0;
+
+-- 2024 - 02 - 26 --
+alter table pokemon add column height int not null;
+alter table pokemon add column weight int not null;
+alter table pokemon add column genus varchar(20) not null;
+alter table pokemon add column type varchar(20) not null;
+
+-- 2024 - 02 - 28 --
+농장테이블 생성
+create table farm(
+member_id varchar(20),
+slot_1 int not null,
+slot_2 int not null,
+slot_3 int not null,
+slot_4 int not null,
+slot_5 int not null,
+primary key(member_id));
+
+
+-- 2024 -03 - 06 --
+alter table farm add column reg_date datetime default now();
+alter table farm add column end_date datetime default now();
+
+CREATE TRIGGER farm_trigger BEFORE INSERT ON farm
+	FOR EACH ROW SET
+	NEW.reg_date = IFNULL(NEW.reg_date, NOW()),
+	NEW.end_date = TIMESTAMPADD(minute, 3, NEW.reg_date);
+	
+농장 등록시간, 보상시간 추가
+--할일--
+타이머 표시 (시간돌아가게)
+보상받기 -> 멤버 포인트 업데이트
+
+-- 2024 - 03 - 07 --
+alter table farm add column total_point int not null;

@@ -9,8 +9,8 @@
 </delete>
 
 <insert id="insertPokemon">
-	insert into pokemon (pokemon_id, name, image, flavor, score)
-	values (#{pokemonId}, #{name}, #{image}, #{flavor}, #{score})
+	insert into pokemon (pokemon_id, name, image, flavor, score, height, weight, genus, type)
+	values (#{pokemonId}, #{name}, #{image}, #{flavor}, #{score}, #{height}, #{weight}, #{genus}, #{type})
 </insert>
 
 <select id="selectPokemons">
@@ -20,4 +20,17 @@
 <select id="selectPokemonByPokemonId">
 	select * from pokemon where pokemon_id = #{pokemonId}
 </select>
+
+<select id="selectPokemonByName">
+	select * from pokemon where pokemon_id = #{pokemonId}
+</select>
+
+<select id="selectPokemonImage">
+	select image from pokemon where pokemon_id in (${param1}, ${param2}, ${param3}, ${param4}, ${param5})
+</select>
+
+<select id="selectTotalPoint">
+	select sum(score) from pokemon where pokemon_id in (${param1},${param2},${param3},${param4},${param5})
+</select>
+
 </mapper>

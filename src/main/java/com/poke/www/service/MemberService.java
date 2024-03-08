@@ -25,6 +25,9 @@ public interface MemberService {
 	int addProfile(String memberId, String uuid);
 
 	String getProfileUuidByMemberId(String memberId);
+	void updatePoint(String memberId, int point);
+
+
 	
 
 }

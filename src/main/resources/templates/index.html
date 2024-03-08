@@ -56,29 +56,64 @@ async function getPokemonKorean(pokemonId){
     }
 }
 
-async function getPokemonStats(pokemonId){
-    try {
-        const url = "https://pokeapi.co/api/v2/pokemon/"+pokemonId
-        const resp = await fetch(url)
-        const result = await resp.json();
-        return result.stats;
-    } catch (error) {
-        console.log(error)
-    }
+async function getPokemonAPI(pokemonId){
+	try{
+		const url = "https://pokeapi.co/api/v2/pokemon/"+pokemonId
+		const resp = await fetch(url)
+		const result = await resp.json()
+		return result
+	}catch(error){
+		console.log(error)
+	}
 }
-
+async function getPokemon_speciesAPI(pokemonId){
+	try{
+		const url = "https://pokeapi.co/api/v2/pokemon-species/"+pokemonId
+		const resp = await fetch(url)
+		const result = await resp.json()
+		return result
+	}catch(error){
+		console.log(error)
+	}
+}
 
 async function setPokemon(){
 	let pno = document.getElementById('pno').value
 	let pokemons = []
     for(let i=1; i<=pno; i++){
-        let pokemonKorean = await getPokemonKorean(i)
-       
-        let pokemonStats = await getPokemonStats(i)
+    	let pokemonAPI = await getPokemonAPI(i)
+    	let pokemon_speciesAPI = await getPokemon_speciesAPI(i)
+    	
+        let pokemonKorean = pokemon_speciesAPI
+        
+        let height = pokemonAPI.height
+        let weight = pokemonAPI.weight   
+        
+        let pokemonGenera = pokemon_speciesAPI.genera
+        let genus = pokemonGenera[1].genus	
+        
+        let pokemonTypes = pokemonAPI.types
+    	let type = '';
+        
+    	//타입(한글)
+        for(t of pokemonTypes){
+        	let url = t.type.url;
+     
+        	let resp = await fetch(url)
+        	let result = await resp.json()
+     
+        	type += result.names[1].name+","
+        }
+        
+        type = type.substring(0, type.lastIndexOf(","));
+        
+        let pokemonStats = pokemonAPI.stats
         let stats = 0;
+              
         for(stat of pokemonStats){
         	stats += stat.base_stat
         }
+        
     	let pokemon_id = i
         let name = pokemonKorean.names[2].name
         let flavor
@@ -87,6 +122,7 @@ async function setPokemon(){
         		flavor = f.flavor_text.replaceAll("\n",' ')  		
         	}
         }
+    	
         let image = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${i}.png`
         
         let pokemon = {
@@ -94,10 +130,15 @@ async function setPokemon(){
             name : name,
             image : image,
             flavor : flavor,
-            score : stats
+            score : stats,
+            height : height,
+            weight : weight,
+            genus : genus,
+            type : type
         }
         pokemons.push(pokemon)
     }
+	
     const url = "/pokemon-init"
     const config = {
         method : "put",

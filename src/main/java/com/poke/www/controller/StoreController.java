@@ -62,9 +62,9 @@ public class StoreController {
 	@ResponseBody
 	@PostMapping("/purchase")
 	public String purchase(@RequestBody ItemStorageVO bodyItemStorageVO) {
-		MemberVO mvo = memberService.getMember(bodyItemStorageVO.getMemberId());
-		ProductVO pvo = storeService.getProductByProductId(bodyItemStorageVO.getProductId());
 		log.info("asdf {}",bodyItemStorageVO);
+		ProductVO pvo = storeService.getProductByProductId(bodyItemStorageVO.getProductId());
+		MemberVO mvo = memberService.getMember(bodyItemStorageVO.getMemberId());
 
 		//잔액<금액이면 오류페이지로 (추후 추가예정)
 		if(mvo.getPoint()<pvo.getPrice()) {

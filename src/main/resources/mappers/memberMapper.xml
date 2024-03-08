@@ -44,5 +44,10 @@
 <select id="selectProfileUuidByMemberId">
 	select uuid from profile where member_id = #{memberId}
 </select>
+<update id="updatePoint">
+	update member set point = point + ${param2} where member_id = #{param1}
+</update>
+
+
 
 </mapper>

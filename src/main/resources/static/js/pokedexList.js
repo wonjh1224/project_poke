@@ -67,6 +67,8 @@ function spreadAll(qty,added=false){
                 <td><span>${userPokemonIds.includes(pokedexList.allPokemons[i].pokemonId)? pokedexList.allPokemons[i].score : ''}</span></td>
             </tr>
             `
+            
+            
         }
     }
     cnt=cnt+qty

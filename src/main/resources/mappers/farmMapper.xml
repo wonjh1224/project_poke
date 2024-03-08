@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.poke.www.repository.FarmMapper">
+
+	<insert id="insertPokemon">
+		insert into farm (member_id, slot_1, slot_2, slot_3, slot_4, slot_5, total_point)
+		values(#{param1}, ${param2}, ${param3}, ${param4}, ${param5}, ${param6}, ${param7})
+	</insert>
+	
+	<select id="selectFarmList">
+		select * from farm where member_id = #{memberId}
+	</select>
+	
+	<delete id="deletePokemon">
+		delete from farm where member_id = #{memberId}
+	</delete>
+	
+	<select id="selectEndDate">
+		select end_date from farm where member_id = #{memberId}
+	</select>
+	
+	<select id="selectTotalPoint">
+		select total_point from farm where member_id = #{member_id}
+	</select>
+
+</mapper>

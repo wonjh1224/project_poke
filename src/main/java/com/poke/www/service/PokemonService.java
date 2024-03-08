@@ -14,4 +14,12 @@ public interface PokemonService {
 
 	PokemonVO getPokemonByPokemonId(int pokemonId);
 
+	PokemonVO getPokemonByName(int pokemonId);
+
+	String[] getPokemonImage(int slot1, int slot2, int slot3, int slot4, int slot5);
+
+	int getTotalPoint(String string, String string2, String string3, String string4, String string5);
+
+
+
 }

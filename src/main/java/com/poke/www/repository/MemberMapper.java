@@ -26,5 +26,6 @@ public interface MemberMapper {
 	int insertProfile(String memberId, String uuid);
 
 	String selectProfileUuidByMemberId(String memberId);
+	void updatePoint(String memberId, int point);
 
 }

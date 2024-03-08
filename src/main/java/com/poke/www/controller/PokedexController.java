@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.annotation.SessionAttribute;
 
 import com.poke.www.domain.PokedexDTO;
 import com.poke.www.domain.PokedexVO;
@@ -74,4 +75,22 @@ public class PokedexController {
 		
 		return new PokedexDTO(userPokemonList,allPokemonList);
 	}
+	
+	
+	@GetMapping("/pokemon/{pokemonId}")
+	public String pokemon(@PathVariable("pokemonId")int pokemonId, Model m, @SessionAttribute("loginMemberId")String memberId) {
+		
+		if(pokedexService.getPokemonByMemberIdAndPokemonId(memberId, pokemonId) == null) {
+			m.addAttribute("class","gray");
+		}else {
+			m.addAttribute("class","color");
+		}
+		
+		PokemonVO pokemonVO = pokemonService.getPokemonByName(pokemonId);
+		log.info("pvo >>> {}", pokemonVO);
+		m.addAttribute("pvo", pokemonVO);
+		return "/pokedex/pokemon";
+	}
+	
+	
 }
