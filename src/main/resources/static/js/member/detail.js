@@ -80,7 +80,9 @@ function TIMER() {
 			
 		if (second.value < 0) {
 			minute.value = min - 1;
+			min = minute.value
 			second.value = 59;
+			sec = 59000
 			// location.reload(true);
 		}
 
