@@ -17,6 +17,8 @@ a {
 
 <th:block th:replace="~{/layout :: setFragment(~{this::content})}">
 	<th:block th:fragment="content">
+		<div class="nes-container with-title container" style="width:60%">
+	<p class="title" style="font-size:30px;margin-top:-40px;background-color: rgb(206, 231, 249);">[[${memberId}]] 님</p>
 		<h2>랭킹 페이지임</h2>
 
 		<button type="button" id="insert">슛</button>
@@ -37,7 +39,7 @@ a {
 						<span>[[${member.ranking}]]등 :</span> 
 						<span><a th:href="|/member/${member.memberId}|">[[${member.memberId}]]</a></span> 
 						<span>( [[${member.score}]]점 )</span>
-						<progress class="nes-progress is-success" th:value="${member.score}" max="204451"></progress>
+						<progress class="nes-progress is-success" th:value="${member.score}" max="204451" style="width: 10	 00px;"></progress>
 					</th:block>
 				</li>
 				
@@ -71,7 +73,7 @@ a {
 
 		<br>
 
-
+</div>
 	</th:block>
 </th:block>
 

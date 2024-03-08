@@ -5,15 +5,10 @@
 <th:block th:replace="~{/layout :: setFragment(~{this::content})}">
 	<th:block th:fragment="content">
 	<div class="nes-container with-title container" style="width:60%">
-	<p class="title" style="font-size:30px;margin-top:-40px;background-color: rgb(206, 231, 249);">디테일페이지</p>
+	<p class="title" style="font-size:30px;margin-top:-40px;background-color: rgb(206, 231, 249);">[[${memberId}]] 님</p>
 	
 	<h2>유저 디테일 페이지임</h2>
-	<div>
-		<p>아이디 : [[${memberId}]]</p>
-		
-	
-	
-			
+	<div>	
 		<div style="background-image:url(https://img.freepik.com/premium-vector/pixel-art-game-background-grass-sky-clouds_210544-60.jpg); background-size:contain; width: 600px; height: 300px; ">
 			
 			<!-- 농장 등록시 등록한 포켓몬 표시 -->

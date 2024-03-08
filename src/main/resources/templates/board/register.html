@@ -3,6 +3,8 @@
 <th:block th:replace="~{/layout :: setFragment(~{this::content})}">
 
 	<th:block th:fragment="content">
+			<div class="nes-container with-title container" style="width:60%">
+	<p class="title" style="font-size:30px;margin-top:-40px;background-color: rgb(206, 231, 249);">[[${memberId}]] 님</p>
 		<hr>
 		<br>
 
@@ -46,6 +48,7 @@
 		<br>
 		<hr>
 
+	</div>
 	</th:block>
 
 </th:block>
