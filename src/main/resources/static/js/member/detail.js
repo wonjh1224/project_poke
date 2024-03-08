@@ -62,6 +62,8 @@ let min = minute.value;
 let second = document.getElementById('sec');
 let sec = second.value * 1000; //59000 5800 58
 
+let timer = document.getElementById('timer')
+
 let farmDelBtn = document.getElementById('farmDelBtn');
 
 function TIMER() {
@@ -77,16 +79,19 @@ function TIMER() {
 		minute.value = min;
 		sec = sec - 1000;
 		second.value = sec / 1000;
+		
+		timer.innerText = minute.value + ":" + second.value;
 			
 		if (second.value < 0) {
 			minute.value = min - 1;
 			second.value = 59;
-			// location.reload(true);
+			
+			sec = 59000;
+			min = minute.value;
+			
+			timer.innerText = minute.value + ":" + second.value;
 		}
 
-/*		if (minute.value == 0 && second.value == 59) {
-			location.relaod(true);
-		}*/
 	}, 1000);
 }
 

@@ -4,23 +4,28 @@
 
 <th:block th:replace="~{/layout :: setFragment(~{this::content})}">
 	<th:block th:fragment="content">
+	<div class="nes-container with-title container" style="width:60%">
+	<p class="title" style="font-size:30px;margin-top:-40px;background-color: rgb(206, 231, 249);">디테일페이지</p>
 	
 	<h2>유저 디테일 페이지임</h2>
 	<div>
 		<p>아이디 : [[${memberId}]]</p>
 		
-			<div>보상시간 : [[${endDate}]]</div>
-			<div>현재시간 : [[${now}]]</div>
+	
+	
 			
-		<div style="background-image:url(https://img.freepik.com/premium-vector/pixel-art-game-background-grass-sky-clouds_210544-60.jpg); background-size:contain; width: 600px; height: 400px; ">
+		<div style="background-image:url(https://img.freepik.com/premium-vector/pixel-art-game-background-grass-sky-clouds_210544-60.jpg); background-size:contain; width: 600px; height: 300px; ">
 			
 			<!-- 농장 등록시 등록한 포켓몬 표시 -->
 			<th:block th:if="${farm != null}">
 			
-				
 					<div>등록시간 : [[${farm.regDate}]]</div>
+					<div>보상시간 : [[${farm.endDate}]]</div>
+					<div>현재시간 : [[${now}]]</div>
 				
 					<br><br>
+					<br>
+			
 					
 					<img th:src="${image[0]}">
 					<img th:src="${image[1]}">
@@ -34,8 +39,9 @@
 						<!-- <a th:if="${rnTime > 0}" th:data-value="${rnTime}" id="timer">보상까지 남은시간 : [[${rnTime}]]</a> -->
 						<!-- <input type="text" id="timer" th:value="${rnTime}" th:if="${rnTime > 0}"> -->
 						 
-						<input type="text" id="min" th:value="${rnTime/60}" th:if="${rnTime > 0}"> 
-						<input type="text" id="sec" th:value="${rnTime%60}" th:if="${rnTime > 0}"> 
+						<input type="hidden" id="min" th:value="${rnTime/60}" th:if="${rnTime > 0}"> 
+						<input type="hidden" id="sec" th:value="${rnTime%60}" th:if="${rnTime > 0}">
+						<span id="timer"></span> 
 						
 						<!-- 타이머 시간 끝 -->
 						<th:block th:if="${rnTime <= 0}">	
@@ -73,6 +79,7 @@
 		</div>	
 	</div>
 
+	</div>
 	</th:block>
 </th:block>
 
