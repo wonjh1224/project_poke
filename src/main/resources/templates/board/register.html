@@ -4,35 +4,35 @@
 
 	<th:block th:fragment="content">
 			<div class="nes-container with-title container" style="width:60%">
-	<p class="title" style="font-size:30px;margin-top:-40px;background-color: rgb(206, 231, 249);">[[${memberId}]] 님</p>
-		<hr>
-		<br>
+	<p class="title" style="font-size:30px;margin-top:-40px;background-color: rgb(206, 231, 249);">글쓰기</p>
 
 		<form action="/board/register" method="post" id="regForm" enctype="multipart/form-data">
-		
+			
+			말머리<div class="nes-select" style="width:400px;">
 			<select name="category">
  			   <option value="자유">자유 게시판</option>
  			   <option value="질문">질문 게시판</option>
   			   <option value="정보">정보 게시판</option>
  			   <option value="거래">거래 게시판</option>
 			</select>
+			</div>
 			
-			<div>
-				제목 : <input type="text" name="title" id="title">
+			<div class="nes-field">	
+				제목<input type="text" name="title" id="title"  class="nes-input" style="width: 400px;">
 			</div>
 
-			<div>
-				작성자 : <input type="text" name="writer" id="writer">
+			<div class="nes-field">
+				작성자<input type="text" name="writer" id="writer" th:value="${session.loginMemberId}" readonly="readonly"  class="nes-input" style="width: 400px;">
 			</div>
 
-			<div>
-				내용 : <textarea name="content" id="content"></textarea>
+			<div class="nes-field">
+				내용<textarea name="content" id="content"  class="nes-textarea" style="width: 1064px; height: 300px;"></textarea>
 			</div>
 
 			<!-- file 입력 라인 추가 -->
 			<div>
 				<input type="file" name="files" id="files" multiple="multiple" style="display: none;"><br>
-				<button type="button" class="btn btn-success" id="trigger">사진 등록</button>
+				<button type="button" id="trigger" class="nes-btn is-success btn-success">사진 등록</button>
 			</div>
 			<!-- 파일 목록 표시라인 -->
 			<div id="fileZone">
@@ -40,13 +40,10 @@
 			</div>
 
 				<br>
-				<button type="button" id="submitBtn">글쓰기</button>
+				<button type="button" id="submitBtn" class="nes-btn is-primary">글쓰기</button>
 				
 		</form>
 
-		<br>
-		<br>
-		<hr>
 
 	</div>
 	</th:block>

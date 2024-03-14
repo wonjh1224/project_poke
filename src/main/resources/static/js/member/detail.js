@@ -102,7 +102,9 @@ setTimeout(function() {
 }, 180000);
 
 
-
+document.getElementById("farmDelBtn").addEventListener('click', (e)=>{
+	alert("보상 완료!");
+})
 
 
 

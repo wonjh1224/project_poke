@@ -1,18 +1,45 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <link rel="stylesheet" href="/css/storagePokemon.css">
+<style>
+.pokeImage{
+	display: flex;
+	justify-content: space-between;
+}
+.farmContainer{
+	display: flex;
+	justify-content: space-between;
+/* 	  display: flex;
+  justify-content: center;
+  align-items: center; */
+}
+.successBtn{
+	display: flex;
+	justify-content: center;
+}
+.farmAddBtn{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 130px;
+}
+
+
+</style>
 
 <th:block th:replace="~{/layout :: setFragment(~{this::content})}">
 	<th:block th:fragment="content">
 	<div class="nes-container with-title container" style="width:60%">
 	<p class="title" style="font-size:30px;margin-top:-40px;background-color: rgb(206, 231, 249);">[[${memberId}]] 님</p>
 	
-	<h2>유저 디테일 페이지임</h2>
-	<div>	
-		<div style="background-image:url(https://img.freepik.com/premium-vector/pixel-art-game-background-grass-sky-clouds_210544-60.jpg); background-size:contain; width: 600px; height: 300px; ">
+	<div  class="farmContainer">	
+		<div style="background-image:url(https://img.freepik.com/premium-vector/pixel-art-game-background-grass-sky-clouds_210544-60.jpg); background-size:contain; width: 600px; height: 320px; ">
 			
+	
+			
+			<div class="farmContent">
 			<!-- 농장 등록시 등록한 포켓몬 표시 -->
-			<th:block th:if="${farm != null}">
+				<th:block th:if="${farm != null}">
 			
 					<div>등록시간 : [[${farm.regDate}]]</div>
 					<div>보상시간 : [[${farm.endDate}]]</div>
@@ -21,12 +48,13 @@
 					<br><br>
 					<br>
 			
-					
-					<img th:src="${image[0]}">
-					<img th:src="${image[1]}">
-					<img th:src="${image[2]}">
-					<img th:src="${image[3]}">
-					<img th:src="${image[4]}">
+					<div class="pokeImage">
+						<img th:src="${image[0]}">
+						<img th:src="${image[1]}">
+						<img th:src="${image[2]}">
+						<img th:src="${image[3]}">
+						<img th:src="${image[4]}">
+					</div>
 					
 					<th:block th:if="${session.loginMember != null && session.loginMemberId == memberId}">
 						<!-- 타이머 -->
@@ -39,22 +67,35 @@
 						<span id="timer"></span> 
 						
 						<!-- 타이머 시간 끝 -->
-						<th:block th:if="${rnTime <= 0}">	
+						<th:block th:if="${rnTime <= 0}">
+						<div class="successBtn">	
 							<form th:action="|/farm/del/${memberId}|" method="post">
-								<button id="farmDelBtn" style="visibility: visible;">보상받기</button>						
-							</form>					
+								<button id="farmDelBtn" style="visibility: visible;" class="nes-btn is-primary">보상받기</button>						
+							</form>		
+						</div>			
 						</th:block>
 					</th:block>
 		
 			</th:block>
 			
+			<div class="farmAddBtn">
 			<th:block th:if="${farm == null}">
-				<button th:if="${session.loginMember != null && session.loginMemberId == memberId}" id="farmAddBtn">+</button>	
+				<button th:if="${session.loginMember != null && session.loginMemberId == memberId}" 
+				id="farmAddBtn" class="nes-btn is-success">추가
+				</button>	
 			</th:block>
+			</div>
+			
+			</div>
+
+			
+			</div>
 			
 		</div>
-		<div>랭킹 : [[${ranking}]] 등</div>
-		<div>도감 : [[${per}]] %</div>
+		
+		<div>랭킹 : <span class="nes-text is-error">[[${ranking}]]</span> 등</div>
+		<div>도감 : <span class="nes-text is-primary">[[${per}]]</span> %</div>
+
 	</div>
 	
 	
@@ -74,7 +115,7 @@
 		</div>	
 	</div>
 
-	</div>
+
 	</th:block>
 </th:block>
 

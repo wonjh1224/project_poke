@@ -19,6 +19,9 @@ import com.poke.www.handler.FileHandler;
 import com.poke.www.handler.PagingHandler;
 import com.poke.www.service.BoardService;
 
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
@@ -75,8 +78,7 @@ public class BoardController {
 	public String list(Model m, PagingVO pagingVO, @RequestParam(name="category", required=false) String category) {
 		log.info("pagingVO : {}", pagingVO);
 		log.info("category : {}", category);
-		
-		
+			
 		int totalCount = 0;
 		if(category == null) {
 			totalCount = boardService.getTotalCount(pagingVO);

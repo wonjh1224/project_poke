@@ -66,11 +66,11 @@ function spreadCommentList(bno) {
 			for (let cvo of result) {
 				let li = `<li data-cno=${cvo.cno}>`
 				li += `<div>`
-				li += `<div class="writer">${cvo.writer}</div>`
-				li += `<input type="text" value="${cvo.content}" class="cmtContent" readonly>`
-				li += `</div>`
-				li += `<button type="button" class="change">수정</button>`
-				li += `<button type="button" class="del">삭제</button>`
+				li += `<div class="writer">${cvo.writer}</div><br>`
+				li += `<input type="text" value="${cvo.content}" class="nes-input cmtContent" readonly style="width:600px;">`
+				li += `</div><br>`
+				li += `<button type="button" class="nes-btn is-warning change">수정</button>`
+				li += `<button type="button" class="nes-btn is-error del">삭제</button>`
 				li += `</li><hr>`
 				ul.innerHTML += li;
 			}
