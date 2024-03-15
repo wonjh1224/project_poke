@@ -2,13 +2,13 @@ package com.poke.www.controller;
 
 import java.util.List;
 
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.poke.www.domain.MemberVO;
@@ -48,10 +48,11 @@ public class RankingController {
 		return "/ranking/ranking";
 	}
 	
+	@Scheduled(fixedDelay = 1000*60*5)
 	@ResponseBody
 	@Transactional
 	@PostMapping("/update")
-	public String update() {
+	public void update() {
 		List<MemberVO> list = rankingService.getMemberListOrderByScore();
 		
 		rankingService.updateScore();
@@ -59,8 +60,8 @@ public class RankingController {
 		for(int i=0; i<list.size(); i++) {
 			rankingService.updateRanking(list.get(i).getMemberId(), i+1);
 		}
-		
-		return "1";
+		log.info("랭킹 업데이트 스케쥴러 실행@@@@");
+
 		
 	}
 	
