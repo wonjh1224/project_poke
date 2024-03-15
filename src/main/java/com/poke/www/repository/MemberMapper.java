@@ -28,4 +28,6 @@ public interface MemberMapper {
 	String selectProfileUuidByMemberId(String memberId);
 	void updatePoint(String memberId, int point);
 
+	int selectScoreByMemberId(String memberId);
+
 }

@@ -24,7 +24,7 @@ public interface RankingMapper {
 
 	void updateScore();
 
-	int selectrankingByMemberId(String memberId);
+	Integer selectRankingByMemberId(String memberId);
 
 	int selectScoreByMemberId(String memberId);
 

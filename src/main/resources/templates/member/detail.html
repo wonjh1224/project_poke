@@ -102,7 +102,8 @@
 			
 		</div>
 		
-		<div>랭킹 : <span class="nes-text is-error">[[${ranking}]]</span> 등</div>
+		<div th:if="${ranking != '미등록'}">랭킹 : <span class="nes-text is-error">[[${ranking}]] 등</span></div>
+		<div th:if="${ranking == '미등록'}">랭킹 : <span class="nes-text is-error">[[${ranking}]]</span></div>
 		<div>도감 : <span class="nes-text is-primary">[[${per}]]</span> %</div>
 
 	</div>

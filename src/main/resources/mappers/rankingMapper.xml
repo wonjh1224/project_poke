@@ -33,13 +33,13 @@
 		update ranking r set score = (select score from member where member_id = r.member_id)
 	</update>
 	
-	<select id="selectrankingByMemberId">
+	<select id="selectRankingByMemberId">
 		select ranking from ranking where member_id = #{member_id}
 	</select>
 	
-	<select id="selectScoreByMemberId">
+<!-- 	<select id="selectScoreByMemberId">
 		select score from ranking where member_id = #{member_id}
-	</select>
+	</select> -->
 	
 	
 	<sql id="search">

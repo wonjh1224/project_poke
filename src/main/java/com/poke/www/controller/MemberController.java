@@ -144,10 +144,15 @@ public class MemberController {
 		m.addAttribute("now", nowDate);
 		
 		//랭킹
-		int ranking = rankingService.getRankingByMemberId(memberId);
-		m.addAttribute("ranking", ranking);
+		Integer ranking = rankingService.getRankingByMemberId(memberId);
+		log.info("ranking >>> {}", ranking);
+		if(ranking != null) {
+			m.addAttribute("ranking", ranking);			
+		}else {
+			m.addAttribute("ranking", "미등록");
+		}
 		
-		int score = rankingService.getScoreByMemberId(memberId);
+		int score = memberService.getScoreByMemberId(memberId);
 		//도감 등록 퍼센트
 		double percent = Math.round((score / 204451.0) * 100 * 100) / 100.0;
 		m.addAttribute("per", percent);

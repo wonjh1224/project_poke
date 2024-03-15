@@ -20,7 +20,7 @@ public interface RankingService {
 
 	void updateScore();
 
-	int getRankingByMemberId(String memberId);
+	Integer getRankingByMemberId(String memberId);
 
 	int getScoreByMemberId(String memberId);
 

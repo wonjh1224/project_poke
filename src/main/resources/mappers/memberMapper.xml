@@ -48,6 +48,9 @@
 	update member set point = point + ${param2} where member_id = #{param1}
 </update>
 
+<select id="selectScoreByMemberId">
+	select score from member where member_id = #{memberId}
+</select>
 
 
 </mapper>

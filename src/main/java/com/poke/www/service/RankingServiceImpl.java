@@ -53,9 +53,9 @@ public class RankingServiceImpl implements RankingService{
 	}
 
 	@Override
-	public int getRankingByMemberId(String memberId) {
+	public Integer getRankingByMemberId(String memberId) {
 		// TODO Auto-generated method stub
-		return rankingMapper.selectrankingByMemberId(memberId);
+		return rankingMapper.selectRankingByMemberId(memberId);
 	}
 
 	@Override

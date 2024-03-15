@@ -48,7 +48,7 @@ public class RankingController {
 		return "/ranking/ranking";
 	}
 	
-	@Scheduled(fixedDelay = 1000*60*5)
+//	@Scheduled(fixedDelay = 1000*60*5)
 	@ResponseBody
 	@Transactional
 	@PostMapping("/update")

@@ -79,4 +79,10 @@ public class MemberServiceImpl implements MemberService {
 
 	}
 
+	@Override
+	public int getScoreByMemberId(String memberId) {
+		// TODO Auto-generated method stub
+		return mapper.selectScoreByMemberId(memberId);
+	}
+
 }

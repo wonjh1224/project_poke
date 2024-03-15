@@ -102,3 +102,4 @@ alter table farm add column total_point int not null;
 
 -- 2024 - 03 - 15 --
 alter table ranking add column nickname varchar(20) not null;
+alter table ranking drop column nickname;

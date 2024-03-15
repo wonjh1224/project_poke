@@ -27,6 +27,8 @@ public interface MemberService {
 	String getProfileUuidByMemberId(String memberId);
 	void updatePoint(String memberId, int point);
 
+	int getScoreByMemberId(String memberId);
+
 
 	
 
