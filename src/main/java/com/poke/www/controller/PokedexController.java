@@ -87,7 +87,7 @@ public class PokedexController {
 		}
 		
 		PokemonVO pokemonVO = pokemonService.getPokemonByName(pokemonId);
-		log.info("pvo >>> {}", pokemonVO);
+		
 		m.addAttribute("pvo", pokemonVO);
 		return "/pokedex/pokemon";
 	}

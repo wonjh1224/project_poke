@@ -1,0 +1,27 @@
+@charset "UTF-8";
+.gray{
+	filter:grayscale(100%);
+}
+
+.pokemon-box{
+	display: flex;
+	justify-content: left;
+}
+
+.img-box img{
+	width: 300px;
+	image-rendering: pixelated;
+}
+
+.pokemon-name{
+	font-size: 33px;
+}
+
+.pokemon-number{
+	font-size: 25px;
+	margin-bottom: 0px;
+}
+
+ul{
+	padding-left: 15px;
+}

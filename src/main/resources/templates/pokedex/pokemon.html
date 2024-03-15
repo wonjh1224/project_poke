@@ -1,27 +1,36 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<style>
-.gray{
-	filter:grayscale(100%);
-}
-</style>
+
+<link href="/css/pokedex/pokemon.css" rel="stylesheet" />
 <th:block th:replace="~{/layout :: setFragment(~{this::content})}">
 <th:block th:fragment="content">
-	<h2>도감 상세페이지</h2>
-	
-	<div>
-		No.[[${pvo.pokemonId}]]
+<div class="nes-container with-title container" style="width:40%">
+		<p class="title" style="font-size:30px;margin-top:-40px;background-color: rgb(206, 231, 249);">도감 상세페이지</p>
+		<div class="pokemon-box">
+		<div class="img-box">
+			<img alt="" th:src="@{${pvo.image}}" th:class="${class}">
+		</div>
+		<div class="text-box">
 		
-		 [[${class == 'color' ? pvo.name : '???' }]] <br>
-		<img alt="" th:src="@{${pvo.image}}" th:class="${class}"> <br>
-		<th:block th:if="${class == 'color'}">
-		특징 : [[${pvo.flavor}]] <br>
-		키 : [[${pvo.height}/10]]m 몸무게 : [[${pvo.weight}/10]]kg <br>
-		타입 : [[${pvo.type}]] <br>
-		분류 : [[${pvo.genus}]] <br>
-		도감점수 : [[${pvo.score}]] 점 <br>
-		</th:block>
-	</div>
+			<p class="pokemon-number">No.[[${pvo.pokemonId}]]</p>
+			<p class="pokemon-name">[[${class == 'color' ? pvo.name : '???' }]]</p>
+			<th:block th:if="${class == 'color'}">
+				<p>[[${pvo.flavor}]]</p>
+				<div class="lists">
+					<ul class="nes-list is-circle">
+						<li>키 : [[${pvo.height}/10]]m</li>
+						<li>몸무게 : [[${pvo.weight}/10]]kg</li>
+						<li>타입 : [[${pvo.type}]]</li>
+						<li>분류 : [[${pvo.genus}]]</li>
+						<li>도감점수 : [[${pvo.score}]] 점</li>
+					</ul>
+				</div>
+			</th:block>
+		
+		</div>
+		</div>
+</div>
+
 
 
 </th:block>
