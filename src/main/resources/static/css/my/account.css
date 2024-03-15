@@ -1,0 +1,10 @@
+@charset "UTF-8";
+.container{
+    text-align: center;
+}
+button{
+    width: 200px;
+}
+.btn-box{
+    margin-top: 25px;
+}

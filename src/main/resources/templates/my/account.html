@@ -8,21 +8,27 @@
 	border-radius:50%;
 }
 </style>
+<link href="/css/my/account.css" rel="stylesheet" />
 <th:block th:replace="~{/layout :: setFragment(~{this::content})}">
 <th:block th:fragment="content">
-	<h2>프로필 수정</h2>
-
-	<div>
+<div class="nes-container with-title container" style="width:40%">
+		<p class="title" style="font-size:30px;margin-top:-40px;background-color: rgb(206, 231, 249);">프로필 수정</p>
+	<div class="profile-box">
 		<div id="inputDiv">
 			<input type="file" name="profile" id="profile" accept="image/jpeg,image/jpg,image/png" style="display:none;">
 		</div>
 		<div id="img">
 			<img id="tmpimg" class="profileImage" th:src="|/upload/profile/${session.loginMember.hasProfile == 'y' ? session.loginMember.uuid+'_'+session.loginMember.memberId+'.png' : 'default/default.png'}|">
 		</div>
-		<button type="button" id="trigger">프로필 이미지 선택</button>
-		<button type="button" id="resetBtn">프로필 이미지 초기화</button>
+		<div class="btn-box">
+			<button class="nes-btn is-primary" type="button" id="trigger">프로필 이미지 선택</button>
+			<button class="nes-btn is-error" type="button" id="resetBtn">프로필 이미지 초기화</button>
+		</div>
+		<div class="btn-box">
+			<button class="nes-btn is-success" id="submitBtn" type="submit">적용</button>
+		</div>
 	</div>
-	<button id="submitBtn" type="submit">적용</button>
+</div>
 
 </th:block>
 </th:block>
