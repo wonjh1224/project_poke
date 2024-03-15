@@ -59,7 +59,7 @@ ul {
 			<!-- file 입력 라인 추가 -->
 			<div style="display: none" id="fileDiv">
 				<input type="file" name="files" id="files" multiple="multiple" style="display: none;"><br>
-				<button type="button" class="btn btn-success" id="trigger">사진 등록</button>
+				<button type="button" class="nes-btn is-success" id="trigger">사진 등록</button>
 			</div>
 			<!-- 파일 목록 표시라인 -->
 			<div id="fileZone">
@@ -68,7 +68,7 @@ ul {
 			
 			<th:block th:if="${session.loginMemberId == bdto.boardVO.writer}">
 			
-			<button type="button" id="changeBtn" class="nes-btn is-primary">수정</button>
+			<button type="button" id="changeBtn" class="nes-btn is-warning">수정</button>
 
 			<button type="button" id="delBtn" class="nes-btn is-error">삭제</button>
 			</th:block>
