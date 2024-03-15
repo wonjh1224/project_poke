@@ -1,7 +1,7 @@
 console.log(document.body.offsetHeight)
-console.log('asdf')
 
-if(document.body.offsetHeight<=845){
+
+if(document.body.offsetHeight<=900){
     document.body.style.backgroundImage = "url('/image/bgimg.png')";
     document.querySelector('footer').style.backgroundImage = "none";
 }
