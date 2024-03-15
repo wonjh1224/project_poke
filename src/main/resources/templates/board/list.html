@@ -2,86 +2,104 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <style>
-th, td {
-	border: 1px solid black;
-	text-align: center;
-}
-
-.table {
-	width:100%;
-	border-collapse: collapse;
-}
-
+	
 ul {
 	list-style: none;
 }
 
-li {
+.category li {
 	float: left;
 }
+
 a{
 	text-decoration: none;
 }
+.category li{
+	margin-right: 20px;
+}
+
+.paging{
+	text-align: center;
+}
+
+.paging li{
+	display: inline-block;
+}
+
+h4 a{
+	float: right;
+}
+
+tr{
+ text-align: center;
+}
+
+.searchBar{
+	display: flex;
+	justify-content: space-between;
+}
+
+
 
 </style>
 <th:block th:replace="~{/layout :: setFragment(~{this::content})}">
 
 	<th:block th:fragment="content">
+			<div class="nes-container with-title container" style="width:60%">
+	<p class="title" style="font-size:30px;margin-top:-40px;background-color: rgb(206, 231, 249);">게시판 : [[${ph.totalCount}]]</p>
 
 	
-		<div>
-				<h4>
-					게시글 수 : [[${ph.totalCount}]]
-				</h4>
-				
+
 			<div>
-				<ul>
-					<li><a href="/board/list?category=자유">| 자유 게시판 |</a></li>
-					<li><a href="/board/list?category=질문">| 질문 게시판 |</a></li>
-					<li><a href="/board/list?category=정보">| 정보 게시판 |</a></li>
-					<li><a href="/board/list?category=거래">| 거래 게시판 |</a></li>
+				<ul class="category">
+					<li><a href="/board/list"><button type="button" class="nes-btn" style="margin-left: 170px;">전체게시판</button></a></li>
+					<li><a href="/board/list?category=자유"><button type="button" class="nes-btn is-primary">자유게시판</button></a></li>
+					<li><a href="/board/list?category=질문"><button type="button" class="nes-btn is-success">질문게시판</button></a></li>
+					<li><a href="/board/list?category=정보"><button type="button" class="nes-btn is-warning">정보게시판</button></a></li>
+					<li><a href="/board/list?category=거래"><button type="button" class="nes-btn is-error">거래게시판</button></a></li>
 				</ul>
 			</div>
 			<br>
 			<br>
-			
+			<br>
 			<!-- 검색 -->
-			<form action="/board/list">
-				<input type="hidden" name="pageNo" value="1">
-				<input type="hidden" name="qty" value="10">
-				
-				<div>
-					<select name="type">
-						<option th:value="twc">전체</option>
-						<option th:value="t">제목</option>
-						<option th:value="w">작성자</option>
-						<option th:value="c">내용</option>
-					</select>
-				</div>
-				
-				<input type="text" name="keyword" th:value="${ph.pagingVO.keyword}" placeholder="검색어를 입력해주세요">
-				
-				<button type="submit">검색</button>
-				
-			</form>
+			<div class="searchBar">
+			
+				<form action="/board/list">
+					<input type="hidden" name="pageNo" value="1">
+					<input type="hidden" name="qty" value="10">
+					
+						<div class="nes-select" style="width:1040px;">
+							<select name="type" required id="default_select">
+								<option th:value="twc">전체</option>
+								<option th:value="t">제목</option>
+								<option th:value="w">작성자</option>
+								<option th:value="c">내용</option>
+							</select>
+						</div><br>
+						
+					 <input type="text" class="nes-input" name="keyword" th:value="${ph.pagingVO.keyword}" placeholder="검색어를 입력해주세요" style="width: 968px;">
+					 <button type="submit" class="nes-btn">검색</button>					
+				</form>
+			</div>
 			<!-- /검색 -->
 
 			<br>
-			<div>
-				<table class="table" style="border: 1px solid black">
+			<div class="nes-table-responsive">
+				<table class="nes-table is-bordered is-centered" style="min-width: 1040px;">
 					<thead>
 						<tr>
-							<th scope="col">번호</th>
-							<th scope="col">게시판</th>
-							<th scope="col">제목</th>
-							<th scope="col">작성자</th>
-							<th scope="col">등록일</th>
+							<th scope="col" style="width: 100px;">번호</th>
+							<th scope="col" style="width: 100px;">말머리</th>
+							<th scope="col" style="width: 500px;">제목</th>
+							<th scope="col" style="width: 100px;">작성자</th>
+							<th scope="col" style="width: 100px;">등록일</th>
 						</tr>
 					</thead>
 					<tbody>
 						<tr th:each="bvo:${list}">
 							<th scope="row"><a th:href="|/board/detail/${bvo.bno}|">[[${bvo.bno}]]</a></th>
-							<td>[[${bvo.category}]]게시판</td>
+							<td>[[${bvo.category}]]</td>
 							<td><a th:href="|/board/detail/${bvo.bno}|">[[${bvo.title}]]</a></td>
 							<td>[[${bvo.writer}]]</td>
 							<td>[[${bvo.regAt}]]</td>
@@ -89,11 +107,14 @@ a{
 						</th:Each>
 					</tbody>
 				</table>
+				<BR>
+				
 				<h4>
-					<a href="/board/register">글쓰기</a>
-				</h4>
+					<a href="/board/register"><button class="nes-btn is-primary">글쓰기</button></a>
+				</h4>						
+				
 				<!-- 페이지네이션 -->
-				<ul>
+				<ul class="paging">
 					<li th:if=${ph.prev}>
 						<a th:href="|/board/list?pageNo=${ph.startPage-1}
 						${ph.pagingVO.qty < 0 ? '' : '&qty='}
@@ -103,7 +124,7 @@ a{
 						${ph.pagingVO.type==null ? '' : '&type='}
 						${ph.pagingVO.type?:''}
 						${ph.pagingVO.keyword==null ? '' : '&keyword='}
-						${ph.pagingVO.keyword?:''}|">이전|
+						${ph.pagingVO.keyword?:''}|" class="nes-text is-error">이전
 						</a>
 					</li>
 					
@@ -116,8 +137,12 @@ a{
 						${ph.pagingVO.type==null ? '' : '&type='}
 						${ph.pagingVO.type?:''}
 						${ph.pagingVO.keyword==null ? '' : '&keyword='}
-						${ph.pagingVO.keyword?:''}|"> 	
-						<[[${i}]]> </a>	
+						${ph.pagingVO.keyword?:''}|">
+						
+							<!-- <span class="${ph.pagingVO.pageNo === i} ? 'nes-text is-success' : 'nes-text is-primary'">[[${i}]]</span>  -->	
+							<span class="nes-text is-primary">[[${i}]]</span> 	
+							
+						</a>	
 					</li>
 					
 					<li th:if=${ph.next}>
@@ -129,7 +154,7 @@ a{
 						${ph.pagingVO.type==null ? '' : '&type='}
 						${ph.pagingVO.type?:''}
 						${ph.pagingVO.keyword==null ? '' : '&keyword='}
-						${ph.pagingVO.keyword?:''}|">|다음
+						${ph.pagingVO.keyword?:''}|" class="nes-text is-error"> 다음
 						</a>
 					</li>
 				</ul>

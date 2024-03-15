@@ -10,23 +10,30 @@ a {
 	text-decoration: none;
 }
 
-.paging li {
-	float: left;
+.paging{
+	text-align: center;
 }
+
+.paging li{
+	display: inline-block;
+}
+
 </style>
 
 <th:block th:replace="~{/layout :: setFragment(~{this::content})}">
 	<th:block th:fragment="content">
-		<h2>랭킹 페이지임</h2>
+		<div class="nes-container with-title container" style="width:60%">
+	<p class="title" style="font-size:30px;margin-top:-40px;background-color: rgb(206, 231, 249);">랭킹</p>
+	
 
-		<button type="button" id="insert">슛</button>
+		<button type="button" id="insert" class="nes-btn is-primary">업데이트</button><br>
 
 		<h4>유저 수 : [[${cnt}]]</h4>
 
 		<form action="/ranking">
-			<input type="text" name="keyword" placeholder="닉네임">
-			<button type="submit" id="search">검색</button>
-		</form>
+			<input type="text" name="keyword" placeholder="아이디"  class="nes-input" style="width: 488px;">
+			<button type="submit" id="search" class="nes-btn is-success">검색</button>
+		</form><br>
 
 		<div>
 			<ul>
@@ -37,7 +44,9 @@ a {
 						<span>[[${member.ranking}]]등 :</span> 
 						<span><a th:href="|/member/${member.memberId}|">[[${member.memberId}]]</a></span> 
 						<span>( [[${member.score}]]점 )</span>
-						<progress class="nes-progress is-success" th:value="${member.score}" max="204451"></progress>
+						<div>
+							<progress class="nes-progress is-success" th:value="${member.score}" max="204451" style="width: 980px;"></progress>
+						</div>
 					</th:block>
 				</li>
 				
@@ -52,15 +61,15 @@ a {
 				<ul class="paging">
 				
 					<li th:if="${ph.prev}">
-						<a th:href="|/ranking?pageNo=${ph.startPage-1}|">이전</a>
+						<a th:href="|/ranking?pageNo=${ph.startPage-1}|" class="nes-text is-error">이전</a>
 					</li>
 					
 					<li th:each="i: ${#numbers.sequence(ph.startPage,ph.endPage)}">
-						<a th:href="|/ranking?pageNo=${i}|"><[[${i}]]></a>
+						<a th:href="|/ranking?pageNo=${i}|">[[${i}]]</a>
 					</li>
 					
 					<li th:if="${ph.next}">
-						<a th:href="|/ranking?pageNo=${ph.endPage+1}|">다음</a>
+						<a th:href="|/ranking?pageNo=${ph.endPage+1}|"  class="nes-text is-error">다음</a>
 					</li>
 					
 				</ul>
@@ -71,7 +80,7 @@ a {
 
 		<br>
 
-
+</div>
 	</th:block>
 </th:block>
 

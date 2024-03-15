@@ -54,7 +54,7 @@ public class MemberController {
 			MemberVO mvo = new MemberVO();
 			mvo.setMemberId("Test"+i);
 			mvo.setPassword("test"+i);
-
+			mvo.setNickname("TestNickname"+i);
 			mvo.setEmail("test@"+i);
 
 			int isOk = memberService.register(mvo);
