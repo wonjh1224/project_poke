@@ -7,7 +7,7 @@
 	<!-- 테스트용 -->
 	<insert id="insert">
 		insert into ranking(member_id)
-		values(#{member_id})
+		values(#{memberId})
 	</insert>
 	
 	<select id="selectMemberListOrderByScore">
@@ -17,7 +17,6 @@
 	<update id="updateRanking">
 		update ranking set ranking = #{param2} where member_id = #{param1}
 	</update>
-	
 	
 	<select id="selectRankingList">
 		select * from ranking

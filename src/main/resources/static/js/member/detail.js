@@ -46,6 +46,7 @@ function countChecked(field) {
 
 	if (totalChecked == 5) {
 		postBtn.disabled = false;
+	    postBtn.className = "nes-btn is-primary";
 	}
 
 	if (totalChecked < 5) {
@@ -90,6 +91,8 @@ function TIMER() {
 			min = minute.value;
 			
 			timer.innerText = minute.value + ":" + second.value;
+		} else if(minute.value <=0 && second.value <= 0){
+			location.reload(true);
 		}
 
 	}, 1000);
@@ -102,9 +105,6 @@ setTimeout(function() {
 }, 180000);
 
 
-document.getElementById("farmDelBtn").addEventListener('click', (e)=>{
-	alert("보상 완료!");
-})
 
 
 

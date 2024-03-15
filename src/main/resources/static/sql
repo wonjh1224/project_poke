@@ -99,3 +99,6 @@ CREATE TRIGGER farm_trigger BEFORE INSERT ON farm
 
 -- 2024 - 03 - 07 --
 alter table farm add column total_point int not null;
+
+-- 2024 - 03 - 15 --
+alter table ranking add column nickname varchar(20) not null;

@@ -66,7 +66,7 @@ function spreadCommentList(bno) {
 			for (let cvo of result) {
 				let li = `<li data-cno=${cvo.cno}>`
 				li += `<div>`
-				li += `<div class="writer">${cvo.writer}</div><br>`
+				li += `<div class="writer">${cvo.writer}</div>`
 				li += `<input type="text" value="${cvo.content}" class="nes-input cmtContent" readonly style="width:600px;">`
 				li += `</div><br>`
 				li += `<button type="button" class="nes-btn is-warning change">수정</button>`
@@ -94,7 +94,7 @@ document.addEventListener('click', (e) => {
 		console.log(cmtModBtn)
 
 		//진짜 수정(전송) 버튼 으로 변경
-		cmtModBtn.setAttribute('class', 'cmtModBtn');
+		cmtModBtn.setAttribute('class', 'nes-btn is-warning cmtModBtn');
 		cmtModBtn.innerText = "수정하기";
 		//삭제 버튼 숨기기
 		let cmtDelBtn = cmtModBtn.nextSibling;
@@ -117,7 +117,7 @@ document.addEventListener('click', (e) => {
 					alert("수정 완료");
 					//수정(전송)후 다시 change버튼 으로 변경
 					let cmtModBtn = e.target.closest('button');
-					cmtModBtn.setAttribute('class', 'change');
+					cmtModBtn.setAttribute('class', 'nes-btn is-warning change');
 					cmtModBtn.innerText = "수정";
 					//삭제 버튼 표시
 					let cmtDelBtn = cmtModBtn.nextSibling;
