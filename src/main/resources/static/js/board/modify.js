@@ -38,6 +38,7 @@ document.getElementById("changeBtn").addEventListener('click', () => {
 	let modBtn = document.createElement('button');
 	modBtn.setAttribute('type', 'button');
 	modBtn.setAttribute('id', 'submitBtn');
+	modBtn.setAttribute('class', 'nes-btn is-primary');
 	modBtn.innerText = '수정 하기';
 	document.getElementById('modForm').appendChild(modBtn);
 
