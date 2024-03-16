@@ -144,8 +144,8 @@ document.addEventListener('input',(e)=>{
             html +=  `
             <div class="pokemon-card-cover" data-storageId="${pokemon.storageId}" data-pokemonId="${pokemon.pokemonId}" data-name="${pokemon.name}" data-image="${pokemon.image}">
                 <div class="pokemon-card-wrap">
-                    <button class="nes-btn is-warning pokedexBtn" onclick="registerPokedex(${pokemonList[i].storageId},'${pokemonList[i].name}')">도감 등록</button>
-                    <button class="nes-btn is-success marketBtn" onclick="registerMarket(${pokemonList[i].storageId},${pokemonList[i].pokemonId},'${pokemonList[i].name}','${pokemonList[i].image}')">거래소 등록</button>
+                    <button class="nes-btn is-warning pokedexBtn" onclick="registerPokedex(${pokemon.storageId},'${pokemon.name}')">도감 등록</button>
+                    <button class="nes-btn is-success marketBtn" onclick="registerMarket(${pokemon.storageId},${pokemon.pokemonId},'${pokemon.name}','${pokemon.image}')">거래소 등록</button>
                 </div>
                 <div class="pokemon-card">
                     <div>
