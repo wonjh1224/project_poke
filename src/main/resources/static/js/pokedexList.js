@@ -34,6 +34,7 @@ function spreadAll(qty,added=false){
     if(cnt==0){
         pokedexLine.innerHTML = ''
     }
+    
 
     if(added){
         for(i=cnt;i<cnt+qty;i++){
@@ -126,7 +127,7 @@ document.getElementById('genAll').addEventListener('click',()=>{
 document.getElementById('added').addEventListener('click',()=>{
     cnt = 0
     added = true
-    spreadAll(qty,added)
+    spreadAll(493,added)
 })
 
 document.getElementById('gen1').addEventListener('click',()=>{

@@ -3,6 +3,7 @@
 <link href="/css/index.css" rel="stylesheet" />
 <th:block th:replace="~{/layout :: setFragment(~{this::content})}">
 	<th:block th:fragment="content">
+		<th:block th:if="${session.loginMemberId=='adminthn'}">
  	<div class="anime-box"></div>
 	<div class="nes-container with-title container" style="width:60%">
 		<p class="title" style="font-size:30px;margin-top:-40px;background-color: rgb(206, 231, 249);">인덱스</p>	
@@ -11,8 +12,8 @@
 		
 		<a href="/kptest">asfd</a>
 		
-		<button th:if="${thth}">보이나 안보이나</button>
-		 -->
+
+
 			
 		
 		
@@ -26,6 +27,7 @@
 		<button type="button" id="aa">숫자 출력</button>
 
 	</div>
+		</th:block>
 	</th:block>
 </th:block>
 <script src="/js/index.js"></script>
