@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <link href="/css/index.css" rel="stylesheet" />
-<th:block th:replace="~{/layout :: setFragment(~{this::content})}">
+<th:block th:replace="~{layout :: setFragment(~{this::content})}">
 	<th:block th:fragment="content">
 		<th:block th:if="${session.loginMemberId=='adminthn'}">
  	<div class="anime-box"></div>

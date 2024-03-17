@@ -44,7 +44,7 @@ public class MyController {
 		if(url!=null) {
 			m.addAttribute("url",url);			
 		}
-		return "/my/charge";
+		return "my/charge";
 	}
 	
 	@ResponseBody
@@ -62,20 +62,20 @@ public class MyController {
 			@SessionAttribute("loginMemberId") String loginMemberId) {
 		List<OrderVO> orderList = myService.getOrderProductList(loginMemberId);
 		m.addAttribute("orderList",orderList);
-		return "/my/purchasesPacks";
+		return "my/purchasesPacks";
 	}
 	@GetMapping("/purchases/points")
 	public String getPurchasesPointsPage(Model m,
 			@SessionAttribute("loginMemberId") String loginMemberId) {
 		List<OrderVO> orderList = myService.getOrderPointList(loginMemberId);
 		m.addAttribute("orderList",orderList);
-		return "/my/purchasesPoints";
+		return "my/purchasesPoints";
 	}
 	@GetMapping("/market/on-sale")
 	public String getSalesPoketmonsPage(Model m,
 			@SessionAttribute("loginMemberId") String loginMemberId) {
 		m.addAttribute("loginMemberId",loginMemberId);
-		return "/my/onSale";
+		return "my/onSale";
 	}
 	
 	@ResponseBody
@@ -89,12 +89,12 @@ public class MyController {
 			@SessionAttribute("loginMemberId") String loginMemberId) {
 		List<TradeVO> tradeList = myService.getTradeList(loginMemberId);
 		m.addAttribute("tradeList",tradeList);
-		return "/my/trade";
+		return "my/trade";
 	}
 	
 	@GetMapping("/account")
 	public String getAccountPage() {
-		return "/my/account";
+		return "my/account";
 	}
 	
 	@ResponseBody

@@ -37,14 +37,14 @@ public class StoreController {
 	public String getStore(Model m) {
 		List<ProductVO> list = storeService.getProducts();
 		m.addAttribute("list",list);
-		return "/store/store";
+		return "store/store";
 	}
 	
 	@GetMapping("/{productId}")
 	public String getProductDetail(Model m, @PathVariable("productId") int productId) {
 		ProductVO pvo = storeService.getProductByProductId(productId);
 		m.addAttribute("pvo",pvo);
-		return "/store/detail";
+		return "store/detail";
 	}
 	
 	
@@ -56,7 +56,7 @@ public class StoreController {
 		m.addAttribute("loginMember",mvo);
 		ProductVO pvo = storeService.getProductByProductId(productId);
 		m.addAttribute("pvo",pvo);
-		return "/store/purchase";
+		return "store/purchase";
 	}
 	
 	@ResponseBody
@@ -80,6 +80,6 @@ public class StoreController {
 		//구매 내역 추가
 		storeService.addPurchaseHistory(mvo.getMemberId(),pvo.getProductId());
 		
-		return "/storage/"+mvo.getMemberId();
+		return "storage/"+mvo.getMemberId();
 	}
 }

@@ -45,10 +45,10 @@ public class RankingController {
 		m.addAttribute("ph", ph);
 		m.addAttribute("ranking", ranking);
 
-		return "/ranking/ranking";
+		return "ranking/ranking";
 	}
 	
-//	@Scheduled(fixedDelay = 1000*60*5)
+	@Scheduled(fixedDelay = 1000*60*5)
 	@ResponseBody
 	@Transactional
 	@PostMapping("/update")

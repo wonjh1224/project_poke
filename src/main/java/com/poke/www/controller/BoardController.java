@@ -50,7 +50,9 @@ public class BoardController {
 	}
 	
 	@GetMapping("/register")
-	public void register() {}
+	public String register() {
+		return "board/register";
+	}
 	
 	@PostMapping("/register")
 	public String register(BoardVO bvo, @RequestParam(name="files", required = false)MultipartFile[] files) {
@@ -107,7 +109,7 @@ public class BoardController {
 		m.addAttribute("category", category);
 		m.addAttribute("list", list);	
 		m.addAttribute("ph", ph);
-		return "/board/list";
+		return "board/list";
 		
 	}
 	
@@ -118,7 +120,7 @@ public class BoardController {
 	
 		m.addAttribute("bdto", bdto);
 		
-		return "/board/detail";	
+		return "board/detail";	
 	}
 	
 	@PostMapping("/delete")

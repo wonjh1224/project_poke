@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <link rel="stylesheet" href="/css/storagePokemon.css">
-<th:block th:replace="~{/layout :: setFragment(~{this::content})}">
+<th:block th:replace="~{layout :: setFragment(~{this::content})}">
 	<th:block th:fragment="content">
 		<div class="nes-container with-title container" style="width:60%">
 			<p class="title" style="font-size:30px;margin-top:-40px;background-color: rgb(206, 231, 249);">[[${session.loginMember.nickname}]]의 포켓몬 보관함</p>

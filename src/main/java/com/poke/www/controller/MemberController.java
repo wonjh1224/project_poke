@@ -64,7 +64,7 @@ public class MemberController {
 	
 	@GetMapping("/register")
 	public String getRegisterForm() {
-		return "/member/register";
+		return "member/register";
 	}
 	@PostMapping("/register")
 	public String memberRegister(MemberVO mvo,
@@ -86,7 +86,7 @@ public class MemberController {
 	public String getLoginForm(Model m, @RequestParam(name="rd-url", defaultValue = "/")String url) {
 
 		m.addAttribute("url",url);
-		return "/member/login";
+		return "member/login";
 	}
 	@PostMapping("/login")
 	public String memberLogin(Model m,MemberVO mvo, HttpServletRequest request,
@@ -94,7 +94,7 @@ public class MemberController {
 		MemberVO loginMember = memberService.login(mvo.getMemberId(),mvo.getPassword());
 		if(loginMember == null) {
 			m.addAttribute("url",url);
-			return "/member/login";
+			return "member/login";
 		}
 		HttpSession session = request.getSession();
 		session.setAttribute("loginMember", loginMember);
@@ -193,7 +193,7 @@ public class MemberController {
 					
 		}
 		
-		return "/member/detail";
+		return "member/detail";
 	}
 	
 

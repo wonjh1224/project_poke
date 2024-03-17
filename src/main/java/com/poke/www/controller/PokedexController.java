@@ -38,7 +38,7 @@ public class PokedexController {
 	
 	@GetMapping("/{memberId}")
 	public String getPokedexPage(@PathVariable("memberId")String memberId) {
-		return "/pokedex/pokedex";
+		return "pokedex/pokedex";
 	}
 	
 	@PostMapping
@@ -89,7 +89,7 @@ public class PokedexController {
 		PokemonVO pokemonVO = pokemonService.getPokemonByName(pokemonId);
 		
 		m.addAttribute("pvo", pokemonVO);
-		return "/pokedex/pokemon";
+		return "pokedex/pokemon";
 	}
 	
 	

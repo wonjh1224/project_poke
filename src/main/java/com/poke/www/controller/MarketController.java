@@ -35,7 +35,7 @@ public class MarketController {
 	
 	@GetMapping
 	public String getMarketMain(Model m) {
-		return "/market/market";
+		return "market/market";
 	}
 	
 	@GetMapping("/register")
@@ -48,7 +48,7 @@ public class MarketController {
 		
 		List<PokemonStorageVO> list = storageService.getPokemonsByMemberId(loginMember.getMemberId());
 		m.addAttribute("list",list);
-		return "/market/register";
+		return "market/register";
 	}
 	@PostMapping	
 	public String registerItem(MarketItemVO marketItemVO,@RequestParam("storageId")int storageId) {

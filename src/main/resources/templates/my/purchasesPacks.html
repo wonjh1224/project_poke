@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <link href="/css/my/purchasesPacks.css" rel="stylesheet">
-<th:block th:replace="~{/layout :: setFragment(~{this::content})}">
+<th:block th:replace="~{layout :: setFragment(~{this::content})}">
 <th:block th:fragment="content">
 	<div class="btn-box nes-container">
 		<button onclick="location.href='/my/purchases'" class="nes-btn is-success">카드팩 구매내역</button>

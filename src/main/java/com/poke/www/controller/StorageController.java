@@ -46,7 +46,7 @@ public class StorageController {
 		}
 		m.addAttribute("mvo",mvo);
 		
-		return "/storage/item";
+		return "storage/item";
 	}
 	
 	/**
@@ -103,7 +103,7 @@ public class StorageController {
 			return "error";
 		}
 		m.addAttribute("mvo",mvo);
-		return "/storage/pokemon";
+		return "storage/pokemon";
 	}
 	
 	@ResponseBody
