@@ -11,4 +11,7 @@ public class PokedexVO {
 	private String memberId;
 	private int pokemonId;
 	private String registerDate;
+	
+	private int score;
+	private String name;
 }

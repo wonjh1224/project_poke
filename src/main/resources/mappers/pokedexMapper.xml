@@ -13,6 +13,10 @@
 </select>
 
 <select id="selectPokemonsByMemberId">
-	select * from pokedex where member_id = #{memberId}
+	select * from pokedex where member_id = #{memberId} 
+</select>
+
+<select id="selectPokemonsByMemberIdOderByScore">
+	select * from pokedex d join pokemon p on d.pokemon_id = p.pokemon_id where member_id = #{memberId} order by score desc
 </select>
 </mapper>

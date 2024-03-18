@@ -15,6 +15,8 @@ public interface PokedexMapper {
 
 	List<PokedexVO> selectPokemonsByMemberId(String memberId);
 
+	List<PokedexVO> selectPokemonsByMemberIdOderByScore(String memberId);
+
 
 
 }

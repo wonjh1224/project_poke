@@ -12,6 +12,8 @@ public interface PokedexService {
 
 	List<PokedexVO> getPokemonsByMemberId(String memberId);
 
+	List<PokedexVO> getPokemonsByMemberIdOderByScore(String memberId);
+
 
 
 }

@@ -158,15 +158,16 @@ public class MemberController {
 		m.addAttribute("per", percent);
 		
 		//등록된 도감 포켓몬 목록
-		List<PokedexVO> pokedexList = pokedexService.getPokemonsByMemberId(memberId);
-		log.info("pokedex List {}", pokedexList);
+//		List<PokedexVO> pokedexList = pokedexService.getPokemonsByMemberId(memberId);
+//		List <PokemonVO> list = new ArrayList<>();
+//		for(int i=0; i<pokedexList.size(); i++) {
+//			PokemonVO pvo = pokemonService.getPokemonByPokemonId(pokedexList.get(i).getPokemonId());
+//			list.add(pvo);
+//		}
 		
-		List <PokemonVO> list = new ArrayList<>();
-		for(int i=0; i<pokedexList.size(); i++) {
-			PokemonVO pvo = pokemonService.getPokemonByPokemonId(pokedexList.get(i).getPokemonId());
-			list.add(pvo);
-		}
-		m.addAttribute("list", list);
+		List<PokedexVO> pokedexList = pokedexService.getPokemonsByMemberIdOderByScore(memberId);
+				
+		m.addAttribute("list", pokedexList);
 		
 		
 		FarmVO farm = farmService.getFarmList(memberId);

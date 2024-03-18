@@ -31,5 +31,11 @@ public class PokedexServiceImpl implements PokedexService {
 		return mapper.selectPokemonsByMemberId(memberId);
 	}
 
+	@Override
+	public List<PokedexVO> getPokemonsByMemberIdOderByScore(String memberId) {
+		// TODO Auto-generated method stub
+		return mapper.selectPokemonsByMemberIdOderByScore(memberId);
+	}
+
 
 }
