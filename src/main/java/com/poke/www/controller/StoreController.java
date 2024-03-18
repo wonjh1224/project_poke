@@ -80,6 +80,6 @@ public class StoreController {
 		//구매 내역 추가
 		storeService.addPurchaseHistory(mvo.getMemberId(),pvo.getProductId());
 		
-		return "storage/"+mvo.getMemberId();
+		return "/storage/"+mvo.getMemberId();
 	}
 }

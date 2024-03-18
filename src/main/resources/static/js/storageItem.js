@@ -43,7 +43,7 @@ document.addEventListener('click', (e) => {
                             <span class="is-dark">${pokemon.name}</span>
                         </p>
                     </div>
-                    <img class="pack-body" src="/image/cardpack/${itemName}_body.png">
+                    <img class="pack-body not" src="/image/cardpack/${itemName}_body.png">
                 </div>
                 `
                 document.querySelector('.anime-box').innerHTML += html
@@ -60,6 +60,9 @@ function skip(){
 }
 
 document.addEventListener('click',(e)=>{
+    if(e.target.id=="skipBtn" || e.target.classList.contains('skipBtn')){
+        skip()
+    }
     if(e.target.classList.contains('pack-body')||e.target.classList.contains('pack-head')){
 
         let div = e.target.closest('div')
@@ -67,17 +70,24 @@ document.addEventListener('click',(e)=>{
         let body = div.querySelector('.pack-body')
         let card = div.querySelector('.pokemon-card')
         
+        body.classList.remove('not')
         head.classList.add('card-anime-open')
         body.classList.add('card-anime-move')
+        
+   
+		if(document.querySelectorAll('.not').length==0){				
+       		document.querySelector('.btn-box').innerHTML=`<button id="skipBtn" class="nes-btn">닫기</button>`
+		}
+        
     }
+    
     if(e.target.id=="openBtn"){
         for(pack of document.querySelectorAll('.pack-body')){
             pack.click()
         }
+		document.querySelector('.btn-box').innerHTML=`<button id="skipBtn" class="nes-btn">닫기</button>`
     }
-    if(e.target.id=="skipBtn"){
-        skip()
-    }
+
 })
 
 

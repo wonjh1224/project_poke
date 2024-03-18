@@ -51,7 +51,7 @@
     transform: translate(-50%,-50%);
     width: 300px;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     z-index: 30;
   }
   .btn-box button{
