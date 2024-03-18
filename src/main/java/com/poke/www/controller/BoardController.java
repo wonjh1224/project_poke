@@ -19,9 +19,6 @@ import com.poke.www.handler.FileHandler;
 import com.poke.www.handler.PagingHandler;
 import com.poke.www.service.BoardService;
 
-import jakarta.servlet.http.HttpServlet;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
