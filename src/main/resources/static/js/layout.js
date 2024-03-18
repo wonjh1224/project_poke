@@ -1,7 +1,7 @@
 console.log(document.body.offsetHeight)
 
 
-if(document.body.offsetHeight<=870){
+if(document.body.offsetHeight<=814){
     document.body.style.backgroundImage = "url('/image/bgimg.png')";
     document.querySelector('footer').style.backgroundImage = "none";
 }

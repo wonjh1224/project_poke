@@ -3,6 +3,8 @@
 <style>
 .charge-box{
 	display:flex;
+	justify-content:center;
+	margin-top:50px;
 }
 #point{
 	width:200px;
@@ -14,7 +16,7 @@
 </style>
 <th:block th:replace="~{layout :: setFragment(~{this::content})}">
 <th:block th:fragment="content">
-<div class="nes-container with-title container" style="width:40%">
+<div class="nes-container with-title container" style="width:40%;height:215px">
 	<p class="title" style="font-size:30px;margin-top:-40px;background-color: rgb(206, 231, 249);">충전 페이지</p>
 	<div class="charge-box">
 		<input class="nes-input" type="text" placeholder="충전 금액" id="point">
