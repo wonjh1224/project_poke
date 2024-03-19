@@ -1,5 +1,6 @@
 console.log("comment/register.js");
 console.log(bnoVal);
+console.log(writer);
 
 document.getElementById('cmtRegBtn').addEventListener('click', (e) => {
 	let cmtText = document.getElementById("cmtText");
@@ -69,8 +70,10 @@ function spreadCommentList(bno) {
 				li += `<div class="writer">${cvo.writer}</div>`
 				li += `<input type="text" value="${cvo.content}" class="nes-input cmtContent" readonly style="width:600px;">`
 				li += `</div><br>`
-				li += `<button type="button" class="nes-btn is-warning change">수정</button>`
-				li += `<button type="button" class="nes-btn is-error del">삭제</button>`
+				if(writer == cvo.writer){					
+					li += `<button type="button" class="nes-btn is-warning change">수정</button>`
+					li += `<button type="button" class="nes-btn is-error del">삭제</button>`
+				}				
 				li += `</li><hr>`
 				ul.innerHTML += li;
 			}

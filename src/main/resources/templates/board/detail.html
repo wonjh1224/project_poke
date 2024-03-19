@@ -66,11 +66,12 @@ ul {
 				
 			</div>
 			
-			<th:block th:if="${session.loginMemberId == bdto.boardVO.writer}">
+			<th:block th:if="${session.loginMember.nickname == bdto.boardVO.writer}">
 			
-			<button type="button" id="changeBtn" class="nes-btn is-warning">수정</button>
+				<button type="button" id="changeBtn" class="nes-btn is-warning">수정</button>
 
-			<button type="button" id="delBtn" class="nes-btn is-error">삭제</button>
+				<button type="button" id="delBtn" class="nes-btn is-error">삭제</button>
+				
 			</th:block>
 		</form>
 		</div>
@@ -84,7 +85,7 @@ ul {
 		<div>
 			<h4>댓글 작성</h4>
 			<div class="commentBox"></div>
-			<span id="cmtWriter">작성자 : [[${session.loginMember.nickname}]]</span>
+			작성자:<span id="cmtWriter">[[${session.loginMember.nickname}]]</span>
 			<div class="nes-field">
 			<input type="text" id="cmtText" class="nes-input" style="width: 600px;"><br>
 			</div>
@@ -112,6 +113,7 @@ ul {
 
 <script th:inline="javascript">
 	let bnoVal = [[${bdto.boardVO.bno}]];
+	let writer = [[${session.loginMember.nickname}]];
 </script>
 
 
