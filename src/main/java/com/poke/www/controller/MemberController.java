@@ -99,6 +99,7 @@ public class MemberController {
 		HttpSession session = request.getSession();
 		session.setAttribute("loginMember", loginMember);
 		session.setAttribute("loginMemberId", loginMember.getMemberId());
+		log.info("nickName >>>  {}", loginMember.getNickname());
 		return "redirect:" + url;
 	}
 	@PostMapping("/logout")
